@@ -186,7 +186,7 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
             outputDateFormatter.dateFormat = "ddMMyyyyHHmmss"
             let outputDate = outputDateFormatter.date(from: (inputDateString + "000000"))!
             
-            if outputDate.timeIntervalSinceReferenceDate > 64800 {
+            if outputDate.timeIntervalSinceNow > 64800 {
                return "✨"
             }
             else {
