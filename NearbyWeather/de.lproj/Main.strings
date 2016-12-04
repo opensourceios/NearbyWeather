@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "CloudCover"; ObjectID = "2l5-no-h11"; */
+"2l5-no-h11.text" = "CloudCover";
+
+/* Class = "UINavigationItem"; title = "NearbyWeather"; ObjectID = "FHH-cv-mAE"; */
+"FHH-cv-mAE.title" = "NearbyWeather";
+
+/* Class = "UILabel"; text = "Humidity"; ObjectID = "O4b-pe-zz0"; */
+"O4b-pe-zz0.text" = "Humidity";
+
+/* Class = "UILabel"; text = "Temperature"; ObjectID = "UbF-d8-nDq"; */
+"UbF-d8-nDq.text" = "Temperature";
+
+/* Class = "UILabel"; text = "Windspeed"; ObjectID = "uOF-b3-Gah"; */
+"uOF-b3-Gah.text" = "Windspeed";
+
+/* Class = "UILabel"; text = "CityName"; ObjectID = "zuv-By-J8K"; */
+"zuv-By-J8K.text" = "CityName";

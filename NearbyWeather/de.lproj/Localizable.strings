@@ -1,0 +1,35 @@
+/*
+ Localizable.strings
+ SimpleWeather
+ 
+ Created by Erik Maximilian Martens on 03.12.16.
+ Copyright © 2016 Erik Maximilian Martens. All rights reserved.
+ */
+
+//MARK: - LocationsListTableViewController
+LocationsListTVC_TableViewSectionHeader = "Aktuelles Wetter von Städten im Umkreis";
+LocationsListTVC_RefreshPullHandle = "Zum Aktualisieren herunterziehen";
+LocationsListTVC_LocationAlert_Title = "Kein Zugriff auf den aktuelle Ort";
+LocationsListTVC_LocationAlert_Message = "Um Wetter Daten für Städte in Ihrer Nähe bereitzustellen, benötigt NearbyWeather Ihren Standort. Sie haben diesen für die App nicht freigegeben. Dies kann in den Einstellungen verändert werden. Während Ihr Standort nicht bestimmt werden kann, werden Beispiel-Koordinaten verwendet.";
+LocationsListTVC_LocationAlert_Action1 = "Verwerfen";
+LocationsListTVC_LocationAlert_Action2 = "Einstellungen";
+
+LocationsListTVC_SortAlert_Cancel = "Abbrechen";
+LocationsListTVC_SortAlert_Action1 = "Nach Namen sortieren";
+LocationsListTVC_SortAlert_Action2 = "Nach Temperatur sortieren";
+
+LocationsListTVC_BackButtonTitle = "Zurück";
+
+//MARK: - SettingsTableViewController
+SettingsTVC_NavigationBarTitle = "Einstellungen";
+
+SettingsTVC_SectionTitle1 = "Anzahl der Such-Ergebnisse";
+SettingsTVC_SectionTitle2 = "Temperatur Einheit";
+SettingsTVC_SectionTitle3 = "Legende";
+
+SettingsTVC_Legend_Temperature = "🌡 -> Temperatur";
+SettingsTVC_Legend_CloudCover = "☁️ -> Wolkendichte/Wolkenbedeckung";
+SettingsTVC_Legend_Humidity = "💧 -> Luftfeuchtigkeit";
+SettingsTVC_Legend_WindSpeed = "💨 -> Windgeschwindigkeit";
+
+SettingsTVC_Results = "Ergebnisse";

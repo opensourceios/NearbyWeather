@@ -1,0 +1,36 @@
+/*
+ Localizable.strings
+ SimpleWeather
+ 
+ Created by Erik Maximilian Martens on 03.12.16.
+ Copyright © 2016 Erik Maximilian Martens. All rights reserved.
+ */
+
+//MARK: - LocationsListTableViewController
+LocationsListTVC_TableViewSectionHeader = "Current Weather of Nearby Cities";
+LocationsListTVC_RefreshPullHandle = "Pull to refresh";
+
+LocationsListTVC_LocationAlert_Title = "Current Location Access Denied";
+LocationsListTVC_LocationAlert_Message = "In order to provide weather data of nearby cities, your current location is required. You have denied NearbyWeather access to your location data. This can be changed within Settings. While your location is not determinable, sample coordinates will be used.";
+LocationsListTVC_LocationAlert_Action1 = "Dismiss";
+LocationsListTVC_LocationAlert_Action2 = "Settings";
+
+LocationsListTVC_SortAlert_Cancel = "Cancel";
+LocationsListTVC_SortAlert_Action1 = "Sort by Name";
+LocationsListTVC_SortAlert_Action2 = "Sort by Temperature";
+
+LocationsListTVC_BackButtonTitle = "Back";
+
+//MARK: - SettingsTableViewController
+SettingsTVC_NavigationBarTitle = "Settings";
+
+SettingsTVC_SectionTitle1 = "Amount of search results";
+SettingsTVC_SectionTitle2 = "Temperature Unit";
+SettingsTVC_SectionTitle3 = "Legend";
+
+SettingsTVC_Legend_Temperature = "🌡 -> Temperature";
+SettingsTVC_Legend_CloudCover = "☁️ -> Cloud Cover";
+SettingsTVC_Legend_Humidity = "💧 -> Humidity";
+SettingsTVC_Legend_WindSpeed = "💨 -> Wind Speed";
+
+SettingsTVC_Results = "Results";
