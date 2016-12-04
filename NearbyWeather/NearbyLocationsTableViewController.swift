@@ -178,15 +178,15 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
             return "🌪"
         case let x where x == 800:
             //Simulate day/night mode for clear skies condition -> sunset @ 18:00
-            let inputDateFormatter: DateFormatter = DateFormatter()
-            inputDateFormatter.dateFormat = "ddMMyyyy"
-            let inputDateString: String = inputDateFormatter.string(from: Date())
+            let currentDateFormatter: DateFormatter = DateFormatter()
+            currentDateFormatter.dateFormat = "ddMMyyyy"
+            let currentDateString: String = currentDateFormatter.string(from: Date())
             
-            let outputDateFormatter: DateFormatter = DateFormatter()
-            outputDateFormatter.dateFormat = "ddMMyyyyHHmmss"
-            let outputDate = outputDateFormatter.date(from: (inputDateString + "000000"))!
+            let zeroHourDateFormatter: DateFormatter = DateFormatter()
+            zeroHourDateFormatter.dateFormat = "ddMMyyyyHHmmss"
+            let zeroHourDate = zeroHourDateFormatter.date(from: (currentDateString + "000000"))!
             
-            if outputDate.timeIntervalSinceNow > 64800 {
+            if Date().timeIntervalSince(zeroHourDate) > 64800 {
                return "✨"
             }
             else {
