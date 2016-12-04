@@ -14,9 +14,11 @@
 		F204B7901DF2EFA3000F4371 /* NearbyWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F204B78F1DF2EFA3000F4371 /* NearbyWeatherTests.swift */; };
 		F204B79B1DF2EFA3000F4371 /* NearbyWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F204B79A1DF2EFA3000F4371 /* NearbyWeatherUITests.swift */; };
 		F204B7A91DF2EFFB000F4371 /* NearbyLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F204B7A81DF2EFFB000F4371 /* NearbyLocationsTableViewController.swift */; };
-		F204B7AB1DF2F047000F4371 /* NearbyLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F204B7AA1DF2F047000F4371 /* NearbyLocationCell.swift */; };
 		F204B7B01DF2F1BC000F4371 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F204B7B21DF2F1BC000F4371 /* Localizable.strings */; };
 		F204B7BD1DF35610000F4371 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F204B7BC1DF35610000F4371 /* SettingsTableViewController.swift */; };
+		F27AFDEA1DF4AC86003957EB /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AFDE91DF4AC86003957EB /* Weather.swift */; };
+		F27AFDEC1DF4C089003957EB /* LocationWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AFDEB1DF4C089003957EB /* LocationWeatherCell.swift */; };
+		F27AFDF01DF4D36C003957EB /* SettingsInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AFDEF1DF4D36C003957EB /* SettingsInputTableViewController.swift */; };
 		F283D26C1DF39024001B879D /* TemperatureUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F283D26B1DF39024001B879D /* TemperatureUnit.swift */; };
 		F283D26E1DF39095001B879D /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F283D26D1DF39095001B879D /* SettingsCell.swift */; };
 		F283D2731DF393B2001B879D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F283D2751DF393B2001B879D /* InfoPlist.strings */; };
@@ -53,12 +55,14 @@
 		F204B79A1DF2EFA3000F4371 /* NearbyWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyWeatherUITests.swift; sourceTree = "<group>"; };
 		F204B79C1DF2EFA3000F4371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F204B7A81DF2EFFB000F4371 /* NearbyLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyLocationsTableViewController.swift; sourceTree = "<group>"; };
-		F204B7AA1DF2F047000F4371 /* NearbyLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyLocationCell.swift; sourceTree = "<group>"; };
 		F204B7AC1DF2F19A000F4371 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		F204B7AD1DF2F19A000F4371 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F204B7B11DF2F1BC000F4371 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F204B7B31DF2F1BD000F4371 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F204B7BC1DF35610000F4371 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		F27AFDE91DF4AC86003957EB /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		F27AFDEB1DF4C089003957EB /* LocationWeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationWeatherCell.swift; sourceTree = "<group>"; };
+		F27AFDEF1DF4D36C003957EB /* SettingsInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInputTableViewController.swift; sourceTree = "<group>"; };
 		F283D26B1DF39024001B879D /* TemperatureUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureUnit.swift; sourceTree = "<group>"; };
 		F283D26D1DF39095001B879D /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		F283D2741DF393B2001B879D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -113,14 +117,16 @@
 		F204B7791DF2EFA3000F4371 /* NearbyWeather */ = {
 			isa = PBXGroup;
 			children = (
-				F283D26B1DF39024001B879D /* TemperatureUnit.swift */,
 				F204B77E1DF2EFA3000F4371 /* Main.storyboard */,
 				F204B7831DF2EFA3000F4371 /* LaunchScreen.storyboard */,
 				F204B77A1DF2EFA3000F4371 /* AppDelegate.swift */,
 				F204B7A81DF2EFFB000F4371 /* NearbyLocationsTableViewController.swift */,
-				F204B7AA1DF2F047000F4371 /* NearbyLocationCell.swift */,
+				F27AFDEB1DF4C089003957EB /* LocationWeatherCell.swift */,
 				F204B7BC1DF35610000F4371 /* SettingsTableViewController.swift */,
 				F283D26D1DF39095001B879D /* SettingsCell.swift */,
+				F27AFDEF1DF4D36C003957EB /* SettingsInputTableViewController.swift */,
+				F27AFDE91DF4AC86003957EB /* Weather.swift */,
+				F283D26B1DF39024001B879D /* TemperatureUnit.swift */,
 				F204B7811DF2EFA3000F4371 /* Assets.xcassets */,
 				F204B7B21DF2F1BC000F4371 /* Localizable.strings */,
 				F283D2751DF393B2001B879D /* InfoPlist.strings */,
@@ -291,8 +297,10 @@
 				F283D26C1DF39024001B879D /* TemperatureUnit.swift in Sources */,
 				F204B77B1DF2EFA3000F4371 /* AppDelegate.swift in Sources */,
 				F204B7BD1DF35610000F4371 /* SettingsTableViewController.swift in Sources */,
-				F204B7AB1DF2F047000F4371 /* NearbyLocationCell.swift in Sources */,
+				F27AFDEC1DF4C089003957EB /* LocationWeatherCell.swift in Sources */,
 				F204B7A91DF2EFFB000F4371 /* NearbyLocationsTableViewController.swift in Sources */,
+				F27AFDEA1DF4AC86003957EB /* Weather.swift in Sources */,
+				F27AFDF01DF4D36C003957EB /* SettingsInputTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

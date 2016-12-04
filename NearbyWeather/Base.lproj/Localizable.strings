@@ -7,7 +7,9 @@
  */
 
 //MARK: - LocationsListTableViewController
-LocationsListTVC_TableViewSectionHeader = "Current Weather of Nearby Cities";
+LocationsListTVC_TableViewSectionHeader1 = "Current Weather of Your Favorited Location";
+LocationsListTVC_TableViewSectionHeader2 = "Current Weather of Nearby Cities";
+
 LocationsListTVC_RefreshPullHandle = "Pull to refresh";
 
 LocationsListTVC_LocationAlert_Title = "Current Location Access Denied";
@@ -24,9 +26,10 @@ LocationsListTVC_BackButtonTitle = "Back";
 //MARK: - SettingsTableViewController
 SettingsTVC_NavigationBarTitle = "Settings";
 
-SettingsTVC_SectionTitle1 = "Amount of search results";
-SettingsTVC_SectionTitle2 = "Temperature Unit";
-SettingsTVC_SectionTitle3 = "Legend";
+SettingsTVC_SectionTitle1 = "Your Favorite City";
+SettingsTVC_SectionTitle2 = "Amount of search results";
+SettingsTVC_SectionTitle3 = "Temperature Unit";
+SettingsTVC_SectionTitle4 = "Legend";
 
 SettingsTVC_Legend_Temperature = "🌡 -> Temperature";
 SettingsTVC_Legend_CloudCover = "☁️ -> Cloud Cover";
@@ -34,3 +37,8 @@ SettingsTVC_Legend_Humidity = "💧 -> Humidity";
 SettingsTVC_Legend_WindSpeed = "💨 -> Wind Speed";
 
 SettingsTVC_Results = "Results";
+
+//MARK: - SettingsInputTableViewController
+SettingsInputTVC_NavigationBarTitle = "Select City";
+
+InputSettingsTVC_SectionTitle = "Select Your Favorite City";

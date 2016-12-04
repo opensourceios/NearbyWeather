@@ -7,12 +7,13 @@
 //
 
 import UIKit
-import EventKit
 
 class SettingsTableViewController: UITableViewController {
     
     //MARK: - Assets
     /* General Assets */
+    var favoritedLocation: String?
+    
     var amountResultsOptions: [Int] = [10, 20, 30, 40, 50]
     var chosenAmountResults: Int?
     
@@ -20,6 +21,7 @@ class SettingsTableViewController: UITableViewController {
     var chosenTemperatureUnit: TemperatureUnit?
     
     let legend: [String] = [NSLocalizedString("SettingsTVC_Legend_Temperature", comment: ""), NSLocalizedString("SettingsTVC_Legend_CloudCover", comment: ""), NSLocalizedString("SettingsTVC_Legend_Humidity", comment: ""), NSLocalizedString("SettingsTVC_Legend_WindSpeed", comment: "")]
+    
     
     //MARK: - Override Functions
     /* General */
@@ -39,10 +41,13 @@ class SettingsTableViewController: UITableViewController {
         
         switch indexPath.section {
         case 0:
+            performSegue(withIdentifier: "openSettingsInput", sender: self)
+            break
+        case 1:
             chosenAmountResults = amountResultsOptions[indexPath.row]
             tableView.reloadData()
             break
-        case 1:
+        case 2:
             chosenTemperatureUnit = TemperatureUnit(rawValue: temperatureUnitOptions[indexPath.row])
             tableView.reloadData()
             break
@@ -59,22 +64,25 @@ class SettingsTableViewController: UITableViewController {
             return NSLocalizedString("SettingsTVC_SectionTitle2", comment: "")
         case 2:
             return NSLocalizedString("SettingsTVC_SectionTitle3", comment: "")
+        case 3:
+            return NSLocalizedString("SettingsTVC_SectionTitle4", comment: "")
         default:
             //Will never be executed
             return ""
         }
-        
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return amountResultsOptions.count
+            return 1
         case 1:
-            return temperatureUnitOptions.count
+            return amountResultsOptions.count
         case 2:
+            return temperatureUnitOptions.count
+        case 3:
             return legend.count
         default:
             //Will never be executed
@@ -86,6 +94,12 @@ class SettingsTableViewController: UITableViewController {
         
         switch indexPath.section {
         case 0:
+            cell.contentLabel.text! = favoritedLocation!
+            
+            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+
+            return cell
+        case 1:
             cell.contentLabel.text! = "\(amountResultsOptions[indexPath.row]) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
             
             if amountResultsOptions[indexPath.row] == chosenAmountResults {
@@ -95,7 +109,7 @@ class SettingsTableViewController: UITableViewController {
                 cell.accessoryType = UITableViewCellAccessoryType.none
             }
             return cell
-        case 1:
+        case 2:
             cell.contentLabel.text! = "\(temperatureUnitOptions[indexPath.row])"
             
             if temperatureUnitOptions[indexPath.row] == chosenTemperatureUnit?.rawValue {
@@ -105,7 +119,7 @@ class SettingsTableViewController: UITableViewController {
                 cell.accessoryType = UITableViewCellAccessoryType.none
             }
             return cell
-        case 2:
+        case 3:
             cell.contentLabel.text! = legend[indexPath.row]
             
             cell.accessoryType = UITableViewCellAccessoryType.none
@@ -122,7 +136,21 @@ class SettingsTableViewController: UITableViewController {
     
     //MARK: - Navigation Seguess
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //No action necessary here
+        if segue.identifier == "openSettingsInput" {
+            let settingsInputTableViewController = segue.destination as! SettingsInputTableViewController
+            settingsInputTableViewController.favoritedLocation = self.favoritedLocation
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = NSLocalizedString("LocationsListTVC_BackButtonTitle", comment: "")
+            navigationItem.backBarButtonItem = backItem
+        }
+    
+    }
+    @IBAction func unwindToSettingsTableViewController(_ sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? SettingsInputTableViewController, let favoritedLocation = sourceViewController.favoritedLocation {
+            self.favoritedLocation = favoritedLocation
+            self.tableView.reloadData()
+        }
     }
     
     //MARK: - Button Interaction

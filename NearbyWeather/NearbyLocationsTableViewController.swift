@@ -18,14 +18,10 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
     private var currentLatitude: Double = 49.2525
     private var currentLongitude: Double = 8.2236
     
-    private var chosenAmountResults: Int = 10
-    private var chosenTemperatureUnit: TemperatureUnit = .celsius
+    static var currentTableView: UITableView!
+    static var activityIndicator = UIActivityIndicatorView()
     
-    private let openWeatherMapBaseURL = "http://api.openweathermap.org/data/2.5/find"
-    private let openWeatherMapAPIKey = "4d49c9e06157e2ef4d84ec35bf1f3779"
-    private var weatherForNearbyLocations: [[String: AnyObject]] = Array()
-    
-    private var indicator = UIActivityIndicatorView()
+    private static var weather: Weather!
     
     //MARK: - Override Functions
     /* General */
@@ -33,9 +29,13 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
         super.viewDidLoad()
         
         //Set up tableView
+        NearbyLocationsTableViewController.currentTableView = tableView
         tableView.delegate = self
         self.tableView.estimatedRowHeight = 100
         self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        
+        //Set up activity indicator
+        self.configureActivityIndicator()
         
         //Add refresh via pull down
         refreshControl = UIRefreshControl()
@@ -53,9 +53,20 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-    
-        //Load weather data
-        self.fetchWeatherForNearbyLocations()
+        
+        //Initalize weather object or load data from persistence store
+        //Load any saved events, otherwise load sample data
+        if let weather: Weather = loadWeather() {
+            NearbyLocationsTableViewController.weather = weather
+        }
+        else  {
+            //Load the Sample Data
+            NearbyLocationsTableViewController.weather = Weather(favoritedLocation: "Mannheim")
+            
+            //Load weather data from server - no local data was stored previously
+            NearbyLocationsTableViewController.weather.fetchWeatherForNearbyLocations(for: currentLatitude, for: currentLongitude)
+            NearbyLocationsTableViewController.weather.fetchWeatherForFavoritedLocation()
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -69,16 +80,34 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
         tableView.deselectRow(at: indexPath, animated: true)
     }
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ""
+        switch section {
+        case 0:
+            return NSLocalizedString("LocationsListTVC_TableViewSectionHeader1", comment: "")
+        case 1:
+            return NSLocalizedString("LocationsListTVC_TableViewSectionHeader2", comment: "")
+        default:
+            //Will never be executed
+            return ""
+        }
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weatherForNearbyLocations.count
+        switch section {
+        case 0:
+            //Will return 0 if no data was loaded
+            return NearbyLocationsTableViewController.weather.weatherForFavoritedLocation.count
+        case 1:
+            //Will return 0 if no data was loaded
+            return NearbyLocationsTableViewController.weather.weatherForNearbyLocations.count
+        default:
+            //Will never be executed
+            return 0
+        }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NearbyLocationCell", for: indexPath) as! NearbyLocationCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationWeatherCell", for: indexPath) as! LocationWeatherCell
         
         cell.backgroundColor = UIColor.lightGray.withAlphaComponent(0)
         
@@ -86,77 +115,62 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
         cell.backgroundColorView.layer.cornerRadius = 5
         cell.backgroundColorView.layer.backgroundColor = UIColor(red: 39/255, green: 214/255, blue: 1, alpha: 1.0).cgColor
         
-        let weather = (weatherForNearbyLocations[indexPath.row]["weather"]! as! NSArray)[0] as! [String: AnyObject]
-        let weatherConditionCode: Int = weather["id"]! as! Int
-        cell.weatherConditionLabel.text! = determineWeatherConditionSymbol(fromWeathercode: weatherConditionCode)
-        
         cell.cityNameLabel.textColor = UIColor.white
         cell.cityNameLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
-        cell.cityNameLabel.text! = weatherForNearbyLocations[indexPath.row]["name"]! as! String
         
         cell.temperatureLabel.textColor = UIColor.white
         cell.temperatureLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
-        let temperatureInUnit: String = convertToTemperatureUnit(rawTemperature: weatherForNearbyLocations[indexPath.row]["main"]!["temp"]!! as! Double)
-        cell.temperatureLabel.text! = "🌡 " + temperatureInUnit
         
         cell.cloudCoverLabel.textColor = UIColor.white
         cell.cloudCoverLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
-        cell.cloudCoverLabel.text! = "☁️ \(weatherForNearbyLocations[indexPath.row]["clouds"]!["all"]!!)%"
         
         cell.humidityLabel.textColor = UIColor.white
         cell.humidityLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
-        cell.humidityLabel.text! = "💧 \(weatherForNearbyLocations[indexPath.row]["main"]!["humidity"]!!)%"
         
         cell.windspeedLabel.textColor = UIColor.white
         cell.windspeedLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
-        cell.windspeedLabel.text! = "💨 \(weatherForNearbyLocations[indexPath.row]["wind"]!["speed"]!!) km/h"
         
-        return cell
+        switch indexPath.section {
+        case 0:
+            let weather = (NearbyLocationsTableViewController.weather.weatherForFavoritedLocation[indexPath.row]["weather"]! as! NSArray)[0] as! [String: AnyObject]
+            let weatherConditionCode: Int = weather["id"]! as! Int
+            let temperatureInUnit: String = convertToTemperatureUnit(rawTemperature: NearbyLocationsTableViewController.weather.weatherForFavoritedLocation[indexPath.row]["main"]!["temp"]!! as! Double)
+            
+            cell.weatherConditionLabel.text! = determineWeatherConditionSymbol(fromWeathercode: weatherConditionCode)
+            cell.cityNameLabel.text! = NearbyLocationsTableViewController.weather.weatherForFavoritedLocation[indexPath.row]["name"]! as! String
+            cell.temperatureLabel.text! = "🌡 " + temperatureInUnit
+            cell.cloudCoverLabel.text! = "☁️ \(NearbyLocationsTableViewController.weather.weatherForFavoritedLocation[indexPath.row]["clouds"]!["all"]!!)%"
+            cell.humidityLabel.text! = "💧 \(NearbyLocationsTableViewController.weather.weatherForFavoritedLocation[indexPath.row]["main"]!["humidity"]!!)%"
+            cell.windspeedLabel.text! = "💨 \(NearbyLocationsTableViewController.weather.weatherForFavoritedLocation[indexPath.row]["wind"]!["speed"]!!) km/h"
+            
+            return cell
+        case 1:
+            let weather = (NearbyLocationsTableViewController.weather.weatherForNearbyLocations[indexPath.row]["weather"]! as! NSArray)[0] as! [String: AnyObject]
+            let weatherConditionCode: Int = weather["id"]! as! Int
+            let temperatureInUnit: String = convertToTemperatureUnit(rawTemperature: NearbyLocationsTableViewController.weather.weatherForNearbyLocations[indexPath.row]["main"]!["temp"]!! as! Double)
+            
+            cell.weatherConditionLabel.text! = determineWeatherConditionSymbol(fromWeathercode: weatherConditionCode)
+            cell.cityNameLabel.text! = NearbyLocationsTableViewController.weather.weatherForNearbyLocations[indexPath.row]["name"]! as! String
+            cell.temperatureLabel.text! = "🌡 " + temperatureInUnit
+            cell.cloudCoverLabel.text! = "☁️ \(NearbyLocationsTableViewController.weather.weatherForNearbyLocations[indexPath.row]["clouds"]!["all"]!!)%"
+            cell.humidityLabel.text! = "💧 \(NearbyLocationsTableViewController.weather.weatherForNearbyLocations[indexPath.row]["main"]!["humidity"]!!)%"
+            cell.windspeedLabel.text! = "💨 \(NearbyLocationsTableViewController.weather.weatherForNearbyLocations[indexPath.row]["wind"]!["speed"]!!) km/h"
+            
+            return cell
+        default:
+            //Will never be executed
+            return UITableViewCell()
+
+        }
     }
     
     //MARK: - Helper Functions
     /* General */
-    fileprivate func fetchWeatherForNearbyLocations() {
-        //Reset previous data
-        weatherForNearbyLocations = Array()
-        
-        //Start Activity Indicator
-        self.showActivityIndicator()
-        
-        //Fetch new data
-        let session = URLSession.shared
-        
-        let requestURL = NSMutableURLRequest(url: URL(string: "\(openWeatherMapBaseURL)?APPID=\(openWeatherMapAPIKey)&lat=\(currentLatitude)&lon=\(currentLongitude)&cnt=\(chosenAmountResults)")!)
-        
-        let request = session.dataTask(with: requestURL as URLRequest, completionHandler: {
-            (data, response, error) in
-                guard let _: Data = data, let _: URLResponse = response  , error == nil else {
-                    return
-                }
-            //let dataString = String(data: data!, encoding: String.Encoding.utf8)
-            //print("Clear Text Data:\n\(dataString!)")
-            self.extract(json: data!)
-        })
-        request.resume()
+    static func storeWeather() {
+        _ = NSKeyedArchiver.archiveRootObject(NearbyLocationsTableViewController.weather, toFile: Weather.ArchiveURL.path)
     }
-    fileprivate func extract(json: Data) {
-        do {
-            let externalWeatherData = try JSONSerialization.jsonObject(with: json, options: .mutableContainers) as! [String: AnyObject]
-            
-            for i in 0..<externalWeatherData["list"]!.count {
-                weatherForNearbyLocations.append((externalWeatherData["list"]! as! NSArray)[i] as! [String: AnyObject])
-            }
-        }
-        catch let jsonError as NSError {
-            print("JSON error description: \(jsonError.description)")
-            return
-        }
-        DispatchQueue.main.async(execute: {
-            //Stop the activity indicator
-            self.indicator.stopAnimating()
-            
-            self.tableView.reloadData()
-        })
+    fileprivate func loadWeather() -> Weather? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Weather.ArchiveURL.path) as? Weather
     }
     fileprivate func determineWeatherConditionSymbol(fromWeathercode: Int) -> String {
         switch fromWeathercode {
@@ -177,7 +191,7 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
         case let x where x == 781 || x >= 958:
             return "🌪"
         case let x where x == 800:
-            //Simulate day/night mode for clear skies condition -> sunset @ 18:00
+            //Simulate day/night mode for clear skies condition -> sunset @ 18:00, sunrise @ 07:00
             let currentDateFormatter: DateFormatter = DateFormatter()
             currentDateFormatter.dateFormat = "ddMMyyyy"
             let currentDateString: String = currentDateFormatter.string(from: Date())
@@ -186,7 +200,7 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
             zeroHourDateFormatter.dateFormat = "ddMMyyyyHHmmss"
             let zeroHourDate = zeroHourDateFormatter.date(from: (currentDateString + "000000"))!
             
-            if Date().timeIntervalSince(zeroHourDate) > 64800 {
+            if Date().timeIntervalSince(zeroHourDate) > 64800 || Date().timeIntervalSince(zeroHourDate) < 25200 {
                return "✨"
             }
             else {
@@ -207,7 +221,7 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
         }
     }
     fileprivate func convertToTemperatureUnit(rawTemperature: Double) -> String {
-        switch chosenTemperatureUnit {
+        switch NearbyLocationsTableViewController.weather.temperatureUnit {
         case .celsius:
             return "\(String(format:"%.02f", rawTemperature - 273.15))°C"
         case . fahrenheit:
@@ -220,28 +234,28 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
         refreshControl.beginRefreshing()
         
         //Stop the activity indicator incase a previous one is still running
-        self.indicator.stopAnimating()
+        NearbyLocationsTableViewController.activityIndicator.stopAnimating()
         
         //Reset previous data
-        weatherForNearbyLocations = Array()
+        NearbyLocationsTableViewController.weather.weatherForFavoritedLocation = Array()
+        NearbyLocationsTableViewController.weather.weatherForNearbyLocations = Array()
         self.tableView.reloadData()
         
         //Fetch new data
-        self.fetchWeatherForNearbyLocations()
+        NearbyLocationsTableViewController.weather.fetchWeatherForNearbyLocations(for: currentLatitude, for: currentLongitude)
+        NearbyLocationsTableViewController.weather.fetchWeatherForFavoritedLocation()
         
         refreshControl.endRefreshing()
     }
-    fileprivate func showActivityIndicator() {
-        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        indicator.layer.cornerRadius = 10
-        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-        indicator.center = self.view.center
-        indicator.hidesWhenStopped = true
-        indicator.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+    fileprivate func configureActivityIndicator() {
+        NearbyLocationsTableViewController.activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        NearbyLocationsTableViewController.activityIndicator.layer.cornerRadius = 10
+        NearbyLocationsTableViewController.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        NearbyLocationsTableViewController.activityIndicator.center = self.view.center
+        NearbyLocationsTableViewController.activityIndicator.hidesWhenStopped = true
+        NearbyLocationsTableViewController.activityIndicator.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
-        self.view.addSubview(indicator)
-        
-        indicator.startAnimating()
+        view.addSubview(NearbyLocationsTableViewController.activityIndicator)
     }
     
     /* Alerts */
@@ -262,11 +276,11 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
         
         let firstAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
         let secondAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action1", comment: ""), style: UIAlertActionStyle.default, handler: {(paramAction:UIAlertAction!) in
-            self.weatherForNearbyLocations.sort() {($0["name"]! as! String) < ($1["name"]! as! String)}
+            NearbyLocationsTableViewController.weather.weatherForNearbyLocations.sort() {($0["name"]! as! String) < ($1["name"]! as! String)}
             self.tableView.reloadData()
         })
         let thirdAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action2", comment: ""), style: UIAlertActionStyle.default, handler: {(paramAction:UIAlertAction!) in
-            self.weatherForNearbyLocations.sort() {($0["main"]!["temp"]!! as AnyObject).doubleValue > ($1["main"]!["temp"]!! as AnyObject).doubleValue}
+            NearbyLocationsTableViewController.weather.weatherForNearbyLocations.sort() {($0["main"]!["temp"]!! as AnyObject).doubleValue > ($1["main"]!["temp"]!! as AnyObject).doubleValue}
             self.tableView.reloadData()
         })
         
@@ -287,8 +301,9 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openSettings" {
             let settingsTableViewController = segue.destination as! SettingsTableViewController
-            settingsTableViewController.chosenAmountResults = chosenAmountResults
-            settingsTableViewController.chosenTemperatureUnit = chosenTemperatureUnit
+            settingsTableViewController.favoritedLocation = NearbyLocationsTableViewController.weather.favoritedLocation
+            settingsTableViewController.chosenAmountResults = NearbyLocationsTableViewController.weather.amountResults
+            settingsTableViewController.chosenTemperatureUnit = NearbyLocationsTableViewController.weather.temperatureUnit
 
             let backItem = UIBarButtonItem()
             backItem.title = NSLocalizedString("LocationsListTVC_BackButtonTitle", comment: "")
@@ -296,12 +311,17 @@ class NearbyLocationsTableViewController: UITableViewController, CLLocationManag
         }
     }
     @IBAction func unwindToNearbyLocationsTableViewController(_ sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? SettingsTableViewController, let chosenAmountResults = sourceViewController.chosenAmountResults, let chosenTemperatureUnit = sourceViewController.chosenTemperatureUnit {
-            self.chosenAmountResults = chosenAmountResults
-            self.chosenTemperatureUnit = chosenTemperatureUnit
+        if let sourceViewController = sender.source as? SettingsTableViewController, let favoritedLocation = sourceViewController.favoritedLocation, let chosenAmountResults = sourceViewController.chosenAmountResults, let chosenTemperatureUnit = sourceViewController.chosenTemperatureUnit {
+            NearbyLocationsTableViewController.weather.favoritedLocation = favoritedLocation
+            NearbyLocationsTableViewController.weather.amountResults = chosenAmountResults
+            NearbyLocationsTableViewController.weather.temperatureUnit = chosenTemperatureUnit
+            
+            //Store the user's changes
+            NearbyLocationsTableViewController.storeWeather()
             
             //Reload data to reflect new settings
-            self.fetchWeatherForNearbyLocations()
+            NearbyLocationsTableViewController.weather.fetchWeatherForNearbyLocations(for: currentLatitude, for: currentLongitude)
+            NearbyLocationsTableViewController.weather.fetchWeatherForFavoritedLocation()
         }
     }
     

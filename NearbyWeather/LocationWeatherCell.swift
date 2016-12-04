@@ -1,5 +1,5 @@
 //
-//  LocationCell.swift
+//  LocationWeatherCell.swift
 //  SimpleWeather
 //
 //  Created by Erik Maximilian Martens on 03.12.16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NearbyLocationCell: UITableViewCell {
+class LocationWeatherCell: UITableViewCell {
     
     //MARK: - Assets
     /* Views */
@@ -21,7 +21,7 @@ class NearbyLocationCell: UITableViewCell {
     @IBOutlet weak var cloudCoverLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var windspeedLabel: UILabel!
-
+    
     //MARK: - Override Functions
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NearbyLocationCell" rowHeight="100" id="Nkq-jB-OG2" userLabel="NearbyLocationCell" customClass="NearbyLocationCell" customModule="NearbyWeather" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationWeatherCell" rowHeight="100" id="Nkq-jB-OG2" userLabel="LocationWeatherCell" customClass="LocationWeatherCell" customModule="NearbyWeather" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="56" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nkq-jB-OG2" id="bHJ-cd-yLS">
@@ -162,11 +162,11 @@
                                 <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="22x-XC-hUB" id="0aq-yM-d2P">
-                                    <rect key="frame" x="0.0" y="0.0" width="336" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="336" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vP-CS-lc0" userLabel="contentLabel">
-                                            <rect key="frame" x="20" y="5" width="301" height="35"/>
+                                            <rect key="frame" x="20" y="5" width="301" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="DtO-4D-qK6"/>
                                             </constraints>
@@ -211,12 +211,79 @@
                     </navigationItem>
                     <connections>
                         <segue destination="g5r-MC-00c" kind="unwind" identifier="manualUnwindToNearbyLocationsTVC" unwindAction="unwindToNearbyLocationsTableViewController:" id="qaM-VP-UFy"/>
+                        <segue destination="9dx-Ei-JYn" kind="show" identifier="openSettingsInput" id="j0k-fb-YAx"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qXW-cc-5Pd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="g5r-MC-00c" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3249" y="169"/>
+        </scene>
+        <!--SettingsInputTableViewController-->
+        <scene sceneID="YPu-rY-30c">
+            <objects>
+                <tableViewController storyboardIdentifier="SettingsInputTVC" title="SettingsInputTableViewController" id="9dx-Ei-JYn" userLabel="SettingsInputTableViewController" customClass="SettingsInputTableViewController" customModule="NearbyWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="4kt-Kh-Gub">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Header Title" id="DjM-dy-hDC">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="AKd-fM-epc">
+                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AKd-fM-epc" id="2oQ-Fc-HWY">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2JI-Te-yMY" userLabel="eventTitleTextField">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="YQv-OR-tWM">
+                                                            <variation key="heightClass=regular-widthClass=compact" constant="34"/>
+                                                        </constraint>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                                    <connections>
+                                                        <action selector="inputTextFieldEditingChanged:" destination="9dx-Ei-JYn" eventType="editingChanged" id="CRP-kX-9q8"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2JI-Te-yMY" firstAttribute="top" secondItem="2oQ-Fc-HWY" secondAttribute="top" constant="5" id="M0F-ZP-ONm"/>
+                                                <constraint firstAttribute="bottom" secondItem="2JI-Te-yMY" secondAttribute="bottom" constant="4" id="MHd-qb-wUt"/>
+                                                <constraint firstAttribute="trailing" secondItem="2JI-Te-yMY" secondAttribute="trailing" constant="15" id="XPf-SR-zGV"/>
+                                                <constraint firstItem="2JI-Te-yMY" firstAttribute="leading" secondItem="2oQ-Fc-HWY" secondAttribute="leading" constant="15" id="kpt-5r-43f"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="9dx-Ei-JYn" id="ZbP-OX-cCw"/>
+                            <outlet property="delegate" destination="9dx-Ei-JYn" id="6n8-l1-jn1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="1Cp-g1-nKW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="HYR-JQ-eKX">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="9dx-Ei-JYn" id="Yko-oI-Khj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="inputTextField" destination="2JI-Te-yMY" id="7Vx-Og-hMZ"/>
+                        <outlet property="saveButton" destination="HYR-JQ-eKX" id="N6E-YW-ssd"/>
+                        <segue destination="G4u-xi-Ibz" kind="unwind" identifier="unwindToSettingsTVC" unwindAction="unwindToSettingsTableViewController:" id="jSC-EC-2Hg"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wxM-cX-y0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="G4u-xi-Ibz" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4370" y="169"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oKa-9f-375">
@@ -266,6 +333,30 @@
             </objects>
             <point key="canvasLocation" x="2498" y="-594"/>
         </scene>
+        <!--SettingsInputTableViewController-->
+        <scene sceneID="7bH-S0-uKf">
+            <objects>
+                <navigationController storyboardIdentifier="SettingsInputNVC" title="SettingsInputTableViewController" automaticallyAdjustsScrollViewInsets="NO" id="S55-zR-gos" userLabel="SettingsInputTableViewController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cu9-6H-rqo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.28921774030000003" green="0.78628259899999997" blue="0.94946676490000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9dx-Ei-JYn" kind="relationship" relationship="rootViewController" id="3bB-vs-Fgi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qPP-xd-Ds7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4057" y="-594"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Settings" width="25" height="25"/>
@@ -273,5 +364,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="32M-DG-WIM"/>
+        <segue reference="j0k-fb-YAx"/>
     </inferredMetricsTieBreakers>
 </document>
