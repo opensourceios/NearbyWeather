@@ -1,14 +1,33 @@
 /*
  Localizable.strings
- SimpleWeather
+ NearbyWeather
  
  Created by Erik Maximilian Martens on 03.12.16.
  Copyright © 2016 Erik Maximilian Martens. All rights reserved.
  */
 
-//MARK: - LocationsListTableViewController
-LocationsListTVC_TableViewSectionHeader1 = "Current Weather of Your Favorited Location";
-LocationsListTVC_TableViewSectionHeader2 = "Current Weather of Nearby Cities";
+
+// MARK: - WelcomeScreenViewController
+
+WelcomeScreenVC_NavigationBarTitle = "Welcome";
+
+WelcomeScreenVC_Description = "Please enter your Open Weather Map API Key below. You can change this within the settings later.";
+WelcomeScreenVC_SaveButtonTitle = "Save";
+WelcomeScreenVC_GetInstructionsButtonTitle = "Don't have one?";
+
+
+// MARK: - SetPermissionsViewController
+
+SetPermissionsVC_NavigationBarTitle = "Location Access";
+
+SetPermissionsVC_Description = "In order to use NearbyWeather's fully functionality and get weather data for nearby places, your location is required. Example location data will be used while access is denied";
+SetPermissionsVC_AskPermissionsButtonTitle = "Configure";
+
+
+// MARK: - NearbyLocationsTableViewController
+
+LocationsListTVC_TableViewSectionHeader1 = "Weather in Favourited City";
+LocationsListTVC_TableViewSectionHeader2 = "Weather for Nearby Cities";
 
 LocationsListTVC_RefreshPullHandle = "Pull to refresh";
 
@@ -23,22 +42,53 @@ LocationsListTVC_SortAlert_Action2 = "Sort by Temperature";
 
 LocationsListTVC_BackButtonTitle = "Back";
 
-//MARK: - SettingsTableViewController
+LocationsListTVC_AlertNoData = "Data could not be loaded. Ensure that you have a network connection and your API key is correctly entered.";
+
+
+// MARK: - InfoTableViewController
+
+InfoTVC_NavigationItemTitle = "About";
+
+InfoTVC_TableViewSectionHeader2 = "Legend";
+InfoTVC_TableViewSectionHeader3 = "Resources";
+InfoTVC_TableViewSectionHeader4 = "Contributors";
+InfoTVC_TableViewSectionHeader5 = "Mentions";
+
+InfoTVC_TableViewSectionFooter5 = "Info Icon, Sorting Icon, Settings Icon";
+
+InfoTVC_AppTitle = "NearbyWeather - Open Source Weather";
+InfoTVC_AppVersion = "Version 1.1 Build #3";
+
+InfoTVC_Support = "Support";
+InfoTVC_Source = "Source Code";
+InfoTVC_Icons = "Icons by";
+
+InfoTVC_Legend_Temperature = "🌡 Temperature";
+InfoTVC_Legend_CloudCover = "☁️ Cloud Cover";
+InfoTVC_Legend_Humidity = "💧 Humidity";
+InfoTVC_Legend_WindSpeed = "💨 Wind Speed";
+
+
+// MARK: - SettingsTableViewController
+
+SettingsTVC_BackButtonTitle = "Weather";
+
 SettingsTVC_NavigationBarTitle = "Settings";
 
-SettingsTVC_SectionTitle1 = "Your Favorite City";
-SettingsTVC_SectionTitle2 = "Amount of search results";
-SettingsTVC_SectionTitle3 = "Temperature Unit";
-SettingsTVC_SectionTitle4 = "Legend";
-
-SettingsTVC_Legend_Temperature = "🌡 -> Temperature";
-SettingsTVC_Legend_CloudCover = "☁️ -> Cloud Cover";
-SettingsTVC_Legend_Humidity = "💧 -> Humidity";
-SettingsTVC_Legend_WindSpeed = "💨 -> Wind Speed";
+SettingsTVC_SectionTitle1 = "Favourited City";
+SettingsTVC_SectionTitle2 = "Open Weather Map API Key";
+SettingsTVC_SectionTitle3 = "Amount of Search Results";
+SettingsTVC_SectionTitle4 = "Temperature Unit";
 
 SettingsTVC_Results = "Results";
 
-//MARK: - SettingsInputTableViewController
-SettingsInputTVC_NavigationBarTitle = "Select City";
 
-InputSettingsTVC_SectionTitle = "Select Your Favorite City";
+// MARK: - SettingsInputTableViewController
+
+SettingsInputTVC_NavigationBarTitle_Mode_EnterFavoritedLocation = "Set City";
+SettingsInputTVC_NavigationBarTitle_Mode_EnterAPIKey = "Set API Key";
+
+InputSettingsTVC_SectionTitle_Mode_EnterFavoritedLocation = "Enter City Name";
+InputSettingsTVC_SectionTitle_Mode_EnterAPIKey = "Enter API Key";
+
+InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "The API Key has a length of exactly 32 characters.";

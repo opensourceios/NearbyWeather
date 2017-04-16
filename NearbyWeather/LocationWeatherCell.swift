@@ -11,10 +11,13 @@ import UIKit
 class LocationWeatherCell: UITableViewCell {
     
     //MARK: - Assets
+    
     /* Views */
+    
     @IBOutlet weak var backgroundColorView: UIView!
     
     /* Labels */
+    
     @IBOutlet weak var weatherConditionLabel: UILabel!
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -22,10 +25,13 @@ class LocationWeatherCell: UITableViewCell {
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var windspeedLabel: UILabel!
     
+    
     //MARK: - Override Functions
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

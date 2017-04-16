@@ -10,52 +10,50 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
-    //MARK: - Assets
-    /* General Assets */
-    var favoritedLocation: String?
+    // MARK: - Override Functions
     
-    var amountResultsOptions: [Int] = [10, 20, 30, 40, 50]
-    var chosenAmountResults: Int?
-    
-    var temperatureUnitOptions: [String] = ["Celsius", "Fahrenheit", "Kelvin"]
-    var chosenTemperatureUnit: TemperatureUnit?
-    
-    let legend: [String] = [NSLocalizedString("SettingsTVC_Legend_Temperature", comment: ""), NSLocalizedString("SettingsTVC_Legend_CloudCover", comment: ""), NSLocalizedString("SettingsTVC_Legend_Humidity", comment: ""), NSLocalizedString("SettingsTVC_Legend_WindSpeed", comment: "")]
-    
-    
-    //MARK: - Override Functions
     /* General */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = NSLocalizedString("SettingsTVC_NavigationBarTitle", comment: "")
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SettingsTableViewController.didTapDoneButton(_:)))
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.apiKeyUpdated.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
     }
     
     /* TableView */
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.section {
         case 0:
-            performSegue(withIdentifier: "openSettingsInput", sender: self)
-            break
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsInputTVC") as! SettingsInputTableViewController
+            destinationViewController.mode = .enterFavoritedLocation
+            navigationController?.pushViewController(destinationViewController, animated: true)
         case 1:
-            chosenAmountResults = amountResultsOptions[indexPath.row]
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsInputTVC") as! SettingsInputTableViewController
+            destinationViewController.mode = .enterAPIKey
+            navigationController?.pushViewController(destinationViewController, animated: true)
+        case 2:
+            WeatherService.current.amountResults = AmountResults(rawValue: indexPath.row).integerValue
             tableView.reloadData()
             break
-        case 2:
-            chosenTemperatureUnit = TemperatureUnit(rawValue: temperatureUnitOptions[indexPath.row])
+        case 3:
+            WeatherService.current.temperatureUnit = TemperatureUnit(rawValue: indexPath.row)
             tableView.reloadData()
             break
         default:
-            //Will never be executed
             break
         }
     }
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
@@ -67,94 +65,82 @@ class SettingsTableViewController: UITableViewController {
         case 3:
             return NSLocalizedString("SettingsTVC_SectionTitle4", comment: "")
         default:
-            //Will never be executed
-            return ""
+            return nil
         }
     }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
         case 1:
-            return amountResultsOptions.count
+            return 1
         case 2:
-            return temperatureUnitOptions.count
+            return AmountResults.count
         case 3:
-            return legend.count
+            return TemperatureUnit.count
         default:
-            //Will never be executed
             return 0
         }
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
+        cell.accessoryType = .none
         
         switch indexPath.section {
         case 0:
-            cell.contentLabel.text! = favoritedLocation!
-            
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-
+            cell.contentLabel.text! = WeatherService.current.favoritedLocation
+            cell.accessoryType = .disclosureIndicator
             return cell
         case 1:
-            cell.contentLabel.text! = "\(amountResultsOptions[indexPath.row]) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
-            
-            if amountResultsOptions[indexPath.row] == chosenAmountResults {
-                cell.accessoryType = UITableViewCellAccessoryType.checkmark
-            }
-            else {
-                cell.accessoryType = UITableViewCellAccessoryType.none
-            }
+            cell.contentLabel.text! = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") as! String
+            cell.accessoryType = .disclosureIndicator
             return cell
         case 2:
-            cell.contentLabel.text! = "\(temperatureUnitOptions[indexPath.row])"
-            
-            if temperatureUnitOptions[indexPath.row] == chosenTemperatureUnit?.rawValue {
-                cell.accessoryType = UITableViewCellAccessoryType.checkmark
-            }
-            else {
-                cell.accessoryType = UITableViewCellAccessoryType.none
+            let amountResults = AmountResults(rawValue: indexPath.row).integerValue
+            cell.contentLabel.text! = "\(amountResults) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
+            if amountResults == WeatherService.current.amountResults {
+                cell.accessoryType = .checkmark
             }
             return cell
         case 3:
-            cell.contentLabel.text! = legend[indexPath.row]
-            
-            cell.accessoryType = UITableViewCellAccessoryType.none
-        
+            let temperatureUnit = TemperatureUnit(rawValue: indexPath.row)
+            cell.contentLabel.text! = temperatureUnit.stringValue
+            if temperatureUnit.stringValue == WeatherService.current.temperatureUnit.stringValue {
+                cell.accessoryType = .checkmark
+            }
             return cell
         default:
-            //Will never be executed
             return UITableViewCell()
         }
     }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    //MARK: - Navigation Seguess
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "openSettingsInput" {
-            let settingsInputTableViewController = segue.destination as! SettingsInputTableViewController
-            settingsInputTableViewController.favoritedLocation = self.favoritedLocation
-            
-            let backItem = UIBarButtonItem()
-            backItem.title = NSLocalizedString("LocationsListTVC_BackButtonTitle", comment: "")
-            navigationItem.backBarButtonItem = backItem
-        }
+    /* Deinitializer */
     
-    }
-    @IBAction func unwindToSettingsTableViewController(_ sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? SettingsInputTableViewController, let favoritedLocation = sourceViewController.favoritedLocation {
-            self.favoritedLocation = favoritedLocation
-            self.tableView.reloadData()
-        }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
-    //MARK: - Button Interaction
-    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "manualUnwindToNearbyLocationsTVC", sender: self)
+    
+    // MARK: - Helper Functions
+    
+    @objc func reloadTableViewData(_ notification: Notification) {
+        tableView.reloadData()
+    }
+    
+    
+    // MARK: - Button Interaction
+    
+    @objc private func didTapDoneButton(_ sender: UIBarButtonItem) {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
 }
