@@ -13,9 +13,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        // MARK: - Customization after application launch
+        
         UINavigationBar.appearance().barStyle = .black
+        UINavigationBar.appearance().barTintColor = UIColor(red: 39/255, green: 214/255, blue: 1, alpha: 1.0)
+        
+        
+        // MARK: - Setup
+        
+        LocationService.initializeService()
+        
+        if UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") != nil {
+            WeatherService.attachPersistentObject()
+            LocationService.current.requestWhenInUseAuthorization()
+            
+        } else {
+            let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
+            let destinationViewController = storyboard.instantiateInitialViewController()
+            
+            self.window?.rootViewController = destinationViewController
+        }
         
         return true
     }
@@ -41,7 +60,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-

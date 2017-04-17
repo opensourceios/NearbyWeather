@@ -14,12 +14,21 @@
 		F204B7901DF2EFA3000F4371 /* NearbyWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F204B78F1DF2EFA3000F4371 /* NearbyWeatherTests.swift */; };
 		F204B79B1DF2EFA3000F4371 /* NearbyWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F204B79A1DF2EFA3000F4371 /* NearbyWeatherUITests.swift */; };
 		F204B7A91DF2EFFB000F4371 /* NearbyLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F204B7A81DF2EFFB000F4371 /* NearbyLocationsTableViewController.swift */; };
-		F204B7AB1DF2F047000F4371 /* NearbyLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F204B7AA1DF2F047000F4371 /* NearbyLocationCell.swift */; };
 		F204B7B01DF2F1BC000F4371 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F204B7B21DF2F1BC000F4371 /* Localizable.strings */; };
 		F204B7BD1DF35610000F4371 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F204B7BC1DF35610000F4371 /* SettingsTableViewController.swift */; };
-		F283D26C1DF39024001B879D /* TemperatureUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F283D26B1DF39024001B879D /* TemperatureUnit.swift */; };
+		F26699581E9AD0F100498F99 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699571E9AD0F100498F99 /* WeatherService.swift */; };
+		F266995A1E9ADBC300498F99 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699591E9ADBC300498F99 /* LocationService.swift */; };
+		F27AFDEC1DF4C089003957EB /* LocationWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AFDEB1DF4C089003957EB /* LocationWeatherCell.swift */; };
+		F27AFDF01DF4D36C003957EB /* SettingsInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AFDEF1DF4D36C003957EB /* SettingsInputTableViewController.swift */; };
 		F283D26E1DF39095001B879D /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F283D26D1DF39095001B879D /* SettingsCell.swift */; };
 		F283D2731DF393B2001B879D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F283D2751DF393B2001B879D /* InfoPlist.strings */; };
+		F2B8EA001EA11BA800704E90 /* WeatherDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8E9FF1EA11BA800704E90 /* WeatherDTO.swift */; };
+		F2B8EA021EA121CC00704E90 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA011EA121CC00704E90 /* AlertCell.swift */; };
+		F2B8EA041EA286F000704E90 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2B8EA031EA286F000704E90 /* Welcome.storyboard */; };
+		F2B8EA061EA2893C00704E90 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA051EA2893C00704E90 /* WelcomeScreenViewController.swift */; };
+		F2B8EA081EA2A7AB00704E90 /* SetPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA071EA2A7AB00704E90 /* SetPermissionsViewController.swift */; };
+		F2B8EA0B1EA2BD6800704E90 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA0A1EA2BD6800704E90 /* NotificationKeys.swift */; };
+		F2B8EA0E1EA37BE800704E90 /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA0D1EA37BE800704E90 /* InfoTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,16 +62,25 @@
 		F204B79A1DF2EFA3000F4371 /* NearbyWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyWeatherUITests.swift; sourceTree = "<group>"; };
 		F204B79C1DF2EFA3000F4371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F204B7A81DF2EFFB000F4371 /* NearbyLocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyLocationsTableViewController.swift; sourceTree = "<group>"; };
-		F204B7AA1DF2F047000F4371 /* NearbyLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyLocationCell.swift; sourceTree = "<group>"; };
 		F204B7AC1DF2F19A000F4371 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		F204B7AD1DF2F19A000F4371 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F204B7B11DF2F1BC000F4371 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F204B7B31DF2F1BD000F4371 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F204B7BC1DF35610000F4371 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		F283D26B1DF39024001B879D /* TemperatureUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureUnit.swift; sourceTree = "<group>"; };
+		F26699571E9AD0F100498F99 /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		F26699591E9ADBC300498F99 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		F27AFDEB1DF4C089003957EB /* LocationWeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationWeatherCell.swift; sourceTree = "<group>"; };
+		F27AFDEF1DF4D36C003957EB /* SettingsInputTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInputTableViewController.swift; sourceTree = "<group>"; };
 		F283D26D1DF39095001B879D /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		F283D2741DF393B2001B879D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F283D2761DF393B3001B879D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F2B8E9FF1EA11BA800704E90 /* WeatherDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDTO.swift; sourceTree = "<group>"; };
+		F2B8EA011EA121CC00704E90 /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
+		F2B8EA031EA286F000704E90 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
+		F2B8EA051EA2893C00704E90 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
+		F2B8EA071EA2A7AB00704E90 /* SetPermissionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPermissionsViewController.swift; sourceTree = "<group>"; };
+		F2B8EA0A1EA2BD6800704E90 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
+		F2B8EA0D1EA37BE800704E90 /* InfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,14 +131,13 @@
 		F204B7791DF2EFA3000F4371 /* NearbyWeather */ = {
 			isa = PBXGroup;
 			children = (
-				F283D26B1DF39024001B879D /* TemperatureUnit.swift */,
+				F2B8EA031EA286F000704E90 /* Welcome.storyboard */,
 				F204B77E1DF2EFA3000F4371 /* Main.storyboard */,
 				F204B7831DF2EFA3000F4371 /* LaunchScreen.storyboard */,
 				F204B77A1DF2EFA3000F4371 /* AppDelegate.swift */,
-				F204B7A81DF2EFFB000F4371 /* NearbyLocationsTableViewController.swift */,
-				F204B7AA1DF2F047000F4371 /* NearbyLocationCell.swift */,
-				F204B7BC1DF35610000F4371 /* SettingsTableViewController.swift */,
-				F283D26D1DF39095001B879D /* SettingsCell.swift */,
+				F266995C1E9AE23900498F99 /* Model */,
+				F266995B1E9AE22800498F99 /* View */,
+				F266995D1E9AE25D00498F99 /* Controller */,
 				F204B7811DF2EFA3000F4371 /* Assets.xcassets */,
 				F204B7B21DF2F1BC000F4371 /* Localizable.strings */,
 				F283D2751DF393B2001B879D /* InfoPlist.strings */,
@@ -145,6 +162,64 @@
 				F204B79C1DF2EFA3000F4371 /* Info.plist */,
 			);
 			path = NearbyWeatherUITests;
+			sourceTree = "<group>";
+		};
+		F266995B1E9AE22800498F99 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F2B8EA0C1EA2DDD700704E90 /* TableViewCells */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		F266995C1E9AE23900498F99 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F26699571E9AD0F100498F99 /* WeatherService.swift */,
+				F26699591E9ADBC300498F99 /* LocationService.swift */,
+				F2B8E9FE1EA11B8100704E90 /* Data Transfer Objects */,
+				F2B8EA091EA2BD2400704E90 /* Key List Objects */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F266995D1E9AE25D00498F99 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F2B8EA051EA2893C00704E90 /* WelcomeScreenViewController.swift */,
+				F2B8EA071EA2A7AB00704E90 /* SetPermissionsViewController.swift */,
+				F204B7A81DF2EFFB000F4371 /* NearbyLocationsTableViewController.swift */,
+				F2B8EA0D1EA37BE800704E90 /* InfoTableViewController.swift */,
+				F204B7BC1DF35610000F4371 /* SettingsTableViewController.swift */,
+				F27AFDEF1DF4D36C003957EB /* SettingsInputTableViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		F2B8E9FE1EA11B8100704E90 /* Data Transfer Objects */ = {
+			isa = PBXGroup;
+			children = (
+				F2B8E9FF1EA11BA800704E90 /* WeatherDTO.swift */,
+			);
+			name = "Data Transfer Objects";
+			sourceTree = "<group>";
+		};
+		F2B8EA091EA2BD2400704E90 /* Key List Objects */ = {
+			isa = PBXGroup;
+			children = (
+				F2B8EA0A1EA2BD6800704E90 /* NotificationKeys.swift */,
+			);
+			name = "Key List Objects";
+			sourceTree = "<group>";
+		};
+		F2B8EA0C1EA2DDD700704E90 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				F27AFDEB1DF4C089003957EB /* LocationWeatherCell.swift */,
+				F283D26D1DF39095001B879D /* SettingsCell.swift */,
+				F2B8EA011EA121CC00704E90 /* AlertCell.swift */,
+			);
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,7 +285,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Erik Maximilian Martens";
 				TargetAttributes = {
 					F204B7761DF2EFA3000F4371 = {
@@ -263,6 +338,7 @@
 				F204B7821DF2EFA3000F4371 /* Assets.xcassets in Resources */,
 				F204B7801DF2EFA3000F4371 /* Main.storyboard in Resources */,
 				F283D2731DF393B2001B879D /* InfoPlist.strings in Resources */,
+				F2B8EA041EA286F000704E90 /* Welcome.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,11 +364,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				F283D26E1DF39095001B879D /* SettingsCell.swift in Sources */,
-				F283D26C1DF39024001B879D /* TemperatureUnit.swift in Sources */,
+				F2B8EA0B1EA2BD6800704E90 /* NotificationKeys.swift in Sources */,
+				F26699581E9AD0F100498F99 /* WeatherService.swift in Sources */,
+				F266995A1E9ADBC300498F99 /* LocationService.swift in Sources */,
 				F204B77B1DF2EFA3000F4371 /* AppDelegate.swift in Sources */,
+				F2B8EA061EA2893C00704E90 /* WelcomeScreenViewController.swift in Sources */,
+				F2B8EA001EA11BA800704E90 /* WeatherDTO.swift in Sources */,
+				F2B8EA0E1EA37BE800704E90 /* InfoTableViewController.swift in Sources */,
 				F204B7BD1DF35610000F4371 /* SettingsTableViewController.swift in Sources */,
-				F204B7AB1DF2F047000F4371 /* NearbyLocationCell.swift in Sources */,
+				F27AFDEC1DF4C089003957EB /* LocationWeatherCell.swift in Sources */,
+				F2B8EA081EA2A7AB00704E90 /* SetPermissionsViewController.swift in Sources */,
 				F204B7A91DF2EFFB000F4371 /* NearbyLocationsTableViewController.swift in Sources */,
+				F2B8EA021EA121CC00704E90 /* AlertCell.swift in Sources */,
+				F27AFDF01DF4D36C003957EB /* SettingsInputTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +470,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -408,7 +493,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -436,6 +521,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -452,7 +538,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
