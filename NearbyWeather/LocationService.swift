@@ -50,7 +50,7 @@ class LocationService: CLLocationManager, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let currentLocation: CLLocationCoordinate2D = manager.location!.coordinate
-        //currentLatitude = currentLocation.latitude
-        //currentLongitude = currentLocation.longitude
+        currentLatitude = currentLocation.latitude
+        currentLongitude = currentLocation.longitude
     }
 }
