@@ -20,7 +20,7 @@ WelcomeScreenVC_GetInstructionsButtonTitle = "Don't have one?";
 
 SetPermissionsVC_NavigationBarTitle = "Location Access";
 
-SetPermissionsVC_Description = "In order to use NearbyWeather's fully functionality and get weather data for nearby places, your location is required. Example location data will be used while access is denied";
+SetPermissionsVC_Description = "In order to use NearbyWeather's full functionality and get weather data for nearby places, your location is required. Example location data will be used while access is denied.";
 SetPermissionsVC_AskPermissionsButtonTitle = "Configure";
 
 
@@ -57,7 +57,7 @@ InfoTVC_TableViewSectionHeader5 = "Mentions";
 InfoTVC_TableViewSectionFooter5 = "Info Icon, Sorting Icon, Settings Icon";
 
 InfoTVC_AppTitle = "NearbyWeather - Open Source Weather";
-InfoTVC_AppVersion = "Version 1.1 Build #3";
+InfoTVC_AppVersion = "Version 1.1.1 Build #4";
 
 InfoTVC_Support = "Support";
 InfoTVC_Source = "Source Code";

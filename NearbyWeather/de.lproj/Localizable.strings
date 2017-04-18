@@ -57,7 +57,7 @@ InfoTVC_TableViewSectionHeader5 = "Erwähnungen";
 InfoTVC_TableViewSectionFooter5 = "Info Icon, Sortier Icon, Einstellungs Icon";
 
 InfoTVC_AppTitle = "NearbyWeather - Open Source Wetter";
-InfoTVC_AppVersion = "Version 1.1 Build #3";
+InfoTVC_AppVersion = "Version 1.1.1 Build #4";
 
 InfoTVC_Support = "Support";
 InfoTVC_Source = "Quellcode";
