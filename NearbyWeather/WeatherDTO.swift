@@ -15,7 +15,6 @@ class WeatherDTO: NSObject, NSCoding {
     public var condition: String
     public var cityName: String
     public var rawTemperature: Double
-    public var temperature: String
     public var cloudCoverage: Double
     public var humidity: Double
     public var windspeed: Double
@@ -23,11 +22,10 @@ class WeatherDTO: NSObject, NSCoding {
     
     // MARK: - Initialization
     
-    public init(condition: String, cityName: String, rawTemperature: Double, temperature: String, cloudCoverage: Double, humidity: Double, windspeed: Double) {
+    public init(condition: String, cityName: String, rawTemperature: Double, cloudCoverage: Double, humidity: Double, windspeed: Double) {
         self.condition = condition
         self.cityName = cityName
         self.rawTemperature = rawTemperature
-        self.temperature = temperature
         self.cloudCoverage = cloudCoverage
         self.humidity = humidity
         self.windspeed = windspeed
@@ -37,12 +35,25 @@ class WeatherDTO: NSObject, NSCoding {
         let condition = aDecoder.decodeObject(forKey: PropertyKey.conditionKey) as! String
         let cityName = aDecoder.decodeObject(forKey: PropertyKey.cityNameKey) as! String
         let rawTemperature = aDecoder.decodeDouble(forKey: PropertyKey.rawTemperatureKey)
-        let temperature = aDecoder.decodeObject(forKey: PropertyKey.temperatureKey) as! String
         let cloudCoverage = aDecoder.decodeDouble(forKey: PropertyKey.cloudCoverageKey)
         let humidity = aDecoder.decodeDouble(forKey: PropertyKey.humidityKey)
         let windspeed = aDecoder.decodeDouble(forKey: PropertyKey.windspeedKey)
         
-        self.init(condition: condition, cityName: cityName, rawTemperature: rawTemperature, temperature: temperature, cloudCoverage: cloudCoverage, humidity: humidity, windspeed: windspeed)
+        self.init(condition: condition, cityName: cityName, rawTemperature: rawTemperature, cloudCoverage: cloudCoverage, humidity: humidity, windspeed: windspeed)
+    }
+    
+    
+    // MARK: Public Methods
+    
+    public func determineTemperatureForUnit() -> String {
+        switch WeatherService.current.temperatureUnit.value {
+        case .celsius:
+            return "\(String(format:"%.02f", rawTemperature - 273.15))°C"
+        case . fahrenheit:
+            return "\(String(format:"%.02f", rawTemperature * (9/5) - 459.67))°F"
+        case .kelvin:
+            return "\(String(format:"%.02f", rawTemperature))°K"
+        }
     }
     
     
@@ -52,7 +63,6 @@ class WeatherDTO: NSObject, NSCoding {
         aCoder.encode(condition, forKey: PropertyKey.conditionKey)
         aCoder.encode(cityName, forKey: PropertyKey.cityNameKey)
         aCoder.encode(rawTemperature, forKey: PropertyKey.rawTemperatureKey)
-        aCoder.encode(temperature, forKey: PropertyKey.temperatureKey)
         aCoder.encode(cloudCoverage, forKey: PropertyKey.cloudCoverageKey)
         aCoder.encode(humidity, forKey: PropertyKey.humidityKey)
         aCoder.encode(windspeed, forKey: PropertyKey.windspeedKey)
@@ -62,7 +72,6 @@ class WeatherDTO: NSObject, NSCoding {
         static let conditionKey = "condition"
         static let cityNameKey = "cityName"
         static let rawTemperatureKey = "rawTemperature"
-        static let temperatureKey = "temperature"
         static let cloudCoverageKey = "cloudCoverage"
         static let humidityKey = "humidity"
         static let windspeedKey = "windspeed"

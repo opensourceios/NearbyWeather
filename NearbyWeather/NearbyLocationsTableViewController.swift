@@ -115,7 +115,7 @@ class NearbyLocationsTableViewController: UITableViewController {
             
             cell.weatherConditionLabel.text! = weatherData.condition
             cell.cityNameLabel.text! = weatherData.cityName
-            cell.temperatureLabel.text! = "🌡 \(weatherData.temperature)"
+            cell.temperatureLabel.text! = "🌡 \(weatherData.determineTemperatureForUnit())"
             cell.cloudCoverLabel.text! = "☁️ \(weatherData.cloudCoverage)%"
             cell.humidityLabel.text! = "💧 \(weatherData.humidity)%"
             cell.windspeedLabel.text! = "💨 \(weatherData.windspeed) km/h"

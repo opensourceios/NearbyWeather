@@ -51,7 +51,6 @@ class SetPermissionsViewController: UIViewController {
     
     func launchApp() {
         WeatherService.attachPersistentObject()
-        LocationService.initializeService()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destinationViewController = storyboard.instantiateInitialViewController()

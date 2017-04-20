@@ -13,7 +13,7 @@ WelcomeScreenVC_NavigationBarTitle = "Willkommen";
 
 WelcomeScreenVC_Description = "Bitte gib deinen Open Weather Map API Schlüssel ein. Du kannst ihn später in den Einstellungen verändern.";
 WelcomeScreenVC_SaveButtonTitle = "Sichern";
-WelcomeScreenVC_GetInstructionsButtonTitle = "Du hast keinen Schlüssel?";
+WelcomeScreenVC_GetInstructionsButtonTitle = "Du hast keinen API Schlüssel?";
 
 
 // MARK: - SetPermissionsViewController
@@ -57,7 +57,7 @@ InfoTVC_TableViewSectionHeader5 = "Erwähnungen";
 InfoTVC_TableViewSectionFooter5 = "Info Icon, Sortier Icon, Einstellungs Icon";
 
 InfoTVC_AppTitle = "NearbyWeather - Open Source Wetter";
-InfoTVC_AppVersion = "Version 1.1.1 Build #4";
+InfoTVC_AppVersion = "Version 1.1.2 Build #5";
 
 InfoTVC_Support = "Support";
 InfoTVC_Source = "Quellcode";

@@ -180,7 +180,7 @@ class WeatherService: NSObject, NSCoding {
     public func sortDataBy(orientation: SortingOrientation) {
         switch orientation {
         case .byName: multiLocationWeatherData.sort() { $0.cityName < $1.cityName }
-        case .byTemperature: multiLocationWeatherData.sort() { $0.temperature > $1.temperature }
+        case .byTemperature: multiLocationWeatherData.sort() { $0.rawTemperature > $1.rawTemperature }
         }
         
     }
@@ -253,7 +253,7 @@ class WeatherService: NSObject, NSCoding {
             let humidity = data["main"]!["humidity"]!! as! Double
             let windspeed = data["wind"]!["speed"]!! as! Double
             
-            return [WeatherDTO(condition: condition, cityName: cityName, rawTemperature: rawTemperature, temperature: convertToTemperatureUnit(rawTemperature: rawTemperature), cloudCoverage: cloudCoverage, humidity: humidity, windspeed: windspeed)]
+            return [WeatherDTO(condition: condition, cityName: cityName, rawTemperature: rawTemperature, cloudCoverage: cloudCoverage, humidity: humidity, windspeed: windspeed)]
         }
         catch let jsonError as NSError {
             print("JSON error description: \(jsonError.description)")
@@ -279,7 +279,7 @@ class WeatherService: NSObject, NSCoding {
                 let humidity = entry["main"]!["humidity"]!! as! Double
                 let windspeed = entry["wind"]!["speed"]!! as! Double
                 
-                let weatherDTO = WeatherDTO(condition: condition, cityName: cityName, rawTemperature: rawTemperature, temperature: convertToTemperatureUnit(rawTemperature: rawTemperature), cloudCoverage: cloudCoverage, humidity: humidity, windspeed: windspeed)
+                let weatherDTO = WeatherDTO(condition: condition, cityName: cityName, rawTemperature: rawTemperature, cloudCoverage: cloudCoverage, humidity: humidity, windspeed: windspeed)
                 multiLocationData.append(weatherDTO)
             }
             return multiLocationData
@@ -291,17 +291,6 @@ class WeatherService: NSObject, NSCoding {
     }
     
     /* Data Display Helpers */
-    
-    private func convertToTemperatureUnit(rawTemperature: Double) -> String {
-        switch WeatherService.current.temperatureUnit.value {
-        case .celsius:
-            return "\(String(format:"%.02f", rawTemperature - 273.15))°C"
-        case . fahrenheit:
-            return "\(String(format:"%.02f", rawTemperature * (9/5) - 459.67))°F"
-        case .kelvin:
-            return "\(String(format:"%.02f", rawTemperature))°K"
-        }
-    }
     
     private func determineWeatherConditionSymbol(fromWeathercode: Int) -> String {
         switch fromWeathercode {
