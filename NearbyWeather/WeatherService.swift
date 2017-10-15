@@ -239,9 +239,9 @@ class WeatherService: NSObject {
     
     private func extractSingleLocation(weatherData json: Data) -> [WeatherDTO]? {
         do {
-            guard let extractedData = try JSONSerialization.jsonObject(with: json, options: .mutableContainers) as? [String: AnyObject],
-                let httpStatusCode = extractedData["cod"] as? String,
-                httpStatusCode == "200" else {
+            guard let extractedData = try JSONSerialization.jsonObject(with: json, options: .mutableContainers) as? [String: AnyHashable],
+                let httpStatusCode = extractedData["cod"] as? Int,
+                httpStatusCode == 200 else {
                     return nil
             }
             

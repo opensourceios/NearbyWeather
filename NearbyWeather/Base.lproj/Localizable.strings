@@ -52,9 +52,6 @@ InfoTVC_NavigationItemTitle = "About";
 InfoTVC_TableViewSectionHeader2 = "Legend";
 InfoTVC_TableViewSectionHeader3 = "Resources";
 InfoTVC_TableViewSectionHeader4 = "Contributors";
-InfoTVC_TableViewSectionHeader5 = "Mentions";
-
-InfoTVC_TableViewSectionFooter5 = "Info Icon, Sorting Icon, Settings Icon";
 
 InfoTVC_AppTitle = "NearbyWeather - Open Source Weather";
 InfoTVC_AppVersion = "Version 1.1.2 Build #5";

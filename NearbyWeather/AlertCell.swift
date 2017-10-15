@@ -19,14 +19,4 @@ class AlertCell: UITableViewCell {
     /* Labels */
     
     @IBOutlet weak var noticeLabel: UILabel!
-
-    
-    // MARK: - Override Functions
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
 }

@@ -182,9 +182,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="NearbyWeather" id="FHH-cv-mAE">
-                        <barButtonItem key="leftBarButtonItem" image="Info" id="IWE-bk-7pe">
+                        <barButtonItem key="leftBarButtonItem" image="Sorting" id="Sq8-ti-eTb">
                             <connections>
-                                <action selector="didTapInfoButton:" destination="baT-Cw-bfO" id="PHy-mc-P7m"/>
+                                <action selector="sortButtonPressed:" destination="baT-Cw-bfO" id="sk0-Ba-3t7"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -193,9 +193,9 @@
                                     <action selector="didTapSettingsButton:" destination="baT-Cw-bfO" id="Oxh-kQ-4xr"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="Sorting" id="Sq8-ti-eTb">
+                            <barButtonItem image="Info" id="IWE-bk-7pe">
                                 <connections>
-                                    <action selector="sortButtonPressed:" destination="baT-Cw-bfO" id="sk0-Ba-3t7"/>
+                                    <action selector="didTapInfoButton:" destination="baT-Cw-bfO" id="PHy-mc-P7m"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -215,10 +215,10 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="SettingsCell" id="22x-XC-hUB" userLabel="SettingsCell" customClass="SettingsCell" customModule="NearbyWeather" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="22x-XC-hUB" id="0aq-yM-d2P">
-                                    <rect key="frame" x="0.0" y="0.0" width="336" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="336" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vP-CS-lc0" userLabel="contentLabel">
@@ -534,48 +534,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="fvH-7s-4Yd">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="1iZ-pa-dF4">
-                                        <rect key="frame" x="0.0" y="548" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1iZ-pa-dF4" id="VAw-8y-iNO">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Icons by" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdf-6J-XYG" userLabel="contactNoteLabel">
-                                                    <rect key="frame" x="15" y="7" width="100" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="0RT-aB-iq2"/>
-                                                        <constraint firstAttribute="width" constant="100" id="jFa-P4-yVM"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://icons8.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1O-Uh-BBJ" userLabel="contactAddressLabel">
-                                                    <rect key="frame" x="125" y="7" width="202" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="26l-Pl-0Fa"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Jdf-6J-XYG" firstAttribute="leading" secondItem="VAw-8y-iNO" secondAttribute="leading" constant="15" id="0aI-Uf-qi4"/>
-                                                <constraint firstAttribute="trailing" secondItem="i1O-Uh-BBJ" secondAttribute="trailing" constant="15" id="4aL-1R-jSw"/>
-                                                <constraint firstItem="i1O-Uh-BBJ" firstAttribute="leading" secondItem="Jdf-6J-XYG" secondAttribute="trailing" constant="10" id="Ksg-f2-gvL"/>
-                                                <constraint firstItem="i1O-Uh-BBJ" firstAttribute="top" secondItem="VAw-8y-iNO" secondAttribute="top" constant="7" id="LAi-ti-F7Q"/>
-                                                <constraint firstAttribute="bottom" secondItem="i1O-Uh-BBJ" secondAttribute="bottom" constant="6" id="U12-Kx-eJO"/>
-                                                <constraint firstItem="Jdf-6J-XYG" firstAttribute="top" secondItem="VAw-8y-iNO" secondAttribute="top" constant="7" id="ezg-b6-8Rn"/>
-                                                <constraint firstAttribute="bottom" secondItem="Jdf-6J-XYG" secondAttribute="bottom" constant="6" id="uiM-fX-md8"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="dhB-Qs-FCR" id="dkA-CL-ycZ"/>
@@ -586,8 +544,6 @@
                         <outlet property="appTitleLabel" destination="w6C-kQ-Qmj" id="ZqG-Nh-CLT"/>
                         <outlet property="appVersionLabel" destination="czi-Ez-K0K" id="5F3-6f-J5a"/>
                         <outlet property="developerName_0" destination="vyE-Dq-uWt" id="i95-SO-2PL"/>
-                        <outlet property="iconsAddressLabel" destination="i1O-Uh-BBJ" id="cni-0p-C1R"/>
-                        <outlet property="iconsNoteLabel" destination="Jdf-6J-XYG" id="PBF-CN-geS"/>
                         <outlet property="legendEntryLabel_1" destination="gr3-w7-1dS" id="yBp-7L-9eh"/>
                         <outlet property="legendEntryLabel_2" destination="Qae-Bq-p57" id="Ln2-Qt-In9"/>
                         <outlet property="legendEntryLabel_3" destination="6Q7-TY-h4v" id="3rH-dD-YpN"/>
