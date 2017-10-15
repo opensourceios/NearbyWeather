@@ -22,7 +22,7 @@ class NearbyLocationsTableViewController: UITableViewController {
         
         tableView.delegate = self
         tableView.estimatedRowHeight = 100
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: NSLocalizedString("LocationsListTVC_RefreshPullHandle", comment: ""))
@@ -211,11 +211,11 @@ class NearbyLocationsTableViewController: UITableViewController {
         let sortAlert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let firstAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
-        let secondAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action1", comment: ""), style: UIAlertActionStyle.default, handler: {(paramAction:UIAlertAction!) in
+        let secondAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action1", comment: ""), style: UIAlertActionStyle.default, handler: { paramAction in
             WeatherService.current.sortDataBy(orientation: .byName)
             self.tableView.reloadData()
         })
-        let thirdAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action2", comment: ""), style: UIAlertActionStyle.default, handler: {(paramAction:UIAlertAction!) in
+        let thirdAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action2", comment: ""), style: UIAlertActionStyle.default, handler: { paramAction in
             WeatherService.current.sortDataBy(orientation: .byTemperature)
             self.tableView.reloadData()
         })

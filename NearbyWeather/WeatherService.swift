@@ -127,8 +127,8 @@ class WeatherService: NSObject {
         let tempUnit = aDecoder.decodeInteger(forKey: PropertyKey.temperatureUnitKey)
         let favorite = aDecoder.decodeObject(forKey: PropertyKey.favoritedLocationKey) as! String
         let amount = aDecoder.decodeInteger(forKey: PropertyKey.amountResultsKey)
-        let singleLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.singleLocationWeatherKey) as! [WeatherDTO]
-        let multiLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.multiLocationWeatherKey) as! [WeatherDTO]
+        let singleLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.singleLocationWeatherKey) as? [WeatherDTO]
+        let multiLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.multiLocationWeatherKey) as? [WeatherDTO]
         
         self.init(favoritedLocation: favorite, amountResults: amount)
         self.temperatureUnit = TemperatureUnit(rawValue: tempUnit)
