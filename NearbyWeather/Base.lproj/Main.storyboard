@@ -182,9 +182,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="NearbyWeather" id="FHH-cv-mAE">
-                        <barButtonItem key="leftBarButtonItem" image="Info" id="IWE-bk-7pe">
+                        <barButtonItem key="leftBarButtonItem" image="Sorting" id="Sq8-ti-eTb">
                             <connections>
-                                <action selector="didTapInfoButton:" destination="baT-Cw-bfO" id="PHy-mc-P7m"/>
+                                <action selector="sortButtonPressed:" destination="baT-Cw-bfO" id="sk0-Ba-3t7"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -193,9 +193,9 @@
                                     <action selector="didTapSettingsButton:" destination="baT-Cw-bfO" id="Oxh-kQ-4xr"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="Sorting" id="Sq8-ti-eTb">
+                            <barButtonItem image="Info" id="IWE-bk-7pe">
                                 <connections>
-                                    <action selector="sortButtonPressed:" destination="baT-Cw-bfO" id="sk0-Ba-3t7"/>
+                                    <action selector="didTapInfoButton:" destination="baT-Cw-bfO" id="PHy-mc-P7m"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>

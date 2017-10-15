@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class InfoTableViewController: UITableViewController {
     //MARK: - Assets
@@ -55,12 +56,23 @@ class InfoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
         
+        var urlString: String!
         if indexPath.section == 2 && indexPath.row == 0 {
-            UIApplication.shared.open(URL(string: "http://www.erikmartens.de/nearby-weather.html")!, options: [:], completionHandler: nil)
+            urlString = "http://www.erikmartens.de/nearby-weather.html"
+            
         }
         if indexPath.section == 2 && indexPath.row == 1 {
-            UIApplication.shared.open(URL(string: "https://github.com/erikmartens/NearbyWeather")!, options: [:], completionHandler: nil)
+            urlString = "https://github.com/erikmartens/NearbyWeather"
         }
+        
+        guard let url = URL(string: urlString) else { return }
+        let safariController = SFSafariViewController(url: url)
+        if #available(iOS 10, *) {
+            safariController.preferredControlTintColor = .blue
+        } else {
+            safariController.view.tintColor = .blue
+        }
+        present(safariController, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
