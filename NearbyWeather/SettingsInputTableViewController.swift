@@ -15,7 +15,7 @@ public enum DisplayMode: Int {
 
 class SettingsInputTableViewController: UITableViewController, UITextFieldDelegate {
     
-    //MARK: - Assets
+    // MARK: - Assets
     
     /* Injection Targets */
     
@@ -26,7 +26,7 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var inputTextField: UITextField!
     
     
-    //MARK: - Override Functions
+    // MARK: - Override Functions
     
     /* General */
     
@@ -110,5 +110,4 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     @objc func reloadTableViewData(_ notification: Notification) {
         tableView.reloadData()
     }
-    
 }

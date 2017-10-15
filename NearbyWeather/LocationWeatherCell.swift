@@ -24,15 +24,4 @@ class LocationWeatherCell: UITableViewCell {
     @IBOutlet weak var cloudCoverLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var windspeedLabel: UILabel!
-    
-    
-    //MARK: - Override Functions
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
 }

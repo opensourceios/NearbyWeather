@@ -29,9 +29,6 @@ class InfoTableViewController: UITableViewController {
     
     @IBOutlet weak var developerName_0: UILabel!
     
-    @IBOutlet weak var iconsNoteLabel: UILabel!
-    @IBOutlet weak var iconsAddressLabel: UILabel!
-    
     
     //MARK: - Override Functions
     
@@ -49,16 +46,11 @@ class InfoTableViewController: UITableViewController {
         
         tableView.estimatedRowHeight = 61
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.layoutIfNeeded()
         
         NotificationCenter.default.addObserver(self, selector: #selector(InfoTableViewController.preferredTextSizeChanged(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
     }
     
     /* TableView */
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
@@ -69,9 +61,6 @@ class InfoTableViewController: UITableViewController {
         if indexPath.section == 2 && indexPath.row == 1 {
             UIApplication.shared.open(URL(string: "https://github.com/erikmartens/NearbyWeather")!, options: [:], completionHandler: nil)
         }
-        if indexPath.section == 4 && indexPath.row == 0 {
-            UIApplication.shared.open(URL(string: "https://icons8.com")!, options: [:], completionHandler: nil)
-        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -79,14 +68,6 @@ class InfoTableViewController: UITableViewController {
         case 1: return NSLocalizedString("InfoTVC_TableViewSectionHeader2", comment: "")
         case 2: return NSLocalizedString("InfoTVC_TableViewSectionHeader3", comment: "")
         case 3: return NSLocalizedString("InfoTVC_TableViewSectionHeader4", comment: "")
-        case 4: return NSLocalizedString("InfoTVC_TableViewSectionHeader5", comment: "")
-        default: return nil
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        switch section {
-        case 4: return NSLocalizedString("InfoTVC_TableViewSectionFooter5", comment: "")
         default: return nil
         }
     }
@@ -102,48 +83,43 @@ class InfoTableViewController: UITableViewController {
     
     @objc func preferredTextSizeChanged(_ notification: Notification) {
         configureText()
-        tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.none)
-        tableView.reloadSections(IndexSet(integer: 1), with: UITableViewRowAnimation.none)
-        tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.none)
-        tableView.reloadSections(IndexSet(integer: 3), with: UITableViewRowAnimation.none)
+        tableView.reloadSections(IndexSet(integer: 0), with: .none)
+        tableView.reloadSections(IndexSet(integer: 1), with: .none)
+        tableView.reloadSections(IndexSet(integer: 2), with: .none)
+        tableView.reloadSections(IndexSet(integer: 3), with: .none)
     }
     
     
     // MARK: - Interface Setup
     
     private func configureText() {
-        appTitleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        appTitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
         appTitleLabel.text! = NSLocalizedString("InfoTVC_AppTitle", comment: "")
         
-        legendEntryLabel_1.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+        legendEntryLabel_1.font = UIFont.preferredFont(forTextStyle: .subheadline)
         legendEntryLabel_1.text! = NSLocalizedString("InfoTVC_Legend_Temperature", comment: "")
-        legendEntryLabel_2.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+        legendEntryLabel_2.font = UIFont.preferredFont(forTextStyle: .subheadline)
         legendEntryLabel_2.text! = NSLocalizedString("InfoTVC_Legend_CloudCover", comment: "")
-        legendEntryLabel_3.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+        legendEntryLabel_3.font = UIFont.preferredFont(forTextStyle: .subheadline)
         legendEntryLabel_3.text! = NSLocalizedString("InfoTVC_Legend_Humidity", comment: "")
-        legendEntryLabel_4.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+        legendEntryLabel_4.font = UIFont.preferredFont(forTextStyle: .subheadline)
         legendEntryLabel_4.text! = NSLocalizedString("InfoTVC_Legend_WindSpeed", comment: "")
         
         
-        appVersionLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+        appVersionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         appVersionLabel.text! = NSLocalizedString("InfoTVC_AppVersion", comment: "")
         
-        supportNoteLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        supportNoteLabel.font = UIFont.preferredFont(forTextStyle: .body)
         supportNoteLabel.text! = NSLocalizedString("InfoTVC_Support", comment: "")
         
-        supportAddressLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+        supportAddressLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         
-        sourceNoteLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        sourceNoteLabel.font = UIFont.preferredFont(forTextStyle: .body)
         sourceNoteLabel.text! = NSLocalizedString("InfoTVC_Source", comment: "")
         
-        sourceAddressLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+        sourceAddressLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         
-        developerName_0.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
-        
-        iconsNoteLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
-        iconsNoteLabel.text! = NSLocalizedString("InfoTVC_Icons", comment: "")
-        
-        iconsAddressLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+        developerName_0.font = UIFont.preferredFont(forTextStyle: .body)
     }
     
     
