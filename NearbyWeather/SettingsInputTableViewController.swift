@@ -24,7 +24,6 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     /* Outlets */
     
     @IBOutlet weak var inputTextField: UITextField!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     
     //MARK: - Override Functions

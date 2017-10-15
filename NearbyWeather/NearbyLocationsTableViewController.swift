@@ -22,7 +22,7 @@ class NearbyLocationsTableViewController: UITableViewController {
         
         tableView.delegate = self
         tableView.estimatedRowHeight = 100
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: NSLocalizedString("LocationsListTVC_RefreshPullHandle", comment: ""))
@@ -49,87 +49,100 @@ class NearbyLocationsTableViewController: UITableViewController {
     /* TableView */
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if !WeatherService.current.singleLocationWeatherData.isEmpty && !WeatherService.current.multiLocationWeatherData.isEmpty {
-            switch section {
-            case 0:
-                return NSLocalizedString("LocationsListTVC_TableViewSectionHeader1", comment: "")
-            case 1:
-                return NSLocalizedString("LocationsListTVC_TableViewSectionHeader2", comment: "")
-            default:
+        guard let singleLocationWeatherData = WeatherService.current.singleLocationWeatherData,
+            !singleLocationWeatherData.isEmpty,
+            let multiLocationWeatherData = WeatherService.current.multiLocationWeatherData,
+            !multiLocationWeatherData.isEmpty else {
                 return nil
-            }
-        } else {
+        }
+        switch section {
+        case 0:
+            return NSLocalizedString("LocationsListTVC_TableViewSectionHeader1", comment: "")
+        case 1:
+            return NSLocalizedString("LocationsListTVC_TableViewSectionHeader2", comment: "")
+        default:
             return nil
         }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if !WeatherService.current.singleLocationWeatherData.isEmpty && !WeatherService.current.multiLocationWeatherData.isEmpty {
-            return 2
+        guard let singleLocationWeatherData = WeatherService.current.singleLocationWeatherData,
+            !singleLocationWeatherData.isEmpty,
+            let multiLocationWeatherData = WeatherService.current.multiLocationWeatherData,
+            !multiLocationWeatherData.isEmpty else {
+                return 1
         }
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !WeatherService.current.singleLocationWeatherData.isEmpty && !WeatherService.current.multiLocationWeatherData.isEmpty {
-            if section == 0 {
-                return WeatherService.current.singleLocationWeatherData.count
-            }
-            return WeatherService.current.multiLocationWeatherData.count
+        guard let singleLocationWeatherData = WeatherService.current.singleLocationWeatherData,
+            !singleLocationWeatherData.isEmpty,
+            let multiLocationWeatherData = WeatherService.current.multiLocationWeatherData,
+            !multiLocationWeatherData.isEmpty else {
+                return 1
         }
-        return 1
-        
+        switch section {
+        case 0:
+            return singleLocationWeatherData.count
+        case 1:
+            return multiLocationWeatherData.count
+        default:
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if !WeatherService.current.singleLocationWeatherData.isEmpty && !WeatherService.current.multiLocationWeatherData.isEmpty {
-            var weatherData: WeatherDTO!
-            if indexPath.section == 0 {
-                weatherData = WeatherService.current.singleLocationWeatherData[indexPath.row]
-            } else {
-                weatherData = WeatherService.current.multiLocationWeatherData[indexPath.row]
-            }
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LocationWeatherCell", for: indexPath) as! LocationWeatherCell
-            
-            cell.selectionStyle = .none
-            cell.backgroundColor = .clear
-            
-            cell.backgroundColorView.layer.cornerRadius = 5.0
-            cell.backgroundColorView.layer.backgroundColor = UIColor(red: 39/255, green: 214/255, blue: 1, alpha: 1.0).cgColor
-            
-            cell.cityNameLabel.textColor = .white
-            cell.cityNameLabel.font = .preferredFont(forTextStyle: .headline)
-            
-            cell.temperatureLabel.textColor = .white
-            cell.temperatureLabel.font = .preferredFont(forTextStyle: .subheadline)
-            
-            cell.cloudCoverLabel.textColor = .white
-            cell.cloudCoverLabel.font = .preferredFont(forTextStyle: .subheadline)
-            
-            cell.humidityLabel.textColor = .white
-            cell.humidityLabel.font = .preferredFont(forTextStyle: .subheadline)
-            
-            cell.windspeedLabel.textColor = .white
-            cell.windspeedLabel.font = .preferredFont(forTextStyle: .subheadline)
-            
-            cell.weatherConditionLabel.text! = weatherData.condition
-            cell.cityNameLabel.text! = weatherData.cityName
-            cell.temperatureLabel.text! = "🌡 \(weatherData.determineTemperatureForUnit())"
-            cell.cloudCoverLabel.text! = "☁️ \(weatherData.cloudCoverage)%"
-            cell.humidityLabel.text! = "💧 \(weatherData.humidity)%"
-            cell.windspeedLabel.text! = "💨 \(weatherData.windspeed) km/h"
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AlertCell", for: indexPath) as! AlertCell
-            
-            cell.selectionStyle = .none
-            cell.backgroundColor = .clear
-            
-            cell.noticeLabel.text! = NSLocalizedString("LocationsListTVC_AlertNoData", comment: "")
-            cell.backgroundColorView.layer.cornerRadius = 5.0
-            return cell
+        guard let singleLocationWeatherData = WeatherService.current.singleLocationWeatherData,
+            !singleLocationWeatherData.isEmpty,
+            let multiLocationWeatherData = WeatherService.current.multiLocationWeatherData,
+            !multiLocationWeatherData.isEmpty else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "AlertCell", for: indexPath) as! AlertCell
+                
+                cell.selectionStyle = .none
+                cell.backgroundColor = .clear
+                
+                cell.noticeLabel.text! = NSLocalizedString("LocationsListTVC_AlertNoData", comment: "")
+                cell.backgroundColorView.layer.cornerRadius = 5.0
+                return cell
         }
+        var weatherData: WeatherDTO!
+        if indexPath.section == 0 {
+            weatherData = singleLocationWeatherData[indexPath.row]
+        } else {
+            weatherData = multiLocationWeatherData[indexPath.row]
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationWeatherCell", for: indexPath) as! LocationWeatherCell
+        
+        cell.selectionStyle = .none
+        cell.backgroundColor = .clear
+        
+        cell.backgroundColorView.layer.cornerRadius = 5.0
+        cell.backgroundColorView.layer.backgroundColor = UIColor(red: 39/255, green: 214/255, blue: 1, alpha: 1.0).cgColor
+        
+        cell.cityNameLabel.textColor = .white
+        cell.cityNameLabel.font = .preferredFont(forTextStyle: .headline)
+        
+        cell.temperatureLabel.textColor = .white
+        cell.temperatureLabel.font = .preferredFont(forTextStyle: .subheadline)
+        
+        cell.cloudCoverLabel.textColor = .white
+        cell.cloudCoverLabel.font = .preferredFont(forTextStyle: .subheadline)
+        
+        cell.humidityLabel.textColor = .white
+        cell.humidityLabel.font = .preferredFont(forTextStyle: .subheadline)
+        
+        cell.windspeedLabel.textColor = .white
+        cell.windspeedLabel.font = .preferredFont(forTextStyle: .subheadline)
+        
+        cell.weatherConditionLabel.text! = weatherData.condition
+        cell.cityNameLabel.text! = weatherData.cityName
+        cell.temperatureLabel.text! = "🌡 \(weatherData.determineTemperatureForUnit())"
+        cell.cloudCoverLabel.text! = "☁️ \(weatherData.cloudCoverage)%"
+        cell.humidityLabel.text! = "💧 \(weatherData.humidity)%"
+        cell.windspeedLabel.text! = "💨 \(weatherData.windspeed) km/h"
+        return cell
     }
     
     /* Deinitializer */
@@ -198,11 +211,11 @@ class NearbyLocationsTableViewController: UITableViewController {
         let sortAlert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let firstAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
-        let secondAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action1", comment: ""), style: UIAlertActionStyle.default, handler: {(paramAction:UIAlertAction!) in
+        let secondAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action1", comment: ""), style: UIAlertActionStyle.default, handler: { paramAction in
             WeatherService.current.sortDataBy(orientation: .byName)
             self.tableView.reloadData()
         })
-        let thirdAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action2", comment: ""), style: UIAlertActionStyle.default, handler: {(paramAction:UIAlertAction!) in
+        let thirdAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action2", comment: ""), style: UIAlertActionStyle.default, handler: { paramAction in
             WeatherService.current.sortDataBy(orientation: .byTemperature)
             self.tableView.reloadData()
         })

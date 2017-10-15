@@ -75,7 +75,7 @@ public class AmountResults {
     }
 }
 
-class WeatherService: NSObject, NSCoding {
+class WeatherService: NSObject {
     
     // MARK: - Public Assets
     
@@ -109,9 +109,9 @@ class WeatherService: NSObject, NSCoding {
         }
     }
     
-    public var singleLocationWeatherData: [WeatherDTO]
-    public var multiLocationWeatherData: [WeatherDTO]
-
+    public var singleLocationWeatherData: [WeatherDTO]?
+    public var multiLocationWeatherData: [WeatherDTO]?
+    
     
     // MARK: - Initialization
     
@@ -120,9 +120,6 @@ class WeatherService: NSObject, NSCoding {
         self.favoritedLocation = favoritedLocation
         self.amountResults = amountResults
         
-        self.singleLocationWeatherData = [WeatherDTO]()
-        self.multiLocationWeatherData = [WeatherDTO]()
-        
         super.init()
     }
     
@@ -130,8 +127,8 @@ class WeatherService: NSObject, NSCoding {
         let tempUnit = aDecoder.decodeInteger(forKey: PropertyKey.temperatureUnitKey)
         let favorite = aDecoder.decodeObject(forKey: PropertyKey.favoritedLocationKey) as! String
         let amount = aDecoder.decodeInteger(forKey: PropertyKey.amountResultsKey)
-        let singleLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.singleLocationWeatherKey) as! [WeatherDTO]
-        let multiLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.multiLocationWeatherKey) as! [WeatherDTO]
+        let singleLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.singleLocationWeatherKey) as? [WeatherDTO]
+        let multiLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.multiLocationWeatherKey) as? [WeatherDTO]
         
         self.init(favoritedLocation: favorite, amountResults: amount)
         self.temperatureUnit = TemperatureUnit(rawValue: tempUnit)
@@ -178,11 +175,13 @@ class WeatherService: NSObject, NSCoding {
     }
     
     public func sortDataBy(orientation: SortingOrientation) {
-        switch orientation {
-        case .byName: multiLocationWeatherData.sort() { $0.cityName < $1.cityName }
-        case .byTemperature: multiLocationWeatherData.sort() { $0.rawTemperature > $1.rawTemperature }
+        guard multiLocationWeatherData != nil else {
+            return
         }
-        
+        switch orientation {
+        case .byName: multiLocationWeatherData?.sort { $0.cityName < $1.cityName }
+        case .byTemperature: multiLocationWeatherData?.sort { $0.rawTemperature > $1.rawTemperature }
+        }
     }
     
     
@@ -200,149 +199,119 @@ class WeatherService: NSObject, NSCoding {
     
     /* Data Retrieval via Network */
     
-    private func fetchSingleLocationWeatherData(completionHandler: @escaping ([WeatherDTO]) -> Void) {
-        guard let apiKey = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") else {
-            return completionHandler([WeatherDTO]())
+    private func fetchSingleLocationWeatherData(completionHandler: @escaping ([WeatherDTO]?) -> Void) {
+        let session = URLSession.shared
+        let requestedCity = favoritedLocation.replacingOccurrences(of: " ", with: "")
+        
+        guard let apiKey = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey"),
+            let requestURL = URL(string: "\(WeatherService.openWeather_SingleLocationBaseURL)?APPID=\(apiKey)&q=\(requestedCity)") else {
+                return completionHandler(nil)
         }
         
-        let session = URLSession.shared
-        
-        let requestedCity: String = self.favoritedLocation.replacingOccurrences(of: " ", with: "")
-        let requestURL = NSMutableURLRequest(url: URL(string: "\(WeatherService.openWeather_SingleLocationBaseURL)?APPID=\(apiKey)&q=\(requestedCity)")!)
-        
-        let request = session.dataTask(with: requestURL as URLRequest, completionHandler: { (data, response, error) in
-            guard let _: Data = data, let _: URLResponse = response  , error == nil else {
+        let request = URLRequest(url: requestURL)
+        let dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
+            guard let receivedData = data, let _ = response, error == nil else {
                 return
             }
-            completionHandler(self.extractSingleLocation(weatherData: data!))
+            completionHandler(self.extractSingleLocation(weatherData: receivedData))
         })
-        request.resume()
+        dataTask.resume()
     }
     
-    private func fetchMultiLocationWeatherData(completionHandler: @escaping ([WeatherDTO]) -> Void) {
-        guard let apiKey = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") else {
-            return completionHandler([WeatherDTO]())
+    private func fetchMultiLocationWeatherData(completionHandler: @escaping ([WeatherDTO]?) -> Void) {
+        let session = URLSession.shared
+        
+        guard let apiKey = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey"),
+            let requestURL = URL(string: "\(WeatherService.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(LocationService.current.currentLatitude)&lon=\(LocationService.current.currentLongitude)&cnt=\(amountResults)") else {
+                return completionHandler(nil)
         }
         
-        let session = URLSession.shared
-        
-        let requestURL = NSMutableURLRequest(url: URL(string: "\(WeatherService.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(LocationService.current.currentLatitude)&lon=\(LocationService.current.currentLongitude)&cnt=\(amountResults)")!)
-        
-        let request = session.dataTask(with: requestURL as URLRequest, completionHandler: { (data, response, error) in
-            guard let _: Data = data, let _: URLResponse = response  , error == nil else {
+        let request = URLRequest(url: requestURL)
+        let dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
+            guard let receivedData = data, let _ = response, error == nil else {
                 return
             }
-            completionHandler(self.extractMultiLocation(weatherData: data!))
+            completionHandler(self.extractMultiLocation(weatherData: receivedData))
         })
-        request.resume()
+        dataTask.resume()
         
     }
     
-    private func extractSingleLocation(weatherData json: Data) -> [WeatherDTO] {
+    private func extractSingleLocation(weatherData json: Data) -> [WeatherDTO]? {
         do {
-            let data = try JSONSerialization.jsonObject(with: json, options: .mutableContainers) as! [String: AnyObject]
-            
-            guard 200 == data["cod"]! as! Int else {
-                return [WeatherDTO]()
+            guard let extractedData = try JSONSerialization.jsonObject(with: json, options: .mutableContainers) as? [String: AnyObject],
+                let httpStatusCode = extractedData["cod"] as? String,
+                httpStatusCode == "200" else {
+                    return nil
             }
             
-            let condition = determineWeatherConditionSymbol(fromWeathercode: ((data["weather"] as! NSArray)[0] as! [String: AnyObject])["id"]! as! Int)
-            let cityName = data["name"]! as! String
-            let rawTemperature = data["main"]!["temp"]!! as! Double
-            let cloudCoverage = data["clouds"]!["all"]!! as! Double
-            let humidity = data["main"]!["humidity"]!! as! Double
-            let windspeed = data["wind"]!["speed"]!! as! Double
-            
+            guard let weatherArray = extractedData["weather"] as? [[String: AnyHashable]],
+                let weatherSymbolCode = weatherArray[0]["id"] as? Int,
+                let cityName = extractedData["name"] as?  String,
+                let main = extractedData["main"] as? [String: AnyHashable],
+                let clouds = extractedData["clouds"] as? [String: AnyHashable],
+                let wind = extractedData["wind"] as? [String: AnyHashable],
+                let rawTemperature = main["temp"] as? Double,
+                let cloudCoverage = clouds["all"] as? Double,
+                let humidity = main["humidity"] as? Double,
+                let windspeed = wind["speed"] as? Double else {
+                    return nil
+            }
+            let condition = WeatherDTO.determineWeatherConditionSymbol(fromWeathercode: weatherSymbolCode)
             return [WeatherDTO(condition: condition, cityName: cityName, rawTemperature: rawTemperature, cloudCoverage: cloudCoverage, humidity: humidity, windspeed: windspeed)]
+            
+        } catch let jsonError {
+            print("Error while extracting single-location-data json: \(jsonError.localizedDescription)")
+            return nil
         }
-        catch let jsonError as NSError {
-            print("JSON error description: \(jsonError.description)")
-            return [WeatherDTO]()
-        }
+        
+        
     }
     
-    private func extractMultiLocation(weatherData json: Data) -> [WeatherDTO] {
+    private func extractMultiLocation(weatherData json: Data) -> [WeatherDTO]? {
         do {
-            let rawData = try JSONSerialization.jsonObject(with: json, options: .mutableContainers) as! [String: AnyObject]
-            let extractedData = rawData["list"]! as? [[String: AnyObject]]
-            var multiLocationData = [WeatherDTO]()
-            
-            guard "200" == rawData["cod"]! as! String else {
-                return [WeatherDTO]()
+            guard let rawData = try JSONSerialization.jsonObject(with: json, options: .mutableContainers) as? [String: AnyHashable],
+                let httpStatusCode = rawData["cod"] as? String,
+                httpStatusCode == "200",
+                let extractedData = rawData["list"] as? [[String: AnyHashable]] else {
+                    return nil
             }
             
-            for entry in extractedData! {
-                let condition = determineWeatherConditionSymbol(fromWeathercode: ((entry["weather"] as! NSArray)[0] as! [String: AnyObject])["id"]! as! Int)
-                let cityName = entry["name"]! as! String
-                let rawTemperature = entry["main"]!["temp"]!! as! Double
-                let cloudCoverage = entry["clouds"]!["all"]!! as! Double
-                let humidity = entry["main"]!["humidity"]!! as! Double
-                let windspeed = entry["wind"]!["speed"]!! as! Double
+            let weatherData = extractedData.reduce([WeatherDTO]()) {
+                var partialResultCopy = $0
                 
+                guard let weatherArray = $1["weather"] as? [[String: AnyHashable]],
+                    let weatherSymbolCode = weatherArray[0]["id"] as? Int,
+                    let cityName = $1["name"] as?  String,
+                    let main = $1["main"] as? [String: AnyHashable],
+                    let clouds = $1["clouds"] as? [String: AnyHashable],
+                    let wind = $1["wind"] as? [String: AnyHashable],
+                    let rawTemperature = main["temp"] as? Double,
+                    let cloudCoverage = clouds["all"] as? Double,
+                    let humidity = main["humidity"] as? Double,
+                    let windspeed = wind["speed"] as? Double else {
+                        return $0
+                }
+                let condition = WeatherDTO.determineWeatherConditionSymbol(fromWeathercode: weatherSymbolCode)
                 let weatherDTO = WeatherDTO(condition: condition, cityName: cityName, rawTemperature: rawTemperature, cloudCoverage: cloudCoverage, humidity: humidity, windspeed: windspeed)
-                multiLocationData.append(weatherDTO)
+                
+                partialResultCopy.append(weatherDTO)
+                return partialResultCopy
             }
-            return multiLocationData
-        }
-        catch let jsonError as NSError {
-            print("JSON error description: \(jsonError.description)")
-            return [WeatherDTO]()
+            
+            guard !weatherData.isEmpty else {
+                return nil
+            }
+            return weatherData
+            
+        } catch let jsonError {
+            print("Error while extracting multi-location-data json: \(jsonError.localizedDescription)")
+            return nil
         }
     }
-    
-    /* Data Display Helpers */
-    
-    private func determineWeatherConditionSymbol(fromWeathercode: Int) -> String {
-        switch fromWeathercode {
-        case let x where (x >= 200 && x <= 202) || (x >= 230 && x <= 232):
-            return "⛈"
-        case let x where x >= 210 && x <= 211:
-            return "🌩"
-        case let x where x >= 212 && x <= 221:
-            return "⚡️"
-        case let x where x >= 300 && x <= 321:
-            return "🌦"
-        case let x where x >= 500 && x <= 531:
-            return "🌧"
-        case let x where x >= 600 && x <= 622:
-            return "🌨"
-        case let x where x >= 701 && x <= 771:
-            return "🌫"
-        case let x where x == 781 || x >= 958:
-            return "🌪"
-        case let x where x == 800:
-            //Simulate day/night mode for clear skies condition -> sunset @ 18:00, sunrise @ 07:00
-            let currentDateFormatter: DateFormatter = DateFormatter()
-            currentDateFormatter.dateFormat = "ddMMyyyy"
-            let currentDateString: String = currentDateFormatter.string(from: Date())
-            
-            let zeroHourDateFormatter: DateFormatter = DateFormatter()
-            zeroHourDateFormatter.dateFormat = "ddMMyyyyHHmmss"
-            let zeroHourDate = zeroHourDateFormatter.date(from: (currentDateString + "000000"))!
-            
-            if Date().timeIntervalSince(zeroHourDate) > 64800 || Date().timeIntervalSince(zeroHourDate) < 25200 {
-                return "✨"
-            }
-            else {
-                return "☀️"
-            }
-        case let x where x == 801:
-            return "🌤"
-        case let x where x == 802:
-            return "⛅️"
-        case let x where x == 803:
-            return "🌥"
-        case let x where x == 804:
-            return "☁️"
-        case let x where x >= 952 && x <= 958:
-            return "💨"
-        default:
-            return "☀️"
-        }
-    }
+}
 
-    
-    // MARK: - NSCoding
+extension WeatherService: NSCoding {
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(temperatureUnit.value.rawValue, forKey: PropertyKey.temperatureUnitKey)
@@ -353,11 +322,11 @@ class WeatherService: NSObject, NSCoding {
     }
     
     struct PropertyKey {
-        static let temperatureUnitKey = "temperatureUnit"
-        static let favoritedLocationKey = "favoritedLocation"
-        static let amountResultsKey = "chosenAmountResults"
-        static let singleLocationWeatherKey = "singleLocationWeatherData"
-        static let multiLocationWeatherKey = "multiLocationWeatherData"
+        fileprivate static let temperatureUnitKey = "temperatureUnit"
+        fileprivate static let favoritedLocationKey = "favoritedLocation"
+        fileprivate static let amountResultsKey = "chosenAmountResults"
+        fileprivate static let singleLocationWeatherKey = "singleLocationWeatherData"
+        fileprivate static let multiLocationWeatherKey = "multiLocationWeatherData"
     }
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!

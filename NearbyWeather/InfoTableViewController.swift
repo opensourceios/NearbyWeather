@@ -100,7 +100,7 @@ class InfoTableViewController: UITableViewController {
     
     // MARK: - Handle NSNotification
     
-    func preferredTextSizeChanged(_ notification: Notification) {
+    @objc func preferredTextSizeChanged(_ notification: Notification) {
         configureText()
         tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.none)
         tableView.reloadSections(IndexSet(integer: 1), with: UITableViewRowAnimation.none)

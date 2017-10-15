@@ -49,7 +49,7 @@ class SetPermissionsViewController: UIViewController {
         askPermissionsButton.layer.borderWidth = 1.0
     }
     
-    func launchApp() {
+    @objc func launchApp() {
         WeatherService.attachPersistentObject()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
