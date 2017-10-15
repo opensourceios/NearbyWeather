@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeatherDTO: NSObject, NSCoding {
+class WeatherDTO: NSObject {
     
     // MARK: - Properties
     
@@ -45,6 +45,53 @@ class WeatherDTO: NSObject, NSCoding {
     
     // MARK: Public Methods
     
+    public static func determineWeatherConditionSymbol(fromWeathercode: Int) -> String {
+        switch fromWeathercode {
+        case let x where (x >= 200 && x <= 202) || (x >= 230 && x <= 232):
+            return "⛈"
+        case let x where x >= 210 && x <= 211:
+            return "🌩"
+        case let x where x >= 212 && x <= 221:
+            return "⚡️"
+        case let x where x >= 300 && x <= 321:
+            return "🌦"
+        case let x where x >= 500 && x <= 531:
+            return "🌧"
+        case let x where x >= 600 && x <= 622:
+            return "🌨"
+        case let x where x >= 701 && x <= 771:
+            return "🌫"
+        case let x where x == 781 || x >= 958:
+            return "🌪"
+        case let x where x == 800:
+            //Simulate day/night mode for clear skies condition -> sunset @ 18:00, sunrise @ 07:00
+            let currentDateFormatter: DateFormatter = DateFormatter()
+            currentDateFormatter.dateFormat = "ddMMyyyy"
+            let currentDateString: String = currentDateFormatter.string(from: Date())
+            
+            let zeroHourDateFormatter: DateFormatter = DateFormatter()
+            zeroHourDateFormatter.dateFormat = "ddMMyyyyHHmmss"
+            let zeroHourDate = zeroHourDateFormatter.date(from: (currentDateString + "000000"))!
+            
+            if Date().timeIntervalSince(zeroHourDate) > 64800 || Date().timeIntervalSince(zeroHourDate) < 25200 {
+                return "✨"
+            }
+            return "☀️"
+        case let x where x == 801:
+            return "🌤"
+        case let x where x == 802:
+            return "⛅️"
+        case let x where x == 803:
+            return "🌥"
+        case let x where x == 804:
+            return "☁️"
+        case let x where x >= 952 && x <= 958:
+            return "💨"
+        default:
+            return "☀️"
+        }
+    }
+    
     public func determineTemperatureForUnit() -> String {
         switch WeatherService.current.temperatureUnit.value {
         case .celsius:
@@ -55,9 +102,9 @@ class WeatherDTO: NSObject, NSCoding {
             return "\(String(format:"%.02f", rawTemperature))°K"
         }
     }
-    
-    
-    // MARK: - NSCoding
+}
+
+extension WeatherDTO: NSCoding {
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(condition, forKey: PropertyKey.conditionKey)
@@ -69,12 +116,12 @@ class WeatherDTO: NSObject, NSCoding {
     }
     
     struct PropertyKey {
-        static let conditionKey = "condition"
-        static let cityNameKey = "cityName"
-        static let rawTemperatureKey = "rawTemperature"
-        static let cloudCoverageKey = "cloudCoverage"
-        static let humidityKey = "humidity"
-        static let windspeedKey = "windspeed"
+        fileprivate static let conditionKey = "condition"
+        fileprivate static let cityNameKey = "cityName"
+        fileprivate static let rawTemperatureKey = "rawTemperature"
+        fileprivate static let cloudCoverageKey = "cloudCoverage"
+        fileprivate static let humidityKey = "humidity"
+        fileprivate static let windspeedKey = "windspeed"
     }
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
