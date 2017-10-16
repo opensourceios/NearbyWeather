@@ -215,10 +215,10 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="SettingsCell" id="22x-XC-hUB" userLabel="SettingsCell" customClass="SettingsCell" customModule="NearbyWeather" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="22x-XC-hUB" id="0aq-yM-d2P">
-                                    <rect key="frame" x="0.0" y="0.0" width="336" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="336" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vP-CS-lc0" userLabel="contentLabel">
@@ -282,43 +282,43 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NearbyWeather_WebIcon" translatesAutoresizingMaskIntoConstraints="NO" id="djW-Ua-f6G">
-                                                    <rect key="frame" x="15" y="6" width="50" height="50"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="J9P-t8-ehC">
+                                                    <rect key="frame" x="15" y="10" width="345" height="40.5"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NearbyWeather_WebIcon" translatesAutoresizingMaskIntoConstraints="NO" id="djW-Ua-f6G">
+                                                            <rect key="frame" x="0.0" y="0.0" width="40.5" height="40.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="djW-Ua-f6G" secondAttribute="height" multiplier="1:1" id="b3Z-aR-Pwv"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PQk-Il-74x">
+                                                            <rect key="frame" x="50.5" y="0.0" width="294.5" height="40.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NearbyWeather - Open Source Weather" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6C-kQ-Qmj" userLabel="appTitleLabel">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="294.5" height="15.5"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.1.2 Build #5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czi-Ez-K0K" userLabel="appVersionLabel">
+                                                                    <rect key="frame" x="0.0" y="25.5" width="294.5" height="15"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="5Bw-iI-DWw"/>
-                                                        <constraint firstAttribute="height" constant="50" id="Nbu-aL-waQ"/>
-                                                        <constraint firstAttribute="width" secondItem="djW-Ua-f6G" secondAttribute="height" multiplier="1:1" id="b3Z-aR-Pwv"/>
+                                                        <constraint firstItem="djW-Ua-f6G" firstAttribute="height" secondItem="PQk-Il-74x" secondAttribute="height" id="274-ml-KKq"/>
                                                     </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NearbyWeather - Open Source Weather" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6C-kQ-Qmj" userLabel="appTitleLabel">
-                                                    <rect key="frame" x="75" y="7" width="285" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="n2u-bE-VJ2"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.1.2 Build #5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czi-Ez-K0K" userLabel="appVersionLabel">
-                                                    <rect key="frame" x="75" y="33" width="285" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="zEY-fo-5at"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="w6C-kQ-Qmj" firstAttribute="leading" secondItem="djW-Ua-f6G" secondAttribute="trailing" constant="10" id="4hj-Ia-Sno"/>
-                                                <constraint firstItem="w6C-kQ-Qmj" firstAttribute="top" secondItem="2Ca-az-Rry" secondAttribute="top" constant="7" id="7nU-jT-eHX"/>
-                                                <constraint firstAttribute="trailing" secondItem="w6C-kQ-Qmj" secondAttribute="trailing" constant="15" id="Irl-HG-1gt"/>
-                                                <constraint firstAttribute="bottom" secondItem="czi-Ez-K0K" secondAttribute="bottom" constant="6" id="Tyc-6L-a18"/>
-                                                <constraint firstItem="czi-Ez-K0K" firstAttribute="leading" secondItem="djW-Ua-f6G" secondAttribute="trailing" constant="10" id="mP0-aa-Odk"/>
-                                                <constraint firstAttribute="trailing" secondItem="czi-Ez-K0K" secondAttribute="trailing" constant="15" id="pE4-Xm-LRh"/>
-                                                <constraint firstItem="djW-Ua-f6G" firstAttribute="centerY" secondItem="2Ca-az-Rry" secondAttribute="centerY" id="tCd-gb-PcV"/>
-                                                <constraint firstItem="czi-Ez-K0K" firstAttribute="top" secondItem="w6C-kQ-Qmj" secondAttribute="bottom" constant="5" id="yWd-fJ-kfn"/>
-                                                <constraint firstItem="djW-Ua-f6G" firstAttribute="leading" secondItem="2Ca-az-Rry" secondAttribute="leading" constant="15" id="ydS-a2-bGF"/>
+                                                <constraint firstItem="J9P-t8-ehC" firstAttribute="leading" secondItem="2Ca-az-Rry" secondAttribute="leading" constant="15" id="7Af-qD-qd1"/>
+                                                <constraint firstAttribute="trailing" secondItem="J9P-t8-ehC" secondAttribute="trailing" constant="15" id="Erh-ue-XGe"/>
+                                                <constraint firstAttribute="bottom" secondItem="J9P-t8-ehC" secondAttribute="bottom" constant="10" id="W7J-VF-Pwz"/>
+                                                <constraint firstItem="J9P-t8-ehC" firstAttribute="top" secondItem="2Ca-az-Rry" secondAttribute="top" constant="10" id="uKQ-Oc-0zg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
