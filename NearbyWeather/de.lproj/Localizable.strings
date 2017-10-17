@@ -1,0 +1,92 @@
+/*
+ Localizable.strings
+ SimpleWeather
+ 
+ Created by Erik Maximilian Martens on 03.12.16.
+ Copyright © 2016 Erik Maximilian Martens. All rights reserved.
+ */
+
+
+// MARK: - WelcomeScreenViewController
+
+WelcomeScreenVC_NavigationBarTitle = "Willkommen";
+
+WelcomeScreenVC_Description = "Bitte gib deinen Open Weather Map API Schlüssel ein. Du kannst ihn später in den Einstellungen verändern.";
+WelcomeScreenVC_SaveButtonTitle = "Sichern";
+WelcomeScreenVC_GetInstructionsButtonTitle = "Du hast keinen API Schlüssel?";
+
+
+// MARK: - SetPermissionsViewController
+
+SetPermissionsVC_NavigationBarTitle = "Ortsdaten Zugriff";
+
+SetPermissionsVC_Description = "Um alle Funktionen von NearbyWeather zu nutzen und Wetter Daten für Städte in der Umgebung zu erhalten, benötigt NearbyWeather Zugriff auf deine Ortsdaten. Falls du den Zugriff nicht genehmigst, werden Beispiel-Daten verwendet.";
+SetPermissionsVC_AskPermissionsButtonTitle = "Konfigurieren";
+
+
+// MARK: - NearbyLocationsTableViewController
+
+LocationsListTVC_TableViewSectionHeader1 = "Wetter in Favorisierter Stadt";
+LocationsListTVC_TableViewSectionHeader2 = "Wetter in Nahegelegenen Städten";
+
+LocationsListTVC_RefreshPullHandle = "Zum Aktualisieren herunterziehen";
+
+LocationsListTVC_LocationAlert_Title = "Kein Zugriff auf den aktuellen Ort";
+LocationsListTVC_LocationAlert_Message = "Um Wetter Daten für Städte in Ihrer Nähe bereitzustellen, benötigt NearbyWeather Ihren Standort. Sie haben diesen für die App nicht freigegeben. Dies kann in den Einstellungen verändert werden. Während Ihr Standort nicht bestimmt werden kann, werden Beispiel-Koordinaten verwendet.";
+LocationsListTVC_LocationAlert_Action1 = "Verwerfen";
+LocationsListTVC_LocationAlert_Action2 = "Einstellungen";
+
+LocationsListTVC_SortAlert_Cancel = "Abbrechen";
+LocationsListTVC_SortAlert_Action1 = "Nach Namen sortieren";
+LocationsListTVC_SortAlert_Action2 = "Nach Temperatur sortieren";
+
+LocationsListTVC_BackButtonTitle = "Zurück";
+
+LocationsListTVC_AlertNoData = "Es konnten keine Daten geladen werden. Gehe sicher, dass du eine Netzwerkverbindung hast und dein API Key korrekt eingegeben ist.";
+
+
+// MARK: - InfoTableViewController
+
+InfoTVC_NavigationItemTitle = "Über";
+
+InfoTVC_TableViewSectionHeader2 = "Legende";
+InfoTVC_TableViewSectionHeader3 = "Ressourcen";
+InfoTVC_TableViewSectionHeader4 = "Mitwirkende";
+
+InfoTVC_AppTitle = "NearbyWeather - Open Source Wetter";
+InfoTVC_AppVersion = "Version 1.1.2 Build #5";
+
+InfoTVC_Support = "Support";
+InfoTVC_Source = "Quellcode";
+InfoTVC_Icons = "Icons via";
+
+InfoTVC_Legend_Temperature = "🌡 Temperatur";
+InfoTVC_Legend_CloudCover = "☁️ Wolkenbedeckung";
+InfoTVC_Legend_Humidity = "💧 Luftfeuchtigkeit";
+InfoTVC_Legend_WindSpeed = "💨 Windgeschwindigkeit";
+
+
+// MARK: - SettingsTableViewController
+
+SettingsTVC_BackButtonTitle = "Wetter";
+
+SettingsTVC_NavigationBarTitle = "Einstellungen";
+
+SettingsTVC_SectionTitle1 = "Favorisierte Stadt";
+SettingsTVC_SectionTitle2 = "Open Weather Map API Schlüssel";
+SettingsTVC_SectionTitle3 = "Anzahl der Such-Ergebnisse";
+SettingsTVC_SectionTitle4 = "Temperatur Einheit";
+SettingsTVC_SectionTitle5 = "Legende";
+
+SettingsTVC_Results = "Ergebnisse";
+
+
+// MARK: - SettingsInputTableViewController
+
+SettingsInputTVC_NavigationBarTitle_Mode_EnterFavoritedLocation = "Stadt Einstellen";
+SettingsInputTVC_NavigationBarTitle_Mode_EnterAPIKey = "API Einstellen";
+
+InputSettingsTVC_SectionTitle_Mode_EnterFavoritedLocation = "Gib eine Städte Namen ein";
+InputSettingsTVC_SectionTitle_Mode_EnterAPIKey = "Gib deinen API Schlüssel ein";
+
+InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "Der API Schlüssel hat eine Länge von genau 32 Zeichen.";
