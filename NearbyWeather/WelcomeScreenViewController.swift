@@ -88,5 +88,4 @@ class WelcomeScreenViewController: UIViewController {
     @IBAction func didTapGetInstructionsButton(_ sender: UIButton) {
         UIApplication.shared.open(URL(string: "https://openweathermap.org/appid")!, options: [:], completionHandler: nil)
     }
-    
 }

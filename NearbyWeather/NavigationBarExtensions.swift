@@ -16,6 +16,6 @@ extension UINavigationBar {
         barTintColor = .nearbyWeatherStandard
         tintColor = .white
         titleTextAttributes = [.foregroundColor: UIColor.white]
-        barStyle = .default
+        barStyle = .black
     }
 }

@@ -118,7 +118,6 @@ class InfoTableViewController: UITableViewController {
         legendEntryLabel_4.font = UIFont.preferredFont(forTextStyle: .subheadline)
         legendEntryLabel_4.text! = NSLocalizedString("InfoTVC_Legend_WindSpeed", comment: "")
         
-        
         appVersionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         appVersionLabel.text! = NSLocalizedString("InfoTVC_AppVersion", comment: "")
         
