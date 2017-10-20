@@ -31,10 +31,8 @@ class WeatherListViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
         
         navigationItem.title = "NearbyWeather"
-        if #available(iOS 11, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        }
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        navigationController?.navigationBar.setDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -269,7 +267,7 @@ extension WeatherListViewController: UITableViewDataSource {
         cell.backgroundColor = .clear
         
         cell.backgroundColorView.layer.cornerRadius = 5.0
-        cell.backgroundColorView.layer.backgroundColor = UIColor.nearbyWeatherStandard.cgColor
+        cell.backgroundColorView.layer.backgroundColor = UIColor.nearbyWeatherBubble.cgColor
         
         cell.cityNameLabel.textColor = .white
         cell.cityNameLabel.font = .preferredFont(forTextStyle: .headline)
