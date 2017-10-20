@@ -24,6 +24,7 @@ class WelcomeScreenViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = NSLocalizedString("WelcomeScreenVC_NavigationBarTitle", comment: "")
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         checkValidTextFieldInput()
         setUp()
     }
@@ -87,5 +88,4 @@ class WelcomeScreenViewController: UIViewController {
     @IBAction func didTapGetInstructionsButton(_ sender: UIButton) {
         UIApplication.shared.open(URL(string: "https://openweathermap.org/appid")!, options: [:], completionHandler: nil)
     }
-    
 }

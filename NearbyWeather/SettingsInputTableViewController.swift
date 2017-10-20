@@ -33,6 +33,8 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        
         tableView.delegate = self
         
         inputTextField.delegate = self
@@ -95,7 +97,7 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     /* TextField */
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.inputTextField.resignFirstResponder()
+        inputTextField.resignFirstResponder()
     }
     
     /* Deinitializer */

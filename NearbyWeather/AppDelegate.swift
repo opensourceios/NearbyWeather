@@ -15,14 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // MARK: - Customization after application launch
-        
-        UINavigationBar.appearance().barStyle = .black
-        UINavigationBar.appearance().barTintColor = UIColor(red: 39/255, green: 214/255, blue: 1, alpha: 1.0)
-        
-        
-        // MARK: - Setup
-        
         LocationService.initializeService()
         
         if UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") != nil {

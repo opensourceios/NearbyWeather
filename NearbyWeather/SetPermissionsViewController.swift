@@ -23,6 +23,7 @@ class SetPermissionsViewController: UIViewController {
         
         navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.title = NSLocalizedString("SetPermissionsVC_NavigationBarTitle", comment: "")
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         setUp()
         
         NotificationCenter.default.addObserver(self, selector: #selector(SetPermissionsViewController.launchApp), name: Notification.Name(rawValue: NotificationKeys.locationAuthorizationUpdated.rawValue), object: nil)

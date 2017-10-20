@@ -19,6 +19,7 @@ class SettingsTableViewController: UITableViewController {
         
         navigationItem.title = NSLocalizedString("SettingsTVC_NavigationBarTitle", comment: "")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SettingsTableViewController.didTapDoneButton(_:)))
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.apiKeyUpdated.rawValue), object: nil)
@@ -35,11 +36,19 @@ class SettingsTableViewController: UITableViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsInputTVC") as! SettingsInputTableViewController
             destinationViewController.mode = .enterFavoritedLocation
+            
+            let barButton = UIBarButtonItem()
+            barButton.title = nil
+            navigationItem.backBarButtonItem = barButton
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 1:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsInputTVC") as! SettingsInputTableViewController
             destinationViewController.mode = .enterAPIKey
+            
+            let barButton = UIBarButtonItem()
+            barButton.title = nil
+            navigationItem.backBarButtonItem = barButton
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 2:
             WeatherService.current.amountResults = AmountResults(rawValue: indexPath.row).integerValue

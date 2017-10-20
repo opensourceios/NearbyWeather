@@ -40,6 +40,7 @@ class InfoTableViewController: UITableViewController {
         
         navigationItem.title = NSLocalizedString("InfoTVC_NavigationItemTitle", comment: "")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(InfoTableViewController.didTapDoneButton(_:)))
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         
         tableView.delegate = self
         
@@ -58,7 +59,7 @@ class InfoTableViewController: UITableViewController {
         
         var urlString: String!
         if indexPath.section == 2 && indexPath.row == 0 {
-            urlString = "http://www.erikmartens.de/nearby-weather.html"
+            urlString = "http://www.erikmartens.de"
             
         }
         if indexPath.section == 2 && indexPath.row == 1 {
@@ -68,9 +69,9 @@ class InfoTableViewController: UITableViewController {
         guard let url = URL(string: urlString) else { return }
         let safariController = SFSafariViewController(url: url)
         if #available(iOS 10, *) {
-            safariController.preferredControlTintColor = .blue
+            safariController.preferredControlTintColor = .nearbyWeatherStandard
         } else {
-            safariController.view.tintColor = .blue
+            safariController.view.tintColor = .nearbyWeatherStandard
         }
         present(safariController, animated: true, completion: nil)
     }
@@ -117,7 +118,6 @@ class InfoTableViewController: UITableViewController {
         legendEntryLabel_4.font = UIFont.preferredFont(forTextStyle: .subheadline)
         legendEntryLabel_4.text! = NSLocalizedString("InfoTVC_Legend_WindSpeed", comment: "")
         
-        
         appVersionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         appVersionLabel.text! = NSLocalizedString("InfoTVC_AppVersion", comment: "")
         
@@ -125,11 +125,13 @@ class InfoTableViewController: UITableViewController {
         supportNoteLabel.text! = NSLocalizedString("InfoTVC_Support", comment: "")
         
         supportAddressLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        supportAddressLabel.textColor = .nearbyWeatherStandard
         
         sourceNoteLabel.font = UIFont.preferredFont(forTextStyle: .body)
         sourceNoteLabel.text! = NSLocalizedString("InfoTVC_Source", comment: "")
         
         sourceAddressLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        sourceAddressLabel.textColor = .nearbyWeatherStandard
         
         developerName_0.font = UIFont.preferredFont(forTextStyle: .body)
     }
