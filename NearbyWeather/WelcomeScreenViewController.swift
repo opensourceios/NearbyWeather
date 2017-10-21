@@ -16,6 +16,7 @@ class WelcomeScreenViewController: UIViewController {
     
     private var timer: Timer!
     
+    
     // MARK: - Outlets
     
     @IBOutlet weak var bubbleView: UIView!
@@ -67,7 +68,7 @@ class WelcomeScreenViewController: UIViewController {
         bubbleView.backgroundColor = .black
         bubbleView.setDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
-        descriptionLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        descriptionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         descriptionLabel.textColor = .white
         descriptionLabel.text! = NSLocalizedString("WelcomeScreenVC_Description", comment: "")
         
