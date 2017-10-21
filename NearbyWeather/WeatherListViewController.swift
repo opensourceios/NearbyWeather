@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import RainyRefreshControl
 
 class WeatherListViewController: UIViewController {
+    
+    // MARK: - Properties
+    
+    var refreshControl = RainyRefreshControl()
     
     // MARK: - Outlets
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var buttonRowContainerView: UIView!
+    @IBOutlet weak var buttonRowStackView: UIStackView!
     
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var sortButton: UIButton!
@@ -37,27 +43,27 @@ class WeatherListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 75, right: 0)
-        
-        configureRefreshControl()
-        configure()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-       
+        configure()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if UserDefaults.standard.value(forKey: "nearby_weather.isInitialLaunch") == nil {
-            startActivityIndicator()
-            WeatherService.current.fetchDataWith {
-                UserDefaults.standard.set(false, forKey: "nearby_weather.isInitialLaunch")
-                self.stopActivityIndicator()
-            }
+            UserDefaults.standard.set(false, forKey: "nearby_weather.isInitialLaunch")
+            reload()
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        refreshControl.endRefreshing()
     }
     
     deinit {
@@ -69,31 +75,41 @@ class WeatherListViewController: UIViewController {
     
     private func configure() {
         buttonRowContainerView.layer.cornerRadius = 10
-        buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.withAlphaComponent(0.95).cgColor
-        
+        buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.withAlphaComponent(0.9).cgColor
         buttonRowContainerView.setDropShadow(radius: 10)
+        
+        navigationController?.navigationBar.addDropAnimation(withVignetteSize: 10)
+        buttonRowContainerView.addDropAnimation(withVignetteSize: 20)
+        buttonRowContainerView.bringSubview(toFront: buttonRowStackView)
         
         reloadButton.tintColor = .white
         sortButton.tintColor = .white
         infoButton.tintColor = .white
         settingsButton.tintColor = .white
-    }
-    
-    private func configureRefreshControl() {
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.tintColor = .white
-        tableView.refreshControl?.attributedTitle = nil
-        tableView.refreshControl?.attributedTitle = NSAttributedString(string: NSLocalizedString("LocationsListTVC_RefreshPullHandle", comment: ""))
-        tableView.refreshControl?.addTarget(self, action: #selector(WeatherListViewController.refreshContent(refreshControl:)), for: UIControlEvents.valueChanged)
+        
+        refreshControl.addTarget(self, action: #selector(WeatherListViewController.refreshContent(refreshControl:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     private func reload() {
-        startActivityIndicator()
+        refreshControl.beginRefreshing()
         WeatherService.current.fetchDataWith {
             UserDefaults.standard.set(false, forKey: "nearby_weather.isInitialLaunch")
-            self.stopActivityIndicator()
+            self.refreshControl.endRefreshing()
             self.tableView.reloadData()
         }
+    }
+    
+    @objc private func refreshContent(refreshControl: RainyRefreshControl) {
+        reload()
+    }
+    
+    @objc func reloadTableViewDataWithDataPull(_ notification: Notification) {
+        reload()
+    }
+    
+    @objc func reloadTableViewData(_ notification: Notification) {
+        tableView.reloadData()
     }
     
     private func triggerSortAlert() {
@@ -113,48 +129,6 @@ class WeatherListViewController: UIViewController {
         sortAlert.addAction(secondAction)
         sortAlert.addAction(thirdAction)
         self.present(sortAlert, animated: true, completion: nil)
-    }
-    
-    @objc private func refreshContent(refreshControl: UIRefreshControl) {
-        refreshControl.beginRefreshing()
-        
-        WeatherService.current.fetchDataWith {
-            refreshControl.endRefreshing()
-        }
-    }
-    
-    @objc func reloadTableViewDataWithDataPull(_ notification: Notification) {
-        reload()
-    }
-    
-    @objc func reloadTableViewData(_ notification: Notification) {
-        tableView.reloadData()
-    }
-    
-    private func startActivityIndicator() {
-        guard tableView != nil else {
-            return
-        }
-        
-        let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
-        activityIndicator.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        activityIndicator.layer.cornerRadius = 10
-        
-        tableView?.addSubview(activityIndicator)
-        if let superViewCenter = activityIndicator.superview?.center {
-            activityIndicator.center = superViewCenter
-        }
-        activityIndicator.startAnimating()
-    }
-    
-    private func stopActivityIndicator() {
-        guard let subviews = tableView?.subviews else {
-            return
-        }
-        for subview in subviews where subview is UIActivityIndicatorView {
-            subview.removeFromSuperview()
-        }
     }
     
     

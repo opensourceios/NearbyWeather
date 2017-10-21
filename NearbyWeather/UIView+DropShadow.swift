@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WaterDrops
 
 extension UIView {
     
@@ -20,5 +21,22 @@ extension UIView {
         self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         self.layer.shouldRasterize = shouldRasterize
         self.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+    
+    func addDropAnimation(withVignetteSize size: CGFloat) {
+        let waterDropsView = WaterDropsView(frame: self.frame,
+                                            direction: .down,
+                                            dropNum: 18,
+                                            color: UIColor.white.withAlphaComponent(0.5),
+                                            minDropSize: 2,
+                                            maxDropSize: 8,
+                                            minLength: frame.height,
+                                            maxLength: frame.height,
+                                            minDuration: 3,
+                                            maxDuration: 6)
+        waterDropsView.frame = CGRect(x: 0, y: 0, width: self.frame.width - size, height: self.frame.height - size)
+        self.addSubview(waterDropsView)
+        waterDropsView.center = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
+        waterDropsView.addAnimation()
     }
 }
