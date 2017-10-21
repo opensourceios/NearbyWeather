@@ -8,10 +8,18 @@
 
 import UIKit
 import SafariServices
+import TextFieldCounter
 
 class WelcomeScreenViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private var timer: Timer!
+    
     // MARK: - Outlets
+    
+    @IBOutlet weak var bubbleView: UIView!
+    @IBOutlet weak var warningImageView: UIImageView!
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var inputTextField: TextFieldCounter!
@@ -25,59 +33,85 @@ class WelcomeScreenViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = NSLocalizedString("WelcomeScreenVC_NavigationBarTitle", comment: "")
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
-        checkValidTextFieldInput()
-        setUp()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.addDropAnimation(withVignetteSize: 10)
+        configure()
+        checkValidTextFieldInput()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         inputTextField.becomeFirstResponder()
+        
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(WelcomeScreenViewController.timerEnded)), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        timer.invalidate()
     }
     
     // MARK: - Helper Functions
     
-    func setUp() {
+    func configure() {
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        navigationController?.navigationBar.addDropAnimation(withVignetteSize: 10)
+        navigationController?.navigationBar.setDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        
+        bubbleView.layer.cornerRadius = 10
+        bubbleView.backgroundColor = .black
+        bubbleView.setDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        
         descriptionLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        descriptionLabel.textColor = .white
         descriptionLabel.text! = NSLocalizedString("WelcomeScreenVC_Description", comment: "")
         
+        inputTextField.limitColor = .nearbyWeatherStandard
+        inputTextField.textColor = .lightGray
+        inputTextField.tintColor = .lightGray
+        
         saveButton.setTitle(NSLocalizedString("WelcomeScreenVC_SaveButtonTitle", comment: "").uppercased(), for: .normal)
-        saveButton.setTitleColor(UIColor(red: 39/255, green: 214/255, blue: 1, alpha: 1.0), for: .normal)
-        saveButton.setTitleColor(.white, for: .highlighted)
-        saveButton.setTitleColor(.gray, for: .disabled)
+        saveButton.setTitleColor(.nearbyWeatherStandard, for: .normal)
+        saveButton.setTitleColor(.nearbyWeatherBubble, for: .highlighted)
+        saveButton.setTitleColor(.lightGray, for: .disabled)
         saveButton.layer.cornerRadius = 5.0
         saveButton.layer.borderColor = UIColor.lightGray.cgColor
         saveButton.layer.borderWidth = 1.0
         
-        getInstructionsButtons.setTitle(NSLocalizedString("WelcomeScreenVC_GetInstructionsButtonTitle", comment: "").uppercased, for: .normal)
-        getInstructionsButtons.setTitleColor(UIColor(red: 39/255, green: 214/255, blue: 1, alpha: 1.0), for: .normal)
-        getInstructionsButtons.setTitleColor(.white, for: .highlighted)
+        getInstructionsButtons.setTitle(NSLocalizedString("WelcomeScreenVC_GetInstructionsButtonTitle", comment: "").uppercased(), for: .normal)
+        getInstructionsButtons.setTitleColor(.nearbyWeatherStandard, for: .normal)
+        getInstructionsButtons.setTitleColor(.nearbyWeatherBubble, for: .highlighted)
     }
     
+    @objc private func timerEnded() {
+        warningImageView.shake()
+    }
     
     // MARK: - TextField Interaction
     
-    @IBAction func inputTextFieldEditingChanged(_ sender: UITextField) {
+    @IBAction func inputTextFieldEditingChanged(_ sender: TextFieldCounter) {
         checkValidTextFieldInput()
         if saveButton.isEnabled {
-            saveButton.layer.borderColor = UIColor(red: 39/255, green: 214/255, blue: 1, alpha: 1.0).cgColor
+            saveButton.layer.borderColor = UIColor.nearbyWeatherStandard.cgColor
             return
         }
         saveButton.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     private func checkValidTextFieldInput() {
-        guard let text = inputTextField.text else {
+        guard let text = inputTextField.text,
+            text.characters.count == 32 else {
+            saveButton.isEnabled = false
+            inputTextField.textColor = .lightGray
             return
         }
-        saveButton.isEnabled = text.characters.count == 32
+        saveButton.isEnabled = true
+        inputTextField.textColor = .nearbyWeatherStandard
     }
     
     

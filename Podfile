@@ -9,7 +9,7 @@ def nearbyweather_pods
     pod 'PKHUD'
     pod 'RainyRefreshControl'
     pod 'WaterDrops'
-    pod 'TextFieldCounter'
+    pod 'TextFieldCounter', :git => 'https://github.com/serralvo/TextFieldCounter.git', :branch => 'master'
 end
 
 target 'NearbyWeather' do

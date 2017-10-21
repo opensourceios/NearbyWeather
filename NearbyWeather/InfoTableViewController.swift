@@ -59,7 +59,7 @@ class InfoTableViewController: UITableViewController {
         
         var urlString: String!
         if indexPath.section == 2 && indexPath.row == 0 {
-            urlString = "http://www.erikmartens.de"
+            urlString = "http://www.erikmartens.de/contact.html"
             
         }
         if indexPath.section == 2 && indexPath.row == 1 {

@@ -37,8 +37,6 @@ class WeatherListViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
         
         navigationItem.title = "NearbyWeather"
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
-        navigationController?.navigationBar.setDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -78,7 +76,10 @@ class WeatherListViewController: UIViewController {
         buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.withAlphaComponent(0.9).cgColor
         buttonRowContainerView.setDropShadow(radius: 10)
         
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         navigationController?.navigationBar.addDropAnimation(withVignetteSize: 10)
+        navigationController?.navigationBar.setDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        
         buttonRowContainerView.addDropAnimation(withVignetteSize: 20)
         buttonRowContainerView.bringSubview(toFront: buttonRowStackView)
         

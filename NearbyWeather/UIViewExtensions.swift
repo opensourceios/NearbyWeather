@@ -1,5 +1,5 @@
 //
-//  UIView+DropShadow.swift
+//  UIViewExtensions.swift
 //  NearbyWeather
 //
 //  Created by Erik Maximilian Martens on 20.10.17.
@@ -38,5 +38,13 @@ extension UIView {
         self.addSubview(waterDropsView)
         waterDropsView.center = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
         waterDropsView.addAnimation()
+    }
+    
+    func shake() {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.duration = 0.25
+        animation.values = [-10.0, 10.0, -10.0, 10.0, -5.0, 5.0, -2.5, 2.5, 0.0 ]
+        layer.add(animation, forKey: "shake")
     }
 }
