@@ -50,6 +50,7 @@ class SetPermissionsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        warningImageView.layer.removeAllAnimations()
         timer?.invalidate()
     }
     
@@ -83,11 +84,12 @@ class SetPermissionsViewController: UIViewController {
         askPermissionsButton.layer.borderWidth = 1.0
     }
     
-    fileprivate func startTimer() {
+    fileprivate func startAnimationTimer() {
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(SetPermissionsViewController.animateShake)), userInfo: nil, repeats: false)
     }
     
     @objc private func animateShake() {
+        warningImageView.layer.removeAllAnimations()
         warningImageView.animateShake(withAnimationDelegate: self)
     }
     
@@ -115,6 +117,6 @@ class SetPermissionsViewController: UIViewController {
 extension SetPermissionsViewController: CAAnimationDelegate {
     
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        startTimer()
+        startAnimationTimer()
     }
 }

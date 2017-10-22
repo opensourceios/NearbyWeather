@@ -13,7 +13,8 @@ class WeatherListViewController: UIViewController {
     
     // MARK: - Properties
     
-    var refreshControl = RainyRefreshControl()
+    private var refreshControl = RainyRefreshControl()
+    
     
     // MARK: - Outlets
     
@@ -25,6 +26,7 @@ class WeatherListViewController: UIViewController {
     @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
+    
     
     // MARK: - ViewController Lifecycle
     
@@ -60,7 +62,7 @@ class WeatherListViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         refreshControl.endRefreshing()
     }
     
@@ -161,11 +163,11 @@ class WeatherListViewController: UIViewController {
 extension WeatherListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(100)
+        return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return CGFloat(100)
     }
 }
 
@@ -225,9 +227,12 @@ extension WeatherListViewController: UITableViewDataSource {
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 
+                cell.warningImageView.tintColor = .white
+                
                 cell.noticeLabel.text! = NSLocalizedString("LocationsListTVC_AlertNoData", comment: "")
                 cell.backgroundColorView.layer.cornerRadius = 5.0
                 cell.backgroundColorView.setDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+                cell.startAnimationTimer()
                 return cell
         }
         var weatherData: WeatherDTO!

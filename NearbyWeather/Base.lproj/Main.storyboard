@@ -117,15 +117,15 @@
                                             <outlet property="windspeedLabel" destination="uOF-b3-Gah" id="ejN-bc-Yol"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlertCell" rowHeight="90" id="KNU-hd-cig" userLabel="AlertCell" customClass="AlertCell" customModule="NearbyWeather" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="155.5" width="375" height="90"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlertCell" rowHeight="100" id="KNU-hd-cig" userLabel="AlertCell" customClass="AlertCell" customModule="NearbyWeather" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="155.5" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KNU-hd-cig" id="iGh-Rv-kuf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mj1-Be-P29" userLabel="backgroundColorView">
-                                                    <rect key="frame" x="15" y="15" width="345" height="60"/>
+                                                    <rect key="frame" x="15" y="20" width="345" height="60"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="LuY-m8-gKz">
                                                             <rect key="frame" x="15" y="15" width="315" height="30"/>
@@ -171,8 +171,8 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="mj1-Be-P29" firstAttribute="leading" secondItem="iGh-Rv-kuf" secondAttribute="leading" constant="15" id="FKW-tr-PM6"/>
-                                                <constraint firstItem="mj1-Be-P29" firstAttribute="top" secondItem="iGh-Rv-kuf" secondAttribute="top" constant="15" id="Oih-ox-Cgd"/>
-                                                <constraint firstAttribute="bottom" secondItem="mj1-Be-P29" secondAttribute="bottom" constant="15" id="dW5-Ti-ikb"/>
+                                                <constraint firstItem="mj1-Be-P29" firstAttribute="top" secondItem="iGh-Rv-kuf" secondAttribute="top" constant="20" id="Oih-ox-Cgd"/>
+                                                <constraint firstAttribute="bottom" secondItem="mj1-Be-P29" secondAttribute="bottom" constant="20" id="dW5-Ti-ikb"/>
                                                 <constraint firstAttribute="trailing" secondItem="mj1-Be-P29" secondAttribute="trailing" constant="15" id="lBr-UM-2LJ"/>
                                             </constraints>
                                         </tableViewCellContentView>

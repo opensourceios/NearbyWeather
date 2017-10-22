@@ -53,6 +53,7 @@ class WelcomeScreenViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        warningImageView.layer.removeAllAnimations()
         timer?.invalidate()
     }
     
@@ -88,13 +89,15 @@ class WelcomeScreenViewController: UIViewController {
         getInstructionsButtons.setTitleColor(.nearbyWeatherBubble, for: .highlighted)
     }
     
-    fileprivate func startTimer() {
+    fileprivate func startAnimationTimer() {
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(WelcomeScreenViewController.animateShake)), userInfo: nil, repeats: false)
     }
     
     @objc private func animateShake() {
+        warningImageView.layer.removeAllAnimations()
         warningImageView.animateShake(withAnimationDelegate: self)
     }
+    
     
     // MARK: - TextField Interaction
     
@@ -149,6 +152,6 @@ class WelcomeScreenViewController: UIViewController {
 extension WelcomeScreenViewController: CAAnimationDelegate {
     
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        startTimer()
+        startAnimationTimer()
     }
 }
