@@ -227,6 +227,7 @@ extension WeatherListViewController: UITableViewDataSource {
                 
                 cell.noticeLabel.text! = NSLocalizedString("LocationsListTVC_AlertNoData", comment: "")
                 cell.backgroundColorView.layer.cornerRadius = 5.0
+                cell.backgroundColorView.setDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
                 return cell
         }
         var weatherData: WeatherDTO!

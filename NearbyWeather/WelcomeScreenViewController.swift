@@ -14,7 +14,7 @@ class WelcomeScreenViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var timer: Timer!
+    private var timer: Timer?
     
     
     // MARK: - Outlets
@@ -47,14 +47,13 @@ class WelcomeScreenViewController: UIViewController {
         super.viewDidAppear(animated)
         
         inputTextField.becomeFirstResponder()
-        
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(WelcomeScreenViewController.timerEnded)), userInfo: nil, repeats: true)
+        animateShake()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        timer.invalidate()
+        timer?.invalidate()
     }
     
     // MARK: - Helper Functions
@@ -89,8 +88,12 @@ class WelcomeScreenViewController: UIViewController {
         getInstructionsButtons.setTitleColor(.nearbyWeatherBubble, for: .highlighted)
     }
     
-    @objc private func timerEnded() {
-        warningImageView.shake()
+    fileprivate func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(WelcomeScreenViewController.animateShake)), userInfo: nil, repeats: false)
+    }
+    
+    @objc private func animateShake() {
+        warningImageView.animateShake(withAnimationDelegate: self)
     }
     
     // MARK: - TextField Interaction
@@ -140,5 +143,12 @@ class WelcomeScreenViewController: UIViewController {
             safariController.view.tintColor = .nearbyWeatherStandard
         }
         present(safariController, animated: true, completion: nil)
+    }
+}
+
+extension WelcomeScreenViewController: CAAnimationDelegate {
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        startTimer()
     }
 }

@@ -12,7 +12,7 @@ class SetPermissionsViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var timer: Timer!
+    private var timer: Timer?
     
     
     // MARK: - Outlets
@@ -44,13 +44,13 @@ class SetPermissionsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(SetPermissionsViewController.timerEnded)), userInfo: nil, repeats: true)
+        animateShake()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        timer.invalidate()
+        timer?.invalidate()
     }
     
     /* Deinitializer */
@@ -83,8 +83,12 @@ class SetPermissionsViewController: UIViewController {
         askPermissionsButton.layer.borderWidth = 1.0
     }
     
-    @objc private func timerEnded() {
-        warningImageView.shake()
+    fileprivate func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(SetPermissionsViewController.animateShake)), userInfo: nil, repeats: false)
+    }
+    
+    @objc private func animateShake() {
+        warningImageView.animateShake(withAnimationDelegate: self)
     }
     
     @objc func launchApp() {
@@ -105,5 +109,12 @@ class SetPermissionsViewController: UIViewController {
         } else {
             launchApp()
         }
+    }
+}
+
+extension SetPermissionsViewController: CAAnimationDelegate {
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        startTimer()
     }
 }

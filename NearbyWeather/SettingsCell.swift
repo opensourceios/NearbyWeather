@@ -10,9 +10,5 @@ import UIKit
 
 class SettingsCell: UITableViewCell {
     
-    //MARK: - Assets
-    
-    /* Labels */
-    
     @IBOutlet weak var contentLabel: UILabel!
 }

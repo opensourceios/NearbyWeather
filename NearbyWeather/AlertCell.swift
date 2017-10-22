@@ -10,13 +10,7 @@ import UIKit
 
 class AlertCell: UITableViewCell {
     
-    // MARK: - Assets
-    
-    /* Views */
-    
     @IBOutlet weak var backgroundColorView: UIView!
-    
-    /* Labels */
-    
+    @IBOutlet weak var warningImageView: UIView!
     @IBOutlet weak var noticeLabel: UILabel!
 }
