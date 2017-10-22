@@ -76,13 +76,13 @@ class WeatherListViewController: UIViewController {
     private func configure() {
         buttonRowContainerView.layer.cornerRadius = 10
         buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.withAlphaComponent(0.9).cgColor
-        buttonRowContainerView.setDropShadow(radius: 10)
+        buttonRowContainerView.addDropShadow(radius: 10)
         
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
-        navigationController?.navigationBar.addDropAnimation(withVignetteSize: 10)
-        navigationController?.navigationBar.setDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        navigationController?.navigationBar.addRainDropAnimation(withVignetteSize: 10)
+        navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
-        buttonRowContainerView.addDropAnimation(withVignetteSize: 20)
+        buttonRowContainerView.addRainDropAnimation(withVignetteSize: 20)
         buttonRowContainerView.bringSubview(toFront: buttonRowStackView)
         
         reloadButton.tintColor = .white
@@ -231,7 +231,6 @@ extension WeatherListViewController: UITableViewDataSource {
                 
                 cell.noticeLabel.text! = NSLocalizedString("LocationsListTVC_AlertNoData", comment: "")
                 cell.backgroundColorView.layer.cornerRadius = 5.0
-                cell.backgroundColorView.setDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
                 cell.startAnimationTimer()
                 return cell
         }

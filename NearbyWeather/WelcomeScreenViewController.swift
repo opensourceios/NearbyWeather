@@ -61,12 +61,12 @@ class WelcomeScreenViewController: UIViewController {
     
     func configure() {
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
-        navigationController?.navigationBar.addDropAnimation(withVignetteSize: 10)
-        navigationController?.navigationBar.setDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        navigationController?.navigationBar.addRainDropAnimation(withVignetteSize: 10)
+        navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         bubbleView.layer.cornerRadius = 10
         bubbleView.backgroundColor = .black
-        bubbleView.setDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        bubbleView.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         descriptionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         descriptionLabel.textColor = .white

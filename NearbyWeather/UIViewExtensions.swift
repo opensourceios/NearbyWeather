@@ -11,7 +11,7 @@ import WaterDrops
 
 extension UIView {
     
-    func setDropShadow(with color: UIColor = UIColor.black, opacity: Float = 0.5, offSet: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 1, scale: Bool = true, shouldRasterize: Bool = true) {
+    func addDropShadow(with color: UIColor = UIColor.black, opacity: Float = 0.5, offSet: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 1, scale: Bool = true, shouldRasterize: Bool = true) {
         self.layer.masksToBounds = false
         self.layer.shadowColor = color.cgColor
         self.layer.shadowOpacity = opacity
@@ -23,7 +23,7 @@ extension UIView {
         self.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
     
-    func addDropAnimation(withVignetteSize size: CGFloat) {
+    func addRainDropAnimation(withVignetteSize size: CGFloat) {
         let waterDropsView = WaterDropsView(frame: self.frame,
                                             direction: .down,
                                             dropNum: 18,
@@ -35,6 +35,7 @@ extension UIView {
                                             minDuration: 3,
                                             maxDuration: 6)
         waterDropsView.frame = CGRect(x: 0, y: 0, width: self.frame.width - size, height: self.frame.height - size)
+        
         self.addSubview(waterDropsView)
         waterDropsView.center = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
         waterDropsView.addAnimation()
