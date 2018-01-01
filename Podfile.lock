@@ -1,5 +1,5 @@
 PODS:
-  - Closures (0.2.1)
+  - Closures (0.3)
   - PKHUD (5.0.0)
   - RainyRefreshControl (0.4.0)
   - TextFieldCounter (0.0.6)
@@ -23,7 +23,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/serralvo/TextFieldCounter.git
 
 SPEC CHECKSUMS:
-  Closures: 1c960e394eba87e8eba4a72ea57613808942fb5b
+  Closures: 8962b9c2157fc29a0e88d897c1dc19e50bf83f6f
   PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
   RainyRefreshControl: de2236ad2f46d6cfb22bf029e0067b48cdcb2925
   TextFieldCounter: 3e01b495f7e90a398e914f6c6fcaca24efacefc7
