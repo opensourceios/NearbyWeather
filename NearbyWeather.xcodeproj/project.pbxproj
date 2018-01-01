@@ -18,7 +18,6 @@
 		F204B7B01DF2F1BC000F4371 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F204B7B21DF2F1BC000F4371 /* Localizable.strings */; };
 		F204B7BD1DF35610000F4371 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F204B7BC1DF35610000F4371 /* SettingsTableViewController.swift */; };
 		F260C4431F9D4883000D2BC0 /* UINavigationControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F260C4421F9D4883000D2BC0 /* UINavigationControllerExtensions.swift */; };
-		F260C4471F9D4D85000D2BC0 /* BlockBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F260C4461F9D4D85000D2BC0 /* BlockBarButtonItem.swift */; };
 		F26699581E9AD0F100498F99 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699571E9AD0F100498F99 /* WeatherService.swift */; };
 		F266995A1E9ADBC300498F99 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699591E9ADBC300498F99 /* LocationService.swift */; };
 		F27AFDEC1DF4C089003957EB /* LocationWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AFDEB1DF4C089003957EB /* LocationWeatherCell.swift */; };
@@ -26,7 +25,7 @@
 		F283D26E1DF39095001B879D /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F283D26D1DF39095001B879D /* SettingsCell.swift */; };
 		F283D2731DF393B2001B879D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F283D2751DF393B2001B879D /* InfoPlist.strings */; };
 		F28CE9641F96B290008319C4 /* UIColor+BrandColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28CE9631F96B290008319C4 /* UIColor+BrandColors.swift */; };
-		F28CE9661F96B537008319C4 /* NavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28CE9651F96B537008319C4 /* NavigationBarExtensions.swift */; };
+		F28CE9661F96B537008319C4 /* UINavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28CE9651F96B537008319C4 /* UINavigationBarExtensions.swift */; };
 		F28CE9681F9A9893008319C4 /* WeatherListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28CE9671F9A9893008319C4 /* WeatherListViewController.swift */; };
 		F28CE96A1F9AA829008319C4 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28CE9691F9AA829008319C4 /* UIViewExtensions.swift */; };
 		F2B8EA001EA11BA800704E90 /* WeatherDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8E9FF1EA11BA800704E90 /* WeatherDTO.swift */; };
@@ -80,7 +79,6 @@
 		F204B7B31DF2F1BD000F4371 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F204B7BC1DF35610000F4371 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		F260C4421F9D4883000D2BC0 /* UINavigationControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtensions.swift; sourceTree = "<group>"; };
-		F260C4461F9D4D85000D2BC0 /* BlockBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockBarButtonItem.swift; sourceTree = "<group>"; };
 		F26699571E9AD0F100498F99 /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		F26699591E9ADBC300498F99 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		F27AFDEB1DF4C089003957EB /* LocationWeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationWeatherCell.swift; sourceTree = "<group>"; };
@@ -89,7 +87,7 @@
 		F283D2741DF393B2001B879D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F283D2761DF393B3001B879D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F28CE9631F96B290008319C4 /* UIColor+BrandColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+BrandColors.swift"; sourceTree = "<group>"; };
-		F28CE9651F96B537008319C4 /* NavigationBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExtensions.swift; sourceTree = "<group>"; };
+		F28CE9651F96B537008319C4 /* UINavigationBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensions.swift; sourceTree = "<group>"; };
 		F28CE9671F9A9893008319C4 /* WeatherListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewController.swift; sourceTree = "<group>"; };
 		F28CE9691F9AA829008319C4 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		F2B8E9FF1EA11BA800704E90 /* WeatherDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDTO.swift; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 				F266995B1E9AE22800498F99 /* View */,
 				F266995D1E9AE25D00498F99 /* Controller */,
 				F28CE9611F96B202008319C4 /* Extensions */,
-				F260C4441F9D4D31000D2BC0 /* Subclasses */,
 				F260C4451F9D4D50000D2BC0 /* Misc */,
 				F204B7811DF2EFA3000F4371 /* Assets.xcassets */,
 				F204B7B21DF2F1BC000F4371 /* Localizable.strings */,
@@ -204,14 +201,6 @@
 				F204B79C1DF2EFA3000F4371 /* Info.plist */,
 			);
 			path = NearbyWeatherUITests;
-			sourceTree = "<group>";
-		};
-		F260C4441F9D4D31000D2BC0 /* Subclasses */ = {
-			isa = PBXGroup;
-			children = (
-				F260C4461F9D4D85000D2BC0 /* BlockBarButtonItem.swift */,
-			);
-			name = Subclasses;
 			sourceTree = "<group>";
 		};
 		F260C4451F9D4D50000D2BC0 /* Misc */ = {
@@ -258,7 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				F28CE9631F96B290008319C4 /* UIColor+BrandColors.swift */,
-				F28CE9651F96B537008319C4 /* NavigationBarExtensions.swift */,
+				F28CE9651F96B537008319C4 /* UINavigationBarExtensions.swift */,
 				F28CE9691F9AA829008319C4 /* UIViewExtensions.swift */,
 				F260C4421F9D4883000D2BC0 /* UINavigationControllerExtensions.swift */,
 			);
@@ -472,7 +461,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NearbyWeatherTests/Pods-NearbyWeatherTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Closures/Closures.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/RainyRefreshControl/RainyRefreshControl.framework",
 				"${BUILT_PRODUCTS_DIR}/TextFieldCounter/TextFieldCounter.framework",
@@ -480,7 +468,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Closures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RainyRefreshControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldCounter.framework",
@@ -513,7 +500,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NearbyWeather/Pods-NearbyWeather-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Closures/Closures.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/RainyRefreshControl/RainyRefreshControl.framework",
 				"${BUILT_PRODUCTS_DIR}/TextFieldCounter/TextFieldCounter.framework",
@@ -521,7 +507,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Closures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RainyRefreshControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldCounter.framework",
@@ -579,7 +564,6 @@
 				F204B77B1DF2EFA3000F4371 /* AppDelegate.swift in Sources */,
 				F2B8EA061EA2893C00704E90 /* WelcomeScreenViewController.swift in Sources */,
 				F2B8EA001EA11BA800704E90 /* WeatherDTO.swift in Sources */,
-				F260C4471F9D4D85000D2BC0 /* BlockBarButtonItem.swift in Sources */,
 				F2B8EA0E1EA37BE800704E90 /* InfoTableViewController.swift in Sources */,
 				F204B7BD1DF35610000F4371 /* SettingsTableViewController.swift in Sources */,
 				F28CE9681F9A9893008319C4 /* WeatherListViewController.swift in Sources */,
@@ -588,7 +572,7 @@
 				F2B8EA081EA2A7AB00704E90 /* SetPermissionsViewController.swift in Sources */,
 				F260C4431F9D4883000D2BC0 /* UINavigationControllerExtensions.swift in Sources */,
 				F2B8EA021EA121CC00704E90 /* AlertCell.swift in Sources */,
-				F28CE9661F96B537008319C4 /* NavigationBarExtensions.swift in Sources */,
+				F28CE9661F96B537008319C4 /* UINavigationBarExtensions.swift in Sources */,
 				F28CE9641F96B290008319C4 /* UIColor+BrandColors.swift in Sources */,
 				F27AFDF01DF4D36C003957EB /* SettingsInputTableViewController.swift in Sources */,
 			);

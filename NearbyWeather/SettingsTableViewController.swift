@@ -18,12 +18,22 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = NSLocalizedString("SettingsTVC_NavigationBarTitle", comment: "")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SettingsTableViewController.didTapDoneButton(_:)))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.apiKeyUpdated.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
     /* TableView */
@@ -133,23 +143,10 @@ class SettingsTableViewController: UITableViewController {
         return UITableViewAutomaticDimension
     }
     
-    /* Deinitializer */
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     
     // MARK: - Helper Functions
     
     @objc func reloadTableViewData(_ notification: Notification) {
         tableView.reloadData()
-    }
-    
-    
-    // MARK: - Button Interaction
-    
-    @objc private func didTapDoneButton(_ sender: UIBarButtonItem) {
-        navigationController?.dismiss(animated: true, completion: nil)
     }
 }

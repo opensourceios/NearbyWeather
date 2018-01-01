@@ -10,7 +10,6 @@ def nearbyweather_pods
     pod 'RainyRefreshControl'
     pod 'WaterDrops'
     pod 'TextFieldCounter', :git => 'https://github.com/serralvo/TextFieldCounter.git', :branch => 'master'
-    pod 'Closures'
 end
 
 target 'NearbyWeather' do

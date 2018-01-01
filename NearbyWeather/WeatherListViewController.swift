@@ -33,11 +33,6 @@ class WeatherListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewDataWithDataPull(_:)), name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated_dataPullRequired.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.apiKeyUpdated.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
-        
         navigationItem.title = "NearbyWeather"
         
         tableView.delegate = self
@@ -49,6 +44,11 @@ class WeatherListViewController: UIViewController {
         super.viewWillAppear(animated)
         
         configure()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewDataWithDataPull(_:)), name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated_dataPullRequired.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.apiKeyUpdated.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,9 +64,7 @@ class WeatherListViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         refreshControl.endRefreshing()
-    }
-    
-    deinit {
+        
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -141,6 +139,7 @@ class WeatherListViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsTVC") as! SettingsTableViewController
         let destinationNavigationController = UINavigationController(rootViewController: destinationViewController)
+        destinationNavigationController.addVerticalCloseButton(withCompletionHandler: nil)
         navigationController?.present(destinationNavigationController, animated: true, completion: nil)
     }
     
@@ -148,6 +147,7 @@ class WeatherListViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destinationViewController = storyboard.instantiateViewController(withIdentifier: "InfoTVC") as! InfoTableViewController
         let destinationNavigationController = UINavigationController(rootViewController: destinationViewController)
+        destinationNavigationController.addVerticalCloseButton(withCompletionHandler: nil)
         navigationController?.present(destinationNavigationController, animated: true, completion: nil)
     }
 

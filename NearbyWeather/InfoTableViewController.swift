@@ -39,7 +39,6 @@ class InfoTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = NSLocalizedString("InfoTVC_NavigationItemTitle", comment: "")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(InfoTableViewController.didTapDoneButton(_:)))
         
         tableView.delegate = self
         tableView.estimatedRowHeight = 61
@@ -155,12 +154,5 @@ class InfoTableViewController: UITableViewController {
         sourceAddressLabel.textColor = .nearbyWeatherStandard
         
         developerName_0.font = UIFont.preferredFont(forTextStyle: .body)
-    }
-    
-    
-    // MARK: - Button Interaction
-    
-    @objc private func didTapDoneButton(_ sender: UIBarButtonItem) {
-        navigationController?.dismiss(animated: true, completion: nil)
     }
 }
