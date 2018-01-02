@@ -2,13 +2,11 @@ PODS:
   - PKHUD (5.0.0)
   - RainyRefreshControl (0.4.0)
   - TextFieldCounter (0.0.6)
-  - WaterDrops (0.1.3)
 
 DEPENDENCIES:
   - PKHUD
   - RainyRefreshControl
   - TextFieldCounter (from `https://github.com/serralvo/TextFieldCounter.git`, branch `master`)
-  - WaterDrops
 
 EXTERNAL SOURCES:
   TextFieldCounter:
@@ -24,8 +22,7 @@ SPEC CHECKSUMS:
   PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
   RainyRefreshControl: de2236ad2f46d6cfb22bf029e0067b48cdcb2925
   TextFieldCounter: 3e01b495f7e90a398e914f6c6fcaca24efacefc7
-  WaterDrops: 8f28cad75a2770e24bc2f7688274273a9d92a289
 
-PODFILE CHECKSUM: dff93390d22d80b816b9f3308e4c422fc38c51aa
+PODFILE CHECKSUM: f8d5cf23545fe2bde7dd12fa63ab482318b25ce6
 
 COCOAPODS: 1.3.1

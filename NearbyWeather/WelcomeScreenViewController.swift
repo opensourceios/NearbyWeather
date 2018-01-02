@@ -61,12 +61,10 @@ class WelcomeScreenViewController: UIViewController {
     
     func configure() {
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
-        navigationController?.navigationBar.addRainDropAnimation(withVignetteSize: 10)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         bubbleView.layer.cornerRadius = 10
         bubbleView.backgroundColor = .black
-        bubbleView.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         descriptionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         descriptionLabel.textColor = .white
@@ -112,7 +110,7 @@ class WelcomeScreenViewController: UIViewController {
     
     private func checkValidTextFieldInput() {
         guard let text = inputTextField.text,
-            text.characters.count == 32 else {
+            text.count == 32 else {
             saveButton.isEnabled = false
             inputTextField.textColor = .lightGray
             return

@@ -21,7 +21,6 @@ class InfoTableViewController: UITableViewController {
     @IBOutlet weak var legendEntryLabel_3: UILabel!
     @IBOutlet weak var legendEntryLabel_4: UILabel!
     
-    
     @IBOutlet weak var supportNoteLabel: UILabel!
     @IBOutlet weak var supportAddressLabel: UILabel!
     
@@ -47,6 +46,8 @@ class InfoTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         NotificationCenter.default.addObserver(self, selector: #selector(InfoTableViewController.preferredTextSizeChanged(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
         
@@ -119,9 +120,7 @@ class InfoTableViewController: UITableViewController {
     // MARK: - Interface Setup
     
     private func configure() {
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
-        navigationController?.navigationBar.addRainDropAnimation(withVignetteSize: 10)
-        
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)        
         configureText()
     }
     

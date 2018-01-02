@@ -73,14 +73,12 @@ class WeatherListViewController: UIViewController {
     
     private func configure() {
         buttonRowContainerView.layer.cornerRadius = 10
-        buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.withAlphaComponent(0.9).cgColor
+        buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.cgColor
         buttonRowContainerView.addDropShadow(radius: 10)
         
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
-        navigationController?.navigationBar.addRainDropAnimation(withVignetteSize: 10)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
-        buttonRowContainerView.addRainDropAnimation(withVignetteSize: 20)
         buttonRowContainerView.bringSubview(toFront: buttonRowStackView)
         
         reloadButton.tintColor = .white
