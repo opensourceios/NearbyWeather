@@ -10,7 +10,15 @@ import UIKit
 
 class SetPermissionsViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private var timer: Timer?
+    
+    
     // MARK: - Outlets
+    
+    @IBOutlet weak var bubbleView: UIView!
+    @IBOutlet weak var warningImageView: UIImageView!
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var askPermissionsButton: UIButton!
@@ -23,10 +31,27 @@ class SetPermissionsViewController: UIViewController {
         
         navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.title = NSLocalizedString("SetPermissionsVC_NavigationBarTitle", comment: "")
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
-        setUp()
         
         NotificationCenter.default.addObserver(self, selector: #selector(SetPermissionsViewController.launchApp), name: Notification.Name(rawValue: NotificationKeys.locationAuthorizationUpdated.rawValue), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configure()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        animateShake()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        warningImageView.layer.removeAllAnimations()
+        timer?.invalidate()
     }
     
     /* Deinitializer */
@@ -38,16 +63,32 @@ class SetPermissionsViewController: UIViewController {
     
     // MARK: - Helper Functions
     
-    func setUp() {
-        descriptionLabel.font = UIFont.preferredFont(forTextStyle: .body)
+    func configure() {
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        
+        bubbleView.layer.cornerRadius = 10
+        bubbleView.backgroundColor = .black
+        
+        descriptionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        descriptionLabel.textColor = .white
         descriptionLabel.text! = NSLocalizedString("SetPermissionsVC_Description", comment: "")
         
-        askPermissionsButton.setTitle(NSLocalizedString("SetPermissionsVC_AskPermissionsButtonTitle", comment: ""), for: .normal)
-        askPermissionsButton.setTitleColor(UIColor(red: 39/255, green: 214/255, blue: 1, alpha: 1.0), for: .normal)
-        askPermissionsButton.setTitleColor(.white, for: .highlighted)
+        askPermissionsButton.setTitle(NSLocalizedString("SetPermissionsVC_AskPermissionsButtonTitle", comment: "").uppercased(), for: .normal)
+        askPermissionsButton.setTitleColor(.nearbyWeatherStandard, for: .normal)
+        askPermissionsButton.setTitleColor(.nearbyWeatherBubble, for: .highlighted)
         askPermissionsButton.layer.cornerRadius = 5.0
-        askPermissionsButton.layer.borderColor = UIColor(red: 39/255, green: 214/255, blue: 1, alpha: 1.0).cgColor
+        askPermissionsButton.layer.borderColor = UIColor.nearbyWeatherStandard.cgColor
         askPermissionsButton.layer.borderWidth = 1.0
+    }
+    
+    fileprivate func startAnimationTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(SetPermissionsViewController.animateShake)), userInfo: nil, repeats: false)
+    }
+    
+    @objc private func animateShake() {
+        warningImageView.layer.removeAllAnimations()
+        warningImageView.animateShake(withAnimationDelegate: self)
     }
     
     @objc func launchApp() {
@@ -68,5 +109,12 @@ class SetPermissionsViewController: UIViewController {
         } else {
             launchApp()
         }
+    }
+}
+
+extension SetPermissionsViewController: CAAnimationDelegate {
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        startAnimationTimer()
     }
 }

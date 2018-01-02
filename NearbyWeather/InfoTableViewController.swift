@@ -21,7 +21,6 @@ class InfoTableViewController: UITableViewController {
     @IBOutlet weak var legendEntryLabel_3: UILabel!
     @IBOutlet weak var legendEntryLabel_4: UILabel!
     
-    
     @IBOutlet weak var supportNoteLabel: UILabel!
     @IBOutlet weak var supportAddressLabel: UILabel!
     
@@ -39,17 +38,26 @@ class InfoTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = NSLocalizedString("InfoTVC_NavigationItemTitle", comment: "")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(InfoTableViewController.didTapDoneButton(_:)))
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         
         tableView.delegate = self
-        
-        configureText()
-        
         tableView.estimatedRowHeight = 61
         tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         NotificationCenter.default.addObserver(self, selector: #selector(InfoTableViewController.preferredTextSizeChanged(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
+        
+        configure()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
     /* TableView */
@@ -57,16 +65,22 @@ class InfoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
         
-        var urlString: String!
+        var urlStringValue: String?
         if indexPath.section == 2 && indexPath.row == 0 {
-            urlString = "http://www.erikmartens.de"
+            urlStringValue = "http://www.erikmartens.de/contact.html"
             
         }
         if indexPath.section == 2 && indexPath.row == 1 {
-            urlString = "https://github.com/erikmartens/NearbyWeather"
+            urlStringValue = "https://github.com/erikmartens/NearbyWeather"
+        }
+        if indexPath.section == 3 && indexPath.row == 0 {
+            urlStringValue = "http://www.erikmartens.de"
         }
         
-        guard let url = URL(string: urlString) else { return }
+        guard let urlString = urlStringValue,
+            let url = URL(string: urlString) else {
+                return
+        }
         let safariController = SFSafariViewController(url: url)
         if #available(iOS 10, *) {
             safariController.preferredControlTintColor = .nearbyWeatherStandard
@@ -105,6 +119,11 @@ class InfoTableViewController: UITableViewController {
     
     // MARK: - Interface Setup
     
+    private func configure() {
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)        
+        configureText()
+    }
+    
     private func configureText() {
         appTitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
         appTitleLabel.text! = NSLocalizedString("InfoTVC_AppTitle", comment: "")
@@ -134,12 +153,5 @@ class InfoTableViewController: UITableViewController {
         sourceAddressLabel.textColor = .nearbyWeatherStandard
         
         developerName_0.font = UIFont.preferredFont(forTextStyle: .body)
-    }
-    
-    
-    // MARK: - Button Interaction
-    
-    @objc private func didTapDoneButton(_ sender: UIBarButtonItem) {
-        navigationController?.dismiss(animated: true, completion: nil)
     }
 }

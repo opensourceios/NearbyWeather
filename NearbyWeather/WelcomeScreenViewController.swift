@@ -7,13 +7,23 @@
 //
 
 import UIKit
+import SafariServices
+import TextFieldCounter
 
 class WelcomeScreenViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private var timer: Timer?
+    
+    
     // MARK: - Outlets
     
+    @IBOutlet weak var bubbleView: UIView!
+    @IBOutlet weak var warningImageView: UIImageView!
+    
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet weak var inputTextField: TextFieldCounter!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var getInstructionsButtons: UIButton!
     
@@ -24,51 +34,89 @@ class WelcomeScreenViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = NSLocalizedString("WelcomeScreenVC_NavigationBarTitle", comment: "")
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configure()
         checkValidTextFieldInput()
-        setUp()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         inputTextField.becomeFirstResponder()
+        animateShake()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        warningImageView.layer.removeAllAnimations()
+        timer?.invalidate()
     }
     
     // MARK: - Helper Functions
     
-    func setUp() {
-        descriptionLabel.font = UIFont.preferredFont(forTextStyle: .body)
+    func configure() {
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        
+        bubbleView.layer.cornerRadius = 10
+        bubbleView.backgroundColor = .black
+        
+        descriptionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        descriptionLabel.textColor = .white
         descriptionLabel.text! = NSLocalizedString("WelcomeScreenVC_Description", comment: "")
         
-        saveButton.setTitle(NSLocalizedString("WelcomeScreenVC_SaveButtonTitle", comment: ""), for: .normal)
-        saveButton.setTitleColor(UIColor(red: 39/255, green: 214/255, blue: 1, alpha: 1.0), for: .normal)
-        saveButton.setTitleColor(.white, for: .highlighted)
-        saveButton.setTitleColor(.gray, for: .disabled)
+        inputTextField.limitColor = .nearbyWeatherStandard
+        inputTextField.textColor = .lightGray
+        inputTextField.tintColor = .lightGray
+        
+        saveButton.setTitle(NSLocalizedString("WelcomeScreenVC_SaveButtonTitle", comment: "").uppercased(), for: .normal)
+        saveButton.setTitleColor(.nearbyWeatherStandard, for: .normal)
+        saveButton.setTitleColor(.nearbyWeatherBubble, for: .highlighted)
+        saveButton.setTitleColor(.lightGray, for: .disabled)
         saveButton.layer.cornerRadius = 5.0
         saveButton.layer.borderColor = UIColor.lightGray.cgColor
         saveButton.layer.borderWidth = 1.0
         
-        getInstructionsButtons.setTitle(NSLocalizedString("WelcomeScreenVC_GetInstructionsButtonTitle", comment: ""), for: .normal)
-        getInstructionsButtons.setTitleColor(UIColor(red: 39/255, green: 214/255, blue: 1, alpha: 1.0), for: .normal)
-        getInstructionsButtons.setTitleColor(.white, for: .highlighted)
+        getInstructionsButtons.setTitle(NSLocalizedString("WelcomeScreenVC_GetInstructionsButtonTitle", comment: "").uppercased(), for: .normal)
+        getInstructionsButtons.setTitleColor(.nearbyWeatherStandard, for: .normal)
+        getInstructionsButtons.setTitleColor(.nearbyWeatherBubble, for: .highlighted)
+    }
+    
+    fileprivate func startAnimationTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(WelcomeScreenViewController.animateShake)), userInfo: nil, repeats: false)
+    }
+    
+    @objc private func animateShake() {
+        warningImageView.layer.removeAllAnimations()
+        warningImageView.animateShake(withAnimationDelegate: self)
     }
     
     
     // MARK: - TextField Interaction
     
-    @IBAction func inputTextFieldEditingChanged(_ sender: UITextField) {
+    @IBAction func inputTextFieldEditingChanged(_ sender: TextFieldCounter) {
         checkValidTextFieldInput()
         if saveButton.isEnabled {
-            saveButton.layer.borderColor = UIColor(red: 39/255, green: 214/255, blue: 1, alpha: 1.0).cgColor
-        } else {
-            saveButton.layer.borderColor = UIColor.lightGray.cgColor
+            saveButton.layer.borderColor = UIColor.nearbyWeatherStandard.cgColor
+            return
         }
+        saveButton.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     private func checkValidTextFieldInput() {
-        let text = inputTextField.text ?? ""
-        saveButton.isEnabled = text.characters.count == 32
+        guard let text = inputTextField.text,
+            text.count == 32 else {
+            saveButton.isEnabled = false
+            inputTextField.textColor = .lightGray
+            return
+        }
+        saveButton.isEnabled = true
+        inputTextField.textColor = .nearbyWeatherStandard
     }
     
     
@@ -86,6 +134,22 @@ class WelcomeScreenViewController: UIViewController {
     }
     
     @IBAction func didTapGetInstructionsButton(_ sender: UIButton) {
-        UIApplication.shared.open(URL(string: "https://openweathermap.org/appid")!, options: [:], completionHandler: nil)
+        let urlString = "https://openweathermap.org/appid"
+        
+        guard let url = URL(string: urlString) else { return }
+        let safariController = SFSafariViewController(url: url)
+        if #available(iOS 10, *) {
+            safariController.preferredControlTintColor = .nearbyWeatherStandard
+        } else {
+            safariController.view.tintColor = .nearbyWeatherStandard
+        }
+        present(safariController, animated: true, completion: nil)
+    }
+}
+
+extension WelcomeScreenViewController: CAAnimationDelegate {
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        startAnimationTimer()
     }
 }

@@ -7,60 +7,64 @@
 //
 
 import UIKit
+import RainyRefreshControl
 
 class WeatherListViewController: UIViewController {
+    
+    // MARK: - Properties
+    
+    private var refreshControl = RainyRefreshControl()
+    
     
     // MARK: - Outlets
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var buttonRowContainerView: UIView!
+    @IBOutlet weak var buttonRowStackView: UIStackView!
     
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     
+    
     // MARK: - ViewController Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewDataWithDataPull(_:)), name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated_dataPullRequired.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.apiKeyUpdated.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
-        
         navigationItem.title = "NearbyWeather"
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
-        navigationController?.navigationBar.setDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 75, right: 0)
-        
-        configureRefreshControl()
-        configure()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-       
+        configure()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewDataWithDataPull(_:)), name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated_dataPullRequired.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.apiKeyUpdated.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableViewData(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if UserDefaults.standard.value(forKey: "nearby_weather.isInitialLaunch") == nil {
-            startActivityIndicator()
-            WeatherService.current.fetchDataWith {
-                UserDefaults.standard.set(false, forKey: "nearby_weather.isInitialLaunch")
-                self.stopActivityIndicator()
-            }
+            UserDefaults.standard.set(false, forKey: "nearby_weather.isInitialLaunch")
+            reload()
         }
     }
     
-    deinit {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        refreshControl.endRefreshing()
+        
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -69,31 +73,42 @@ class WeatherListViewController: UIViewController {
     
     private func configure() {
         buttonRowContainerView.layer.cornerRadius = 10
-        buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.withAlphaComponent(0.95).cgColor
+        buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.cgColor
+        buttonRowContainerView.addDropShadow(radius: 10)
         
-        buttonRowContainerView.setDropShadow(radius: 10)
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        
+        buttonRowContainerView.bringSubview(toFront: buttonRowStackView)
         
         reloadButton.tintColor = .white
         sortButton.tintColor = .white
         infoButton.tintColor = .white
         settingsButton.tintColor = .white
-    }
-    
-    private func configureRefreshControl() {
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.tintColor = .white
-        tableView.refreshControl?.attributedTitle = nil
-        tableView.refreshControl?.attributedTitle = NSAttributedString(string: NSLocalizedString("LocationsListTVC_RefreshPullHandle", comment: ""))
-        tableView.refreshControl?.addTarget(self, action: #selector(WeatherListViewController.refreshContent(refreshControl:)), for: UIControlEvents.valueChanged)
+        
+        refreshControl.addTarget(self, action: #selector(WeatherListViewController.refreshContent(refreshControl:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     private func reload() {
-        startActivityIndicator()
+        refreshControl.beginRefreshing()
         WeatherService.current.fetchDataWith {
             UserDefaults.standard.set(false, forKey: "nearby_weather.isInitialLaunch")
-            self.stopActivityIndicator()
+            self.refreshControl.endRefreshing()
             self.tableView.reloadData()
         }
+    }
+    
+    @objc private func refreshContent(refreshControl: RainyRefreshControl) {
+        reload()
+    }
+    
+    @objc func reloadTableViewDataWithDataPull(_ notification: Notification) {
+        reload()
+    }
+    
+    @objc func reloadTableViewData(_ notification: Notification) {
+        tableView.reloadData()
     }
     
     private func triggerSortAlert() {
@@ -115,48 +130,6 @@ class WeatherListViewController: UIViewController {
         self.present(sortAlert, animated: true, completion: nil)
     }
     
-    @objc private func refreshContent(refreshControl: UIRefreshControl) {
-        refreshControl.beginRefreshing()
-        
-        WeatherService.current.fetchDataWith {
-            refreshControl.endRefreshing()
-        }
-    }
-    
-    @objc func reloadTableViewDataWithDataPull(_ notification: Notification) {
-        reload()
-    }
-    
-    @objc func reloadTableViewData(_ notification: Notification) {
-        tableView.reloadData()
-    }
-    
-    private func startActivityIndicator() {
-        guard tableView != nil else {
-            return
-        }
-        
-        let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
-        activityIndicator.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        activityIndicator.layer.cornerRadius = 10
-        
-        tableView?.addSubview(activityIndicator)
-        if let superViewCenter = activityIndicator.superview?.center {
-            activityIndicator.center = superViewCenter
-        }
-        activityIndicator.startAnimating()
-    }
-    
-    private func stopActivityIndicator() {
-        guard let subviews = tableView?.subviews else {
-            return
-        }
-        for subview in subviews where subview is UIActivityIndicatorView {
-            subview.removeFromSuperview()
-        }
-    }
-    
     
     // MARK: - Button Interaction
     
@@ -164,6 +137,7 @@ class WeatherListViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsTVC") as! SettingsTableViewController
         let destinationNavigationController = UINavigationController(rootViewController: destinationViewController)
+        destinationNavigationController.addVerticalCloseButton(withCompletionHandler: nil)
         navigationController?.present(destinationNavigationController, animated: true, completion: nil)
     }
     
@@ -171,6 +145,7 @@ class WeatherListViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destinationViewController = storyboard.instantiateViewController(withIdentifier: "InfoTVC") as! InfoTableViewController
         let destinationNavigationController = UINavigationController(rootViewController: destinationViewController)
+        destinationNavigationController.addVerticalCloseButton(withCompletionHandler: nil)
         navigationController?.present(destinationNavigationController, animated: true, completion: nil)
     }
 
@@ -186,11 +161,11 @@ class WeatherListViewController: UIViewController {
 extension WeatherListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(100)
+        return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return CGFloat(100)
     }
 }
 
@@ -250,8 +225,11 @@ extension WeatherListViewController: UITableViewDataSource {
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 
+                cell.warningImageView.tintColor = .white
+                
                 cell.noticeLabel.text! = NSLocalizedString("LocationsListTVC_AlertNoData", comment: "")
                 cell.backgroundColorView.layer.cornerRadius = 5.0
+                cell.startAnimationTimer()
                 return cell
         }
         var weatherData: WeatherDTO!

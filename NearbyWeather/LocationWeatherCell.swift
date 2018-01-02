@@ -9,14 +9,8 @@
 import UIKit
 
 class LocationWeatherCell: UITableViewCell {
-    
-    //MARK: - Assets
-    
-    /* Views */
-    
+   
     @IBOutlet weak var backgroundColorView: UIView!
-    
-    /* Labels */
     
     @IBOutlet weak var weatherConditionLabel: UILabel!
     @IBOutlet weak var cityNameLabel: UILabel!

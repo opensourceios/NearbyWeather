@@ -1,5 +1,5 @@
 //
-//  NavigationBarExtensions.swift
+//  UINavigationBarExtensions.swift
 //  NearbyWeather
 //
 //  Created by Erik Maximilian Martens on 18.10.17.
