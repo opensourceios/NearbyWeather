@@ -62,13 +62,14 @@ class SettingsTableViewController: UITableViewController {
             navigationItem.backBarButtonItem = barButton
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 2:
-            WeatherService.current.amountResults = AmountResults(rawValue: indexPath.row).integerValue
+            WeatherService.current.amountResults = AmountResults(rawValue: indexPath.row)!.integerValue // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
-            break
         case 3:
-            WeatherService.current.temperatureUnit = TemperatureUnit(rawValue: indexPath.row)
+            WeatherService.current.temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
-            break
+        case 4:
+            WeatherService.current.windspeedUnit = SpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            tableView.reloadData()
         default:
             break
         }
@@ -84,13 +85,15 @@ class SettingsTableViewController: UITableViewController {
             return NSLocalizedString("SettingsTVC_SectionTitle3", comment: "")
         case 3:
             return NSLocalizedString("SettingsTVC_SectionTitle4", comment: "")
+        case 4:
+            return NSLocalizedString("SettingsTVC_SectionTitle5", comment: "")
         default:
             return nil
         }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,6 +106,8 @@ class SettingsTableViewController: UITableViewController {
             return AmountResults.count
         case 3:
             return TemperatureUnit.count
+        case 4:
+            return SpeedUnit.count
         default:
             return 0
         }
@@ -114,24 +119,31 @@ class SettingsTableViewController: UITableViewController {
         
         switch indexPath.section {
         case 0:
-            cell.contentLabel.text! = WeatherService.current.favoritedLocation
+            cell.contentLabel.text = WeatherService.current.favoritedLocation
             cell.accessoryType = .disclosureIndicator
             return cell
         case 1:
-            cell.contentLabel.text! = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") as! String
+            cell.contentLabel.text = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") as? String
             cell.accessoryType = .disclosureIndicator
             return cell
         case 2:
-            let amountResults = AmountResults(rawValue: indexPath.row).integerValue
-            cell.contentLabel.text! = "\(amountResults) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
+            let amountResults = AmountResults(rawValue: indexPath.row)!.integerValue // force unwrap -> this should never fail, if it does the app should crash so we know
+            cell.contentLabel.text = "\(amountResults) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
             if amountResults == WeatherService.current.amountResults {
                 cell.accessoryType = .checkmark
             }
             return cell
         case 3:
-            let temperatureUnit = TemperatureUnit(rawValue: indexPath.row)
-            cell.contentLabel.text! = temperatureUnit.stringValue
+            let temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            cell.contentLabel.text = temperatureUnit.stringValue
             if temperatureUnit.stringValue == WeatherService.current.temperatureUnit.stringValue {
+                cell.accessoryType = .checkmark
+            }
+            return cell
+        case 4:
+            let windspeedUnit = SpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            cell.contentLabel.text = windspeedUnit.stringShortValue
+            if windspeedUnit.stringValue == WeatherService.current.windspeedUnit.stringValue {
                 cell.accessoryType = .checkmark
             }
             return cell

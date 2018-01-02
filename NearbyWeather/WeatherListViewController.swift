@@ -267,7 +267,7 @@ extension WeatherListViewController: UITableViewDataSource {
         cell.temperatureLabel.text! = "🌡 \(weatherData.determineTemperatureForUnit())"
         cell.cloudCoverLabel.text! = "☁️ \(weatherData.cloudCoverage)%"
         cell.humidityLabel.text! = "💧 \(weatherData.humidity)%"
-        cell.windspeedLabel.text! = "💨 \(weatherData.windspeed) km/h"
+        cell.windspeedLabel.text! = "💨 \(weatherData.determineWindspeedForUnit())"
         return cell
     }
 }

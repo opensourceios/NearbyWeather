@@ -60,7 +60,7 @@ class WelcomeScreenViewController: UIViewController {
     // MARK: - Helper Functions
     
     func configure() {
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true) 
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         bubbleView.layer.cornerRadius = 10

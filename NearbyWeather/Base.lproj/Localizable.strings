@@ -76,6 +76,7 @@ SettingsTVC_SectionTitle1 = "Favourited City";
 SettingsTVC_SectionTitle2 = "Open Weather Map API Key";
 SettingsTVC_SectionTitle3 = "Amount of Search Results";
 SettingsTVC_SectionTitle4 = "Temperature Unit";
+SettingsTVC_SectionTitle5 = "Windspeed-Unit";
 
 SettingsTVC_Results = "Results";
 
@@ -89,3 +90,12 @@ InputSettingsTVC_SectionTitle_Mode_EnterFavoritedLocation = "Enter City Name";
 InputSettingsTVC_SectionTitle_Mode_EnterAPIKey = "Enter API Key";
 
 InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "The API Key has a length of exactly 32 characters.";
+
+
+// MARK: - General
+
+kilometres_per_hour = "Kilometer/Stunde";
+miles_per_hour = "Meilen/Stunde";
+
+kph = "kmh";
+mph = "mph";
