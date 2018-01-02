@@ -23,8 +23,11 @@ public class TemperatureUnit {
         self.value = value
     }
     
-    convenience init(rawValue: Int) {
-        self.init(value: TemperatureUnitValue(rawValue: rawValue)!)
+    convenience init?(rawValue: Int) {
+        guard let value = TemperatureUnitValue(rawValue: rawValue) else {
+            return nil
+        }
+        self.init(value: value)
     }
     
     enum TemperatureUnitValue: Int {
@@ -42,6 +45,42 @@ public class TemperatureUnit {
     }
 }
 
+public class SpeedUnit {
+    static let count = 2
+    
+    var value: SpeedUnitValue
+    
+    init(value: SpeedUnitValue) {
+        self.value = value
+    }
+    
+    convenience init?(rawValue: Int) {
+        guard let value = SpeedUnitValue(rawValue: rawValue) else {
+            return nil
+        }
+        self.init(value: value)
+    }
+    
+    enum SpeedUnitValue: Int {
+        case kilometresPerHour
+        case milesPerHour
+    }
+    
+    var stringValue: String {
+        switch value {
+        case .kilometresPerHour: return NSLocalizedString("kilometres_per_hour", comment: "")
+        case .milesPerHour: return NSLocalizedString("miles_per_hour", comment: "")
+        }
+    }
+    
+    var stringShortValue: String {
+        switch value {
+        case .kilometresPerHour: return NSLocalizedString("kmh", comment: "")
+        case .milesPerHour: return NSLocalizedString("mph", comment: "")
+        }
+    }
+}
+
 public class AmountResults {
     
     static let count = 5
@@ -52,8 +91,11 @@ public class AmountResults {
         self.value = value
     }
     
-    convenience init(rawValue: Int) {
-        self.init(value: AmountResultsValue(rawValue: rawValue)!)
+    convenience init?(rawValue: Int) {
+        guard let value = AmountResultsValue(rawValue: rawValue) else {
+            return nil
+        }
+        self.init(value: value)
     }
     
     enum AmountResultsValue: Int {
@@ -96,6 +138,12 @@ class WeatherService: NSObject {
             NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: self)
         }
     }
+    public var windspeedUnit: SpeedUnit {
+        didSet {
+            WeatherService.storeService()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: self)
+        }
+    }
     public var favoritedLocation: String {
         didSet {
             WeatherService.storeService()
@@ -116,7 +164,8 @@ class WeatherService: NSObject {
     // MARK: - Initialization
     
     private init(favoritedLocation: String, amountResults: Int) {
-        self.temperatureUnit = TemperatureUnit(value: .fahrenheit)
+        self.temperatureUnit = TemperatureUnit(value: .celsius)
+        self.windspeedUnit = SpeedUnit(value: .kilometresPerHour)
         self.favoritedLocation = favoritedLocation
         self.amountResults = amountResults
         
@@ -124,17 +173,19 @@ class WeatherService: NSObject {
     }
     
     internal required convenience init?(coder aDecoder: NSCoder) {
-        let tempUnit = aDecoder.decodeInteger(forKey: PropertyKey.temperatureUnitKey)
         let favorite = aDecoder.decodeObject(forKey: PropertyKey.favoritedLocationKey) as! String
         let amount = aDecoder.decodeInteger(forKey: PropertyKey.amountResultsKey)
-        let singleLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.singleLocationWeatherKey) as? [WeatherDTO]
-        let multiLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.multiLocationWeatherKey) as? [WeatherDTO]
         
         self.init(favoritedLocation: favorite, amountResults: amount)
-        self.temperatureUnit = TemperatureUnit(rawValue: tempUnit)
-        self.amountResults = amount
-        self.singleLocationWeatherData = singleLocationWeatherData
-        self.multiLocationWeatherData = multiLocationWeatherData
+        
+        let temperatureUnitRawValue = aDecoder.decodeInteger(forKey: PropertyKey.temperatureUnitKey)
+        self.temperatureUnit = TemperatureUnit(rawValue: temperatureUnitRawValue)! // force unwrap -> this should never fail, if it does the app should crash so we know
+        
+        let windspeedUnitRawValue = aDecoder.decodeInteger(forKey: PropertyKey.windspeedUnitKey)
+        self.windspeedUnit = SpeedUnit(rawValue: windspeedUnitRawValue)! // force unwrap -> this should never fail, if it does the app should crash so we know
+        
+        self.singleLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.singleLocationWeatherKey) as? [WeatherDTO]
+        self.multiLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.multiLocationWeatherKey) as? [WeatherDTO]
     }
     
     
@@ -315,6 +366,7 @@ extension WeatherService: NSCoding {
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(temperatureUnit.value.rawValue, forKey: PropertyKey.temperatureUnitKey)
+        aCoder.encode(windspeedUnit.value.rawValue, forKey: PropertyKey.windspeedUnitKey)
         aCoder.encode(favoritedLocation, forKey: PropertyKey.favoritedLocationKey)
         aCoder.encode(amountResults, forKey: PropertyKey.amountResultsKey)
         aCoder.encode(singleLocationWeatherData, forKey: PropertyKey.singleLocationWeatherKey)
@@ -323,6 +375,7 @@ extension WeatherService: NSCoding {
     
     struct PropertyKey {
         fileprivate static let temperatureUnitKey = "temperatureUnit"
+        fileprivate static let windspeedUnitKey = "windspeedUnit"
         fileprivate static let favoritedLocationKey = "favoritedLocation"
         fileprivate static let amountResultsKey = "chosenAmountResults"
         fileprivate static let singleLocationWeatherKey = "singleLocationWeatherData"

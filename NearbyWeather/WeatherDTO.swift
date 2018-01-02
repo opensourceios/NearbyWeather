@@ -102,6 +102,15 @@ class WeatherDTO: NSObject {
             return "\(String(format:"%.02f", rawTemperature))°K"
         }
     }
+    
+    public func determineWindspeedForUnit() -> String {
+        switch WeatherService.current.windspeedUnit.value {
+        case .kilometresPerHour:
+            return "\(String(format:"%.02f", windspeed)) \(NSLocalizedString("kph", comment: ""))"
+        case .milesPerHour:
+            return "\(String(format:"%.02f", windspeed / 1.609344)) \(NSLocalizedString("mph", comment: ""))"
+        }
+    }
 }
 
 extension WeatherDTO: NSCoding {
