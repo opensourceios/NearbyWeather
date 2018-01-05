@@ -26,15 +26,11 @@ class SettingsTableViewController: UITableViewController {
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.apiKeyUpdated.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
+        tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
     }
     
     /* TableView */
@@ -62,13 +58,13 @@ class SettingsTableViewController: UITableViewController {
             navigationItem.backBarButtonItem = barButton
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 2:
-            WeatherService.current.amountResults = AmountResults(rawValue: indexPath.row)!.integerValue // force unwrap -> this should never fail, if it does the app should crash so we know
+            WeatherService.shared.amountResults = AmountResults(rawValue: indexPath.row)!.integerValue // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         case 3:
-            WeatherService.current.temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            WeatherService.shared.temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         case 4:
-            WeatherService.current.windspeedUnit = SpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            WeatherService.shared.windspeedUnit = SpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         default:
             break
@@ -119,7 +115,7 @@ class SettingsTableViewController: UITableViewController {
         
         switch indexPath.section {
         case 0:
-            cell.contentLabel.text = WeatherService.current.favoritedLocation
+            cell.contentLabel.text = WeatherService.shared.favoritedLocation
             cell.accessoryType = .disclosureIndicator
             return cell
         case 1:
@@ -129,21 +125,21 @@ class SettingsTableViewController: UITableViewController {
         case 2:
             let amountResults = AmountResults(rawValue: indexPath.row)!.integerValue // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = "\(amountResults) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
-            if amountResults == WeatherService.current.amountResults {
+            if amountResults == WeatherService.shared.amountResults {
                 cell.accessoryType = .checkmark
             }
             return cell
         case 3:
             let temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = temperatureUnit.stringValue
-            if temperatureUnit.stringValue == WeatherService.current.temperatureUnit.stringValue {
+            if temperatureUnit.stringValue == WeatherService.shared.temperatureUnit.stringValue {
                 cell.accessoryType = .checkmark
             }
             return cell
         case 4:
             let windspeedUnit = SpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = windspeedUnit.stringValue
-            if windspeedUnit.stringValue == WeatherService.current.windspeedUnit.stringValue {
+            if windspeedUnit.stringValue == WeatherService.shared.windspeedUnit.stringValue {
                 cell.accessoryType = .checkmark
             }
             return cell
@@ -154,12 +150,5 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
-    }
-    
-    
-    // MARK: - Helper Functions
-    
-    @objc func reloadTableViewData(_ notification: Notification) {
-        tableView.reloadData()
     }
 }

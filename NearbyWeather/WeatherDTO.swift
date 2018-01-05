@@ -93,7 +93,7 @@ class WeatherDTO: NSObject {
     }
     
     public func determineTemperatureForUnit() -> String {
-        switch WeatherService.current.temperatureUnit.value {
+        switch WeatherService.shared.temperatureUnit.value {
         case .celsius:
             return "\(String(format:"%.02f", rawTemperature - 273.15))°C"
         case . fahrenheit:
@@ -104,7 +104,7 @@ class WeatherDTO: NSObject {
     }
     
     public func determineWindspeedForUnit() -> String {
-        switch WeatherService.current.windspeedUnit.value {
+        switch WeatherService.shared.windspeedUnit.value {
         case .kilometresPerHour:
             return "\(String(format:"%.02f", windspeed)) \(NSLocalizedString("kph", comment: ""))"
         case .milesPerHour:

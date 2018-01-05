@@ -121,39 +121,44 @@ class WeatherService: NSObject {
     
     // MARK: - Public Assets
     
-    public static var current: WeatherService!
-    
     
     // MARK: - Private Assets
+    
+    public static var shared: WeatherService!
     
     private static let openWeather_SingleLocationBaseURL = "http://api.openweathermap.org/data/2.5/weather"
     private static let openWeather_MultiLocationBaseURL = "http://api.openweathermap.org/data/2.5/find"
     
+    private let weatherServiceBackgroundQueue = DispatchQueue(label: "de.erikmartens.nearbyWeather.weatherService", qos: DispatchQoS.background, attributes: [DispatchQueue.Attributes.concurrent], autoreleaseFrequency: .inherit, target: nil)
     
     // MARK: - Properties
     
     public var temperatureUnit: TemperatureUnit {
         didSet {
-            WeatherService.storeService()
-            NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: self)
+            weatherServiceBackgroundQueue.async {
+                WeatherService.storeService()
+            }
         }
     }
     public var windspeedUnit: SpeedUnit {
         didSet {
-            WeatherService.storeService()
-            NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: self)
+            weatherServiceBackgroundQueue.async {
+                WeatherService.storeService()
+            }
         }
     }
     public var favoritedLocation: String {
         didSet {
-            WeatherService.storeService()
-            NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated_dataPullRequired.rawValue), object: self)
+            weatherServiceBackgroundQueue.async {
+                WeatherService.storeService()
+            }
         }
     }
     public var amountResults: Int {
         didSet {
-            WeatherService.storeService()
-            NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated_dataPullRequired.rawValue), object: self)
+            weatherServiceBackgroundQueue.async {
+                WeatherService.storeService()
+            }
         }
     }
     
@@ -191,12 +196,8 @@ class WeatherService: NSObject {
     
     // MARK: - Public Properties & Methods
     
-    public static func attachPersistentObject() {
-        if let previousService: WeatherService = WeatherService.loadService() {
-            WeatherService.current = previousService
-        } else {
-            WeatherService.current = WeatherService(favoritedLocation: "Cupertino", amountResults: 10)
-        }
+    public static func instantiateShareInstance() {
+        shared = WeatherService.loadService() ?? WeatherService(favoritedLocation: "Cupertino", amountResults: 10)
     }
     
     public func fetchDataWith(completionHandler: (() -> Void)?) {
@@ -217,11 +218,10 @@ class WeatherService: NSObject {
             })
             
             dispatchGroup.wait()
-            DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async {
                 WeatherService.storeService()
-                NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: self)
                 completionHandler?()
-            })
+            }
         }
     }
     
@@ -245,7 +245,7 @@ class WeatherService: NSObject {
     }
     
     private static func storeService() {
-        _ = NSKeyedArchiver.archiveRootObject(WeatherService.current, toFile: WeatherService.ArchiveURL.path)
+        _ = NSKeyedArchiver.archiveRootObject(WeatherService.shared, toFile: WeatherService.ArchiveURL.path)
     }
     
     /* Data Retrieval via Network */

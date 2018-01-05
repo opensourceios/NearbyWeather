@@ -8,7 +8,4 @@
 
 enum NotificationKeys: String {
     case locationAuthorizationUpdated = "nearby_weather.locationAuthorizationUpdated"
-    case weatherServiceUpdated_dataPullRequired = "nearby_weather.weatherServiceUpdated_dataPullRequired"
-    case weatherServiceUpdated = "nearby_weather.weatherServiceUpdated"
-    case apiKeyUpdated = "nearby_weather.apiKeyUpdated"
 }

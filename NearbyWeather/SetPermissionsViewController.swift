@@ -91,9 +91,7 @@ class SetPermissionsViewController: UIViewController {
         warningImageView.animateShake(withAnimationDelegate: self)
     }
     
-    @objc func launchApp() {
-        WeatherService.attachPersistentObject()
-        
+    @objc func launchApp() {        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destinationViewController = storyboard.instantiateInitialViewController()
         

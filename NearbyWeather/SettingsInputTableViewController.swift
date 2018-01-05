@@ -41,7 +41,7 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         switch mode! {
         case .enterFavoritedLocation:
             navigationItem.title = NSLocalizedString("SettingsInputTVC_NavigationBarTitle_Mode_EnterFavoritedLocation", comment: "")
-            inputTextField.text! = WeatherService.current.favoritedLocation
+            inputTextField.text! = WeatherService.shared.favoritedLocation
             break
         case .enterAPIKey:
             navigationItem.title = NSLocalizedString("SettingsInputTVC_NavigationBarTitle_Mode_EnterAPIKey", comment: "")
@@ -72,14 +72,11 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         case .enterFavoritedLocation:
             let text = inputTextField.text ?? ""
             if !text.isEmpty {
-                WeatherService.current.favoritedLocation = text
+                WeatherService.shared.favoritedLocation = text
             }
-            break
         case .enterAPIKey:
-            let text = inputTextField.text ?? ""
-            if text.characters.count == 32 {
+            if let text = inputTextField.text, text.count == 32 {
                 UserDefaults.standard.set(text, forKey: "nearby_weather.openWeatherMapApiKey")
-                NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.apiKeyUpdated.rawValue), object: self)
             }
         }
     }
