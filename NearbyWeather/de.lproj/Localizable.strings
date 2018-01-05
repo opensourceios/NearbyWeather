@@ -93,8 +93,8 @@ InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "Der API Schlüssel hat eine L
 
 // MARK: - General
 
-kilometres_per_hour = "Kilometres per Hour";
-miles_per_hour = "Miles per Hour";
+kilometres_per_hour = "Kilometer/Stunde";
+miles_per_hour = "Meilen/Stunde";
 
 kph = "kp/h";
 mph = "m/h";

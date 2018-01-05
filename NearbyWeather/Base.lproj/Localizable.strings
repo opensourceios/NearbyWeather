@@ -26,7 +26,7 @@ SetPermissionsVC_AskPermissionsButtonTitle = "Configure";
 
 // MARK: - NearbyLocationsTableViewController
 
-LocationsListTVC_TableViewSectionHeader1 = "Weather in Favourited City";
+LocationsListTVC_TableViewSectionHeader1 = "Weather in Favorited City";
 LocationsListTVC_TableViewSectionHeader2 = "Weather for Nearby Cities";
 
 LocationsListTVC_RefreshPullHandle = "Pull to refresh";
@@ -63,7 +63,7 @@ InfoTVC_Icons = "Icons by";
 InfoTVC_Legend_Temperature = "🌡 Temperature";
 InfoTVC_Legend_CloudCover = "☁️ Cloud Cover";
 InfoTVC_Legend_Humidity = "💧 Humidity";
-InfoTVC_Legend_WindSpeed = "💨 Wind Speed";
+InfoTVC_Legend_WindSpeed = "💨 Windspeed";
 
 
 // MARK: - SettingsTableViewController
@@ -72,11 +72,11 @@ SettingsTVC_BackButtonTitle = "Weather";
 
 SettingsTVC_NavigationBarTitle = "Settings";
 
-SettingsTVC_SectionTitle1 = "Favourited City";
+SettingsTVC_SectionTitle1 = "Favorited City";
 SettingsTVC_SectionTitle2 = "Open Weather Map API Key";
 SettingsTVC_SectionTitle3 = "Amount of Search Results";
 SettingsTVC_SectionTitle4 = "Temperature Unit";
-SettingsTVC_SectionTitle5 = "Windspeed-Unit";
+SettingsTVC_SectionTitle5 = "Windspeed Unit";
 
 SettingsTVC_Results = "Results";
 
@@ -94,8 +94,8 @@ InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "The API Key has a length of e
 
 // MARK: - General
 
-kilometres_per_hour = "Kilometer/Stunde";
-miles_per_hour = "Meilen/Stunde";
+kilometres_per_hour = "Kilometres per Hour";
+miles_per_hour = "Miles per Hour";
 
 kph = "kmh";
 mph = "mph";

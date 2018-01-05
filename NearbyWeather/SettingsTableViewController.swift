@@ -142,7 +142,7 @@ class SettingsTableViewController: UITableViewController {
             return cell
         case 4:
             let windspeedUnit = SpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
-            cell.contentLabel.text = windspeedUnit.stringShortValue
+            cell.contentLabel.text = windspeedUnit.stringValue
             if windspeedUnit.stringValue == WeatherService.current.windspeedUnit.stringValue {
                 cell.accessoryType = .checkmark
             }
