@@ -40,6 +40,7 @@ class InfoTableViewController: UITableViewController {
         navigationItem.title = NSLocalizedString("InfoTVC_NavigationItemTitle", comment: "")
         
         tableView.delegate = self
+        tableView.estimatedRowHeight = 44
     }
     
     override func viewWillAppear(_ animated: Bool) {
