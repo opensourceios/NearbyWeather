@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TextFieldCounter
 import PKHUD
 
 public enum DisplayMode: Int {
@@ -24,7 +25,7 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
 
     /* Outlets */
     
-    @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet weak var inputTextField: TextFieldCounter!
     
     
     // MARK: - Override Functions
@@ -36,15 +37,14 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         
         tableView.delegate = self
         
-        inputTextField.delegate = self
         switch mode! {
         case .enterFavoritedLocation:
             navigationItem.title = NSLocalizedString("SettingsInputTVC_NavigationBarTitle_Mode_EnterFavoritedLocation", comment: "")
-            inputTextField.text! = WeatherService.shared.favoritedLocation
+            inputTextField.text = WeatherService.shared.favoritedLocation
             break
         case .enterAPIKey:
             navigationItem.title = NSLocalizedString("SettingsInputTVC_NavigationBarTitle_Mode_EnterAPIKey", comment: "")
-            inputTextField.text! = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") as! String
+            inputTextField.text = UserDefaults.standard.string(forKey: "nearby_weather.openWeatherMapApiKey")
             break
         }
     }
@@ -52,8 +52,7 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
-        navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        configure()
         
         tableView.reloadData()
     }
@@ -106,5 +105,23 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         inputTextField.resignFirstResponder()
+    }
+    
+    // MARK: - Private Helpers
+    
+    private func configure() {
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        
+        switch mode! {
+        case .enterFavoritedLocation:
+            inputTextField.delegate = self // will disable the counter inside the textfield
+        case .enterAPIKey:
+            inputTextField.animate = true
+            inputTextField.ascending = true
+            inputTextField.maxLength = 32
+            inputTextField.counterColor = inputTextField.textColor ?? .black
+            inputTextField.limitColor = .nearbyWeatherStandard
+        }
     }
 }

@@ -377,7 +377,7 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.1.2 Build #5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czi-Ez-K0K" userLabel="appVersionLabel">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.2 Build #6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czi-Ez-K0K" userLabel="appVersionLabel">
                                                                     <rect key="frame" x="0.0" y="30.5" width="284.5" height="20"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -727,7 +727,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2JI-Te-yMY" userLabel="eventTitleTextField">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2JI-Te-yMY" userLabel="eventTitleTextField" customClass="TextFieldCounter" customModule="TextFieldCounter">
                                                     <rect key="frame" x="15" y="5" width="345" height="34.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="YQv-OR-tWM">
@@ -755,7 +755,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="inputTextField" destination="2JI-Te-yMY" id="7Vx-Og-hMZ"/>
+                        <outlet property="inputTextField" destination="2JI-Te-yMY" id="TNd-XE-Oke"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wxM-cX-y0c" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -70,6 +70,7 @@ class WelcomeScreenViewController: UIViewController {
         descriptionLabel.textColor = .white
         descriptionLabel.text! = NSLocalizedString("WelcomeScreenVC_Description", comment: "")
         
+        inputTextField.counterColor = inputTextField.textColor ?? .black
         inputTextField.limitColor = .nearbyWeatherStandard
         inputTextField.textColor = .lightGray
         inputTextField.tintColor = .lightGray
