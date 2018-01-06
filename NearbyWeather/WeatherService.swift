@@ -195,7 +195,7 @@ class WeatherService: NSObject {
     
     // MARK: - Public Properties & Methods
     
-    public static func instantiateShareInstance() {
+    public static func instantiateSharedInstance() {
         shared = WeatherService.loadService() ?? WeatherService(favoritedLocation: "Cupertino", amountResults: 10)
     }
     
