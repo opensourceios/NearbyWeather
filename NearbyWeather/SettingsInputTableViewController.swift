@@ -33,8 +33,6 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
-        
         tableView.delegate = self
         
         inputTextField.delegate = self
@@ -53,15 +51,16 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        
+        tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         inputTextField.becomeFirstResponder()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(SettingsInputTableViewController.reloadTableViewData(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -102,18 +101,5 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         inputTextField.resignFirstResponder()
-    }
-    
-    /* Deinitializer */
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    // MARK: - Helper Functions
-    
-    @objc func reloadTableViewData(_ notification: Notification) {
-        tableView.reloadData()
     }
 }

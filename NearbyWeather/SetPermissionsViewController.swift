@@ -31,14 +31,14 @@ class SetPermissionsViewController: UIViewController {
         
         navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.title = NSLocalizedString("SetPermissionsVC_NavigationBarTitle", comment: "")
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(SetPermissionsViewController.launchApp), name: Notification.Name(rawValue: kLocationAuthorizationUpdated), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         configure()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SetPermissionsViewController.launchApp), name: Notification.Name(rawValue: kLocationAuthorizationUpdated), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,11 +52,7 @@ class SetPermissionsViewController: UIViewController {
         
         warningImageView.layer.removeAllAnimations()
         timer?.invalidate()
-    }
-    
-    /* Deinitializer */
-    
-    deinit {
+        
         NotificationCenter.default.removeObserver(self)
     }
     

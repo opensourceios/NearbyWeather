@@ -10,9 +10,9 @@ import UIKit
 import SafariServices
 
 class InfoTableViewController: UITableViewController {
-    //MARK: - Assets
     
-    /* Labels */
+    //MARK: - Assets
+
     @IBOutlet weak var appTitleLabel: UILabel!
     @IBOutlet weak var appVersionLabel: UILabel!
     
@@ -30,7 +30,7 @@ class InfoTableViewController: UITableViewController {
     @IBOutlet weak var developerName_0: UILabel!
     
     
-    //MARK: - Override Functions
+    //MARK: - ViewController Life Cycle
     
     /* View */
     
@@ -40,27 +40,14 @@ class InfoTableViewController: UITableViewController {
         navigationItem.title = NSLocalizedString("InfoTVC_NavigationItemTitle", comment: "")
         
         tableView.delegate = self
-        tableView.estimatedRowHeight = 61
-        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(InfoTableViewController.preferredTextSizeChanged(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
-        
         configure()
+        tableView.reloadData()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    /* TableView */
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
@@ -99,28 +86,16 @@ class InfoTableViewController: UITableViewController {
         }
     }
     
-    /* Deinitializer */
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    // MARK: - Handle NSNotification
-    
-    @objc func preferredTextSizeChanged(_ notification: Notification) {
-        configureText()
-        tableView.reloadSections(IndexSet(integer: 0), with: .none)
-        tableView.reloadSections(IndexSet(integer: 1), with: .none)
-        tableView.reloadSections(IndexSet(integer: 2), with: .none)
-        tableView.reloadSections(IndexSet(integer: 3), with: .none)
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     
     // MARK: - Interface Setup
     
     private func configure() {
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)        
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         configureText()
     }
     

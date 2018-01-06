@@ -10,9 +10,7 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
-    // MARK: - Override Functions
-    
-    /* General */
+    // MARK: - ViewController Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +26,6 @@ class SettingsTableViewController: UITableViewController {
         
         tableView.reloadData()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
-    /* TableView */
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
