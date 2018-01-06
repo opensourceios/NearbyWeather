@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,7 +21,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nearbyweather_webicon" translatesAutoresizingMaskIntoConstraints="NO" id="DI2-9o-wuS">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pen-3E-Fo5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.31232208010000001" green="0.70485514400000004" blue="0.97927659749999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nearbyweather_launchscreen_icon" translatesAutoresizingMaskIntoConstraints="NO" id="DI2-9o-wuS">
                                 <rect key="frame" x="112" y="258" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="CII-hB-nfq"/>
@@ -32,7 +36,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="DI2-9o-wuS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="0IF-ys-oeZ"/>
+                            <constraint firstAttribute="trailing" secondItem="pen-3E-Fo5" secondAttribute="trailing" id="3QX-EQ-FEx"/>
+                            <constraint firstItem="pen-3E-Fo5" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Mkj-wO-25F"/>
+                            <constraint firstAttribute="bottom" secondItem="pen-3E-Fo5" secondAttribute="bottom" id="Nu7-RP-g0I"/>
                             <constraint firstItem="DI2-9o-wuS" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="e7o-wr-Eu7"/>
+                            <constraint firstItem="pen-3E-Fo5" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="iEu-ru-GD7"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -42,6 +50,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="nearbyweather_webicon" width="150" height="150"/>
+        <image name="nearbyweather_launchscreen_icon" width="150" height="150"/>
     </resources>
 </document>

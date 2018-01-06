@@ -56,7 +56,6 @@ class InfoTableViewController: UITableViewController {
         var urlStringValue: String?
         if indexPath.section == 2 && indexPath.row == 0 {
             urlStringValue = "http://www.erikmartens.de/contact.html"
-            
         }
         if indexPath.section == 2 && indexPath.row == 1 {
             urlStringValue = "https://github.com/erikmartens/NearbyWeather"
