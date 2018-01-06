@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") != nil {
             WeatherService.instantiateSharedInstance()
-            LocationService.current.requestWhenInUseAuthorization()
+            LocationService.shared.requestWhenInUseAuthorization()
         } else {
             let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
             let destinationViewController = storyboard.instantiateInitialViewController()

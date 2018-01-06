@@ -28,7 +28,7 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var inputTextField: TextFieldCounter!
     
     
-    // MARK: - Override Functions
+    // MARK: - ViewController Life Cycle
     
     /* General */
     
@@ -85,8 +85,6 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-    /* TableView */
-    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch mode! {
         case .enterFavoritedLocation: return NSLocalizedString("InputSettingsTVC_SectionTitle_Mode_EnterFavoritedLocation", comment: "")
@@ -101,7 +99,6 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-    /* TextField */
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         inputTextField.resignFirstResponder()

@@ -100,8 +100,8 @@ class SetPermissionsViewController: UIViewController {
     // MARK: - Button Interaction
     
     @IBAction func didTapAskPermissionsButton(_ sender: UIButton) {
-        if LocationService.current.authorizationStatus == .notDetermined {
-            LocationService.current.requestWhenInUseAuthorization()
+        if LocationService.shared.authorizationStatus == .notDetermined {
+            LocationService.shared.requestWhenInUseAuthorization()
         } else {
             launchApp()
         }

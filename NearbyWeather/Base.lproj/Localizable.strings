@@ -42,7 +42,7 @@ LocationsListTVC_SortAlert_Action2 = "Sort by Temperature";
 
 LocationsListTVC_BackButtonTitle = "Back";
 
-LocationsListTVC_AlertNoData = "Data could not be loaded. Ensure that you have a network connection and your API key is correctly entered.";
+LocationsListTVC_AlertNoData = "Data could not be loaded. Ensure that you have a network connection, your API key is correctly entered and your favorited city is valid.";
 
 
 // MARK: - InfoTableViewController

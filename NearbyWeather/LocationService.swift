@@ -12,9 +12,9 @@ let kLocationAuthorizationUpdated = "de.erikmartens.nearbyWeather.locationAuthor
 
 class LocationService: CLLocationManager, CLLocationManagerDelegate {
     
-    // MARK: - Assets
+    // MARK: - Public Assets
     
-    public static var current: LocationService!
+    public static var shared: LocationService!
     
     public var currentLatitude: Double
     public var currentLongitude: Double
@@ -35,11 +35,11 @@ class LocationService: CLLocationManager, CLLocationManagerDelegate {
     
     public static func initializeService() {
         // initialize with example data
-        current = LocationService(withLocation: 37.3318598, longitude: -122.0302485)
+        shared = LocationService(withLocation: 37.3318598, longitude: -122.0302485)
         
-        LocationService.current.delegate = LocationService.current
-        LocationService.current.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        LocationService.current.startUpdatingLocation()
+        LocationService.shared.delegate = LocationService.shared
+        LocationService.shared.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        LocationService.shared.startUpdatingLocation()
     }
     
     

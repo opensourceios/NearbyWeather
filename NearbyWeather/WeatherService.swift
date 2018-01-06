@@ -255,12 +255,14 @@ class WeatherService: NSObject {
         
         guard let apiKey = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey"),
             let requestURL = URL(string: "\(WeatherService.openWeather_SingleLocationBaseURL)?APPID=\(apiKey)&q=\(requestedCity)") else {
-                return completionHandler(nil)
+                completionHandler(nil)
+                return
         }
         
         let request = URLRequest(url: requestURL)
         let dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
             guard let receivedData = data, let _ = response, error == nil else {
+                 completionHandler(nil)
                 return
             }
             completionHandler(self.extractSingleLocation(weatherData: receivedData))
@@ -272,13 +274,15 @@ class WeatherService: NSObject {
         let session = URLSession.shared
         
         guard let apiKey = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey"),
-            let requestURL = URL(string: "\(WeatherService.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(LocationService.current.currentLatitude)&lon=\(LocationService.current.currentLongitude)&cnt=\(amountResults)") else {
-                return completionHandler(nil)
+            let requestURL = URL(string: "\(WeatherService.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(LocationService.shared.currentLatitude)&lon=\(LocationService.shared.currentLongitude)&cnt=\(amountResults)") else {
+                completionHandler(nil)
+                return
         }
         
         let request = URLRequest(url: requestURL)
         let dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
             guard let receivedData = data, let _ = response, error == nil else {
+                completionHandler(nil)
                 return
             }
             completionHandler(self.extractMultiLocation(weatherData: receivedData))

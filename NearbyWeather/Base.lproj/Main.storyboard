@@ -197,7 +197,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="didTapReloadButton:" destination="Ri3-mc-4Zu" eventType="touchUpInside" id="Y92-vO-hrV"/>
+                                                    <action selector="didTapRefreshButton:" destination="Ri3-mc-4Zu" eventType="touchUpInside" id="Y92-vO-hrV"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQ1-2i-5Af">
@@ -271,7 +271,7 @@
                         <outlet property="buttonRowContainerView" destination="66v-OR-ig0" id="B9G-4b-vS6"/>
                         <outlet property="buttonRowStackView" destination="cO7-FX-PEe" id="eZj-SU-sIi"/>
                         <outlet property="infoButton" destination="nlV-Vb-JpW" id="9hz-4g-AJb"/>
-                        <outlet property="reloadButton" destination="EAw-iC-6ti" id="AOb-PQ-WTB"/>
+                        <outlet property="refreshButton" destination="EAw-iC-6ti" id="AOb-PQ-WTB"/>
                         <outlet property="settingsButton" destination="SPo-ZW-m5T" id="BZV-85-nqX"/>
                         <outlet property="sortButton" destination="GQ1-2i-5Af" id="O5Z-8H-8To"/>
                         <outlet property="tableView" destination="Mgw-Bz-sT3" id="usa-dy-QN7"/>

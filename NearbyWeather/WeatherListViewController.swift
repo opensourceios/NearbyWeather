@@ -22,7 +22,7 @@ class WeatherListViewController: UIViewController {
     @IBOutlet weak var buttonRowContainerView: UIView!
     @IBOutlet weak var buttonRowStackView: UIStackView!
     
-    @IBOutlet weak var reloadButton: UIButton!
+    @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
@@ -79,7 +79,7 @@ class WeatherListViewController: UIViewController {
         
         buttonRowContainerView.bringSubview(toFront: buttonRowStackView)
         
-        reloadButton.tintColor = .white
+        refreshButton.tintColor = .white
         sortButton.tintColor = .white
         infoButton.tintColor = .white
         settingsButton.tintColor = .white
@@ -116,7 +116,7 @@ class WeatherListViewController: UIViewController {
         sortAlert.addAction(cancelAction)
         sortAlert.addAction(sortByNameAction)
         sortAlert.addAction(sortByTemperatureAction)
-        self.present(sortAlert, animated: true, completion: nil)
+        present(sortAlert, animated: true, completion: nil)
     }
     
     
@@ -142,7 +142,7 @@ class WeatherListViewController: UIViewController {
         triggerSortAlert()
     }
     
-    @IBAction func didTapReloadButton(_ sender: UIButton) {
+    @IBAction func didTapRefreshButton(_ sender: UIButton) {
         updateWeatherData()
     }
 }
