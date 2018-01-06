@@ -46,6 +46,7 @@ class WeatherListViewController: UIViewController {
         configure()
         
         tableView.reloadData()
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableView(_:)), name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,7 +54,7 @@ class WeatherListViewController: UIViewController {
         
         if UserDefaults.standard.value(forKey: "nearby_weather.isInitialLaunch") == nil {
             UserDefaults.standard.set(false, forKey: "nearby_weather.isInitialLaunch")
-            reload()
+            updateWeatherData()
         }
     }
     
@@ -83,27 +84,19 @@ class WeatherListViewController: UIViewController {
         infoButton.tintColor = .white
         settingsButton.tintColor = .white
         
-        refreshControl.addTarget(self, action: #selector(WeatherListViewController.refreshContent(refreshControl:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(WeatherListViewController.updateWeatherData), for: .valueChanged)
         tableView.addSubview(refreshControl)
     }
     
-    private func reload() {
+    @objc private func updateWeatherData() {
         refreshControl.beginRefreshing()
-        WeatherService.shared.fetchDataWith(completionHandler: {
+        WeatherService.shared.update(withCompletionHandler: {
             self.refreshControl.endRefreshing()
             self.tableView.reloadData()
         })
     }
     
-    @objc private func refreshContent(refreshControl: RainyRefreshControl) {
-        reload()
-    }
-    
-    @objc func reloadTableViewDataWithDataPull(_ notification: Notification) {
-        reload()
-    }
-    
-    @objc func reloadTableViewData(_ notification: Notification) {
+    @objc private func reloadTableView(_ notification: Notification) {
         tableView.reloadData()
     }
     
@@ -150,7 +143,7 @@ class WeatherListViewController: UIViewController {
     }
     
     @IBAction func didTapReloadButton(_ sender: UIButton) {
-        reload()
+        updateWeatherData()
     }
 }
 

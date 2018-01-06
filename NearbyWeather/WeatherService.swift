@@ -6,7 +6,7 @@
 //  Copyright © 2016 Erik Maximilian Martens. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 public enum SortingOrientation: Int {
     case byName
@@ -117,19 +117,22 @@ public class AmountResults {
     }
 }
 
+let kWeatherServiceDidUpdate = "de.erikmartens.nearbyWeather.weatherServiceDidUpdate"
+
 class WeatherService: NSObject {
     
     // MARK: - Public Assets
     
+    public static var shared: WeatherService!
+    
     
     // MARK: - Private Assets
-    
-    public static var shared: WeatherService!
     
     private static let openWeather_SingleLocationBaseURL = "http://api.openweathermap.org/data/2.5/weather"
     private static let openWeather_MultiLocationBaseURL = "http://api.openweathermap.org/data/2.5/find"
     
     private let weatherServiceBackgroundQueue = DispatchQueue(label: "de.erikmartens.nearbyWeather.weatherService", qos: DispatchQoS.background, attributes: [DispatchQueue.Attributes.concurrent], autoreleaseFrequency: .inherit, target: nil)
+    
     
     // MARK: - Properties
     
@@ -149,16 +152,12 @@ class WeatherService: NSObject {
     }
     public var favoritedLocation: String {
         didSet {
-            weatherServiceBackgroundQueue.async {
-                WeatherService.storeService()
-            }
+            update(withCompletionHandler: nil)
         }
     }
     public var amountResults: Int {
         didSet {
-            weatherServiceBackgroundQueue.async {
-                WeatherService.storeService()
-            }
+            update(withCompletionHandler: nil)
         }
     }
     
@@ -200,9 +199,8 @@ class WeatherService: NSObject {
         shared = WeatherService.loadService() ?? WeatherService(favoritedLocation: "Cupertino", amountResults: 10)
     }
     
-    public func fetchDataWith(completionHandler: (() -> Void)?) {
-        let dataQueue = DispatchQueue(label: "nearby_weather.weather_data_fetch")
-        dataQueue.async {
+    public func update(withCompletionHandler completionHandler: (() -> Void)?) {
+        weatherServiceBackgroundQueue.async {
             let dispatchGroup = DispatchGroup()
             
             dispatchGroup.enter()
@@ -218,8 +216,9 @@ class WeatherService: NSObject {
             })
             
             dispatchGroup.wait()
+            WeatherService.storeService()
             DispatchQueue.main.async {
-                WeatherService.storeService()
+                NotificationCenter.default.post(name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: self)
                 completionHandler?()
             }
         }
