@@ -33,7 +33,6 @@
 		F2B8EA041EA286F000704E90 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2B8EA031EA286F000704E90 /* Welcome.storyboard */; };
 		F2B8EA061EA2893C00704E90 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA051EA2893C00704E90 /* WelcomeScreenViewController.swift */; };
 		F2B8EA081EA2A7AB00704E90 /* SetPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA071EA2A7AB00704E90 /* SetPermissionsViewController.swift */; };
-		F2B8EA0B1EA2BD6800704E90 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA0A1EA2BD6800704E90 /* NotificationKeys.swift */; };
 		F2B8EA0E1EA37BE800704E90 /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA0D1EA37BE800704E90 /* InfoTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,7 +94,6 @@
 		F2B8EA031EA286F000704E90 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		F2B8EA051EA2893C00704E90 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
 		F2B8EA071EA2A7AB00704E90 /* SetPermissionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPermissionsViewController.swift; sourceTree = "<group>"; };
-		F2B8EA0A1EA2BD6800704E90 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 		F2B8EA0D1EA37BE800704E90 /* InfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,7 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				F2B8E9FE1EA11B8100704E90 /* Data Transfer Objects (DTOs) */,
-				F2B8EA091EA2BD2400704E90 /* Definitions */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -270,14 +267,6 @@
 				F2B8E9FF1EA11BA800704E90 /* WeatherDTO.swift */,
 			);
 			name = "Data Transfer Objects (DTOs)";
-			sourceTree = "<group>";
-		};
-		F2B8EA091EA2BD2400704E90 /* Definitions */ = {
-			isa = PBXGroup;
-			children = (
-				F2B8EA0A1EA2BD6800704E90 /* NotificationKeys.swift */,
-			);
-			name = Definitions;
 			sourceTree = "<group>";
 		};
 		F2B8EA0C1EA2DDD700704E90 /* TableViewCells */ = {
@@ -554,7 +543,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F283D26E1DF39095001B879D /* SettingsCell.swift in Sources */,
-				F2B8EA0B1EA2BD6800704E90 /* NotificationKeys.swift in Sources */,
 				F26699581E9AD0F100498F99 /* WeatherService.swift in Sources */,
 				F266995A1E9ADBC300498F99 /* LocationService.swift in Sources */,
 				F204B77B1DF2EFA3000F4371 /* AppDelegate.swift in Sources */,

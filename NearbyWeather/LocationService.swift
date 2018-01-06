@@ -8,6 +8,8 @@
 
 import CoreLocation
 
+let kLocationAuthorizationUpdated = "de.erikmartens.nearbyWeather.locationAuthorizationUpdated"
+
 class LocationService: CLLocationManager, CLLocationManagerDelegate {
     
     // MARK: - Assets
@@ -45,7 +47,7 @@ class LocationService: CLLocationManager, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         authorizationStatus = status
-        NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.locationAuthorizationUpdated.rawValue), object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: kLocationAuthorizationUpdated), object: self)
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
