@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 public enum DisplayMode: Int {
     case enterFavoritedLocation
@@ -69,13 +70,17 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         inputTextField.resignFirstResponder()
         switch mode! {
         case .enterFavoritedLocation:
-            let text = inputTextField.text ?? ""
-            if !text.isEmpty {
+            if let text = inputTextField.text, !text.isEmpty, text != WeatherService.shared.favoritedLocation {
                 WeatherService.shared.favoritedLocation = text
+                HUD.flash(.success, delay: 1.5)
             }
         case .enterAPIKey:
             if let text = inputTextField.text, text.count == 32 {
+                if let currentApiKey = UserDefaults.standard.string(forKey: "nearby_weather.openWeatherMapApiKey"), text == currentApiKey {
+                    return
+                }
                 UserDefaults.standard.set(text, forKey: "nearby_weather.openWeatherMapApiKey")
+                HUD.flash(.success, delay: 1.5)
                 WeatherService.shared.update(withCompletionHandler: nil)
             }
         }
