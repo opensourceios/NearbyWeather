@@ -44,7 +44,7 @@ class SetPermissionsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        animateShake()
+        animatePulse()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -79,12 +79,12 @@ class SetPermissionsViewController: UIViewController {
     }
     
     fileprivate func startAnimationTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(SetPermissionsViewController.animateShake)), userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(SetPermissionsViewController.animatePulse)), userInfo: nil, repeats: false)
     }
     
-    @objc private func animateShake() {
+    @objc private func animatePulse() {
         warningImageView.layer.removeAllAnimations()
-        warningImageView.animateShake(withAnimationDelegate: self)
+        warningImageView.animatePulse(withAnimationDelegate: self)
     }
     
     @objc func launchApp() {        

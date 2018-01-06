@@ -22,12 +22,14 @@ extension UIView {
         self.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
     
-    func animateShake(withAnimationDelegate delegate: CAAnimationDelegate) {
-        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+    func animatePulse(withAnimationDelegate delegate: CAAnimationDelegate) {
+        let animation = CABasicAnimation(keyPath: "transform.scale")
         animation.delegate = delegate
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseIn)
         animation.duration = 0.25
-        animation.values = [-10.0, 10.0, -10.0, 10.0, -5.0, 5.0, -2.5, 2.5, 0.0]
-        layer.add(animation, forKey: "shake")
+        animation.toValue = 1.5
+        animation.repeatCount = 2.0
+        animation.autoreverses = true
+        layer.add(animation, forKey: "pulse")
     }
 }
