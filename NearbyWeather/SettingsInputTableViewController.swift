@@ -77,6 +77,7 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         case .enterAPIKey:
             if let text = inputTextField.text, text.count == 32 {
                 UserDefaults.standard.set(text, forKey: "nearby_weather.openWeatherMapApiKey")
+                WeatherService.shared.update(withCompletionHandler: nil)
             }
         }
     }
