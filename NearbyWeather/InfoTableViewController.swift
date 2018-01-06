@@ -63,6 +63,15 @@ class InfoTableViewController: UITableViewController {
         if indexPath.section == 3 && indexPath.row == 0 {
             urlStringValue = "http://www.erikmartens.de"
         }
+        if indexPath.section == 4 && indexPath.row == 0 {
+            urlStringValue = "https://github.com/pkluz/PKHUD"
+        }
+        if indexPath.section == 4 && indexPath.row == 1 {
+            urlStringValue = "https://github.com/Onix-Systems/RainyRefreshControl"
+        }
+        if indexPath.section == 4 && indexPath.row == 2 {
+            urlStringValue = "https://github.com/serralvo/TextFieldCounter"
+        }
         
         guard let urlString = urlStringValue,
             let url = URL(string: urlString) else {
@@ -82,6 +91,7 @@ class InfoTableViewController: UITableViewController {
         case 1: return NSLocalizedString("InfoTVC_TableViewSectionHeader2", comment: "")
         case 2: return NSLocalizedString("InfoTVC_TableViewSectionHeader3", comment: "")
         case 3: return NSLocalizedString("InfoTVC_TableViewSectionHeader4", comment: "")
+        case 4: return NSLocalizedString("InfoTVC_TableViewSectionHeader5", comment: "")
         default: return nil
         }
     }
