@@ -125,6 +125,13 @@ class WeatherService: NSObject {
     
     public static var shared: WeatherService!
     
+    public var hasSingleLocationWeatherData: Bool {
+        return singleLocationWeatherData != nil && !singleLocationWeatherData!.isEmpty
+    }
+    public var hasMultiLocationWeatherData: Bool {
+        return multiLocationWeatherData != nil && !multiLocationWeatherData!.isEmpty
+    }
+    
     
     // MARK: - Private Assets
     
@@ -164,6 +171,8 @@ class WeatherService: NSObject {
     public var singleLocationWeatherData: [WeatherDTO]?
     public var multiLocationWeatherData: [WeatherDTO]?
     
+    private var locationAuthorizationObserver: NSObjectProtocol!
+    
     
     // MARK: - Initialization
     
@@ -174,6 +183,10 @@ class WeatherService: NSObject {
         self.amountResults = amountResults
         
         super.init()
+        
+        locationAuthorizationObserver = NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil, using: { [unowned self] notification in
+            self.update(withCompletionHandler: nil)
+        })
     }
     
     internal required convenience init?(coder aDecoder: NSCoder) {
@@ -190,6 +203,14 @@ class WeatherService: NSObject {
         
         self.singleLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.singleLocationWeatherKey) as? [WeatherDTO]
         self.multiLocationWeatherData = aDecoder.decodeObject(forKey: PropertyKey.multiLocationWeatherKey) as? [WeatherDTO]
+        
+        locationAuthorizationObserver = NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil, using: { [unowned self] notification in
+            self.update(withCompletionHandler: nil)
+        })
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(locationAuthorizationObserver)
     }
     
     
@@ -273,8 +294,13 @@ class WeatherService: NSObject {
     private func fetchMultiLocationWeatherData(completionHandler: @escaping ([WeatherDTO]?) -> Void) {
         let session = URLSession.shared
         
+        guard let currentLatitude = LocationService.shared.currentLatitude, let currentLongitude = LocationService.shared.currentLongitude else {
+            completionHandler(nil)
+            return
+        }
+        
         guard let apiKey = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey"),
-            let requestURL = URL(string: "\(WeatherService.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(LocationService.shared.currentLatitude)&lon=\(LocationService.shared.currentLongitude)&cnt=\(amountResults)") else {
+            let requestURL = URL(string: "\(WeatherService.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(currentLatitude)&lon=\(currentLongitude)&cnt=\(amountResults)") else {
                 completionHandler(nil)
                 return
         }

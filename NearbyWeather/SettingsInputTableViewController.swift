@@ -71,7 +71,7 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         case .enterFavoritedLocation:
             if let text = inputTextField.text, !text.isEmpty, text != WeatherService.shared.favoritedLocation {
                 WeatherService.shared.favoritedLocation = text
-                HUD.flash(.success, delay: 1.5)
+                HUD.flash(.success, delay: 1.0)
             }
         case .enterAPIKey:
             if let text = inputTextField.text, text.count == 32 {
@@ -79,7 +79,7 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
                     return
                 }
                 UserDefaults.standard.set(text, forKey: "nearby_weather.openWeatherMapApiKey")
-                HUD.flash(.success, delay: 1.5)
+                HUD.flash(.success, delay: 1.0)
                 WeatherService.shared.update(withCompletionHandler: nil)
             }
         }

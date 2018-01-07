@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        LocationService.initializeService()
+        LocationService.instantiateSharedInstance()
         
         if UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") != nil {
             WeatherService.instantiateSharedInstance()

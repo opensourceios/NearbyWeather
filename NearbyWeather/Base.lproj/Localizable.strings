@@ -42,7 +42,9 @@ LocationsListTVC_SortAlert_Action2 = "Sort by Temperature";
 
 LocationsListTVC_BackButtonTitle = "Back";
 
-LocationsListTVC_AlertNoData = "Data could not be loaded. Ensure that you have a network connection, your API key is correctly entered and your favorited city is valid.";
+LocationsListTVC_AlertNoData = "Data could not be loaded. Ensure that you have a network connection and that your API key is correctly entered.";
+LocationsListTVC_AlertIncorrectFavoritedCity = "The city name you entered did not yield any results. Ensure it is spelled correctly and a city with this name exists.";
+LocationsListTVC_AlertLocationUnavailable = "You do not grant NearbyWeather access to your location. Therefore no nearby weather data could be loaded.";
 
 
 // MARK: - InfoTableViewController

@@ -161,10 +161,7 @@ extension WeatherListViewController: UITableViewDelegate {
 extension WeatherListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let singleLocationWeatherData = WeatherService.shared.singleLocationWeatherData,
-            !singleLocationWeatherData.isEmpty,
-            let multiLocationWeatherData = WeatherService.shared.multiLocationWeatherData,
-            !multiLocationWeatherData.isEmpty else {
+        if !WeatherService.shared.hasSingleLocationWeatherData && !WeatherService.shared.hasMultiLocationWeatherData {
                 return nil
         }
         switch section {
@@ -178,26 +175,23 @@ extension WeatherListViewController: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        guard let singleLocationWeatherData = WeatherService.shared.singleLocationWeatherData,
-            !singleLocationWeatherData.isEmpty,
-            let multiLocationWeatherData = WeatherService.shared.multiLocationWeatherData,
-            !multiLocationWeatherData.isEmpty else {
-                return 1
+        if !WeatherService.shared.hasSingleLocationWeatherData && !WeatherService.shared.hasMultiLocationWeatherData {
+            return 1
         }
         return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let singleLocationWeatherData = WeatherService.shared.singleLocationWeatherData,
-            !singleLocationWeatherData.isEmpty,
-            let multiLocationWeatherData = WeatherService.shared.multiLocationWeatherData,
-            !multiLocationWeatherData.isEmpty else {
-                return 1
+        if !WeatherService.shared.hasSingleLocationWeatherData && !WeatherService.shared.hasMultiLocationWeatherData {
+            return 1
         }
         switch section {
         case 0:
-            return singleLocationWeatherData.count
+            return 1
         case 1:
+            guard let multiLocationWeatherData = WeatherService.shared.multiLocationWeatherData else {
+                return 1
+            }
             return multiLocationWeatherData.count
         default:
             return 0
@@ -205,10 +199,7 @@ extension WeatherListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let singleLocationWeatherData = WeatherService.shared.singleLocationWeatherData,
-            !singleLocationWeatherData.isEmpty,
-            let multiLocationWeatherData = WeatherService.shared.multiLocationWeatherData,
-            !multiLocationWeatherData.isEmpty else {
+        if !WeatherService.shared.hasSingleLocationWeatherData && !WeatherService.shared.hasMultiLocationWeatherData {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AlertCell", for: indexPath) as! AlertCell
                 
                 cell.selectionStyle = .none
@@ -216,47 +207,73 @@ extension WeatherListViewController: UITableViewDataSource {
                 
                 cell.warningImageView.tintColor = .white
                 
-                cell.noticeLabel.text! = NSLocalizedString("LocationsListTVC_AlertNoData", comment: "")
+                cell.noticeLabel.text = NSLocalizedString("LocationsListTVC_AlertNoData", comment: "")
                 cell.backgroundColorView.layer.cornerRadius = 5.0
                 cell.startAnimationTimer()
                 return cell
         }
-        var weatherData: WeatherDTO!
+        
+        var weatherData: WeatherDTO?
+        var alertNotice: String?
+        
         if indexPath.section == 0 {
-            weatherData = singleLocationWeatherData[indexPath.row]
-        } else {
-            weatherData = multiLocationWeatherData[indexPath.row]
+            if let data = WeatherService.shared.singleLocationWeatherData?[indexPath.row] {
+                weatherData = data
+            } else {
+                alertNotice = NSLocalizedString("LocationsListTVC_AlertIncorrectFavoritedCity", comment: "")
+            }
+        }
+        if indexPath.section == 1 {
+            if let data = WeatherService.shared.multiLocationWeatherData?[indexPath.row] {
+                weatherData = data
+            } else {
+                alertNotice = NSLocalizedString("LocationsListTVC_AlertLocationUnavailable", comment: "")
+            }
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationWeatherCell", for: indexPath) as! LocationWeatherCell
-        
-        cell.selectionStyle = .none
-        cell.backgroundColor = .clear
-        
-        cell.backgroundColorView.layer.cornerRadius = 5.0
-        cell.backgroundColorView.layer.backgroundColor = UIColor.nearbyWeatherBubble.cgColor
-        
-        cell.cityNameLabel.textColor = .white
-        cell.cityNameLabel.font = .preferredFont(forTextStyle: .headline)
-        
-        cell.temperatureLabel.textColor = .white
-        cell.temperatureLabel.font = .preferredFont(forTextStyle: .subheadline)
-        
-        cell.cloudCoverLabel.textColor = .white
-        cell.cloudCoverLabel.font = .preferredFont(forTextStyle: .subheadline)
-        
-        cell.humidityLabel.textColor = .white
-        cell.humidityLabel.font = .preferredFont(forTextStyle: .subheadline)
-        
-        cell.windspeedLabel.textColor = .white
-        cell.windspeedLabel.font = .preferredFont(forTextStyle: .subheadline)
-        
-        cell.weatherConditionLabel.text! = weatherData.condition
-        cell.cityNameLabel.text! = weatherData.cityName
-        cell.temperatureLabel.text! = "🌡 \(weatherData.determineTemperatureForUnit())"
-        cell.cloudCoverLabel.text! = "☁️ \(weatherData.cloudCoverage)%"
-        cell.humidityLabel.text! = "💧 \(weatherData.humidity)%"
-        cell.windspeedLabel.text! = "💨 \(weatherData.determineWindspeedForUnit())"
-        return cell
+        if let weatherData = weatherData {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LocationWeatherCell", for: indexPath) as! LocationWeatherCell
+            
+            cell.selectionStyle = .none
+            cell.backgroundColor = .clear
+            
+            cell.backgroundColorView.layer.cornerRadius = 5.0
+            cell.backgroundColorView.layer.backgroundColor = UIColor.nearbyWeatherBubble.cgColor
+            
+            cell.cityNameLabel.textColor = .white
+            cell.cityNameLabel.font = .preferredFont(forTextStyle: .headline)
+            
+            cell.temperatureLabel.textColor = .white
+            cell.temperatureLabel.font = .preferredFont(forTextStyle: .subheadline)
+            
+            cell.cloudCoverLabel.textColor = .white
+            cell.cloudCoverLabel.font = .preferredFont(forTextStyle: .subheadline)
+            
+            cell.humidityLabel.textColor = .white
+            cell.humidityLabel.font = .preferredFont(forTextStyle: .subheadline)
+            
+            cell.windspeedLabel.textColor = .white
+            cell.windspeedLabel.font = .preferredFont(forTextStyle: .subheadline)
+            
+            cell.weatherConditionLabel.text! = weatherData.condition
+            cell.cityNameLabel.text! = weatherData.cityName
+            cell.temperatureLabel.text! = "🌡 \(weatherData.determineTemperatureForUnit())"
+            cell.cloudCoverLabel.text! = "☁️ \(weatherData.cloudCoverage)%"
+            cell.humidityLabel.text! = "💧 \(weatherData.humidity)%"
+            cell.windspeedLabel.text! = "💨 \(weatherData.determineWindspeedForUnit())"
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AlertCell", for: indexPath) as! AlertCell
+            
+            cell.selectionStyle = .none
+            cell.backgroundColor = .clear
+            
+            cell.warningImageView.tintColor = .white
+            
+            cell.noticeLabel.text = alertNotice
+            cell.backgroundColorView.layer.cornerRadius = 5.0
+            cell.startAnimationTimer()
+            return cell
+        }
     }
 }

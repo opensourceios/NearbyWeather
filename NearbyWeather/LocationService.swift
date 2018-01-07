@@ -16,16 +16,14 @@ class LocationService: CLLocationManager, CLLocationManagerDelegate {
     
     public static var shared: LocationService!
     
-    public var currentLatitude: Double
-    public var currentLongitude: Double
+    public var currentLatitude: Double?
+    public var currentLongitude: Double?
     public var authorizationStatus: CLAuthorizationStatus
     
     
     // MARK: - Intialization
     
-    private init(withLocation latitude: Double, longitude: Double) {
-        currentLatitude = latitude
-        currentLongitude = longitude
+    private override init() {
         authorizationStatus = CLLocationManager.authorizationStatus()
         super.init()
     }
@@ -33,9 +31,9 @@ class LocationService: CLLocationManager, CLLocationManagerDelegate {
     
     // MARK: - Public Methods
     
-    public static func initializeService() {
+    public static func instantiateSharedInstance() {
         // initialize with example data
-        shared = LocationService(withLocation: 37.3318598, longitude: -122.0302485)
+        shared = LocationService()
         
         LocationService.shared.delegate = LocationService.shared
         LocationService.shared.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -47,6 +45,10 @@ class LocationService: CLLocationManager, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         authorizationStatus = status
+        if authorizationStatus != .authorizedWhenInUse && authorizationStatus != .authorizedAlways {
+            self.currentLatitude = nil
+            self.currentLongitude = nil
+        }
         NotificationCenter.default.post(name: Notification.Name(rawValue: kLocationAuthorizationUpdated), object: self)
     }
 
