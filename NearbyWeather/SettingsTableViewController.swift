@@ -27,15 +27,16 @@ class SettingsTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    // MARK: - TableViewDelegate
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.section {
         case 0:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsInputTVC") as! SettingsInputTableViewController
-            destinationViewController.mode = .enterFavoritedLocation
-            
+            let destinationViewController = storyboard.instantiateViewController(withIdentifier: "OWMCityFilterTableViewController") as! OWMCityFilterTableViewController
+
             let barButton = UIBarButtonItem()
             barButton.title = nil
             navigationItem.backBarButtonItem = barButton
@@ -43,7 +44,6 @@ class SettingsTableViewController: UITableViewController {
         case 1:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsInputTVC") as! SettingsInputTableViewController
-            destinationViewController.mode = .enterAPIKey
             
             let barButton = UIBarButtonItem()
             barButton.title = nil
@@ -107,7 +107,7 @@ class SettingsTableViewController: UITableViewController {
         
         switch indexPath.section {
         case 0:
-            cell.contentLabel.text = WeatherService.shared.favoritedLocation
+            cell.contentLabel.text = "\(WeatherService.shared.favoritedLocation.name), \(WeatherService.shared.favoritedLocation.country)"
             cell.accessoryType = .disclosureIndicator
             return cell
         case 1:

@@ -10,18 +10,9 @@ import UIKit
 import TextFieldCounter
 import PKHUD
 
-public enum DisplayMode: Int {
-    case enterFavoritedLocation
-    case enterAPIKey
-}
-
 class SettingsInputTableViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: - Assets
-    
-    /* Injection Targets */
-    
-    var mode: DisplayMode!
 
     /* Outlets */
     
@@ -30,23 +21,13 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     
     // MARK: - ViewController Life Cycle
     
-    /* General */
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         
-        switch mode! {
-        case .enterFavoritedLocation:
-            navigationItem.title = NSLocalizedString("SettingsInputTVC_NavigationBarTitle_Mode_EnterFavoritedLocation", comment: "")
-            inputTextField.text = WeatherService.shared.favoritedLocation
-            break
-        case .enterAPIKey:
-            navigationItem.title = NSLocalizedString("SettingsInputTVC_NavigationBarTitle_Mode_EnterAPIKey", comment: "")
-            inputTextField.text = UserDefaults.standard.string(forKey: "nearby_weather.openWeatherMapApiKey")
-            break
-        }
+        navigationItem.title = NSLocalizedString("SettingsInputTVC_NavigationBarTitle_Mode_EnterAPIKey", comment: "")
+        inputTextField.text = UserDefaults.standard.string(forKey: "nearby_weather.openWeatherMapApiKey")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,38 +48,29 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         super.viewWillDisappear(animated)
         
         inputTextField.resignFirstResponder()
-        switch mode! {
-        case .enterFavoritedLocation:
-            if let text = inputTextField.text, !text.isEmpty, text != WeatherService.shared.favoritedLocation {
-                WeatherService.shared.favoritedLocation = text
-                HUD.flash(.success, delay: 1.0)
+        if let text = inputTextField.text, text.count == 32 {
+            if let currentApiKey = UserDefaults.standard.string(forKey: "nearby_weather.openWeatherMapApiKey"), text == currentApiKey {
+                return
             }
-        case .enterAPIKey:
-            if let text = inputTextField.text, text.count == 32 {
-                if let currentApiKey = UserDefaults.standard.string(forKey: "nearby_weather.openWeatherMapApiKey"), text == currentApiKey {
-                    return
-                }
-                UserDefaults.standard.set(text, forKey: "nearby_weather.openWeatherMapApiKey")
-                HUD.flash(.success, delay: 1.0)
-                WeatherService.shared.update(withCompletionHandler: nil)
-            }
+            UserDefaults.standard.set(text, forKey: "nearby_weather.openWeatherMapApiKey")
+            HUD.flash(.success, delay: 1.0)
+            WeatherService.shared.update(withCompletionHandler: nil)
         }
     }
     
+    
+    // MARK: - TableViewDataSource
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch mode! {
-        case .enterFavoritedLocation: return NSLocalizedString("InputSettingsTVC_SectionTitle_Mode_EnterFavoritedLocation", comment: "")
-        case .enterAPIKey: return NSLocalizedString("InputSettingsTVC_SectionTitle_Mode_EnterAPIKey", comment: "")
-        }
+        return NSLocalizedString("InputSettingsTVC_SectionTitle_Mode_EnterAPIKey", comment: "")
     }
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        switch mode! {
-        case .enterFavoritedLocation: return nil
-        case .enterAPIKey: return NSLocalizedString("InputSettingsTVC_SectionFooter_Mode_EnterAPIKey", comment: "")
-        }
+        return NSLocalizedString("InputSettingsTVC_SectionFooter_Mode_EnterAPIKey", comment: "")
     }
     
+    
+    // MARK: - ScrollViewDelegate
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         inputTextField.resignFirstResponder()
@@ -110,15 +82,10 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
-        switch mode! {
-        case .enterFavoritedLocation:
-            inputTextField.delegate = self // will disable the counter inside the textfield
-        case .enterAPIKey:
-            inputTextField.animate = true
-            inputTextField.ascending = true
-            inputTextField.maxLength = 32
-            inputTextField.counterColor = inputTextField.textColor ?? .black
-            inputTextField.limitColor = .nearbyWeatherStandard
-        }
+        inputTextField.animate = true
+        inputTextField.ascending = true
+        inputTextField.maxLength = 32
+        inputTextField.counterColor = inputTextField.textColor ?? .black
+        inputTextField.limitColor = .nearbyWeatherStandard
     }
 }

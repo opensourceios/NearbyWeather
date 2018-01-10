@@ -213,7 +213,7 @@ extension WeatherListViewController: UITableViewDataSource {
                 return cell
         }
         
-        var weatherData: WeatherDTO?
+        var weatherData: OWMWeatherDTO?
         var alertNotice: String?
         
         if indexPath.section == 0 {
@@ -255,12 +255,20 @@ extension WeatherListViewController: UITableViewDataSource {
             cell.windspeedLabel.textColor = .white
             cell.windspeedLabel.font = .preferredFont(forTextStyle: .subheadline)
             
-            cell.weatherConditionLabel.text! = weatherData.condition
-            cell.cityNameLabel.text! = weatherData.cityName
-            cell.temperatureLabel.text! = "🌡 \(weatherData.determineTemperatureForUnit())"
-            cell.cloudCoverLabel.text! = "☁️ \(weatherData.cloudCoverage)%"
-            cell.humidityLabel.text! = "💧 \(weatherData.humidity)%"
-            cell.windspeedLabel.text! = "💨 \(weatherData.determineWindspeedForUnit())"
+            let weatherConditionSymbol = ConversionService.weatherConditionSymbol(fromWeathercode: weatherData.weatherCondition[0].identifier)
+            cell.weatherConditionLabel.text = weatherConditionSymbol
+            
+            cell.cityNameLabel.text = weatherData.cityName
+            
+            let temperatureDescriptor = ConversionService.temperatureDescriptor(forTemperatureUnit: WeatherService.shared.temperatureUnit, fromRawTemperature: weatherData.atmosphericInformation.temperatureKelvin)
+            cell.temperatureLabel.text = "🌡 \(temperatureDescriptor)"
+            
+            cell.cloudCoverLabel.text = "☁️ \(weatherData.cloudCoverage.coverage)%"
+            
+            cell.humidityLabel.text = "💧 \(weatherData.atmosphericInformation.humidity)%"
+            
+            let windspeedDescriptor = ConversionService.windspeedDescriptor(forWindspeedUnit: WeatherService.shared.windspeedUnit, forWindspeed: weatherData.windInformation.windspeed)
+            cell.windspeedLabel.text = "💨 \(windspeedDescriptor)"
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AlertCell", for: indexPath) as! AlertCell

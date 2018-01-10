@@ -86,13 +86,18 @@ SettingsTVC_Results = "Ergebnisse";
 
 // MARK: - SettingsInputTableViewController
 
-SettingsInputTVC_NavigationBarTitle_Mode_EnterFavoritedLocation = "Stadt Einstellen";
 SettingsInputTVC_NavigationBarTitle_Mode_EnterAPIKey = "API Einstellen";
 
 InputSettingsTVC_SectionTitle_Mode_EnterFavoritedLocation = "Gib eine Städte Namen ein";
 InputSettingsTVC_SectionTitle_Mode_EnterAPIKey = "Gib deinen API Schlüssel ein";
 
 InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "Der API Schlüssel hat eine Länge von genau 32 Zeichen.";
+
+
+// MARK:  - OpenWeatherMapCityFilterTableViewController
+
+OpenWeatherMapCityFilterTVC_NavigationBarTitle = "Stadt Einstellen";
+OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Nach Städte-Namen Suchen";
 
 // MARK: - General
 
