@@ -81,7 +81,7 @@ public class SpeedUnitWrappedEnum: Codable {
     }
 }
 
-public class AmountOfResultsWrappedEnum {
+public class AmountOfResultsWrappedEnum: Codable {
     
     static let count = 5
     
@@ -98,7 +98,7 @@ public class AmountOfResultsWrappedEnum {
         self.init(value: value)
     }
     
-    enum AmountOfResults: Int {
+    enum AmountOfResults: Int, Codable {
         case ten
         case twenty
         case thirty
@@ -120,12 +120,16 @@ public class AmountOfResultsWrappedEnum {
 let kDefaultFavoritedCity = OWMCityDTO(identifier: 5341145, name: "Cupertino", country: "US", coordinates: Coordinates(latitude: 37.323002, longitude: -122.032181))
 let kWeatherServiceDidUpdate = "de.erikmartens.nearbyWeather.weatherServiceDidUpdate"
 
-fileprivate let kFavoritedLocationFileName = "de.erikmartens.nearbyWeather.weatherService.favoritedLocation"
-fileprivate let kAmountResultsFileName = "de.erikmartens.nearbyWeather.weatherService.amountResults"
-fileprivate let kTemperatureUnitFileName = "de.erikmartens.nearbyWeather.weatherService.temperatureUnit"
-fileprivate let kWindspeedUnitFileName = "de.erikmartens.nearbyWeather.weatherService.windspeedUnit"
-fileprivate let kSingleLocationWeatherData = "de.erikmartens.nearbyWeather.weatherService.singleLocationWeatherData"
-fileprivate let kMultiLocationWeatherData = "de.erikmartens.nearbyWeather.weatherService.multiLocationWeatherData"
+fileprivate let kWeatherDataServiceStoredContentFileName = "WeatherDataServiceStoredContents"
+
+struct WeatherDataServiceStoredContentsWrapper: Codable {
+    var favoritedCity: OWMCityDTO
+    var amountOfResults: AmountOfResultsWrappedEnum
+    var temperatureUnit: TemperatureUnitWrappedEnum
+    var windspeedUnit: SpeedUnitWrappedEnum
+    var singleLocationWeatherData: [OWMWeatherDTO]?
+    var multiLocationWeatherData: [OWMWeatherDTO]?
+}
 
 class WeatherDataService {
     
@@ -151,12 +155,12 @@ class WeatherDataService {
     
     // MARK: - Properties
     
-    public var favoritedLocation: OWMCityDTO {
+    public var favoritedCity: OWMCityDTO {
         didSet {
             update(withCompletionHandler: nil)
         }
     }
-    public var amountResults: Int {
+    public var amountOfResults: AmountOfResultsWrappedEnum {
         didSet {
             update(withCompletionHandler: nil)
         }
@@ -184,12 +188,12 @@ class WeatherDataService {
     
     // MARK: - Initialization
     
-    private init(favoritedLocation: OWMCityDTO, amountResults: Int) {
-        self.favoritedLocation = favoritedLocation
-        self.amountResults = amountResults
+    private init(favoritedLocation: OWMCityDTO, amountOfResults: AmountOfResultsWrappedEnum, temperatureUnit: TemperatureUnitWrappedEnum, windspeedUnit: SpeedUnitWrappedEnum) {
+        self.favoritedCity = favoritedLocation
+        self.amountOfResults = amountOfResults
         
-        self.temperatureUnit = TemperatureUnitWrappedEnum(value: .celsius)
-        self.windspeedUnit = SpeedUnitWrappedEnum(value: .kilometresPerHour)
+        self.temperatureUnit = temperatureUnit
+        self.windspeedUnit = windspeedUnit
         
         locationAuthorizationObserver = NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil, using: { [unowned self] notification in
             self.update(withCompletionHandler: nil)
@@ -204,7 +208,7 @@ class WeatherDataService {
     // MARK: - Public Properties & Methods
     
     public static func instantiateSharedInstance() {
-        shared = WeatherDataService.loadService() ?? WeatherDataService(favoritedLocation: kDefaultFavoritedCity, amountResults: 10)
+        shared = WeatherDataService.loadService() ?? WeatherDataService(favoritedLocation: kDefaultFavoritedCity, amountOfResults: AmountOfResultsWrappedEnum(value: .ten), temperatureUnit: TemperatureUnitWrappedEnum(value: .celsius), windspeedUnit: SpeedUnitWrappedEnum(value: .kilometresPerHour))
     }
     
     public func update(withCompletionHandler completionHandler: (() -> Void)?) {
@@ -248,38 +252,35 @@ class WeatherDataService {
     /* Internal Storage Helpers*/
     
     private static func loadService() -> WeatherDataService? {
-        guard let favoritedLocation = DataStorageService.retrieveFile(withFileName: kFavoritedLocationFileName, fromDirectory: .documents, asType: OWMCityDTO.self),
-            let amountResults = DataStorageService.retrieveFile(withFileName: kAmountResultsFileName, fromDirectory: .documents, asType: Int.self),
-            let temperatureUnit = DataStorageService.retrieveFile(withFileName: kTemperatureUnitFileName, fromDirectory: .documents, asType: TemperatureUnitWrappedEnum.self),
-            let windspeedUnit = DataStorageService.retrieveFile(withFileName: kWindspeedUnitFileName, fromDirectory: .documents, asType: SpeedUnitWrappedEnum.self),
-            let singleLocationWeatherData = DataStorageService.retrieveFile(withFileName: kWindspeedUnitFileName, fromDirectory: .documents, asType: [OWMWeatherDTO].self),
-            let multiLocationWeatherData = DataStorageService.retrieveFile(withFileName: kWindspeedUnitFileName, fromDirectory: .documents, asType: [OWMWeatherDTO].self) else {
+        guard let weatherDataServiceStoredContents = DataStorageService.retrieveJson(fromFileWithName: kWeatherDataServiceStoredContentFileName, andDecodeAsType: WeatherDataServiceStoredContentsWrapper.self) else {
                 return nil
         }
         
-        let weatherService = WeatherDataService(favoritedLocation: favoritedLocation, amountResults: amountResults)
-        weatherService.temperatureUnit = temperatureUnit
-        weatherService.windspeedUnit = windspeedUnit
-        weatherService.singleLocationWeatherData = singleLocationWeatherData
-        weatherService.multiLocationWeatherData = multiLocationWeatherData
+        let weatherService = WeatherDataService(favoritedLocation: weatherDataServiceStoredContents.favoritedCity,
+                                                amountOfResults: weatherDataServiceStoredContents.amountOfResults,
+                                                temperatureUnit: weatherDataServiceStoredContents.temperatureUnit,
+                                                windspeedUnit: weatherDataServiceStoredContents.windspeedUnit)
+        weatherService.singleLocationWeatherData = weatherDataServiceStoredContents.singleLocationWeatherData
+        weatherService.multiLocationWeatherData = weatherDataServiceStoredContents.multiLocationWeatherData
         
         return weatherService
     }
     
     private static func storeService() {
-        DataStorageService.storeFile(withFileNwame: kFavoritedLocationFileName, forObject: WeatherDataService.shared.favoritedLocation, toDirectory: .documents)
-        DataStorageService.storeFile(withFileNwame: kAmountResultsFileName, forObject: WeatherDataService.shared.amountResults, toDirectory: .documents)
-        DataStorageService.storeFile(withFileNwame: kTemperatureUnitFileName, forObject: WeatherDataService.shared.temperatureUnit, toDirectory: .documents)
-        DataStorageService.storeFile(withFileNwame: kWindspeedUnitFileName, forObject: WeatherDataService.shared.windspeedUnit, toDirectory: .documents)
-        DataStorageService.storeFile(withFileNwame: kWindspeedUnitFileName, forObject: WeatherDataService.shared.singleLocationWeatherData, toDirectory: .documents)
-        DataStorageService.storeFile(withFileNwame: kWindspeedUnitFileName, forObject: WeatherDataService.shared.multiLocationWeatherData, toDirectory: .documents)
+        let weatherDataServiceStoredContents = WeatherDataServiceStoredContentsWrapper(favoritedCity: WeatherDataService.shared.favoritedCity,
+                                                amountOfResults: WeatherDataService.shared.amountOfResults,
+                                                 temperatureUnit: WeatherDataService.shared.temperatureUnit,
+                                                 windspeedUnit: WeatherDataService.shared.windspeedUnit,
+                                                 singleLocationWeatherData: WeatherDataService.shared.singleLocationWeatherData,
+                                                 multiLocationWeatherData: WeatherDataService.shared.multiLocationWeatherData)
+        DataStorageService.storeJson(forCodable: weatherDataServiceStoredContents, toFileWithName: kWeatherDataServiceStoredContentFileName)
     }
     
     /* Data Retrieval via Network */
     
     private func fetchSingleLocationWeatherData(completionHandler: @escaping ([OWMWeatherDTO]?) -> Void) {
         let session = URLSession.shared
-        let requestedCity = favoritedLocation.identifier
+        let requestedCity = favoritedCity.identifier
         
         guard let apiKey = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey"),
             let requestURL = URL(string: "\(WeatherDataService.openWeather_SingleLocationBaseURL)?APPID=\(apiKey)&id=\(requestedCity)") else {
@@ -307,7 +308,7 @@ class WeatherDataService {
         }
         
         guard let apiKey = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey"),
-            let requestURL = URL(string: "\(WeatherDataService.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(currentLatitude)&lon=\(currentLongitude)&cnt=\(amountResults)") else {
+            let requestURL = URL(string: "\(WeatherDataService.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(currentLatitude)&lon=\(currentLongitude)&cnt=\(amountOfResults.integerValue)") else {
                 completionHandler(nil)
                 return
         }
@@ -357,7 +358,7 @@ class WeatherDataService {
             let multiWeatherData = try JSONDecoder().decode(OWMMultiWeatherDTO.self, from: data)
             return multiWeatherData.list
         } catch let jsonError {
-            print("💥 WeatherService: Error while extracting single-location-data json: \(jsonError.localizedDescription)")
+            print("💥 WeatherService: Error while extracting multi-location-data json: \(jsonError.localizedDescription)")
             return nil
         }
     }

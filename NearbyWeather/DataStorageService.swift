@@ -17,45 +17,36 @@ class DataStorageService {
     
     // MARK: -  Public Functions
     
-    static func storeFile<T: Encodable>(withFileNwame fileName: String, forObject object: T, toDirectory directory: Directory) {
-        guard let url = getURL(forDirectory: directory)?.appendingPathComponent(fileName, isDirectory: false) else {
-            print("💥 DataStorageService: Could not construct url for storing file \(fileName)")
-            return
-        }
+    static func storeJson<T: Encodable>(forCodable codable: T, toFileWithName fileName: String) {
+        guard let fileBaseURL = documentsDirectoryURL else { return }
+        let fileExtension = "json"
+        let filePathURL = fileBaseURL.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
         
-        let encoder = JSONEncoder()
         do {
-            let data = try encoder.encode(object)
-            if FileManager.default.fileExists(atPath: url.path) {
-                try FileManager.default.removeItem(at: url)
-            }
-            FileManager.default.createFile(atPath: url.path, contents: data, attributes: nil)
+            let data = try JSONEncoder().encode(codable)
+            try data.write(to: filePathURL)
         } catch let error {
-            print(error.localizedDescription)
+            print("💥 DataStorageService: Error while writing data to \(filePathURL.path). Error-Description: \(error.localizedDescription)")
         }
     }
     
-    static func retrieveFile<T: Decodable>(withFileName fileName: String, fromDirectory directory: Directory, asType type: T.Type) -> T? {
-        guard let url = getURL(forDirectory: directory)?.appendingPathComponent(fileName, isDirectory: false) else {
-            print("💥 DataStorageService: Could not construct url for retrieval of file \(fileName)")
+    static func retrieveJson<T: Decodable>(fromFileWithName fileName: String, andDecodeAsType type: T.Type) -> T? {
+        guard let fileBaseURL = documentsDirectoryURL else { return nil }
+        let fileExtension = "json"
+        let filePathURL = fileBaseURL.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
+        
+        
+        if !FileManager.default.fileExists(atPath: filePathURL.path) {
+            print("💥 DataStorageService: File at path \(filePathURL.path) does not exist!")
             return nil
         }
         
-        if !FileManager.default.fileExists(atPath: url.path) {
-            print("💥 DataStorageService: File at path \(url.path) does not exist!")
-            return nil
-        }
-        
-        if let data = FileManager.default.contents(atPath: url.path) {
-            let decoder = JSONDecoder()
-            do {
-                let model = try decoder.decode(type, from: data)
-                return model
-            } catch {
-                fatalError(error.localizedDescription)
-            }
-        } else {
-            print("💥 DataStorageService: No data at \(url.path)!")
+        do {
+            let data = try Data(contentsOf: filePathURL)
+            let model = try JSONDecoder().decode(type, from: data)
+            return model
+        } catch let error {
+            print("💥 DataStorageService: Error while retrieving data from \(filePathURL.path). Error-Description: \(error.localizedDescription)")
             return nil
         }
     }
@@ -63,13 +54,12 @@ class DataStorageService {
     
     // MARK: - Private Functions
     
-    static fileprivate func getURL(forDirectory directory: Directory) -> URL? {
-        var searchPathDirectory: FileManager.SearchPathDirectory
-        
-        switch directory {
-        case .documents: searchPathDirectory = .documentDirectory
-        case .caches: searchPathDirectory = .cachesDirectory
+    static private var documentsDirectoryURL: URL? {
+        guard let fileBaseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            // nil checking for error reporting
+            print("💥 DataStorageService: Could not construct documents directory url.")
+            return nil
         }
-        return FileManager.default.urls(for: searchPathDirectory, in: .userDomainMask).first
+        return fileBaseURL
     }
 }

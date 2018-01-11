@@ -50,7 +50,7 @@ class SettingsTableViewController: UITableViewController {
             navigationItem.backBarButtonItem = barButton
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 2:
-            WeatherDataService.shared.amountResults = AmountOfResultsWrappedEnum(rawValue: indexPath.row)!.integerValue // force unwrap -> this should never fail, if it does the app should crash so we know
+            WeatherDataService.shared.amountOfResults = AmountOfResultsWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         case 3:
             WeatherDataService.shared.temperatureUnit = TemperatureUnitWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
@@ -107,7 +107,7 @@ class SettingsTableViewController: UITableViewController {
         
         switch indexPath.section {
         case 0:
-            cell.contentLabel.text = "\(WeatherDataService.shared.favoritedLocation.name), \(WeatherDataService.shared.favoritedLocation.country)"
+            cell.contentLabel.text = "\(WeatherDataService.shared.favoritedCity.name), \(WeatherDataService.shared.favoritedCity.country)"
             cell.accessoryType = .disclosureIndicator
             return cell
         case 1:
@@ -115,9 +115,9 @@ class SettingsTableViewController: UITableViewController {
             cell.accessoryType = .disclosureIndicator
             return cell
         case 2:
-            let amountResults = AmountOfResultsWrappedEnum(rawValue: indexPath.row)!.integerValue // force unwrap -> this should never fail, if it does the app should crash so we know
+            let amountResults = AmountOfResultsWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = "\(amountResults) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
-            if amountResults == WeatherDataService.shared.amountResults {
+            if amountResults.integerValue == WeatherDataService.shared.amountOfResults.integerValue {
                 cell.accessoryType = .checkmark
             }
             return cell
