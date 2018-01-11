@@ -54,7 +54,7 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
             }
             UserDefaults.standard.set(text, forKey: "nearby_weather.openWeatherMapApiKey")
             HUD.flash(.success, delay: 1.0)
-            WeatherService.shared.update(withCompletionHandler: nil)
+            WeatherDataService.shared.update(withCompletionHandler: nil)
         }
     }
     

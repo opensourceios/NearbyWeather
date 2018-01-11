@@ -68,7 +68,7 @@ class OWMCityFilterTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        WeatherService.shared.favoritedLocation = filteredCities[indexPath.row]
+        WeatherDataService.shared.favoritedLocation = filteredCities[indexPath.row]
         HUD.flash(.success, delay: 1.0)
         navigationController?.popViewController(animated: true)
     }

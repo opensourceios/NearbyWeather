@@ -50,13 +50,13 @@ class SettingsTableViewController: UITableViewController {
             navigationItem.backBarButtonItem = barButton
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 2:
-            WeatherService.shared.amountResults = AmountResults(rawValue: indexPath.row)!.integerValue // force unwrap -> this should never fail, if it does the app should crash so we know
+            WeatherDataService.shared.amountResults = AmountOfResultsWrappedEnum(rawValue: indexPath.row)!.integerValue // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         case 3:
-            WeatherService.shared.temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            WeatherDataService.shared.temperatureUnit = TemperatureUnitWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         case 4:
-            WeatherService.shared.windspeedUnit = SpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            WeatherDataService.shared.windspeedUnit = SpeedUnitWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         default:
             break
@@ -91,11 +91,11 @@ class SettingsTableViewController: UITableViewController {
         case 1:
             return 1
         case 2:
-            return AmountResults.count
+            return AmountOfResultsWrappedEnum.count
         case 3:
-            return TemperatureUnit.count
+            return TemperatureUnitWrappedEnum.count
         case 4:
-            return SpeedUnit.count
+            return SpeedUnitWrappedEnum.count
         default:
             return 0
         }
@@ -107,7 +107,7 @@ class SettingsTableViewController: UITableViewController {
         
         switch indexPath.section {
         case 0:
-            cell.contentLabel.text = "\(WeatherService.shared.favoritedLocation.name), \(WeatherService.shared.favoritedLocation.country)"
+            cell.contentLabel.text = "\(WeatherDataService.shared.favoritedLocation.name), \(WeatherDataService.shared.favoritedLocation.country)"
             cell.accessoryType = .disclosureIndicator
             return cell
         case 1:
@@ -115,23 +115,23 @@ class SettingsTableViewController: UITableViewController {
             cell.accessoryType = .disclosureIndicator
             return cell
         case 2:
-            let amountResults = AmountResults(rawValue: indexPath.row)!.integerValue // force unwrap -> this should never fail, if it does the app should crash so we know
+            let amountResults = AmountOfResultsWrappedEnum(rawValue: indexPath.row)!.integerValue // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = "\(amountResults) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
-            if amountResults == WeatherService.shared.amountResults {
+            if amountResults == WeatherDataService.shared.amountResults {
                 cell.accessoryType = .checkmark
             }
             return cell
         case 3:
-            let temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            let temperatureUnit = TemperatureUnitWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = temperatureUnit.stringValue
-            if temperatureUnit.stringValue == WeatherService.shared.temperatureUnit.stringValue {
+            if temperatureUnit.stringValue == WeatherDataService.shared.temperatureUnit.stringValue {
                 cell.accessoryType = .checkmark
             }
             return cell
         case 4:
-            let windspeedUnit = SpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            let windspeedUnit = SpeedUnitWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = windspeedUnit.stringValue
-            if windspeedUnit.stringValue == WeatherService.shared.windspeedUnit.stringValue {
+            if windspeedUnit.stringValue == WeatherDataService.shared.windspeedUnit.stringValue {
                 cell.accessoryType = .checkmark
             }
             return cell

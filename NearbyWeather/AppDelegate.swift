@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         OWMCityService.instantiateSharedInstance()
         
         if UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") != nil {
-            WeatherService.instantiateSharedInstance()
+            WeatherDataService.instantiateSharedInstance()
             LocationService.shared.requestWhenInUseAuthorization()
         } else {
             let storyboard = UIStoryboard(name: "Welcome", bundle: nil)

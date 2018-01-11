@@ -57,7 +57,7 @@ class ConversionService {
         }
     }
     
-    public static func temperatureDescriptor(forTemperatureUnit temperatureUnit: TemperatureUnit, fromRawTemperature rawTemperature: Double) -> String {
+    public static func temperatureDescriptor(forTemperatureUnit temperatureUnit: TemperatureUnitWrappedEnum, fromRawTemperature rawTemperature: Double) -> String {
         switch temperatureUnit.value {
         case .celsius:
             return "\(String(format:"%.02f", rawTemperature - 273.15))°C"
@@ -68,7 +68,7 @@ class ConversionService {
         }
     }
     
-    public static func windspeedDescriptor(forWindspeedUnit windspeedUnit: SpeedUnit, forWindspeed windspeed: Double) -> String {
+    public static func windspeedDescriptor(forWindspeedUnit windspeedUnit: SpeedUnitWrappedEnum, forWindspeed windspeed: Double) -> String {
         switch windspeedUnit.value {
         case .kilometresPerHour:
             return "\(String(format:"%.02f", windspeed)) \(NSLocalizedString("kph", comment: ""))"

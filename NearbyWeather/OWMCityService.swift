@@ -16,6 +16,7 @@ class OWMCityService {
     
     public var openWeatherMapCities: [OWMCityDTO]
     
+    
     // MARK: - Private Assets
     
     private let openWeatherMapCityServiceBackgroundQueue = DispatchQueue(label: "de.erikmartens.nearbyWeather.openWeatherMapCityService", qos: DispatchQoS.background, attributes: [DispatchQueue.Attributes.concurrent], autoreleaseFrequency: .inherit, target: nil)

@@ -13,24 +13,24 @@ public enum SortingOrientation: Int {
     case byTemperature
 }
 
-public class TemperatureUnit: Codable {
+public class TemperatureUnitWrappedEnum: Codable {
     
     static let count = 3
     
-    var value: TemperatureUnitValue
+    var value: TemperatureUnit
     
-    init(value: TemperatureUnitValue) {
+    init(value: TemperatureUnit) {
         self.value = value
     }
     
     convenience init?(rawValue: Int) {
-        guard let value = TemperatureUnitValue(rawValue: rawValue) else {
+        guard let value = TemperatureUnit(rawValue: rawValue) else {
             return nil
         }
         self.init(value: value)
     }
     
-    enum TemperatureUnitValue: Int, Codable {
+    enum TemperatureUnit: Int, Codable {
         case celsius
         case fahrenheit
         case kelvin
@@ -45,23 +45,23 @@ public class TemperatureUnit: Codable {
     }
 }
 
-public class SpeedUnit: Codable {
+public class SpeedUnitWrappedEnum: Codable {
     static let count = 2
     
-    var value: SpeedUnitValue
+    var value: SpeedUnit
     
-    init(value: SpeedUnitValue) {
+    init(value: SpeedUnit) {
         self.value = value
     }
     
     convenience init?(rawValue: Int) {
-        guard let value = SpeedUnitValue(rawValue: rawValue) else {
+        guard let value = SpeedUnit(rawValue: rawValue) else {
             return nil
         }
         self.init(value: value)
     }
     
-    enum SpeedUnitValue: Int, Codable {
+    enum SpeedUnit: Int, Codable {
         case kilometresPerHour
         case milesPerHour
     }
@@ -81,24 +81,24 @@ public class SpeedUnit: Codable {
     }
 }
 
-public class AmountResults {
+public class AmountOfResultsWrappedEnum {
     
     static let count = 5
     
-    var value: AmountResultsValue
+    var value: AmountOfResults
     
-    init(value: AmountResultsValue) {
+    init(value: AmountOfResults) {
         self.value = value
     }
     
     convenience init?(rawValue: Int) {
-        guard let value = AmountResultsValue(rawValue: rawValue) else {
+        guard let value = AmountOfResults(rawValue: rawValue) else {
             return nil
         }
         self.init(value: value)
     }
     
-    enum AmountResultsValue: Int {
+    enum AmountOfResults: Int {
         case ten
         case twenty
         case thirty
@@ -127,11 +127,11 @@ fileprivate let kWindspeedUnitFileName = "de.erikmartens.nearbyWeather.weatherSe
 fileprivate let kSingleLocationWeatherData = "de.erikmartens.nearbyWeather.weatherService.singleLocationWeatherData"
 fileprivate let kMultiLocationWeatherData = "de.erikmartens.nearbyWeather.weatherService.multiLocationWeatherData"
 
-class WeatherService {
+class WeatherDataService {
     
     // MARK: - Public Assets
     
-    public static var shared: WeatherService!
+    public static var shared: WeatherDataService!
     
     public var hasSingleLocationWeatherData: Bool {
         return singleLocationWeatherData != nil && !singleLocationWeatherData!.isEmpty
@@ -161,17 +161,17 @@ class WeatherService {
             update(withCompletionHandler: nil)
         }
     }
-    public var temperatureUnit: TemperatureUnit {
+    public var temperatureUnit: TemperatureUnitWrappedEnum {
         didSet {
             weatherServiceBackgroundQueue.async {
-                WeatherService.storeService()
+                WeatherDataService.storeService()
             }
         }
     }
-    public var windspeedUnit: SpeedUnit {
+    public var windspeedUnit: SpeedUnitWrappedEnum {
         didSet {
             weatherServiceBackgroundQueue.async {
-                WeatherService.storeService()
+                WeatherDataService.storeService()
             }
         }
     }
@@ -188,8 +188,8 @@ class WeatherService {
         self.favoritedLocation = favoritedLocation
         self.amountResults = amountResults
         
-        self.temperatureUnit = TemperatureUnit(value: .celsius)
-        self.windspeedUnit = SpeedUnit(value: .kilometresPerHour)
+        self.temperatureUnit = TemperatureUnitWrappedEnum(value: .celsius)
+        self.windspeedUnit = SpeedUnitWrappedEnum(value: .kilometresPerHour)
         
         locationAuthorizationObserver = NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil, using: { [unowned self] notification in
             self.update(withCompletionHandler: nil)
@@ -204,7 +204,7 @@ class WeatherService {
     // MARK: - Public Properties & Methods
     
     public static func instantiateSharedInstance() {
-        shared = WeatherService.loadService() ?? WeatherService(favoritedLocation: kDefaultFavoritedCity, amountResults: 10)
+        shared = WeatherDataService.loadService() ?? WeatherDataService(favoritedLocation: kDefaultFavoritedCity, amountResults: 10)
     }
     
     public func update(withCompletionHandler completionHandler: (() -> Void)?) {
@@ -224,7 +224,7 @@ class WeatherService {
             })
             
             dispatchGroup.wait()
-            WeatherService.storeService()
+            WeatherDataService.storeService()
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: self)
                 completionHandler?()
@@ -247,17 +247,17 @@ class WeatherService {
     
     /* Internal Storage Helpers*/
     
-    private static func loadService() -> WeatherService? {
+    private static func loadService() -> WeatherDataService? {
         guard let favoritedLocation = DataStorageService.retrieveFile(withFileName: kFavoritedLocationFileName, fromDirectory: .documents, asType: OWMCityDTO.self),
             let amountResults = DataStorageService.retrieveFile(withFileName: kAmountResultsFileName, fromDirectory: .documents, asType: Int.self),
-            let temperatureUnit = DataStorageService.retrieveFile(withFileName: kTemperatureUnitFileName, fromDirectory: .documents, asType: TemperatureUnit.self),
-            let windspeedUnit = DataStorageService.retrieveFile(withFileName: kWindspeedUnitFileName, fromDirectory: .documents, asType: SpeedUnit.self),
+            let temperatureUnit = DataStorageService.retrieveFile(withFileName: kTemperatureUnitFileName, fromDirectory: .documents, asType: TemperatureUnitWrappedEnum.self),
+            let windspeedUnit = DataStorageService.retrieveFile(withFileName: kWindspeedUnitFileName, fromDirectory: .documents, asType: SpeedUnitWrappedEnum.self),
             let singleLocationWeatherData = DataStorageService.retrieveFile(withFileName: kWindspeedUnitFileName, fromDirectory: .documents, asType: [OWMWeatherDTO].self),
             let multiLocationWeatherData = DataStorageService.retrieveFile(withFileName: kWindspeedUnitFileName, fromDirectory: .documents, asType: [OWMWeatherDTO].self) else {
                 return nil
         }
         
-        let weatherService = WeatherService(favoritedLocation: favoritedLocation, amountResults: amountResults)
+        let weatherService = WeatherDataService(favoritedLocation: favoritedLocation, amountResults: amountResults)
         weatherService.temperatureUnit = temperatureUnit
         weatherService.windspeedUnit = windspeedUnit
         weatherService.singleLocationWeatherData = singleLocationWeatherData
@@ -267,12 +267,12 @@ class WeatherService {
     }
     
     private static func storeService() {
-        DataStorageService.storeFile(withFileNwame: kFavoritedLocationFileName, forObject: WeatherService.shared.favoritedLocation, toDirectory: .documents)
-        DataStorageService.storeFile(withFileNwame: kAmountResultsFileName, forObject: WeatherService.shared.amountResults, toDirectory: .documents)
-        DataStorageService.storeFile(withFileNwame: kTemperatureUnitFileName, forObject: WeatherService.shared.temperatureUnit, toDirectory: .documents)
-        DataStorageService.storeFile(withFileNwame: kWindspeedUnitFileName, forObject: WeatherService.shared.windspeedUnit, toDirectory: .documents)
-        DataStorageService.storeFile(withFileNwame: kWindspeedUnitFileName, forObject: WeatherService.shared.singleLocationWeatherData, toDirectory: .documents)
-        DataStorageService.storeFile(withFileNwame: kWindspeedUnitFileName, forObject: WeatherService.shared.multiLocationWeatherData, toDirectory: .documents)
+        DataStorageService.storeFile(withFileNwame: kFavoritedLocationFileName, forObject: WeatherDataService.shared.favoritedLocation, toDirectory: .documents)
+        DataStorageService.storeFile(withFileNwame: kAmountResultsFileName, forObject: WeatherDataService.shared.amountResults, toDirectory: .documents)
+        DataStorageService.storeFile(withFileNwame: kTemperatureUnitFileName, forObject: WeatherDataService.shared.temperatureUnit, toDirectory: .documents)
+        DataStorageService.storeFile(withFileNwame: kWindspeedUnitFileName, forObject: WeatherDataService.shared.windspeedUnit, toDirectory: .documents)
+        DataStorageService.storeFile(withFileNwame: kWindspeedUnitFileName, forObject: WeatherDataService.shared.singleLocationWeatherData, toDirectory: .documents)
+        DataStorageService.storeFile(withFileNwame: kWindspeedUnitFileName, forObject: WeatherDataService.shared.multiLocationWeatherData, toDirectory: .documents)
     }
     
     /* Data Retrieval via Network */
@@ -282,7 +282,7 @@ class WeatherService {
         let requestedCity = favoritedLocation.identifier
         
         guard let apiKey = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey"),
-            let requestURL = URL(string: "\(WeatherService.openWeather_SingleLocationBaseURL)?APPID=\(apiKey)&id=\(requestedCity)") else {
+            let requestURL = URL(string: "\(WeatherDataService.openWeather_SingleLocationBaseURL)?APPID=\(apiKey)&id=\(requestedCity)") else {
                 completionHandler(nil)
                 return
         }
@@ -307,7 +307,7 @@ class WeatherService {
         }
         
         guard let apiKey = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey"),
-            let requestURL = URL(string: "\(WeatherService.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(currentLatitude)&lon=\(currentLongitude)&cnt=\(amountResults)") else {
+            let requestURL = URL(string: "\(WeatherDataService.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(currentLatitude)&lon=\(currentLongitude)&cnt=\(amountResults)") else {
                 completionHandler(nil)
                 return
         }
