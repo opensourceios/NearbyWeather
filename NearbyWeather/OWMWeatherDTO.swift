@@ -44,7 +44,7 @@ struct OWMWeatherDTO: Codable {
     
     struct WindInformation: Codable {
         var windspeed: Double
-        var degrees: Int
+        var degrees: Double
         
         enum CodingKeys: String, CodingKey {
             case windspeed = "speed"

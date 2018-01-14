@@ -196,7 +196,7 @@ class WeatherDataService {
         self.windspeedUnit = windspeedUnit
         
         locationAuthorizationObserver = NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil, using: { [unowned self] notification in
-            self.update(withCompletionHandler: nil)
+            self.discardLocationBasedWeatherDataIfNeeded()
         })
     }
     
@@ -276,6 +276,14 @@ class WeatherDataService {
         DataStorageService.storeJson(forCodable: weatherDataServiceStoredContents, toFileWithName: kWeatherDataServiceStoredContentFileName)
     }
     
+    @objc private func discardLocationBasedWeatherDataIfNeeded() {
+        if LocationService.shared.authorizationStatus != .authorizedWhenInUse && LocationService.shared.authorizationStatus != .authorizedAlways {
+            multiLocationWeatherData = nil
+            WeatherDataService.storeService()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: self)
+        }
+    }
+    
     /* Data Retrieval via Network */
     
     private func fetchSingleLocationWeatherData(completionHandler: @escaping ([OWMWeatherDTO]?) -> Void) {
@@ -342,8 +350,8 @@ class WeatherDataService {
             }
             let weatherData = try JSONDecoder().decode(OWMWeatherDTO.self, from: data)
             return [weatherData]
-        } catch let jsonError {
-            print("💥 WeatherService: Error while extracting single-location-data json: \(jsonError.localizedDescription)")
+        } catch let error {
+            print("💥 WeatherDataService: Error while extracting single-location-data json: \(error.localizedDescription)")
             return nil
         }
     }
@@ -357,8 +365,8 @@ class WeatherDataService {
             }
             let multiWeatherData = try JSONDecoder().decode(OWMMultiWeatherDTO.self, from: data)
             return multiWeatherData.list
-        } catch let jsonError {
-            print("💥 WeatherService: Error while extracting multi-location-data json: \(jsonError.localizedDescription)")
+        } catch let error {
+            print("💥 WeatherDataService: Error while extracting multi-location-data json: \(error.localizedDescription)")
             return nil
         }
     }

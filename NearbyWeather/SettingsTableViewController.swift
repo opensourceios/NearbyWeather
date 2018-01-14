@@ -116,7 +116,7 @@ class SettingsTableViewController: UITableViewController {
             return cell
         case 2:
             let amountResults = AmountOfResultsWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
-            cell.contentLabel.text = "\(amountResults) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
+            cell.contentLabel.text = "\(amountResults.integerValue) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
             if amountResults.integerValue == WeatherDataService.shared.amountOfResults.integerValue {
                 cell.accessoryType = .checkmark
             }

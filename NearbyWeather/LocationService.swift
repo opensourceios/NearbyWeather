@@ -19,7 +19,7 @@ class LocationService: CLLocationManager, CLLocationManagerDelegate {
     public var currentLatitude: Double?
     public var currentLongitude: Double?
     public var authorizationStatus: CLAuthorizationStatus
-    
+
     
     // MARK: - Intialization
     
@@ -39,7 +39,7 @@ class LocationService: CLLocationManager, CLLocationManagerDelegate {
         LocationService.shared.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         LocationService.shared.startUpdatingLocation()
     }
-    
+
     
     // MARK: - Delegate Methods
     
