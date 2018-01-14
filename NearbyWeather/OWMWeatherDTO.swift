@@ -53,7 +53,7 @@ struct OWMWeatherDTO: Codable {
     }
     
     struct CloudCoverage: Codable {
-        var coverage: Int
+        var coverage: Double
         
         enum CodingKeys: String, CodingKey {
             case coverage = "all"
