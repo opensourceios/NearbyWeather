@@ -10,9 +10,7 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
-    // MARK: - Override Functions
-    
-    /* General */
+    // MARK: - ViewController Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,18 +24,10 @@ class SettingsTableViewController: UITableViewController {
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.weatherServiceUpdated.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: Notification.Name(rawValue: NotificationKeys.apiKeyUpdated.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.reloadTableViewData(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
+        tableView.reloadData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    /* TableView */
+    // MARK: - TableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -45,9 +35,8 @@ class SettingsTableViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsInputTVC") as! SettingsInputTableViewController
-            destinationViewController.mode = .enterFavoritedLocation
-            
+            let destinationViewController = storyboard.instantiateViewController(withIdentifier: "OWMCityFilterTableViewController") as! OWMCityFilterTableViewController
+
             let barButton = UIBarButtonItem()
             barButton.title = nil
             navigationItem.backBarButtonItem = barButton
@@ -55,20 +44,19 @@ class SettingsTableViewController: UITableViewController {
         case 1:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsInputTVC") as! SettingsInputTableViewController
-            destinationViewController.mode = .enterAPIKey
             
             let barButton = UIBarButtonItem()
             barButton.title = nil
             navigationItem.backBarButtonItem = barButton
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 2:
-            WeatherService.current.amountResults = AmountResults(rawValue: indexPath.row)!.integerValue // force unwrap -> this should never fail, if it does the app should crash so we know
+            WeatherDataService.shared.amountOfResults = AmountOfResultsWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         case 3:
-            WeatherService.current.temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            WeatherDataService.shared.temperatureUnit = TemperatureUnitWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         case 4:
-            WeatherService.current.windspeedUnit = SpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            WeatherDataService.shared.windspeedUnit = SpeedUnitWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         default:
             break
@@ -103,11 +91,11 @@ class SettingsTableViewController: UITableViewController {
         case 1:
             return 1
         case 2:
-            return AmountResults.count
+            return AmountOfResultsWrappedEnum.count
         case 3:
-            return TemperatureUnit.count
+            return TemperatureUnitWrappedEnum.count
         case 4:
-            return SpeedUnit.count
+            return SpeedUnitWrappedEnum.count
         default:
             return 0
         }
@@ -119,7 +107,7 @@ class SettingsTableViewController: UITableViewController {
         
         switch indexPath.section {
         case 0:
-            cell.contentLabel.text = WeatherService.current.favoritedLocation
+            cell.contentLabel.text = "\(WeatherDataService.shared.favoritedCity.name), \(WeatherDataService.shared.favoritedCity.country)"
             cell.accessoryType = .disclosureIndicator
             return cell
         case 1:
@@ -127,23 +115,23 @@ class SettingsTableViewController: UITableViewController {
             cell.accessoryType = .disclosureIndicator
             return cell
         case 2:
-            let amountResults = AmountResults(rawValue: indexPath.row)!.integerValue // force unwrap -> this should never fail, if it does the app should crash so we know
-            cell.contentLabel.text = "\(amountResults) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
-            if amountResults == WeatherService.current.amountResults {
+            let amountResults = AmountOfResultsWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            cell.contentLabel.text = "\(amountResults.integerValue) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
+            if amountResults.integerValue == WeatherDataService.shared.amountOfResults.integerValue {
                 cell.accessoryType = .checkmark
             }
             return cell
         case 3:
-            let temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            let temperatureUnit = TemperatureUnitWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = temperatureUnit.stringValue
-            if temperatureUnit.stringValue == WeatherService.current.temperatureUnit.stringValue {
+            if temperatureUnit.stringValue == WeatherDataService.shared.temperatureUnit.stringValue {
                 cell.accessoryType = .checkmark
             }
             return cell
         case 4:
-            let windspeedUnit = SpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
-            cell.contentLabel.text = windspeedUnit.stringShortValue
-            if windspeedUnit.stringValue == WeatherService.current.windspeedUnit.stringValue {
+            let windspeedUnit = SpeedUnitWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            cell.contentLabel.text = windspeedUnit.stringValue
+            if windspeedUnit.stringValue == WeatherDataService.shared.windspeedUnit.stringValue {
                 cell.accessoryType = .checkmark
             }
             return cell
@@ -154,12 +142,5 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
-    }
-    
-    
-    // MARK: - Helper Functions
-    
-    @objc func reloadTableViewData(_ notification: Notification) {
-        tableView.reloadData()
     }
 }

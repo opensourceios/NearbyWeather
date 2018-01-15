@@ -31,20 +31,20 @@ class SetPermissionsViewController: UIViewController {
         
         navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.title = NSLocalizedString("SetPermissionsVC_NavigationBarTitle", comment: "")
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(SetPermissionsViewController.launchApp), name: Notification.Name(rawValue: NotificationKeys.locationAuthorizationUpdated.rawValue), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         configure()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SetPermissionsViewController.launchApp), name: Notification.Name(rawValue: kLocationAuthorizationUpdated), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        animateShake()
+        animatePulse()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,11 +52,7 @@ class SetPermissionsViewController: UIViewController {
         
         warningImageView.layer.removeAllAnimations()
         timer?.invalidate()
-    }
-    
-    /* Deinitializer */
-    
-    deinit {
+        
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -83,16 +79,16 @@ class SetPermissionsViewController: UIViewController {
     }
     
     fileprivate func startAnimationTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(SetPermissionsViewController.animateShake)), userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(SetPermissionsViewController.animatePulse)), userInfo: nil, repeats: false)
     }
     
-    @objc private func animateShake() {
+    @objc private func animatePulse() {
         warningImageView.layer.removeAllAnimations()
-        warningImageView.animateShake(withAnimationDelegate: self)
+        warningImageView.animatePulse(withAnimationDelegate: self)
     }
     
-    @objc func launchApp() {
-        WeatherService.attachPersistentObject()
+    @objc func launchApp() {        
+        WeatherDataService.instantiateSharedInstance()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destinationViewController = storyboard.instantiateInitialViewController()
@@ -104,8 +100,8 @@ class SetPermissionsViewController: UIViewController {
     // MARK: - Button Interaction
     
     @IBAction func didTapAskPermissionsButton(_ sender: UIButton) {
-        if LocationService.current.authorizationStatus == .notDetermined {
-            LocationService.current.requestWhenInUseAuthorization()
+        if LocationService.shared.authorizationStatus == .notDetermined {
+            LocationService.shared.requestWhenInUseAuthorization()
         } else {
             launchApp()
         }

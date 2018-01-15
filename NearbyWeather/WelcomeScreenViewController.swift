@@ -47,7 +47,7 @@ class WelcomeScreenViewController: UIViewController {
         super.viewDidAppear(animated)
         
         inputTextField.becomeFirstResponder()
-        animateShake()
+        animatePulse()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -70,6 +70,7 @@ class WelcomeScreenViewController: UIViewController {
         descriptionLabel.textColor = .white
         descriptionLabel.text! = NSLocalizedString("WelcomeScreenVC_Description", comment: "")
         
+        inputTextField.counterColor = inputTextField.textColor ?? .black
         inputTextField.limitColor = .nearbyWeatherStandard
         inputTextField.textColor = .lightGray
         inputTextField.tintColor = .lightGray
@@ -88,12 +89,12 @@ class WelcomeScreenViewController: UIViewController {
     }
     
     fileprivate func startAnimationTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(WelcomeScreenViewController.animateShake)), userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: (#selector(WelcomeScreenViewController.animatePulse)), userInfo: nil, repeats: false)
     }
     
-    @objc private func animateShake() {
+    @objc private func animatePulse() {
         warningImageView.layer.removeAllAnimations()
-        warningImageView.animateShake(withAnimationDelegate: self)
+        warningImageView.animatePulse(withAnimationDelegate: self)
     }
     
     

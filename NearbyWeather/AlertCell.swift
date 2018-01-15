@@ -34,7 +34,7 @@ class AlertCell: UITableViewCell {
     
     @objc private func animateWarningShake() {
         warningImageView.layer.removeAllAnimations()
-        warningImageView.animateShake(withAnimationDelegate: self)
+        warningImageView.animatePulse(withAnimationDelegate: self)
     }
 }
 

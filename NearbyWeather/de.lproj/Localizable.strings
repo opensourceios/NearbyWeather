@@ -1,6 +1,6 @@
 /*
  Localizable.strings
- SimpleWeather
+ NearbyWeather
  
  Created by Erik Maximilian Martens on 03.12.16.
  Copyright © 2016 Erik Maximilian Martens. All rights reserved.
@@ -42,7 +42,9 @@ LocationsListTVC_SortAlert_Action2 = "Nach Temperatur sortieren";
 
 LocationsListTVC_BackButtonTitle = "Zurück";
 
-LocationsListTVC_AlertNoData = "Es konnten keine Daten geladen werden. Gehe sicher, dass du eine Netzwerkverbindung hast und dein API Key korrekt eingegeben ist.";
+LocationsListTVC_AlertNoData = "Es konnten keine Daten geladen werden. Gehe sicher, dass du eine Netzwerkverbindung hast und dein API Schlüssel korrekt eingegeben ist.";
+LocationsListTVC_AlertIncorrectFavoritedCity = "Es konnte keine Daten für die eingebene Stadt gefunden werde. Gehe sicher, dass der Name richtig geschrieben ist und diese Stadt existier.";
+LocationsListTVC_AlertLocationUnavailable = "Du gestattest NearbyWeather keinen Zugriff auf deinen Standtort. Somit können keine Daten für nahegelgene Wetter-Stationen geladen werden.";
 
 
 // MARK: - InfoTableViewController
@@ -52,6 +54,7 @@ InfoTVC_NavigationItemTitle = "Über";
 InfoTVC_TableViewSectionHeader2 = "Legende";
 InfoTVC_TableViewSectionHeader3 = "Ressourcen";
 InfoTVC_TableViewSectionHeader4 = "Mitwirkende";
+InfoTVC_TableViewSectionHeader5 = "Bibliotheken";
 
 InfoTVC_AppTitle = "NearbyWeather - Open Source Wetter";
 InfoTVC_AppVersion = "Version 1.2 Build #6";
@@ -83,7 +86,6 @@ SettingsTVC_Results = "Ergebnisse";
 
 // MARK: - SettingsInputTableViewController
 
-SettingsInputTVC_NavigationBarTitle_Mode_EnterFavoritedLocation = "Stadt Einstellen";
 SettingsInputTVC_NavigationBarTitle_Mode_EnterAPIKey = "API Einstellen";
 
 InputSettingsTVC_SectionTitle_Mode_EnterFavoritedLocation = "Gib eine Städte Namen ein";
@@ -91,10 +93,16 @@ InputSettingsTVC_SectionTitle_Mode_EnterAPIKey = "Gib deinen API Schlüssel ein"
 
 InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "Der API Schlüssel hat eine Länge von genau 32 Zeichen.";
 
+
+// MARK:  - OpenWeatherMapCityFilterTableViewController
+
+OpenWeatherMapCityFilterTVC_NavigationBarTitle = "Stadt Einstellen";
+OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Nach Städte-Namen Suchen";
+
 // MARK: - General
 
-kilometres_per_hour = "Kilometres per Hour";
-miles_per_hour = "Miles per Hour";
+kilometres_per_hour = "Kilometer/Stunde";
+miles_per_hour = "Meilen/Stunde";
 
 kph = "kp/h";
 mph = "m/h";
