@@ -56,7 +56,6 @@ InfoTVC_TableViewSectionHeader2 = "Mitwirkende";
 InfoTVC_TableViewSectionHeader3 = "Bibliotheken";
 
 InfoTVC_AppTitle = "NearbyWeather - Open Source Wetter";
-InfoTVC_AppVersion = "Version 1.2 Build #6";
 
 InfoTVC_Support = "Support";
 InfoTVC_Source = "Quellcode";

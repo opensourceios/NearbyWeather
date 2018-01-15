@@ -118,17 +118,19 @@ class InfoTableViewController: UITableViewController {
         appTitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
         appTitleLabel.text! = NSLocalizedString("InfoTVC_AppTitle", comment: "")
         
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
         appVersionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        appVersionLabel.text! = NSLocalizedString("InfoTVC_AppVersion", comment: "")
+        appVersionLabel.text = "Version \(appVersion) Build #\(appBuild)"
         
         supportNoteLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        supportNoteLabel.text! = NSLocalizedString("InfoTVC_Support", comment: "")
+        supportNoteLabel.text = NSLocalizedString("InfoTVC_Support", comment: "")
         
         supportAddressLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         supportAddressLabel.textColor = .nearbyWeatherStandard
         
         sourceNoteLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        sourceNoteLabel.text! = NSLocalizedString("InfoTVC_Source", comment: "")
+        sourceNoteLabel.text = NSLocalizedString("InfoTVC_Source", comment: "")
         
         sourceAddressLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         sourceAddressLabel.textColor = .nearbyWeatherStandard
