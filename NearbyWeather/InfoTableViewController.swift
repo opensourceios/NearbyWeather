@@ -58,10 +58,7 @@ class InfoTableViewController: UITableViewController {
         if indexPath.section == 1 && indexPath.row == 0 {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let destinationViewController = storyboard.instantiateViewController(withIdentifier: "HelpTableViewController") as! HelpTableViewController
-            
-            let barButton = UIBarButtonItem()
-            barButton.title = nil
-            navigationItem.backBarButtonItem = barButton
+            navigationItem.removeTextFromBackBarButton()
             navigationController?.pushViewController(destinationViewController, animated: true)
         }
         if indexPath.section == 1 && indexPath.row == 1 {

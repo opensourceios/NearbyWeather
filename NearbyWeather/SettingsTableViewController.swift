@@ -37,17 +37,13 @@ class SettingsTableViewController: UITableViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let destinationViewController = storyboard.instantiateViewController(withIdentifier: "OWMCityFilterTableViewController") as! OWMCityFilterTableViewController
 
-            let barButton = UIBarButtonItem()
-            barButton.title = nil
-            navigationItem.backBarButtonItem = barButton
+            navigationItem.removeTextFromBackBarButton()
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 1:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsInputTVC") as! SettingsInputTableViewController
             
-            let barButton = UIBarButtonItem()
-            barButton.title = nil
-            navigationItem.backBarButtonItem = barButton
+            navigationItem.removeTextFromBackBarButton()
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 2:
             WeatherDataService.shared.amountOfResults = AmountOfResultsWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
