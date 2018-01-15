@@ -16,11 +16,6 @@ class InfoTableViewController: UITableViewController {
     @IBOutlet weak var appTitleLabel: UILabel!
     @IBOutlet weak var appVersionLabel: UILabel!
     
-    @IBOutlet weak var legendEntryLabel_1: UILabel!
-    @IBOutlet weak var legendEntryLabel_2: UILabel!
-    @IBOutlet weak var legendEntryLabel_3: UILabel!
-    @IBOutlet weak var legendEntryLabel_4: UILabel!
-    
     @IBOutlet weak var supportNoteLabel: UILabel!
     @IBOutlet weak var supportAddressLabel: UILabel!
     
@@ -31,8 +26,6 @@ class InfoTableViewController: UITableViewController {
     
     
     //MARK: - ViewController Life Cycle
-    
-    /* View */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,29 +40,46 @@ class InfoTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         configure()
-        tableView.reloadData()
+        
+        tableView.reloadData() // in case of preferred content size change
+    }
+    
+    
+    // MARK: - TableView Delegate
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
         
         var urlStringValue: String?
+        if indexPath.section == 1 && indexPath.row == 0 {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationViewController = storyboard.instantiateViewController(withIdentifier: "HelpTableViewController") as! HelpTableViewController
+            
+            let barButton = UIBarButtonItem()
+            barButton.title = nil
+            navigationItem.backBarButtonItem = barButton
+            navigationController?.pushViewController(destinationViewController, animated: true)
+        }
+        if indexPath.section == 1 && indexPath.row == 1 {
+            urlStringValue = "http://www.erikmartens.de/portfolio.html"
+        }
+        if indexPath.section == 1 && indexPath.row == 2 {
+            urlStringValue = "https://github.com/erikmartens/NearbyWeather"
+        }
         if indexPath.section == 2 && indexPath.row == 0 {
             urlStringValue = "http://www.erikmartens.de/contact.html"
         }
-        if indexPath.section == 2 && indexPath.row == 1 {
-            urlStringValue = "https://github.com/erikmartens/NearbyWeather"
-        }
         if indexPath.section == 3 && indexPath.row == 0 {
-            urlStringValue = "http://www.erikmartens.de"
-        }
-        if indexPath.section == 4 && indexPath.row == 0 {
             urlStringValue = "https://github.com/pkluz/PKHUD"
         }
-        if indexPath.section == 4 && indexPath.row == 1 {
+        if indexPath.section == 3 && indexPath.row == 1 {
             urlStringValue = "https://github.com/Onix-Systems/RainyRefreshControl"
         }
-        if indexPath.section == 4 && indexPath.row == 2 {
+        if indexPath.section == 3 && indexPath.row == 2 {
             urlStringValue = "https://github.com/serralvo/TextFieldCounter"
         }
         
@@ -86,22 +96,20 @@ class InfoTableViewController: UITableViewController {
         present(safariController, animated: true, completion: nil)
     }
     
+    
+    // MARK: - TableView Data Source
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 1: return NSLocalizedString("InfoTVC_TableViewSectionHeader2", comment: "")
-        case 2: return NSLocalizedString("InfoTVC_TableViewSectionHeader3", comment: "")
-        case 3: return NSLocalizedString("InfoTVC_TableViewSectionHeader4", comment: "")
-        case 4: return NSLocalizedString("InfoTVC_TableViewSectionHeader5", comment: "")
+        case 1: return NSLocalizedString("InfoTVC_TableViewSectionHeader1", comment: "")
+        case 2: return NSLocalizedString("InfoTVC_TableViewSectionHeader2", comment: "")
+        case 3: return NSLocalizedString("InfoTVC_TableViewSectionHeader3", comment: "")
         default: return nil
         }
     }
+
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
-    
-    // MARK: - Interface Setup
+    // MARK: - Private Helpers
     
     private func configure() {
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
@@ -112,15 +120,6 @@ class InfoTableViewController: UITableViewController {
     private func configureText() {
         appTitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
         appTitleLabel.text! = NSLocalizedString("InfoTVC_AppTitle", comment: "")
-        
-        legendEntryLabel_1.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        legendEntryLabel_1.text! = NSLocalizedString("InfoTVC_Legend_Temperature", comment: "")
-        legendEntryLabel_2.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        legendEntryLabel_2.text! = NSLocalizedString("InfoTVC_Legend_CloudCover", comment: "")
-        legendEntryLabel_3.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        legendEntryLabel_3.text! = NSLocalizedString("InfoTVC_Legend_Humidity", comment: "")
-        legendEntryLabel_4.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        legendEntryLabel_4.text! = NSLocalizedString("InfoTVC_Legend_WindSpeed", comment: "")
         
         appVersionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         appVersionLabel.text! = NSLocalizedString("InfoTVC_AppVersion", comment: "")

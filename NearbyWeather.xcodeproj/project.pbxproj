@@ -30,6 +30,7 @@
 		F28CE96A1F9AA829008319C4 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28CE9691F9AA829008319C4 /* UIViewExtensions.swift */; };
 		F2A5CAA62005762A0071BFFB /* ConversionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5CAA52005762A0071BFFB /* ConversionService.swift */; };
 		F2A5CAA8200587DE0071BFFB /* OWMCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5CAA7200587DE0071BFFB /* OWMCityCell.swift */; };
+		F2A5CAAA200D497B0071BFFB /* HelpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5CAA9200D497B0071BFFB /* HelpTableViewController.swift */; };
 		F2B8EA001EA11BA800704E90 /* OWMWeatherDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8E9FF1EA11BA800704E90 /* OWMWeatherDTO.swift */; };
 		F2B8EA021EA121CC00704E90 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA011EA121CC00704E90 /* AlertCell.swift */; };
 		F2B8EA041EA286F000704E90 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2B8EA031EA286F000704E90 /* Welcome.storyboard */; };
@@ -98,6 +99,7 @@
 		F28CE9691F9AA829008319C4 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		F2A5CAA52005762A0071BFFB /* ConversionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionService.swift; sourceTree = "<group>"; };
 		F2A5CAA7200587DE0071BFFB /* OWMCityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OWMCityCell.swift; sourceTree = "<group>"; };
+		F2A5CAA9200D497B0071BFFB /* HelpTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTableViewController.swift; sourceTree = "<group>"; };
 		F2B8E9FF1EA11BA800704E90 /* OWMWeatherDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OWMWeatherDTO.swift; sourceTree = "<group>"; };
 		F2B8EA011EA121CC00704E90 /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
 		F2B8EA031EA286F000704E90 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				F2B8EA071EA2A7AB00704E90 /* SetPermissionsViewController.swift */,
 				F28CE9671F9A9893008319C4 /* WeatherListViewController.swift */,
 				F2B8EA0D1EA37BE800704E90 /* InfoTableViewController.swift */,
+				F2A5CAA9200D497B0071BFFB /* HelpTableViewController.swift */,
 				F204B7BC1DF35610000F4371 /* SettingsTableViewController.swift */,
 				F27AFDEF1DF4D36C003957EB /* SettingsInputTableViewController.swift */,
 				F2FE3F022002972800EBC429 /* OWMCityFilterTableViewController.swift */,
@@ -580,6 +583,7 @@
 				F266995A1E9ADBC300498F99 /* LocationService.swift in Sources */,
 				F204B77B1DF2EFA3000F4371 /* AppDelegate.swift in Sources */,
 				F2B8EA061EA2893C00704E90 /* WelcomeScreenViewController.swift in Sources */,
+				F2A5CAAA200D497B0071BFFB /* HelpTableViewController.swift in Sources */,
 				F2B8EA001EA11BA800704E90 /* OWMWeatherDTO.swift in Sources */,
 				F2B8EA0E1EA37BE800704E90 /* InfoTableViewController.swift in Sources */,
 				F204B7BD1DF35610000F4371 /* SettingsTableViewController.swift in Sources */,
