@@ -51,13 +51,11 @@ LocationsListTVC_AlertLocationUnavailable = "Du gestattest NearbyWeather keinen 
 
 InfoTVC_NavigationItemTitle = "Über";
 
-InfoTVC_TableViewSectionHeader2 = "Legende";
-InfoTVC_TableViewSectionHeader3 = "Ressourcen";
-InfoTVC_TableViewSectionHeader4 = "Mitwirkende";
-InfoTVC_TableViewSectionHeader5 = "Bibliotheken";
+InfoTVC_TableViewSectionHeader1 = "Ressourcen";
+InfoTVC_TableViewSectionHeader2 = "Mitwirkende";
+InfoTVC_TableViewSectionHeader3 = "Bibliotheken";
 
 InfoTVC_AppTitle = "NearbyWeather - Open Source Wetter";
-InfoTVC_AppVersion = "Version 1.2 Build #6";
 
 InfoTVC_Support = "Support";
 InfoTVC_Source = "Quellcode";
@@ -67,6 +65,13 @@ InfoTVC_Legend_Temperature = "🌡 Temperatur";
 InfoTVC_Legend_CloudCover = "☁️ Wolkenbedeckung";
 InfoTVC_Legend_Humidity = "💧 Luftfeuchtigkeit";
 InfoTVC_Legend_WindSpeed = "💨 Windgeschwindigkeit";
+
+
+// MARK: - HelpTableViewController
+
+HelpTVC_NavigationItemTitle = "Hilfe";
+
+InfoTVC_TableViewSectionHeader0 = "Legende";
 
 
 // MARK: - SettingsTableViewController
