@@ -57,7 +57,6 @@ InfoTVC_TableViewSectionHeader3 = "Libraries";
 
 InfoTVC_AppTitle = "NearbyWeather - Open Source Weather";
 
-InfoTVC_Support = "Support";
 InfoTVC_Source = "Source Code";
 InfoTVC_Icons = "Icons by";
 

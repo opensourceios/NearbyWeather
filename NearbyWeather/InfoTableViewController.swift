@@ -16,9 +16,6 @@ class InfoTableViewController: UITableViewController {
     @IBOutlet weak var appTitleLabel: UILabel!
     @IBOutlet weak var appVersionLabel: UILabel!
     
-    @IBOutlet weak var supportNoteLabel: UILabel!
-    @IBOutlet weak var supportAddressLabel: UILabel!
-    
     @IBOutlet weak var sourceNoteLabel: UILabel!
     @IBOutlet weak var sourceAddressLabel: UILabel!
     
@@ -61,9 +58,6 @@ class InfoTableViewController: UITableViewController {
             navigationController?.pushViewController(destinationViewController, animated: true)
         }
         if indexPath.section == 0 && indexPath.row == 1 {
-            urlStringValue = "http://www.erikmartens.de/portfolio.html"
-        }
-        if indexPath.section == 0 && indexPath.row == 2 {
             urlStringValue = "https://github.com/erikmartens/NearbyWeather"
         }
         if indexPath.section == 1 && indexPath.row == 0 {
@@ -121,12 +115,6 @@ class InfoTableViewController: UITableViewController {
         let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "#UNDEFINED"
         appVersionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         appVersionLabel.text = "Version \(appVersion) Build #\(appBuild)"
-        
-        supportNoteLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        supportNoteLabel.text = NSLocalizedString("InfoTVC_Support", comment: "")
-        
-        supportAddressLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        supportAddressLabel.textColor = .nearbyWeatherStandard
         
         sourceNoteLabel.font = UIFont.preferredFont(forTextStyle: .body)
         sourceNoteLabel.text = NSLocalizedString("InfoTVC_Source", comment: "")
