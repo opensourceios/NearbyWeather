@@ -35,8 +35,13 @@ class SettingsTableViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let destinationViewController = storyboard.instantiateViewController(withIdentifier: "InfoTableViewController") as! InfoTableViewController
-            
+            var destinationViewController = UIViewController()
+            if indexPath.row == 0 {
+                destinationViewController = storyboard.instantiateViewController(withIdentifier: "InfoTableViewController") as! InfoTableViewController
+            }
+            if indexPath.row == 1 {
+                destinationViewController = storyboard.instantiateViewController(withIdentifier: "HelpTableViewController") as! HelpTableViewController
+            }
             navigationItem.removeTextFromBackBarButton()
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 1:
@@ -91,7 +96,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 1
+            return 2
         case 1:
             return 1
         case 2:
@@ -113,7 +118,8 @@ class SettingsTableViewController: UITableViewController {
         
         switch indexPath.section {
         case 0:
-            cell.contentLabel.text = NSLocalizedString("SettingsTVC_About", comment: "")
+            let labelText = [NSLocalizedString("SettingsTVC_About", comment: ""), NSLocalizedString("HelpTVC_NavigationItemTitle", comment: "")]
+            cell.contentLabel.text = labelText[indexPath.row]
             cell.accessoryType = .disclosureIndicator
         case 1:
             cell.contentLabel.text = "\(WeatherDataService.shared.favoritedCity.name), \(WeatherDataService.shared.favoritedCity.country)"
