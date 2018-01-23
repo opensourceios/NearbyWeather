@@ -47,6 +47,11 @@ LocationsListTVC_AlertIncorrectFavoritedCity = "Es konnte keine Daten für die e
 LocationsListTVC_AlertLocationUnavailable = "Du gestattest NearbyWeather keinen Zugriff auf deinen Standtort. Somit können keine Daten für nahegelgene Wetter-Stationen geladen werden.";
 
 
+// MARK: - NearbyLocationsMapViewController
+
+NearbyLocationsMapVC_NavigationItemTitle = "Stations-Standorte";
+
+
 // MARK: - InfoTableViewController
 
 InfoTVC_NavigationItemTitle = "Über";

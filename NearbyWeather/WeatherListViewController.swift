@@ -131,11 +131,11 @@ class WeatherListViewController: UIViewController {
     }
     
     @IBAction func didTapInfoButton(_ sender: UIButton) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let destinationViewController = storyboard.instantiateViewController(withIdentifier: "InfoTVC") as! InfoTableViewController
-//        let destinationNavigationController = UINavigationController(rootViewController: destinationViewController)
-//        destinationNavigationController.addVerticalCloseButton(withCompletionHandler: nil)
-//        navigationController?.present(destinationNavigationController, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let destinationViewController = storyboard.instantiateViewController(withIdentifier: "NearbyLocationsMapViewController") as! NearbyLocationsMapViewController
+        let destinationNavigationController = UINavigationController(rootViewController: destinationViewController)
+        destinationNavigationController.addVerticalCloseButton(withCompletionHandler: nil)
+        navigationController?.present(destinationNavigationController, animated: true, completion: nil)
     }
 
     @IBAction func sortButtonPressed(_ sender: UIButton) {

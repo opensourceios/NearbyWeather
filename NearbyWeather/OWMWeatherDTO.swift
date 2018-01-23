@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 /**
  * OWMWeatherDTO is used to parse the JSON response from the server
@@ -15,6 +16,16 @@ import UIKit
  */
 
 struct OWMWeatherDTO: Codable {
+    
+    struct Coordinates: Codable {
+        var latitude: Double
+        var longitude: Double
+        
+        enum CodingKeys: String, CodingKey {
+            case latitude = "lat"
+            case longitude = "lon"
+        }
+    }
     
     struct WeatherCondition: Codable {
         var identifier: Int
@@ -72,6 +83,7 @@ struct OWMWeatherDTO: Codable {
     
     var cityID: Int
     var cityName: String
+    var coordinates: Coordinates
     var weatherCondition: [WeatherCondition]
     var atmosphericInformation: AtmosphericInformation
     var windInformation: WindInformation
@@ -81,6 +93,7 @@ struct OWMWeatherDTO: Codable {
     enum CodingKeys: String, CodingKey {
         case cityID = "id"
         case cityName = "name"
+        case coordinates = "coord"
         case weatherCondition = "weather"
         case atmosphericInformation = "main"
         case windInformation = "wind"
@@ -93,6 +106,7 @@ struct OWMWeatherDTO: Codable {
         
         self.cityID = try values.decode(Int.self, forKey: .cityID)
         self.cityName = try values.decode(String.self, forKey: .cityName)
+        self.coordinates = try values.decode(Coordinates.self, forKey: .coordinates)
         self.weatherCondition = try values.decode([WeatherCondition].self, forKey: .weatherCondition)
         self.atmosphericInformation = try values.decode(AtmosphericInformation.self, forKey: .atmosphericInformation)
         self.windInformation = try values.decode(WindInformation.self, forKey: .windInformation)

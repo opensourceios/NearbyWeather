@@ -47,6 +47,11 @@ LocationsListTVC_AlertIncorrectFavoritedCity = "The city name you entered did no
 LocationsListTVC_AlertLocationUnavailable = "You do not grant NearbyWeather access to your location. Therefore no nearby weather data could be loaded.";
 
 
+// MARK: - NearbyLocationsMapViewController
+
+NearbyLocationsMapVC_NavigationItemTitle = "Weather-Station Locations";
+
+
 // MARK: - InfoTableViewController
 
 InfoTVC_NavigationItemTitle = "About";
