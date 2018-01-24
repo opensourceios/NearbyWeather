@@ -20,6 +20,7 @@ class InfoTableViewController: UITableViewController {
     @IBOutlet weak var sourceAddressLabel: UILabel!
     
     @IBOutlet weak var developerName_0: UILabel!
+    @IBOutlet weak var developerNameSubtitle_0: UILabel!
     
     
     //MARK: - ViewController Life Cycle
@@ -102,20 +103,15 @@ class InfoTableViewController: UITableViewController {
     }
     
     private func configureText() {
-        appTitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        appTitleLabel.text! = NSLocalizedString("InfoTVC_AppTitle", comment: "")
+        appTitleLabel.text = NSLocalizedString("InfoTVC_AppTitle", comment: "")
         
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "#UNDEFINED"
         let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "#UNDEFINED"
-        appVersionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         appVersionLabel.text = "Version \(appVersion) Build #\(appBuild)"
-        
-        sourceNoteLabel.font = UIFont.preferredFont(forTextStyle: .body)
         sourceNoteLabel.text = NSLocalizedString("InfoTVC_Source", comment: "")
-        
-        sourceAddressLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         sourceAddressLabel.textColor = .nearbyWeatherStandard
         
-        developerName_0.font = UIFont.preferredFont(forTextStyle: .body)
+        developerName_0.text = "Erik Maximilian Martens"
+        developerNameSubtitle_0.text = NSLocalizedString("InfoTVC_DeveloperNameSubtitle_0", comment: "")
     }
 }

@@ -62,8 +62,8 @@ InfoTVC_TableViewSectionHeader3 = "Bibliotheken";
 
 InfoTVC_AppTitle = "NearbyWeather - Open Source Wetter";
 
+InfoTVC_DeveloperNameSubtitle_0 = "Projekt Inhaber";
 InfoTVC_Source = "Quellcode";
-InfoTVC_Icons = "Icons via";
 
 HelpTVC_Legend_Thunderstorm = "🌩 Gewitter";
 HelpTVC_Legend_ThunderstormWithRain = "⛈ Gewitter mit Regen";
