@@ -22,7 +22,9 @@ class ConversionService {
             return "🌦"
         case let x where x >= 500 && x <= 531:
             return "🌧"
-        case let x where x >= 600 && x <= 622:
+        case let x where x >= 600 && x <= 614:
+            return "❄️"
+        case let x where x >= 615 && x <= 622:
             return "🌨"
         case let x where x >= 701 && x <= 771:
             return "🌫"
@@ -51,7 +53,7 @@ class ConversionService {
         case let x where x == 804:
             return "☁️"
         case let x where x >= 952 && x <= 958:
-            return "💨"
+            return "🌬"
         default:
             return "☀️"
         }

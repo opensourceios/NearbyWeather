@@ -588,10 +588,374 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
+                            <tableViewSection id="b5X-bz-XSZ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ZWm-jK-rfA">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZWm-jK-rfA" id="QEr-T1-3aY">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🌩 Thunderstorm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3lY-xQ-ha3" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="lQ1-ia-USb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="3lY-xQ-ha3" secondAttribute="bottom" constant="4" id="MUh-Ik-Gt2"/>
+                                                <constraint firstItem="3lY-xQ-ha3" firstAttribute="leading" secondItem="QEr-T1-3aY" secondAttribute="leading" constant="15" id="MnH-ka-L0P"/>
+                                                <constraint firstAttribute="trailing" secondItem="3lY-xQ-ha3" secondAttribute="trailing" constant="15" id="PMN-1b-ybN"/>
+                                                <constraint firstItem="3lY-xQ-ha3" firstAttribute="top" secondItem="QEr-T1-3aY" secondAttribute="top" constant="5" id="k18-aY-3g3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="b8M-VE-xSJ">
+                                        <rect key="frame" x="0.0" y="79" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b8M-VE-xSJ" id="EMK-Yp-SuB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⛈ Thunderstorm with Rain" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNc-C7-JH4" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="VrT-w0-RDT"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="sNc-C7-JH4" secondAttribute="trailing" constant="15" id="2tu-YC-btA"/>
+                                                <constraint firstAttribute="bottom" secondItem="sNc-C7-JH4" secondAttribute="bottom" constant="4" id="37q-oV-8of"/>
+                                                <constraint firstItem="sNc-C7-JH4" firstAttribute="leading" secondItem="EMK-Yp-SuB" secondAttribute="leading" constant="15" id="POt-f7-tVl"/>
+                                                <constraint firstItem="sNc-C7-JH4" firstAttribute="top" secondItem="EMK-Yp-SuB" secondAttribute="top" constant="5" id="mAD-h4-Ss3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="P8N-cl-efJ">
+                                        <rect key="frame" x="0.0" y="123" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P8N-cl-efJ" id="ryg-TD-K3o">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚡️ Heavy Thunderstorm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7P-i4-YPK" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="gVp-0M-LZH"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="A7P-i4-YPK" secondAttribute="trailing" constant="15" id="5md-2j-kdt"/>
+                                                <constraint firstItem="A7P-i4-YPK" firstAttribute="leading" secondItem="ryg-TD-K3o" secondAttribute="leading" constant="15" id="SSW-YA-SK8"/>
+                                                <constraint firstItem="A7P-i4-YPK" firstAttribute="top" secondItem="ryg-TD-K3o" secondAttribute="top" constant="5" id="qJB-Uz-IGD"/>
+                                                <constraint firstAttribute="bottom" secondItem="A7P-i4-YPK" secondAttribute="bottom" constant="4" id="rN1-gl-X3a"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="2qO-rq-oD2">
+                                        <rect key="frame" x="0.0" y="167" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2qO-rq-oD2" id="8AT-KQ-cfz">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🌦 Drizzle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9a-AO-rbN" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="xDM-4h-uqv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="s9a-AO-rbN" secondAttribute="bottom" constant="4" id="MRy-Ks-3xh"/>
+                                                <constraint firstItem="s9a-AO-rbN" firstAttribute="top" secondItem="8AT-KQ-cfz" secondAttribute="top" constant="5" id="hPg-Mv-s2y"/>
+                                                <constraint firstItem="s9a-AO-rbN" firstAttribute="leading" secondItem="8AT-KQ-cfz" secondAttribute="leading" constant="15" id="kVj-TN-am2"/>
+                                                <constraint firstAttribute="trailing" secondItem="s9a-AO-rbN" secondAttribute="trailing" constant="15" id="yJf-3g-XSR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="bFg-GK-bvi">
+                                        <rect key="frame" x="0.0" y="211" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bFg-GK-bvi" id="L0R-B8-SZt">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🌧 Rain" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O19-MD-rK7" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="uCG-CV-Lc0"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="O19-MD-rK7" firstAttribute="top" secondItem="L0R-B8-SZt" secondAttribute="top" constant="5" id="Hfh-6V-Njz"/>
+                                                <constraint firstAttribute="bottom" secondItem="O19-MD-rK7" secondAttribute="bottom" constant="4" id="Qhe-Vp-gUm"/>
+                                                <constraint firstAttribute="trailing" secondItem="O19-MD-rK7" secondAttribute="trailing" constant="15" id="ac8-cI-uCq"/>
+                                                <constraint firstItem="O19-MD-rK7" firstAttribute="leading" secondItem="L0R-B8-SZt" secondAttribute="leading" constant="15" id="fuk-0C-RhS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="sSF-yq-AGy">
+                                        <rect key="frame" x="0.0" y="255" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sSF-yq-AGy" id="JbF-7q-pon">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🌫 Atmosphere" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1R-d9-exP" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="uNs-S5-kLR"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="P1R-d9-exP" firstAttribute="top" secondItem="JbF-7q-pon" secondAttribute="top" constant="5" id="SHx-84-ZEK"/>
+                                                <constraint firstAttribute="bottom" secondItem="P1R-d9-exP" secondAttribute="bottom" constant="4" id="ZRJ-c4-kof"/>
+                                                <constraint firstAttribute="trailing" secondItem="P1R-d9-exP" secondAttribute="trailing" constant="15" id="p0c-N9-uJ7"/>
+                                                <constraint firstItem="P1R-d9-exP" firstAttribute="leading" secondItem="JbF-7q-pon" secondAttribute="leading" constant="15" id="yYY-Wj-vEA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Egg-i7-t2U">
+                                        <rect key="frame" x="0.0" y="299" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Egg-i7-t2U" id="MZN-rd-26I">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🌪 Heavy Storm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLk-Ju-bDZ" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="A7R-jC-Bzx"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="FLk-Ju-bDZ" firstAttribute="top" secondItem="MZN-rd-26I" secondAttribute="top" constant="5" id="5fm-xh-HXr"/>
+                                                <constraint firstItem="FLk-Ju-bDZ" firstAttribute="leading" secondItem="MZN-rd-26I" secondAttribute="leading" constant="15" id="KVj-6r-0GV"/>
+                                                <constraint firstAttribute="bottom" secondItem="FLk-Ju-bDZ" secondAttribute="bottom" constant="4" id="fhN-iA-Pbe"/>
+                                                <constraint firstAttribute="trailing" secondItem="FLk-Ju-bDZ" secondAttribute="trailing" constant="15" id="yxe-eG-jkB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Zo3-ys-ib3">
+                                        <rect key="frame" x="0.0" y="343" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zo3-ys-ib3" id="54z-Nz-CZ5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☀️/✨ Sunny/Clear" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKe-C3-fLc" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="lP0-5D-B9S"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="OKe-C3-fLc" secondAttribute="trailing" constant="15" id="7kQ-MW-2IG"/>
+                                                <constraint firstItem="OKe-C3-fLc" firstAttribute="top" secondItem="54z-Nz-CZ5" secondAttribute="top" constant="5" id="YxP-47-RnP"/>
+                                                <constraint firstItem="OKe-C3-fLc" firstAttribute="leading" secondItem="54z-Nz-CZ5" secondAttribute="leading" constant="15" id="eUv-QC-0vB"/>
+                                                <constraint firstAttribute="bottom" secondItem="OKe-C3-fLc" secondAttribute="bottom" constant="4" id="oNj-cR-Rq9"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="5xb-uu-0Jy">
+                                        <rect key="frame" x="0.0" y="387" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5xb-uu-0Jy" id="FQd-lw-1sj">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🌤 Few Clouds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKd-sq-uc5" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="1yu-yN-N7J"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="HKd-sq-uc5" secondAttribute="bottom" constant="4" id="RYq-kF-X14"/>
+                                                <constraint firstItem="HKd-sq-uc5" firstAttribute="leading" secondItem="FQd-lw-1sj" secondAttribute="leading" constant="15" id="dKM-77-MT1"/>
+                                                <constraint firstAttribute="trailing" secondItem="HKd-sq-uc5" secondAttribute="trailing" constant="15" id="h0q-2C-6t0"/>
+                                                <constraint firstItem="HKd-sq-uc5" firstAttribute="top" secondItem="FQd-lw-1sj" secondAttribute="top" constant="5" id="vE5-6c-7Gz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Osl-Ad-wfw">
+                                        <rect key="frame" x="0.0" y="431" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Osl-Ad-wfw" id="ic7-ce-6eA">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⛅️ Scattered Clouds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OI6-6M-bXd" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="Dhe-ft-cQK"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="OI6-6M-bXd" secondAttribute="trailing" constant="15" id="61T-pw-Byy"/>
+                                                <constraint firstItem="OI6-6M-bXd" firstAttribute="leading" secondItem="ic7-ce-6eA" secondAttribute="leading" constant="15" id="j6u-Vn-MGV"/>
+                                                <constraint firstAttribute="bottom" secondItem="OI6-6M-bXd" secondAttribute="bottom" constant="4" id="sTa-qH-Krt"/>
+                                                <constraint firstItem="OI6-6M-bXd" firstAttribute="top" secondItem="ic7-ce-6eA" secondAttribute="top" constant="5" id="yET-Co-tby"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="qhM-6b-WH8">
+                                        <rect key="frame" x="0.0" y="475" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qhM-6b-WH8" id="vHh-L6-yyT">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🌥 Broken Clouds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cwf-20-wH3" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="AQe-Af-ysH"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Cwf-20-wH3" secondAttribute="trailing" constant="15" id="JrX-5P-4LI"/>
+                                                <constraint firstItem="Cwf-20-wH3" firstAttribute="top" secondItem="vHh-L6-yyT" secondAttribute="top" constant="5" id="Ows-nj-ys4"/>
+                                                <constraint firstItem="Cwf-20-wH3" firstAttribute="leading" secondItem="vHh-L6-yyT" secondAttribute="leading" constant="15" id="VSc-8F-Wa1"/>
+                                                <constraint firstAttribute="bottom" secondItem="Cwf-20-wH3" secondAttribute="bottom" constant="4" id="jka-wH-Oih"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="8Pw-JH-nap">
+                                        <rect key="frame" x="0.0" y="519" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Pw-JH-nap" id="B18-Iy-p3y">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☁️ Overcast Clouds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1c-Yj-BaL" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="zbC-eM-3JW"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="F1c-Yj-BaL" secondAttribute="bottom" constant="4" id="4rZ-yf-WvN"/>
+                                                <constraint firstItem="F1c-Yj-BaL" firstAttribute="leading" secondItem="B18-Iy-p3y" secondAttribute="leading" constant="15" id="TG4-0l-9EV"/>
+                                                <constraint firstAttribute="trailing" secondItem="F1c-Yj-BaL" secondAttribute="trailing" constant="15" id="li7-Ru-Wex"/>
+                                                <constraint firstItem="F1c-Yj-BaL" firstAttribute="top" secondItem="B18-Iy-p3y" secondAttribute="top" constant="5" id="vyR-wP-QCh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="6Pk-II-wnR">
+                                        <rect key="frame" x="0.0" y="563" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Pk-II-wnR" id="65d-Dw-nuE">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🌬 Breeze " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hye-Ox-z3E" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="y8q-Wa-lrt"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hye-Ox-z3E" firstAttribute="top" secondItem="65d-Dw-nuE" secondAttribute="top" constant="5" id="C34-Gh-qF6"/>
+                                                <constraint firstAttribute="trailing" secondItem="hye-Ox-z3E" secondAttribute="trailing" constant="15" id="OAs-CD-SmQ"/>
+                                                <constraint firstItem="hye-Ox-z3E" firstAttribute="leading" secondItem="65d-Dw-nuE" secondAttribute="leading" constant="15" id="Xvw-nv-QM9"/>
+                                                <constraint firstAttribute="bottom" secondItem="hye-Ox-z3E" secondAttribute="bottom" constant="4" id="ype-CR-uTS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="FXM-Du-nGT">
+                                        <rect key="frame" x="0.0" y="607" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FXM-Du-nGT" id="if2-DD-ud8">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="❄️ Snow" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTa-nf-RZd" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="Mfr-0j-GeP"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="MTa-nf-RZd" firstAttribute="leading" secondItem="if2-DD-ud8" secondAttribute="leading" constant="15" id="bwX-mj-3nQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="MTa-nf-RZd" secondAttribute="trailing" constant="15" id="cLp-6r-Iop"/>
+                                                <constraint firstAttribute="bottom" secondItem="MTa-nf-RZd" secondAttribute="bottom" constant="4" id="exH-Vf-E5K"/>
+                                                <constraint firstItem="MTa-nf-RZd" firstAttribute="top" secondItem="if2-DD-ud8" secondAttribute="top" constant="5" id="uf9-bW-jTE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="N4C-JS-H1V">
+                                        <rect key="frame" x="0.0" y="651" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N4C-JS-H1V" id="0ut-i9-3YR">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🌨 Snow &amp; Rain" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4S-46-EdQ" userLabel="LegendLabel">
+                                                    <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="mqq-vj-quA"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="K4S-46-EdQ" secondAttribute="trailing" constant="15" id="Ivt-8l-D3o"/>
+                                                <constraint firstAttribute="bottom" secondItem="K4S-46-EdQ" secondAttribute="bottom" constant="4" id="cpL-VC-jT1"/>
+                                                <constraint firstItem="K4S-46-EdQ" firstAttribute="leading" secondItem="0ut-i9-3YR" secondAttribute="leading" constant="15" id="fwa-G7-KrN"/>
+                                                <constraint firstItem="K4S-46-EdQ" firstAttribute="top" secondItem="0ut-i9-3YR" secondAttribute="top" constant="5" id="gpb-HG-x01"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection id="dMb-cS-c2e">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Wzk-yQ-1bw">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="731" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wzk-yQ-1bw" id="gxx-MX-OPH">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -615,7 +979,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="D5N-Lg-tRK">
-                                        <rect key="frame" x="0.0" y="79" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="775" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D5N-Lg-tRK" id="2ch-Zp-biD">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -639,7 +1003,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="1aP-hV-UPm">
-                                        <rect key="frame" x="0.0" y="123" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="819" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1aP-hV-UPm" id="3OH-u6-FPc">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -663,7 +1027,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="8fG-3B-nvm">
-                                        <rect key="frame" x="0.0" y="167" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="863" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8fG-3B-nvm" id="td1-K2-LgK">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -695,10 +1059,25 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="legendEntryLabel_1" destination="gr3-w7-1dS" id="6PM-0J-1vU"/>
-                        <outlet property="legendEntryLabel_2" destination="Qae-Bq-p57" id="2t3-ca-HrP"/>
-                        <outlet property="legendEntryLabel_3" destination="6Q7-TY-h4v" id="Ulx-Ms-GTI"/>
-                        <outlet property="legendEntryLabel_4" destination="sf7-XN-RcZ" id="fWe-tv-sxi"/>
+                        <outlet property="weatherConditionLabel_0" destination="3lY-xQ-ha3" id="Av3-GJ-0X7"/>
+                        <outlet property="weatherConditionLabel_1" destination="sNc-C7-JH4" id="J07-dF-rm2"/>
+                        <outlet property="weatherConditionLabel_10" destination="Cwf-20-wH3" id="UYE-X8-DrI"/>
+                        <outlet property="weatherConditionLabel_11" destination="F1c-Yj-BaL" id="r8L-XK-ehs"/>
+                        <outlet property="weatherConditionLabel_12" destination="hye-Ox-z3E" id="pUn-Up-iPH"/>
+                        <outlet property="weatherConditionLabel_13" destination="MTa-nf-RZd" id="yqr-dX-RC8"/>
+                        <outlet property="weatherConditionLabel_14" destination="K4S-46-EdQ" id="WVe-Fg-7RB"/>
+                        <outlet property="weatherConditionLabel_2" destination="A7P-i4-YPK" id="6Wh-dF-hK0"/>
+                        <outlet property="weatherConditionLabel_3" destination="s9a-AO-rbN" id="E5e-of-Xmk"/>
+                        <outlet property="weatherConditionLabel_4" destination="O19-MD-rK7" id="gf0-Bf-Tz7"/>
+                        <outlet property="weatherConditionLabel_5" destination="P1R-d9-exP" id="P21-NE-LWf"/>
+                        <outlet property="weatherConditionLabel_6" destination="FLk-Ju-bDZ" id="mM7-KV-Dpn"/>
+                        <outlet property="weatherConditionLabel_7" destination="OKe-C3-fLc" id="f7w-hn-4hS"/>
+                        <outlet property="weatherConditionLabel_8" destination="HKd-sq-uc5" id="J3E-8o-roZ"/>
+                        <outlet property="weatherConditionLabel_9" destination="OI6-6M-bXd" id="Day-Lb-Ygv"/>
+                        <outlet property="weatherDataEntryLabel_0" destination="gr3-w7-1dS" id="6PM-0J-1vU"/>
+                        <outlet property="weatherDataEntryLabel_1" destination="Qae-Bq-p57" id="2t3-ca-HrP"/>
+                        <outlet property="weatherDataEntryLabel_2" destination="6Q7-TY-h4v" id="Ulx-Ms-GTI"/>
+                        <outlet property="weatherDataEntryLabel_3" destination="sf7-XN-RcZ" id="fWe-tv-sxi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TqB-cb-yE5" userLabel="First Responder" sceneMemberID="firstResponder"/>

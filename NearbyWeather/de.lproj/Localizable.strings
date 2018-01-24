@@ -65,6 +65,22 @@ InfoTVC_AppTitle = "NearbyWeather - Open Source Wetter";
 InfoTVC_Source = "Quellcode";
 InfoTVC_Icons = "Icons via";
 
+HelpTVC_Legend_Thunderstorm = "🌩 Gewitter";
+HelpTVC_Legend_ThunderstormWithRain = "⛈ Gewitter mit Regen";
+HelpTVC_Legend_HeavyThunderstorm = "⚡️ Schweres Gewitter";
+HelpTVC_Legend_Drizzle = "🌦 Leichter Regen";
+HelpTVC_Legend_Rain = "🌧 Regen";
+HelpTVC_Legend_Atmosphere = "🌫 Atmospherisch";
+HelpTVC_Legend_HeavyStorm = "🌪 Schwerer Sturm";
+HelpTVC_Legend_SunnyClear = "☀️/✨ Sonnig/Klar";
+HelpTVC_Legend_FewClouds = "🌤 Wenige Wolken";
+HelpTVC_Legend_ScatteredClouds = "⛅️ Leicht Bewölkt";
+HelpTVC_Legend_BrokenClouds = "🌥 Bewölkt";
+HelpTVC_Legend_OvercastClouds = "☁️ Bedeckt";
+HelpTVC_Legend_Breeze = "🌬 Windböhen";
+HelpTVC_Legend_Snow = "❄️ Schnee";
+HelpTVC_Legend_SnowAndRain = "🌨 Schnee & Regen";
+
 InfoTVC_Legend_Temperature = "🌡 Temperatur";
 InfoTVC_Legend_CloudCover = "☁️ Wolkenbedeckung";
 InfoTVC_Legend_Humidity = "💧 Luftfeuchtigkeit";
@@ -75,7 +91,8 @@ InfoTVC_Legend_WindSpeed = "💨 Windgeschwindigkeit";
 
 HelpTVC_NavigationItemTitle = "Hilfe";
 
-InfoTVC_TableViewSectionHeader0 = "Legende";
+InfoTVC_TableViewSectionHeader0 = "Wetterlage-Symbole";
+InfoTVC_TableViewSectionHeader1 = "Wetterdaten-Symbole";
 
 
 // MARK: - SettingsTableViewController
