@@ -57,8 +57,8 @@ class HelpTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0: return NSLocalizedString("InfoTVC_TableViewSectionHeader0", comment: "")
-        case 1: return NSLocalizedString("InfoTVC_TableViewSectionHeader1", comment: "")
+        case 0: return NSLocalizedString("HelpTVC_TableViewSectionHeader0", comment: "")
+        case 1: return NSLocalizedString("HelpTVC_TableViewSectionHeader1", comment: "")
         default: return nil
         }
     }
@@ -89,9 +89,9 @@ class HelpTableViewController: UITableViewController {
         weatherConditionLabel_13.text = NSLocalizedString("HelpTVC_Legend_Snow", comment: "")
         weatherConditionLabel_14.text = NSLocalizedString("HelpTVC_Legend_SnowAndRain", comment: "")
         
-        weatherDataEntryLabel_0.text = NSLocalizedString("InfoTVC_Legend_Temperature", comment: "")
-        weatherDataEntryLabel_1.text = NSLocalizedString("InfoTVC_Legend_CloudCover", comment: "")
-        weatherDataEntryLabel_2.text = NSLocalizedString("InfoTVC_Legend_Humidity", comment: "")
-        weatherDataEntryLabel_3.text = NSLocalizedString("InfoTVC_Legend_WindSpeed", comment: "")
+        weatherDataEntryLabel_0.text = NSLocalizedString("HelpTVC_Legend_Temperature", comment: "")
+        weatherDataEntryLabel_1.text = NSLocalizedString("HelpTVC_Legend_CloudCover", comment: "")
+        weatherDataEntryLabel_2.text = NSLocalizedString("HelpTVC_Legend_Humidity", comment: "")
+        weatherDataEntryLabel_3.text = NSLocalizedString("HelpTVC_Legend_WindSpeed", comment: "")
     }
 }

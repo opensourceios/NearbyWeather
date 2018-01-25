@@ -65,6 +65,14 @@ InfoTVC_AppTitle = "NearbyWeather - Open Source Weather";
 InfoTVC_DeveloperNameSubtitle_0 = "Project Owner";
 InfoTVC_Source = "Source Code";
 
+
+// MARK: - HelpTableViewController
+
+HelpTVC_NavigationItemTitle = "Help";
+
+HelpTVC_TableViewSectionHeader0 = "Weather Condition Symbols";
+HelpTVC_TableViewSectionHeader1 = "Weather Data Symbols";
+
 HelpTVC_Legend_Thunderstorm = "🌩 Thunderstorm";
 HelpTVC_Legend_ThunderstormWithRain = "⛈ Thunderstorm with Rain";
 HelpTVC_Legend_HeavyThunderstorm = "⚡️ Heavy Thunderstorm";
@@ -81,18 +89,10 @@ HelpTVC_Legend_Breeze = "🌬 Breeze";
 HelpTVC_Legend_Snow = "❄️ Snow";
 HelpTVC_Legend_SnowAndRain = "🌨 Snow & Rain";
 
-InfoTVC_Legend_Temperature = "🌡 Temperature";
-InfoTVC_Legend_CloudCover = "☁️ Cloud Cover";
-InfoTVC_Legend_Humidity = "💧 Humidity";
-InfoTVC_Legend_WindSpeed = "💨 Windspeed";
-
-
-// MARK: - HelpTableViewController
-
-HelpTVC_NavigationItemTitle = "Help";
-
-InfoTVC_TableViewSectionHeader0 = "Weather Condition Symbols";
-InfoTVC_TableViewSectionHeader1 = "Weather Data Symbols";
+HelpTVC_Legend_Temperature = "🌡 Temperature";
+HelpTVC_Legend_CloudCover = "☁️ Cloud Cover";
+HelpTVC_Legend_Humidity = "💧 Humidity";
+HelpTVC_Legend_WindSpeed = "💨 Windspeed";
 
 
 // MARK: - SettingsTableViewController
