@@ -49,7 +49,7 @@ LocationsListTVC_AlertLocationUnavailable = "You do not grant NearbyWeather acce
 
 // MARK: - NearbyLocationsMapViewController
 
-NearbyLocationsMapVC_NavigationItemTitle = "Weather-Station Locations";
+NearbyLocationsMapVC_NavigationItemTitle = "Weather Station Locations";
 
 
 // MARK: - InfoTableViewController

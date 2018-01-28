@@ -126,7 +126,7 @@ InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "Der API Schlüssel hat eine L
 // MARK:  - OpenWeatherMapCityFilterTableViewController
 
 OpenWeatherMapCityFilterTVC_NavigationBarTitle = "Stadt Einstellen";
-OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Nach Städte-Namen Suchen";
+OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Suche nach Städtenamen";
 
 // MARK: - General
 

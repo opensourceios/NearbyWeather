@@ -12,7 +12,7 @@ extension UINavigationItem {
     
     func removeTextFromBackBarButton() {
         let barButton = UIBarButtonItem()
-        barButton.title = nil
+        barButton.title = ""
         self.backBarButtonItem = barButton
     }
 }

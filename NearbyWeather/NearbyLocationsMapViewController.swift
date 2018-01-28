@@ -84,19 +84,33 @@ class NearbyLocationsMapViewController: UIViewController {
 
 extension NearbyLocationsMapViewController: MKMapViewDelegate {
     
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        guard let annotation = annotation as? WeatherLocationMapAnnotation else {
-//            return nil
-//        }
-//        var viewForCurrentAnnotation: MKAnnotationView?
-//        if let dequeuedAnnotation = mapView.dequeueReusableAnnotationView(withIdentifier: kMapAnnotationIdentifier) {
-//            dequeuedAnnotation.annotation = annotation
-//            viewForCurrentAnnotation = dequeuedAnnotation
-//        } else {
-//            viewForCurrentAnnotation = MKAnnotationView(annotation: annotation, reuseIdentifier: kMapAnnotationIdentifier)
-//            viewForCurrentAnnotation?.canShowCallout = true
-//            viewForCurrentAnnotation?.calloutOffset = CGPoint(x: -5, y: 5)
-//        }
-//        return viewForCurrentAnnotation
-//    }
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let annotation = annotation as? WeatherLocationMapAnnotation else {
+            return nil
+        }
+        
+        if #available(iOS 11, *) {
+            var viewForCurrentAnnotation: MKMarkerAnnotationView?
+            if let dequeuedAnnotation = mapView.dequeueReusableAnnotationView(withIdentifier: kMapAnnotationIdentifier) as? MKMarkerAnnotationView {
+                dequeuedAnnotation.annotation = annotation
+                viewForCurrentAnnotation = dequeuedAnnotation
+            } else {
+                viewForCurrentAnnotation = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: kMapAnnotationIdentifier)
+                viewForCurrentAnnotation?.canShowCallout = true
+                viewForCurrentAnnotation?.calloutOffset = CGPoint(x: -5, y: 5)
+            }
+            return viewForCurrentAnnotation
+        } else {
+            var viewForCurrentAnnotation: MKAnnotationView?
+            if let dequeuedAnnotation = mapView.dequeueReusableAnnotationView(withIdentifier: kMapAnnotationIdentifier) {
+                dequeuedAnnotation.annotation = annotation
+                viewForCurrentAnnotation = dequeuedAnnotation
+            } else {
+                viewForCurrentAnnotation = MKAnnotationView(annotation: annotation, reuseIdentifier: kMapAnnotationIdentifier)
+                viewForCurrentAnnotation?.canShowCallout = true
+                viewForCurrentAnnotation?.calloutOffset = CGPoint(x: -5, y: 5)
+            }
+            return viewForCurrentAnnotation
+        }
+    }
 }
