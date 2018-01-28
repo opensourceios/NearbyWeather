@@ -39,6 +39,7 @@ class NearbyLocationsMapViewController: UIViewController {
     
     /* Properties */
     
+    var weatherLocations: [CLLocation]!
     var weatherLocationMapAnnotations: [WeatherLocationMapAnnotation]!
     
     
@@ -53,8 +54,11 @@ class NearbyLocationsMapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         configure()
         prepareMapAnnotations()
+        prepareLocations()
+        setMapRegion()
     }
     
     
@@ -68,12 +72,30 @@ class NearbyLocationsMapViewController: UIViewController {
         let multiLocationAnnotations = WeatherDataService.shared.multiLocationWeatherData?.flatMap {
             return WeatherLocationMapAnnotation(weatherDTO: $0)
         }
-        
         weatherLocationMapAnnotations = [WeatherLocationMapAnnotation]()
         weatherLocationMapAnnotations.append(contentsOf: singleLocationAnnotations ?? [WeatherLocationMapAnnotation]())
         weatherLocationMapAnnotations.append(contentsOf: multiLocationAnnotations ?? [WeatherLocationMapAnnotation]())
         
         mapView.addAnnotations(weatherLocationMapAnnotations)
+    }
+    
+    private func prepareLocations() {
+        let singleLocations = WeatherDataService.shared.singleLocationWeatherData?.flatMap {
+            return CLLocation(latitude: $0.coordinates.longitude, longitude: $0.coordinates.latitude)
+        }
+        let multiLocations = WeatherDataService.shared.multiLocationWeatherData?.flatMap {
+            return CLLocation(latitude: $0.coordinates.longitude, longitude: $0.coordinates.latitude)
+        }
+        weatherLocations = [CLLocation]()
+        weatherLocations.append(contentsOf: singleLocations ?? [CLLocation]())
+        weatherLocations.append(contentsOf: multiLocations ?? [CLLocation]())
+    }
+    
+    private func setMapRegion() {
+        if LocationService.shared.locationPermissionsGranted, let currentLocation = LocationService.shared.currentLocation {
+            let region = MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 25000, 25000)
+            mapView.setRegion(region, animated: true)
+        }
     }
     
     private func configure() {
