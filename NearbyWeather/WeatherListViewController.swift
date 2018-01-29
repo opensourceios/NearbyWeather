@@ -70,12 +70,12 @@ class WeatherListViewController: UIViewController {
     // MARK: - Private Helpers
     
     private func configure() {
+        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        
         buttonRowContainerView.layer.cornerRadius = 10
         buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.cgColor
         buttonRowContainerView.addDropShadow(radius: 10)
-        
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
-        navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         buttonRowContainerView.bringSubview(toFront: buttonRowStackView)
         

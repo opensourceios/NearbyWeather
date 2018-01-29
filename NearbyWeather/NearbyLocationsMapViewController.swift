@@ -37,8 +37,17 @@ class NearbyLocationsMapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var buttonRowContainerView: UIView!
+    @IBOutlet weak var buttonRowStackView: UIStackView!
+    
+    @IBOutlet weak var mapTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var focusUserLocationButton: UIButton!
+    @IBOutlet weak var focusFavoritedLocationButton: UIButton!
+    
+    
     /* Properties */
     
+    var favoritedLocation: CLLocation!
     var weatherLocations: [CLLocation]!
     var weatherLocationMapAnnotations: [WeatherLocationMapAnnotation]!
     
@@ -62,7 +71,7 @@ class NearbyLocationsMapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setMapRegion()
+        focusMapOnUserLocation()
     }
     
     
@@ -85,26 +94,69 @@ class NearbyLocationsMapViewController: UIViewController {
     
     private func prepareLocations() {
         let singleLocations = WeatherDataService.shared.singleLocationWeatherData?.flatMap {
-            return CLLocation(latitude: $0.coordinates.longitude, longitude: $0.coordinates.latitude)
+            return CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
         }
         let multiLocations = WeatherDataService.shared.multiLocationWeatherData?.flatMap {
-            return CLLocation(latitude: $0.coordinates.longitude, longitude: $0.coordinates.latitude)
+            return CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
         }
+        favoritedLocation = singleLocations?.first // this should never be nil, favoritedLocation is implicitely unwrapped
         weatherLocations = [CLLocation]()
         weatherLocations.append(contentsOf: singleLocations ?? [CLLocation]())
         weatherLocations.append(contentsOf: multiLocations ?? [CLLocation]())
     }
     
-    private func setMapRegion() {
+    private func focusMapOnUserLocation() {
         if LocationService.shared.locationPermissionsGranted, let currentLocation = LocationService.shared.currentLocation {
-            let region = MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 25000, 25000)
+            let region = MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 15000, 15000)
             mapView.setRegion(region, animated: true)
         }
+    }
+    private func focusMapOnFavoritedLocation() {
+        let region = MKCoordinateRegionMakeWithDistance(favoritedLocation.coordinate, 15000, 15000)
+        mapView.setRegion(region, animated: true)
     }
     
     private func configure() {
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
+        
+        mapView.mapType = .standard
+        
+        buttonRowContainerView.layer.cornerRadius = 10
+        buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.cgColor
+        buttonRowContainerView.addDropShadow(radius: 10)
+        
+        buttonRowContainerView.bringSubview(toFront: buttonRowStackView)
+        
+        mapTypeSegmentedControl.tintColor = .white
+        mapTypeSegmentedControl.setTitle(NSLocalizedString("NearbyLocationsMapVC_MapTypeSegmentedControl_Title_0", comment: ""), forSegmentAt: 0)
+        mapTypeSegmentedControl.setTitle(NSLocalizedString("NearbyLocationsMapVC_MapTypeSegmentedControl_Title_1", comment: ""), forSegmentAt: 1)
+        
+        focusUserLocationButton.tintColor = .white
+        focusFavoritedLocationButton.tintColor = .white
+        
+        
+        focusUserLocationButton.isEnabled = LocationService.shared.locationPermissionsGranted
+    }
+    
+    
+    // MARK: - IBActions
+    
+    @IBAction func focusUserLocationButtonTapped(_ sender: UIButton) {
+        focusMapOnUserLocation()
+    }
+    
+    @IBAction func focusFavoritedLocationButtonTapped(_ sender: UIButton) {
+        focusMapOnFavoritedLocation()
+    }
+    
+    @IBAction func mapTypeSegmentedControlTapped(_ sender: UISegmentedControl) {
+        let index = sender.selectedSegmentIndex
+        switch index {
+        case 0: mapView.mapType = .standard
+        case 1: mapView.mapType = .hybrid
+        default: break
+        }
     }
 }
 
