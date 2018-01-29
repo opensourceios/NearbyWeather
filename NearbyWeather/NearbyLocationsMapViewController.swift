@@ -58,6 +58,10 @@ class NearbyLocationsMapViewController: UIViewController {
         configure()
         prepareMapAnnotations()
         prepareLocations()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setMapRegion()
     }
     
