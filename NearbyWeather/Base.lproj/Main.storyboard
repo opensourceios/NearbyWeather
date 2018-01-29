@@ -413,8 +413,33 @@
                         <sections>
                             <tableViewSection id="gTg-t5-yA6">
                                 <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="xla-ZK-Dwg">
+                                        <rect key="frame" x="0.0" y="145" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xla-ZK-Dwg" id="XpA-OK-nKT">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate this Version" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWM-qt-gAu" userLabel="developerNameLabel">
+                                                    <rect key="frame" x="15" y="5" width="311" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="bzO-gP-1As"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="qWM-qt-gAu" secondAttribute="bottom" constant="4" id="2OD-Wm-gUt"/>
+                                                <constraint firstAttribute="trailing" secondItem="qWM-qt-gAu" secondAttribute="trailing" constant="15" id="55N-NJ-Bq6"/>
+                                                <constraint firstItem="qWM-qt-gAu" firstAttribute="top" secondItem="XpA-OK-nKT" secondAttribute="top" constant="5" id="AOe-VK-qdp"/>
+                                                <constraint firstItem="qWM-qt-gAu" firstAttribute="leading" secondItem="XpA-OK-nKT" secondAttribute="leading" constant="15" id="NO9-ug-p8l"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="64" id="Kha-mT-XRs">
-                                        <rect key="frame" x="0.0" y="145" width="375" height="64"/>
+                                        <rect key="frame" x="0.0" y="189" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kha-mT-XRs" id="2TY-oS-Ndb">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="63.5"/>
@@ -457,7 +482,7 @@
                             <tableViewSection id="8qi-Vl-mTg">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="64" id="Rxt-rx-iSL">
-                                        <rect key="frame" x="0.0" y="245" width="375" height="64"/>
+                                        <rect key="frame" x="0.0" y="289" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rxt-rx-iSL" id="2EC-fW-cP9">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="63.5"/>
@@ -500,7 +525,7 @@
                             <tableViewSection id="Gx6-bz-t4e">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="HjA-OH-DF5">
-                                        <rect key="frame" x="0.0" y="345" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="389" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HjA-OH-DF5" id="7DQ-tK-KjQ">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -525,7 +550,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="te0-Cu-Vxd">
-                                        <rect key="frame" x="0.0" y="389" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="433" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="te0-Cu-Vxd" id="kxn-wc-cva">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -550,7 +575,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="VSo-MV-XIw">
-                                        <rect key="frame" x="0.0" y="433" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="477" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VSo-MV-XIw" id="wBe-vK-Aqv">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -587,6 +612,7 @@
                         <outlet property="appVersionLabel" destination="czi-Ez-K0K" id="5F3-6f-J5a"/>
                         <outlet property="developerNameSubtitle_0" destination="MKh-k2-H3S" id="mK1-3s-TqW"/>
                         <outlet property="developerName_0" destination="vyE-Dq-uWt" id="i95-SO-2PL"/>
+                        <outlet property="rateVersionLabel" destination="qWM-qt-gAu" id="Jwa-Fn-183"/>
                         <outlet property="sourceAddressLabel" destination="6JK-Zx-sjA" id="3Pt-bB-eum"/>
                         <outlet property="sourceNoteLabel" destination="CtD-07-c8Y" id="Rf6-Dp-Po0"/>
                     </connections>

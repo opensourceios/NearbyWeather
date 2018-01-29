@@ -16,6 +16,7 @@ class InfoTableViewController: UITableViewController {
     @IBOutlet weak var appTitleLabel: UILabel!
     @IBOutlet weak var appVersionLabel: UILabel!
     
+    @IBOutlet weak var rateVersionLabel: UILabel!
     @IBOutlet weak var sourceNoteLabel: UILabel!
     @IBOutlet weak var sourceAddressLabel: UILabel!
     
@@ -53,6 +54,11 @@ class InfoTableViewController: UITableViewController {
         
         var urlStringValue: String?
         if indexPath.section == 0 && indexPath.row == 0 {
+            let urlString = "https://itunes.apple.com/app/id1227313069?action=write-review&mt=8"
+            UIApplication.shared.openURL(URL(string: urlString)!)
+            return
+        }
+        if indexPath.section == 0 && indexPath.row == 1 {
             urlStringValue = "https://github.com/erikmartens/NearbyWeather"
         }
         if indexPath.section == 1 && indexPath.row == 0 {
@@ -108,9 +114,9 @@ class InfoTableViewController: UITableViewController {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "#UNDEFINED"
         let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "#UNDEFINED"
         appVersionLabel.text = "Version \(appVersion) Build #\(appBuild)"
+        rateVersionLabel.text = NSLocalizedString("InfoTVC_RateVersion", comment: "")
         sourceNoteLabel.text = NSLocalizedString("InfoTVC_Source", comment: "")
         sourceAddressLabel.textColor = .nearbyWeatherStandard
-        
         developerName_0.text = "Erik Maximilian Martens"
         developerNameSubtitle_0.text = NSLocalizedString("InfoTVC_DeveloperNameSubtitle_0", comment: "")
     }

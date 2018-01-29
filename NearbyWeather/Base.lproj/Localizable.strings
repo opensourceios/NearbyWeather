@@ -62,6 +62,7 @@ InfoTVC_TableViewSectionHeader3 = "Libraries";
 
 InfoTVC_AppTitle = "NearbyWeather - Open Source Weather";
 
+InfoTVC_RateVersion = "Rate this Version";
 InfoTVC_DeveloperNameSubtitle_0 = "Project Owner";
 InfoTVC_Source = "Source Code";
 
