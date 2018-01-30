@@ -31,18 +31,6 @@ class ConversionService {
         case let x where x == 781 || x >= 958:
             return "🌪"
         case let x where x == 800:
-            //Simulate day/night mode for clear skies condition -> sunset @ 18:00, sunrise @ 07:00
-            let currentDateFormatter: DateFormatter = DateFormatter()
-            currentDateFormatter.dateFormat = "ddMMyyyy"
-            let currentDateString: String = currentDateFormatter.string(from: Date())
-            
-            let zeroHourDateFormatter: DateFormatter = DateFormatter()
-            zeroHourDateFormatter.dateFormat = "ddMMyyyyHHmmss"
-            let zeroHourDate = zeroHourDateFormatter.date(from: (currentDateString + "000000"))!
-            
-            if Date().timeIntervalSince(zeroHourDate) > 64800 || Date().timeIntervalSince(zeroHourDate) < 25200 {
-                return "✨"
-            }
             return "☀️"
         case let x where x == 801:
             return "🌤"
