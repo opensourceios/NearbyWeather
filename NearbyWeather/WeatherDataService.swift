@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import MapKit
 
 public enum SortingOrientation: Int {
-    case byName
-    case byTemperature
+    case name
+    case temperature
+    case distance
 }
 
 public class TemperatureUnitWrappedEnum: Codable {
@@ -236,13 +238,23 @@ class WeatherDataService {
         }
     }
     
-    public func sortDataBy(orientation: SortingOrientation) {
+    public func sortData(byOrientation: SortingOrientation) {
         guard multiLocationWeatherData != nil else {
             return
         }
-        switch orientation {
-        case .byName: multiLocationWeatherData?.sort { $0.cityName < $1.cityName }
-        case .byTemperature: multiLocationWeatherData?.sort { $0.atmosphericInformation.temperatureKelvin > $1.atmosphericInformation.temperatureKelvin }
+        switch byOrientation {
+        case .name: multiLocationWeatherData?.sort { $0.cityName < $1.cityName }
+        case .temperature: multiLocationWeatherData?.sort { $0.atmosphericInformation.temperatureKelvin > $1.atmosphericInformation.temperatureKelvin }
+        case .distance:
+            guard LocationService.shared.locationPermissionsGranted,
+            let currentLocation = LocationService.shared.currentLocation else {
+                break
+            }
+            multiLocationWeatherData?.sort(by: {
+                let weatherLocation1 = CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
+                let weatherLocation2 = CLLocation(latitude: $1.coordinates.latitude, longitude: $1.coordinates.longitude)
+                return weatherLocation1.distance(from: currentLocation) < weatherLocation2.distance(from: currentLocation)
+            })
         }
     }
     

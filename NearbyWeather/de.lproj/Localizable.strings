@@ -39,6 +39,7 @@ LocationsListTVC_LocationAlert_Action2 = "Einstellungen";
 LocationsListTVC_SortAlert_Cancel = "Abbrechen";
 LocationsListTVC_SortAlert_Action1 = "Nach Namen sortieren";
 LocationsListTVC_SortAlert_Action2 = "Nach Temperatur sortieren";
+LocationsListTVC_SortAlert_Action3 = "Nach Distanz sortieren";
 
 LocationsListTVC_BackButtonTitle = "Zurück";
 
@@ -83,7 +84,7 @@ HelpTVC_Legend_Drizzle = "🌦 Leichter Regen";
 HelpTVC_Legend_Rain = "🌧 Regen";
 HelpTVC_Legend_Atmosphere = "🌫 Atmospherisch";
 HelpTVC_Legend_HeavyStorm = "🌪 Schwerer Sturm";
-HelpTVC_Legend_SunnyClear = "☀️/✨ Sonnig/Klar";
+HelpTVC_Legend_SunnyClear = "☀️ Klar";
 HelpTVC_Legend_FewClouds = "🌤 Wenige Wolken";
 HelpTVC_Legend_ScatteredClouds = "⛅️ Leicht Bewölkt";
 HelpTVC_Legend_BrokenClouds = "🌥 Bewölkt";

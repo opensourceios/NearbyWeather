@@ -39,6 +39,7 @@ LocationsListTVC_LocationAlert_Action2 = "Settings";
 LocationsListTVC_SortAlert_Cancel = "Cancel";
 LocationsListTVC_SortAlert_Action1 = "Sort by Name";
 LocationsListTVC_SortAlert_Action2 = "Sort by Temperature";
+LocationsListTVC_SortAlert_Action3 = "Sort by Distance";
 
 LocationsListTVC_BackButtonTitle = "Back";
 
@@ -83,7 +84,7 @@ HelpTVC_Legend_Drizzle = "🌦 Drizzle";
 HelpTVC_Legend_Rain = "🌧 Rain";
 HelpTVC_Legend_Atmosphere = "🌫 Atmosphere";
 HelpTVC_Legend_HeavyStorm = "🌪 Heavy Storm";
-HelpTVC_Legend_SunnyClear = "☀️/✨ Sunny/Clear";
+HelpTVC_Legend_SunnyClear = "☀️ Sunny";
 HelpTVC_Legend_FewClouds = "🌤 Few Clouds";
 HelpTVC_Legend_ScatteredClouds = "⛅️ Scattered Clouds";
 HelpTVC_Legend_BrokenClouds = "🌥 Broken Clouds";

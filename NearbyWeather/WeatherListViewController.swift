@@ -105,17 +105,23 @@ class WeatherListViewController: UIViewController {
         
         let cancelAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Cancel", comment: ""), style: .cancel, handler: nil)
         let sortByNameAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action1", comment: ""), style: .default, handler: { paramAction in
-            WeatherDataService.shared.sortDataBy(orientation: .byName)
+            WeatherDataService.shared.sortData(byOrientation: .name)
             self.tableView.reloadData()
         })
         let sortByTemperatureAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action2", comment: ""), style: .default, handler: { paramAction in
-            WeatherDataService.shared.sortDataBy(orientation: .byTemperature)
+            WeatherDataService.shared.sortData(byOrientation: .temperature)
+            self.tableView.reloadData()
+        })
+        
+        let sortByDistanceAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action3", comment: ""), style: .default, handler: { paramAction in
+            WeatherDataService.shared.sortData(byOrientation: .distance)
             self.tableView.reloadData()
         })
         
         sortAlert.addAction(cancelAction)
         sortAlert.addAction(sortByNameAction)
         sortAlert.addAction(sortByTemperatureAction)
+        if LocationService.shared.locationPermissionsGranted { sortAlert.addAction(sortByDistanceAction) }
         present(sortAlert, animated: true, completion: nil)
     }
     
