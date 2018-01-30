@@ -109,11 +109,13 @@ class NearbyLocationsMapViewController: UIViewController {
         if LocationService.shared.locationPermissionsGranted, let currentLocation = LocationService.shared.currentLocation {
             let region = MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 15000, 15000)
             mapView.setRegion(region, animated: true)
+            focusUserLocationButton.setImage(UIImage(named: "LocateUserActiveIcon"), for: .normal)
         }
     }
     private func focusMapOnFavoritedLocation() {
         let region = MKCoordinateRegionMakeWithDistance(favoritedLocation.coordinate, 15000, 15000)
         mapView.setRegion(region, animated: true)
+        focusFavoritedLocationButton.setImage(UIImage(named: "LocateFavoriteActiveIcon"), for: .normal)
     }
     
     private func configure() {
@@ -133,10 +135,13 @@ class NearbyLocationsMapViewController: UIViewController {
         mapTypeSegmentedControl.setTitle(NSLocalizedString("NearbyLocationsMapVC_MapTypeSegmentedControl_Title_1", comment: ""), forSegmentAt: 1)
         
         focusUserLocationButton.tintColor = .white
+        
+        
+        let locationAvailable = LocationService.shared.locationPermissionsGranted
+        focusUserLocationButton.isEnabled = locationAvailable
+        focusUserLocationButton.tintColor = locationAvailable ? .white : .gray
+        
         focusFavoritedLocationButton.tintColor = .white
-        
-        
-        focusUserLocationButton.isEnabled = LocationService.shared.locationPermissionsGranted
     }
     
     
@@ -189,6 +194,23 @@ extension NearbyLocationsMapViewController: MKMapViewDelegate {
                 viewForCurrentAnnotation?.calloutOffset = CGPoint(x: -5, y: 5)
             }
             return viewForCurrentAnnotation
+        }
+    }
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        focusUserLocationButton.setImage(UIImage(named: "LocateUserInactiveIcon"), for: .normal)
+        focusFavoritedLocationButton.setImage(UIImage(named: "LocateFavoriteInactiveIcon"), for: .normal)
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        if LocationService.shared.locationPermissionsGranted,
+            let currentLocation = LocationService.shared.currentLocation,
+            mapView.region.center.latitude == currentLocation.coordinate.latitude
+                && mapView.region.center.longitude == currentLocation.coordinate.longitude {
+            focusUserLocationButton.setImage(UIImage(named: "LocateUserActiveIcon"), for: .normal)
+        }
+        if mapView.region.center.latitude == favoritedLocation.coordinate.latitude
+            && mapView.region.center.longitude == favoritedLocation.coordinate.longitude {
+            focusFavoritedLocationButton.setImage(UIImage(named: "LocateFavoriteActiveIcon"), for: .normal)
         }
     }
 }

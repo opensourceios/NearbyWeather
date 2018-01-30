@@ -201,7 +201,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQ1-2i-5Af">
-                                                <rect key="frame" x="81" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="91.5" y="0.0" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="GQ1-2i-5Af" secondAttribute="height" multiplier="1:1" id="2s9-i6-h0h"/>
                                                 </constraints>
@@ -212,15 +212,8 @@
                                                     <action selector="sortButtonPressed:" destination="Ri3-mc-4Zu" eventType="touchUpInside" id="OLo-oD-Xpq"/>
                                                 </connections>
                                             </button>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tEq-HD-2KT">
-                                                <rect key="frame" x="161.5" y="0.0" width="2" height="50"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="2" id="BVR-xa-C1X"/>
-                                                </constraints>
-                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlV-Vb-JpW">
-                                                <rect key="frame" x="194.5" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="183.5" y="0.0" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="nlV-Vb-JpW" secondAttribute="height" multiplier="1:1" id="MDz-zk-hIb"/>
                                                 </constraints>
@@ -1233,7 +1226,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="DlE-Pc-1g6" secondAttribute="height" multiplier="1:1" id="ga8-9C-Fpe"/>
                                                 </constraints>
-                                                <state key="normal" image="Map">
+                                                <state key="normal" image="LocateUserInactiveIcon">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -1245,7 +1238,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Bh6-Ny-b9h" secondAttribute="height" multiplier="1:1" id="Uzh-6p-QjR"/>
                                                 </constraints>
-                                                <state key="normal" image="Settings">
+                                                <state key="normal" image="LocateFavoriteInactiveIcon">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -1371,6 +1364,8 @@
     </scenes>
     <resources>
         <image name="ExclamationMark" width="25" height="25"/>
+        <image name="LocateFavoriteInactiveIcon" width="25" height="25"/>
+        <image name="LocateUserInactiveIcon" width="25" height="25"/>
         <image name="Map" width="25" height="25"/>
         <image name="Reload" width="25" height="25"/>
         <image name="Settings" width="25" height="25"/>
