@@ -80,7 +80,9 @@ class WeatherListViewController: UIViewController {
         buttonRowContainerView.bringSubview(toFront: buttonRowStackView)
         
         refreshButton.tintColor = .white
-        sortButton.tintColor = .white
+        let locationAvailable = LocationService.shared.locationPermissionsGranted
+        sortButton.isEnabled = locationAvailable
+        sortButton.tintColor = locationAvailable ? .white : .gray
         infoButton.tintColor = .white
         settingsButton.tintColor = .white
         
