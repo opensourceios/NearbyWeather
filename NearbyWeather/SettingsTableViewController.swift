@@ -45,24 +45,26 @@ class SettingsTableViewController: UITableViewController {
             navigationItem.removeTextFromBackBarButton()
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 1:
+            break
+        case 2:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let destinationViewController = storyboard.instantiateViewController(withIdentifier: "OWMCityFilterTableViewController") as! OWMCityFilterTableViewController
 
             navigationItem.removeTextFromBackBarButton()
             navigationController?.pushViewController(destinationViewController, animated: true)
-        case 2:
+        case 3:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsInputTVC") as! SettingsInputTableViewController
             
             navigationItem.removeTextFromBackBarButton()
             navigationController?.pushViewController(destinationViewController, animated: true)
-        case 3:
+        case 4:
             WeatherDataService.shared.amountOfResults = AmountOfResultsWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
-        case 4:
+        case 5:
             WeatherDataService.shared.temperatureUnit = TemperatureUnitWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
-        case 5:
+        case 6:
             WeatherDataService.shared.windspeedUnit = SpeedUnitWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         default:
@@ -75,14 +77,16 @@ class SettingsTableViewController: UITableViewController {
         case 0:
             return NSLocalizedString("SettingsTVC_SectionTitle0", comment: "")
         case 1:
-            return NSLocalizedString("SettingsTVC_SectionTitle1", comment: "")
+            return nil
         case 2:
-            return NSLocalizedString("SettingsTVC_SectionTitle2", comment: "")
+            return NSLocalizedString("SettingsTVC_SectionTitle1", comment: "")
         case 3:
-            return NSLocalizedString("SettingsTVC_SectionTitle3", comment: "")
+            return NSLocalizedString("SettingsTVC_SectionTitle2", comment: "")
         case 4:
-            return NSLocalizedString("SettingsTVC_SectionTitle4", comment: "")
+            return NSLocalizedString("SettingsTVC_SectionTitle3", comment: "")
         case 5:
+            return NSLocalizedString("SettingsTVC_SectionTitle4", comment: "")
+        case 6:
             return NSLocalizedString("SettingsTVC_SectionTitle5", comment: "")
         default:
             return nil
@@ -90,7 +94,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,10 +106,12 @@ class SettingsTableViewController: UITableViewController {
         case 2:
             return 1
         case 3:
-            return AmountOfResultsWrappedEnum.count
+            return 1
         case 4:
-            return TemperatureUnitWrappedEnum.count
+            return AmountOfResultsWrappedEnum.count
         case 5:
+            return TemperatureUnitWrappedEnum.count
+        case 6:
             return SpeedUnitWrappedEnum.count
         default:
             return 0
@@ -113,42 +119,65 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
-        cell.accessoryType = .none
-        
         switch indexPath.section {
         case 0:
-            let labelText = [NSLocalizedString("SettingsTVC_About", comment: ""), NSLocalizedString("HelpTVC_NavigationItemTitle", comment: "")]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
+            let labelText = [NSLocalizedString("SettingsTVC_About", comment: ""),
+                             NSLocalizedString("HelpTVC_NavigationItemTitle", comment: "")]
             cell.contentLabel.text = labelText[indexPath.row]
             cell.accessoryType = .disclosureIndicator
+            return cell
         case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ToggleCell", for: indexPath) as! ToggleCell
+            cell.contentLabel.text = NSLocalizedString("SettingsTVC_RefreshOnAppStart", comment: "")
+            cell.toggle.isOn = UserDefaults.standard.bool(forKey: kRefreshOnAppStartKey)
+            cell.toggleSwitchHandler = { sender in
+                UserDefaults.standard.set(sender.isOn, forKey: kRefreshOnAppStartKey)
+            }
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
             cell.contentLabel.text = "\(WeatherDataService.shared.favoritedCity.name), \(WeatherDataService.shared.favoritedCity.country)"
             cell.accessoryType = .disclosureIndicator
-        case 2:
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
             cell.contentLabel.text = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") as? String
             cell.accessoryType = .disclosureIndicator
-        case 3:
+            return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
             let amountResults = AmountOfResultsWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = "\(amountResults.integerValue) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
             if amountResults.integerValue == WeatherDataService.shared.amountOfResults.integerValue {
                 cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
             }
-        case 4:
+            return cell
+        case 5:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
             let temperatureUnit = TemperatureUnitWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = temperatureUnit.stringValue
             if temperatureUnit.stringValue == WeatherDataService.shared.temperatureUnit.stringValue {
                 cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
             }
-        case 5:
+            return cell
+        case 6:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
             let windspeedUnit = SpeedUnitWrappedEnum(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = windspeedUnit.stringValue
             if windspeedUnit.stringValue == WeatherDataService.shared.windspeedUnit.stringValue {
                 cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
             }
+            return cell
         default:
             return UITableViewCell()
         }
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

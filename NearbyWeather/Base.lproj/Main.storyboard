@@ -328,6 +328,53 @@
                                     <outlet property="contentLabel" destination="7vP-CS-lc0" id="H2J-gw-WXe"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ToggleCell" id="xlM-h0-HTV" userLabel="ToggleCell" customClass="ToggleCell" customModule="NearbyWeather" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xlM-h0-HTV" id="2cy-my-j9s">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7i-Pw-LGf" userLabel="contentLabel">
+                                            <rect key="frame" x="20" y="5" width="276" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="yfF-uD-6J6"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="037-sb-7xu">
+                                            <rect key="frame" x="311" y="6" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="didToggleSwitch:" destination="xlM-h0-HTV" eventType="valueChanged" id="KTb-jO-VKe"/>
+                                            </connections>
+                                        </switch>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="037-sb-7xu" firstAttribute="leading" secondItem="D7i-Pw-LGf" secondAttribute="trailing" constant="15" id="3X9-dR-hiy"/>
+                                        <constraint firstItem="D7i-Pw-LGf" firstAttribute="leading" secondItem="2cy-my-j9s" secondAttribute="leading" constant="20" id="CTP-gp-3dO"/>
+                                        <constraint firstAttribute="trailing" secondItem="037-sb-7xu" secondAttribute="trailing" constant="15" id="TfR-kg-AZB"/>
+                                        <constraint firstItem="037-sb-7xu" firstAttribute="centerY" secondItem="2cy-my-j9s" secondAttribute="centerY" id="is0-Iu-xxM"/>
+                                        <constraint firstItem="D7i-Pw-LGf" firstAttribute="top" secondItem="2cy-my-j9s" secondAttribute="top" constant="5" id="ivM-9B-43w"/>
+                                        <constraint firstAttribute="bottom" secondItem="D7i-Pw-LGf" secondAttribute="bottom" constant="4" id="wbi-1E-hlQ"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="wbi-1E-hlQ"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="constraints">
+                                            <include reference="wbi-1E-hlQ"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contentLabel" destination="D7i-Pw-LGf" id="DVZ-Ib-2rN"/>
+                                    <outlet property="toggle" destination="037-sb-7xu" id="cIZ-9h-7nZ"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="d2W-kk-JLp" id="BAa-0v-w7b"/>

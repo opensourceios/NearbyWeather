@@ -115,6 +115,7 @@ SettingsTVC_SectionTitle4 = "Temperatur Einheit";
 SettingsTVC_SectionTitle5 = "Windgeschwindigkeits-Einheit";
 
 SettingsTVC_Results = "Ergebnisse";
+SettingsTVC_RefreshOnAppStart = "Beim App Start Aktualisieren";
 
 
 // MARK: - SettingsInputTableViewController
