@@ -21,9 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             WeatherDataService.instantiateSharedInstance()
             LocationService.shared.requestWhenInUseAuthorization()
             
-            if UserDefaults.standard.bool(forKey: kRefreshOnAppStartKey) == true {
-                WeatherDataService.shared.update(withCompletionHandler: nil)
-            }
+            refreshWeatherDataIfNeeded()
         } else {
             let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
             let destinationViewController = storyboard.instantiateInitialViewController()
@@ -34,6 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        refreshWeatherDataIfNeeded()
+    }
+    
+    
+    // MARK: - Private Helpers
+    
+    private func refreshWeatherDataIfNeeded() {
         if UserDefaults.standard.bool(forKey: kRefreshOnAppStartKey) == true {
             WeatherDataService.shared.update(withCompletionHandler: nil)
         }

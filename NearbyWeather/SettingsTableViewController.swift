@@ -142,7 +142,7 @@ class SettingsTableViewController: UITableViewController {
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
-            cell.contentLabel.text = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") as? String
+            cell.contentLabel.text = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey) as? String
             cell.accessoryType = .disclosureIndicator
             return cell
         case 4:

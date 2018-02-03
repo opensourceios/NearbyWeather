@@ -125,7 +125,7 @@ class WelcomeScreenViewController: UIViewController {
     
     @IBAction func didTapSaveButton(_ sender: UIButton) {
         inputTextField.resignFirstResponder()
-        UserDefaults.standard.set(inputTextField.text, forKey: "nearby_weather.openWeatherMapApiKey")
+        UserDefaults.standard.set(inputTextField.text, forKey: kNearbyWeatherApiKeyKey)
         
         let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
         let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SetPermissionsVC") as! SetPermissionsViewController

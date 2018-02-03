@@ -27,7 +27,7 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         tableView.delegate = self
         
         navigationItem.title = NSLocalizedString("SettingsInputTVC_NavigationBarTitle_Mode_EnterAPIKey", comment: "")
-        inputTextField.text = UserDefaults.standard.string(forKey: "nearby_weather.openWeatherMapApiKey")
+        inputTextField.text = UserDefaults.standard.string(forKey: kNearbyWeatherApiKeyKey)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,10 +49,10 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         
         inputTextField.resignFirstResponder()
         if let text = inputTextField.text, text.count == 32 {
-            if let currentApiKey = UserDefaults.standard.string(forKey: "nearby_weather.openWeatherMapApiKey"), text == currentApiKey {
+            if let currentApiKey = UserDefaults.standard.string(forKey: kNearbyWeatherApiKeyKey), text == currentApiKey {
                 return
             }
-            UserDefaults.standard.set(text, forKey: "nearby_weather.openWeatherMapApiKey")
+            UserDefaults.standard.set(text, forKey: kNearbyWeatherApiKeyKey)
             HUD.flash(.success, delay: 1.0)
             WeatherDataService.shared.update(withCompletionHandler: nil)
         }

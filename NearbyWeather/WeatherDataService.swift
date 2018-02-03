@@ -302,7 +302,7 @@ class WeatherDataService {
         let session = URLSession.shared
         let requestedCity = favoritedCity.identifier
         
-        guard let apiKey = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey"),
+        guard let apiKey = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey),
             let requestURL = URL(string: "\(WeatherDataService.openWeather_SingleLocationBaseURL)?APPID=\(apiKey)&id=\(requestedCity)") else {
                 completionHandler(nil)
                 return
@@ -327,7 +327,7 @@ class WeatherDataService {
             return
         }
         
-        guard let apiKey = UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey"),
+        guard let apiKey = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey),
             let requestURL = URL(string: "\(WeatherDataService.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(currentLatitude)&lon=\(currentLongitude)&cnt=\(amountOfResults.integerValue)") else {
                 completionHandler(nil)
                 return

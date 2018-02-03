@@ -52,8 +52,8 @@ class WeatherListViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if UserDefaults.standard.value(forKey: "nearby_weather.isInitialLaunch") == nil {
-            UserDefaults.standard.set(false, forKey: "nearby_weather.isInitialLaunch")
+        if UserDefaults.standard.value(forKey: kIsInitialLaunch) == nil {
+            UserDefaults.standard.set(false, forKey: kIsInitialLaunch)
             updateWeatherData()
         }
     }
