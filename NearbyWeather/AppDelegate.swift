@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey) != nil {
             WeatherDataService.instantiateSharedInstance()
             LocationService.shared.requestWhenInUseAuthorization()
-            
-            refreshWeatherDataIfNeeded()
         } else {
             let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
             let destinationViewController = storyboard.instantiateInitialViewController()
@@ -39,7 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Private Helpers
     
     private func refreshWeatherDataIfNeeded() {
-        if UserDefaults.standard.bool(forKey: kRefreshOnAppStartKey) == true {
+        if UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey) != nil,
+            UserDefaults.standard.bool(forKey: kRefreshOnAppStartKey) == true {
             WeatherDataService.shared.update(withCompletionHandler: nil)
         }
     }

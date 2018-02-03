@@ -33,8 +33,6 @@ class WeatherListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "NearbyWeather"
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 75, right: 0)
@@ -46,8 +44,8 @@ class WeatherListViewController: UIViewController {
         configure()
         
         tableView.reloadData()
-        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.configureSortButton), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableView(_:)), name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.configureOnDidAppBecomeActive), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.configureOnWeatherDataServiceDidUpdate), name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,6 +72,8 @@ class WeatherListViewController: UIViewController {
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
+        configureNavigationTitle()
+        
         buttonRowContainerView.layer.cornerRadius = 10
         buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.cgColor
         buttonRowContainerView.addDropShadow(radius: 10)
@@ -89,7 +89,29 @@ class WeatherListViewController: UIViewController {
         tableView.addSubview(refreshControl)
     }
     
-    @objc private func configureSortButton() {
+    @objc private func configureOnDidAppBecomeActive() {
+        configureSortButton()
+    }
+    @objc private func configureOnWeatherDataServiceDidUpdate() {
+        configureNavigationTitle()
+        tableView.reloadData()
+    }
+    
+    private func configureNavigationTitle() {
+        let title = "NearbyWeather"
+        if let lastRefreshDate = UserDefaults.standard.object(forKey: kWeatherDataLastRefreshDateKey) as? Date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .short
+            let dateString = dateFormatter.string(from: lastRefreshDate)
+            let subtitle = String(format: NSLocalizedString("LocationsListTVC_LastRefresh", comment: ""), dateString)
+            navigationItem.setTitle(title, andSubtitle: subtitle)
+        } else {
+            navigationItem.title = title
+        }
+    }
+    
+    private func configureSortButton() {
         let locationAvailable = LocationService.shared.locationPermissionsGranted
         sortButton.isEnabled = locationAvailable
         sortButton.tintColor = locationAvailable ? .white : .gray

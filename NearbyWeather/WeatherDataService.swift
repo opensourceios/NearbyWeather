@@ -232,6 +232,7 @@ class WeatherDataService {
             dispatchGroup.wait()
             WeatherDataService.storeService()
             DispatchQueue.main.async {
+                UserDefaults.standard.set(Date(), forKey: kWeatherDataLastRefreshDateKey)
                 NotificationCenter.default.post(name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: self)
                 completionHandler?()
             }

@@ -30,6 +30,7 @@ LocationsListTVC_TableViewSectionHeader1 = "Wetter in Favorisierter Stadt";
 LocationsListTVC_TableViewSectionHeader2 = "Wetter in Nahegelegenen Städten";
 
 LocationsListTVC_RefreshPullHandle = "Zum Aktualisieren herunterziehen";
+LocationsListTVC_LastRefresh = "Zuletzt aktulisiert: %@";
 
 LocationsListTVC_LocationAlert_Title = "Kein Zugriff auf den aktuellen Ort";
 LocationsListTVC_LocationAlert_Message = "Um Wetter Daten für Städte in Ihrer Nähe bereitzustellen, benötigt NearbyWeather Ihren Standort. Sie haben diesen für die App nicht freigegeben. Dies kann in den Einstellungen verändert werden. Während Ihr Standort nicht bestimmt werden kann, werden Beispiel-Koordinaten verwendet.";

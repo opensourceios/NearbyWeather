@@ -30,6 +30,7 @@ LocationsListTVC_TableViewSectionHeader1 = "Weather in Favorited City";
 LocationsListTVC_TableViewSectionHeader2 = "Weather for Nearby Cities";
 
 LocationsListTVC_RefreshPullHandle = "Pull to refresh";
+LocationsListTVC_LastRefresh = "Last Refresh: %@";
 
 LocationsListTVC_LocationAlert_Title = "Current Location Access Denied";
 LocationsListTVC_LocationAlert_Message = "In order to provide weather data of nearby cities, your current location is required. You have denied NearbyWeather access to your location data. This can be changed within Settings. While your location is not determinable, sample coordinates will be used.";
