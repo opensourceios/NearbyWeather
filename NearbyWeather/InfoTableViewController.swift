@@ -22,6 +22,7 @@ class InfoTableViewController: UITableViewController {
     
     @IBOutlet weak var developerName_0: UILabel!
     @IBOutlet weak var developerNameSubtitle_0: UILabel!
+    @IBOutlet weak var howToContributeLabel: UILabel!
     
     
     //MARK: - ViewController Life Cycle
@@ -65,12 +66,15 @@ class InfoTableViewController: UITableViewController {
             urlStringValue = "http://www.erikmartens.de/contact.html"
         }
         if indexPath.section == 2 && indexPath.row == 0 {
+            urlStringValue = "https://github.com/erikmartens/NearbyWeather/blob/master/CONTRIBUTING.md"
+        }
+        if indexPath.section == 3 && indexPath.row == 0 {
             urlStringValue = "https://github.com/pkluz/PKHUD"
         }
-        if indexPath.section == 2 && indexPath.row == 1 {
+        if indexPath.section == 3 && indexPath.row == 1 {
             urlStringValue = "https://github.com/Onix-Systems/RainyRefreshControl"
         }
-        if indexPath.section == 2 && indexPath.row == 2 {
+        if indexPath.section == 3 && indexPath.row == 2 {
             urlStringValue = "https://github.com/serralvo/TextFieldCounter"
         }
         
@@ -94,7 +98,8 @@ class InfoTableViewController: UITableViewController {
         switch section {
         case 0: return NSLocalizedString("InfoTVC_TableViewSectionHeader1", comment: "")
         case 1: return NSLocalizedString("InfoTVC_TableViewSectionHeader2", comment: "")
-        case 2: return NSLocalizedString("InfoTVC_TableViewSectionHeader3", comment: "")
+        case 2: return nil
+        case 3: return NSLocalizedString("InfoTVC_TableViewSectionHeader3", comment: "")
         default: return nil
         }
     }
@@ -118,6 +123,7 @@ class InfoTableViewController: UITableViewController {
         sourceNoteLabel.text = NSLocalizedString("InfoTVC_Source", comment: "")
         sourceAddressLabel.textColor = .nearbyWeatherStandard
         developerName_0.text = "Erik Maximilian Martens"
+        howToContributeLabel.text = NSLocalizedString("InfoTVC_HowToContribute", comment: "")
         developerNameSubtitle_0.text = NSLocalizedString("InfoTVC_DeveloperNameSubtitle_0", comment: "")
     }
 }

@@ -61,12 +61,13 @@ InfoTVC_NavigationItemTitle = "Über";
 
 InfoTVC_TableViewSectionHeader1 = "Ressourcen";
 InfoTVC_TableViewSectionHeader2 = "Mitwirkende";
-InfoTVC_TableViewSectionHeader3 = "Bibliotheken";
+InfoTVC_TableViewSectionHeader3 = "Verwendete Bibliotheken";
 
 InfoTVC_AppTitle = "NearbyWeather - Open Source Wetter";
 
 InfoTVC_RateVersion = "Im App Store Bewerten";
 InfoTVC_DeveloperNameSubtitle_0 = "Projekt Inhaber";
+InfoTVC_HowToContribute = "Entwicklung Unterstützen";
 InfoTVC_Source = "Quellcode";
 
 

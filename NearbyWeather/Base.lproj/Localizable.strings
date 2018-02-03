@@ -61,12 +61,13 @@ InfoTVC_NavigationItemTitle = "About";
 
 InfoTVC_TableViewSectionHeader1 = "Resources";
 InfoTVC_TableViewSectionHeader2 = "Contributors";
-InfoTVC_TableViewSectionHeader3 = "Libraries";
+InfoTVC_TableViewSectionHeader3 = "Libraries Used";
 
 InfoTVC_AppTitle = "NearbyWeather - Open Source Weather";
 
 InfoTVC_RateVersion = "Rate this Version";
 InfoTVC_DeveloperNameSubtitle_0 = "Project Owner";
+InfoTVC_HowToContribute = "How to Contribute";
 InfoTVC_Source = "Source Code";
 
 
