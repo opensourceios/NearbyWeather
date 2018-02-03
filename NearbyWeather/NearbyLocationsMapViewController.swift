@@ -71,7 +71,7 @@ class NearbyLocationsMapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        focusMapOnUserLocation()
+        focusOnAvailableLocation()
     }
     
     
@@ -103,6 +103,14 @@ class NearbyLocationsMapViewController: UIViewController {
         weatherLocations = [CLLocation]()
         weatherLocations.append(contentsOf: singleLocations ?? [CLLocation]())
         weatherLocations.append(contentsOf: multiLocations ?? [CLLocation]())
+    }
+    
+    private func focusOnAvailableLocation() {
+        guard LocationService.shared.locationPermissionsGranted, LocationService.shared.currentLocation != nil else {
+            focusMapOnFavoritedLocation()
+            return
+        }
+        focusMapOnUserLocation()
     }
     
     private func focusMapOnUserLocation() {
