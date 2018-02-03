@@ -46,6 +46,7 @@ class WeatherListViewController: UIViewController {
         configure()
         
         tableView.reloadData()
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.configureSortButton), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reloadTableView(_:)), name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: nil)
     }
     
@@ -80,14 +81,18 @@ class WeatherListViewController: UIViewController {
         buttonRowContainerView.bringSubview(toFront: buttonRowStackView)
         
         refreshButton.tintColor = .white
-        let locationAvailable = LocationService.shared.locationPermissionsGranted
-        sortButton.isEnabled = locationAvailable
-        sortButton.tintColor = locationAvailable ? .white : .gray
+        configureSortButton()
         infoButton.tintColor = .white
         settingsButton.tintColor = .white
         
         refreshControl.addTarget(self, action: #selector(WeatherListViewController.updateWeatherData), for: .valueChanged)
         tableView.addSubview(refreshControl)
+    }
+    
+    @objc private func configureSortButton() {
+        let locationAvailable = LocationService.shared.locationPermissionsGranted
+        sortButton.isEnabled = locationAvailable
+        sortButton.tintColor = locationAvailable ? .white : .gray
     }
     
     @objc private func updateWeatherData() {
