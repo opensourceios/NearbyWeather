@@ -43,8 +43,8 @@ struct OWMWeatherDTO: Codable {
     
     struct AtmosphericInformation: Codable {
         var temperatureKelvin: Double
-        var pressurePsi: Int
-        var humidity: Int
+        var pressurePsi: Double
+        var humidity: Double
         
         enum CodingKeys: String, CodingKey {
             case temperatureKelvin = "temp"

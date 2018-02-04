@@ -49,6 +49,11 @@ LocationsListTVC_AlertIncorrectFavoritedCity = "The city name you entered did no
 LocationsListTVC_AlertLocationUnavailable = "You do not grant NearbyWeather access to your location. Therefore no nearby weather data could be loaded.";
 
 
+// MARK: - WeatherDetailViewController
+
+WeatherDetailVC_DistanceFrom = "Distance: %@";
+
+
 // MARK: - NearbyLocationsMapViewController
 
 NearbyLocationsMapVC_NavigationItemTitle = "Weather Station Locations";
@@ -114,7 +119,7 @@ SettingsTVC_SectionTitle1 = "Favorited City";
 SettingsTVC_SectionTitle2 = "Open Weather Map API Key";
 SettingsTVC_SectionTitle3 = "Amount of Search Results";
 SettingsTVC_SectionTitle4 = "Temperature Unit";
-SettingsTVC_SectionTitle5 = "Windspeed Unit";
+SettingsTVC_SectionTitle5 = "Distance/Speed Unit";
 
 SettingsTVC_Results = "Results";
 SettingsTVC_RefreshOnAppStart = "Refresh on App Start";
@@ -140,5 +145,11 @@ OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Search by City Name";
 kilometres_per_hour = "Kilometres per Hour";
 miles_per_hour = "Miles per Hour";
 
+kilometres = "Kilometres";
+miles = "Miles";
+
 kph = "kmh";
 mph = "mph";
+
+km = "km";
+mi = "mi";

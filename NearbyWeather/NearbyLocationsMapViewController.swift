@@ -9,25 +9,7 @@
 import UIKit
 import MapKit
 
-private let kMapAnnotationIdentifier = "de.nearbyWeather.mkAnnotation"
-
-class WeatherLocationMapAnnotation: NSObject, MKAnnotation {
-    let title: String?
-    let subtitle: String?
-    let coordinate: CLLocationCoordinate2D
-    
-    init(weatherDTO: OWMWeatherDTO) {
-        let weatherConditionIdentifier = weatherDTO.weatherCondition.first?.identifier
-        let weatherConditionSymbol = weatherConditionIdentifier != nil ? ConversionService.weatherConditionSymbol(fromWeathercode: weatherConditionIdentifier!) : nil
-        let temperatureDescriptor = ConversionService.temperatureDescriptor(forTemperatureUnit: WeatherDataService.shared.temperatureUnit, fromRawTemperature: weatherDTO.atmosphericInformation.temperatureKelvin)
-        let lat = weatherDTO.coordinates.latitude
-        let lon = weatherDTO.coordinates.longitude
-        
-        title = weatherDTO.cityName
-        subtitle = weatherConditionSymbol != nil ? "\(weatherConditionSymbol!) \(temperatureDescriptor)" : "\(temperatureDescriptor)"
-        coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-    }
-}
+private let kMapAnnotationIdentifier = "de.nearbyWeather.nearbyLocationsMapView.mkAnnotation"
 
 class NearbyLocationsMapViewController: UIViewController {
     
@@ -144,7 +126,6 @@ class NearbyLocationsMapViewController: UIViewController {
         
         focusUserLocationButton.tintColor = .white
         
-        
         let locationAvailable = LocationService.shared.locationPermissionsGranted
         focusUserLocationButton.isEnabled = locationAvailable
         focusUserLocationButton.tintColor = locationAvailable ? .white : .gray
@@ -204,6 +185,7 @@ extension NearbyLocationsMapViewController: MKMapViewDelegate {
             return viewForCurrentAnnotation
         }
     }
+    
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         focusUserLocationButton.setImage(UIImage(named: "LocateUserInactiveIcon"), for: .normal)
         focusFavoritedLocationButton.setImage(UIImage(named: "LocateFavoriteInactiveIcon"), for: .normal)

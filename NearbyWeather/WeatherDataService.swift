@@ -15,24 +15,24 @@ public enum SortingOrientation: Int {
     case distance
 }
 
-public class TemperatureUnitWrappedEnum: Codable {
+public class TemperatureUnit: Codable {
     
     static let count = 3
     
-    var value: TemperatureUnit
+    var value: TemperatureUnitWrappedEnum
     
-    init(value: TemperatureUnit) {
+    init(value: TemperatureUnitWrappedEnum) {
         self.value = value
     }
     
     convenience init?(rawValue: Int) {
-        guard let value = TemperatureUnit(rawValue: rawValue) else {
+        guard let value = TemperatureUnitWrappedEnum(rawValue: rawValue) else {
             return nil
         }
         self.init(value: value)
     }
     
-    enum TemperatureUnit: Int, Codable {
+    enum TemperatureUnitWrappedEnum: Int, Codable {
         case celsius
         case fahrenheit
         case kelvin
@@ -47,60 +47,60 @@ public class TemperatureUnitWrappedEnum: Codable {
     }
 }
 
-public class SpeedUnitWrappedEnum: Codable {
+public class DistanceSpeedUnit: Codable {
     static let count = 2
     
-    var value: SpeedUnit
+    var value: DistanceSpeedUnitWrappedEnum
     
-    init(value: SpeedUnit) {
+    init(value: DistanceSpeedUnitWrappedEnum) {
         self.value = value
     }
     
     convenience init?(rawValue: Int) {
-        guard let value = SpeedUnit(rawValue: rawValue) else {
+        guard let value = DistanceSpeedUnitWrappedEnum(rawValue: rawValue) else {
             return nil
         }
         self.init(value: value)
     }
     
-    enum SpeedUnit: Int, Codable {
-        case kilometresPerHour
-        case milesPerHour
+    enum DistanceSpeedUnitWrappedEnum: Int, Codable {
+        case kilometres
+        case miles
     }
     
-    var stringValue: String {
+    var stringDescriptor: String {
         switch value {
-        case .kilometresPerHour: return NSLocalizedString("kilometres_per_hour", comment: "")
-        case .milesPerHour: return NSLocalizedString("miles_per_hour", comment: "")
+        case .kilometres: return "\(NSLocalizedString("kilometres", comment: ""))/\(NSLocalizedString("kilometres_per_hour", comment: ""))"
+        case .miles: return "\(NSLocalizedString("miles", comment: ""))/\(NSLocalizedString("miles_per_hour", comment: ""))"
         }
     }
     
     var stringShortValue: String {
         switch value {
-        case .kilometresPerHour: return NSLocalizedString("kmh", comment: "")
-        case .milesPerHour: return NSLocalizedString("mph", comment: "")
+        case .kilometres: return NSLocalizedString("kmh", comment: "")
+        case .miles: return NSLocalizedString("mph", comment: "")
         }
     }
 }
 
-public class AmountOfResultsWrappedEnum: Codable {
+public class AmountOfResults: Codable {
     
     static let count = 5
     
-    var value: AmountOfResults
+    var value: AmountOfResultsWrappedEnum
     
-    init(value: AmountOfResults) {
+    init(value: AmountOfResultsWrappedEnum) {
         self.value = value
     }
     
     convenience init?(rawValue: Int) {
-        guard let value = AmountOfResults(rawValue: rawValue) else {
+        guard let value = AmountOfResultsWrappedEnum(rawValue: rawValue) else {
             return nil
         }
         self.init(value: value)
     }
     
-    enum AmountOfResults: Int, Codable {
+    enum AmountOfResultsWrappedEnum: Int, Codable {
         case ten
         case twenty
         case thirty
@@ -126,9 +126,9 @@ fileprivate let kWeatherDataServiceStoredContentFileName = "WeatherDataServiceSt
 
 struct WeatherDataServiceStoredContentsWrapper: Codable {
     var favoritedCity: OWMCityDTO
-    var amountOfResults: AmountOfResultsWrappedEnum
-    var temperatureUnit: TemperatureUnitWrappedEnum
-    var windspeedUnit: SpeedUnitWrappedEnum
+    var amountOfResults: AmountOfResults
+    var temperatureUnit: TemperatureUnit
+    var windspeedUnit: DistanceSpeedUnit
     var singleLocationWeatherData: [OWMWeatherDTO]?
     var multiLocationWeatherData: [OWMWeatherDTO]?
 }
@@ -162,19 +162,19 @@ class WeatherDataService {
             update(withCompletionHandler: nil)
         }
     }
-    public var amountOfResults: AmountOfResultsWrappedEnum {
+    public var amountOfResults: AmountOfResults {
         didSet {
             update(withCompletionHandler: nil)
         }
     }
-    public var temperatureUnit: TemperatureUnitWrappedEnum {
+    public var temperatureUnit: TemperatureUnit {
         didSet {
             weatherServiceBackgroundQueue.async {
                 WeatherDataService.storeService()
             }
         }
     }
-    public var windspeedUnit: SpeedUnitWrappedEnum {
+    public var windspeedUnit: DistanceSpeedUnit {
         didSet {
             weatherServiceBackgroundQueue.async {
                 WeatherDataService.storeService()
@@ -190,7 +190,7 @@ class WeatherDataService {
     
     // MARK: - Initialization
     
-    private init(favoritedLocation: OWMCityDTO, amountOfResults: AmountOfResultsWrappedEnum, temperatureUnit: TemperatureUnitWrappedEnum, windspeedUnit: SpeedUnitWrappedEnum) {
+    private init(favoritedLocation: OWMCityDTO, amountOfResults: AmountOfResults, temperatureUnit: TemperatureUnit, windspeedUnit: DistanceSpeedUnit) {
         self.favoritedCity = favoritedLocation
         self.amountOfResults = amountOfResults
         
@@ -210,7 +210,7 @@ class WeatherDataService {
     // MARK: - Public Properties & Methods
     
     public static func instantiateSharedInstance() {
-        shared = WeatherDataService.loadService() ?? WeatherDataService(favoritedLocation: kDefaultFavoritedCity, amountOfResults: AmountOfResultsWrappedEnum(value: .ten), temperatureUnit: TemperatureUnitWrappedEnum(value: .celsius), windspeedUnit: SpeedUnitWrappedEnum(value: .kilometresPerHour))
+        shared = WeatherDataService.loadService() ?? WeatherDataService(favoritedLocation: kDefaultFavoritedCity, amountOfResults: AmountOfResults(value: .ten), temperatureUnit: TemperatureUnit(value: .celsius), windspeedUnit: DistanceSpeedUnit(value: .kilometres))
     }
     
     public func update(withCompletionHandler completionHandler: (() -> Void)?) {
@@ -257,6 +257,20 @@ class WeatherDataService {
                 return weatherLocation1.distance(from: currentLocation) < weatherLocation2.distance(from: currentLocation)
             })
         }
+    }
+    
+    public func weatherDTO(forIdentifier identifier: Int) -> OWMWeatherDTO? {
+        if let singleLocationMatch = singleLocationWeatherData?.first(where: { weatherDTO in
+            return weatherDTO.cityID == identifier
+        }) {
+            return singleLocationMatch
+        }
+        if let multiLocationMatch = multiLocationWeatherData?.first(where: { weatherDTO in
+            return weatherDTO.cityID == identifier
+        }) {
+            return multiLocationMatch
+        }
+        return nil
     }
     
     

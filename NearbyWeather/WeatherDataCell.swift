@@ -1,5 +1,5 @@
 //
-//  LocationWeatherCell.swift
+//  WeatherDataCell.swift
 //  SimpleWeather
 //
 //  Created by Erik Maximilian Martens on 03.12.16.
@@ -8,7 +8,9 @@
 
 import UIKit
 
-class LocationWeatherCell: UITableViewCell {
+class WeatherDataCell: UITableViewCell {
+    
+    var weatherDataIdentifier: Int!
    
     @IBOutlet weak var backgroundColorView: UIView!
     

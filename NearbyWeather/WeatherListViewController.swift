@@ -236,8 +236,7 @@ extension WeatherListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if !WeatherDataService.shared.hasSingleLocationWeatherData && !WeatherDataService.shared.hasMultiLocationWeatherData {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AlertCell", for: indexPath) as! AlertCell
-                
-                cell.selectionStyle = .none
+
                 cell.backgroundColor = .clear
                 
                 cell.warningImageView.tintColor = .white
@@ -267,7 +266,9 @@ extension WeatherListViewController: UITableViewDataSource {
         }
         
         if let weatherData = weatherData {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LocationWeatherCell", for: indexPath) as! LocationWeatherCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherDataCell", for: indexPath) as! WeatherDataCell
+            
+            cell.weatherDataIdentifier = weatherData.cityID
             
             cell.selectionStyle = .none
             cell.backgroundColor = .clear
@@ -302,9 +303,10 @@ extension WeatherListViewController: UITableViewDataSource {
             
             cell.humidityLabel.text = "💧 \(weatherData.atmosphericInformation.humidity)%"
             
-            let windspeedDescriptor = ConversionService.windspeedDescriptor(forWindspeedUnit: WeatherDataService.shared.windspeedUnit, forWindspeed: weatherData.windInformation.windspeed)
+            let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: WeatherDataService.shared.windspeedUnit, forWindspeed: weatherData.windInformation.windspeed)
             cell.windspeedLabel.text = "💨 \(windspeedDescriptor)"
             return cell
+            
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AlertCell", for: indexPath) as! AlertCell
             
@@ -318,5 +320,21 @@ extension WeatherListViewController: UITableViewDataSource {
             cell.startAnimationTimer()
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let selectedCell = tableView.cellForRow(at: indexPath) as? WeatherDataCell,
+            let weatherDataIdentifier = selectedCell.weatherDataIdentifier else {
+                return
+        }
+        guard let weatherDTO = WeatherDataService.shared.weatherDTO(forIdentifier: weatherDataIdentifier) else {
+            return
+        }
+
+        let destinationViewController = WeatherDetailViewController.instantiateFromStoryBoard(withTitle: weatherDTO.cityName, weatherDTO: weatherDTO)
+        navigationItem.removeTextFromBackBarButton()
+        navigationController?.pushViewController(destinationViewController, animated: true)
     }
 }

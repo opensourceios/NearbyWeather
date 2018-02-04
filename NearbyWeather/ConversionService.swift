@@ -47,7 +47,7 @@ class ConversionService {
         }
     }
     
-    public static func temperatureDescriptor(forTemperatureUnit temperatureUnit: TemperatureUnitWrappedEnum, fromRawTemperature rawTemperature: Double) -> String {
+    public static func temperatureDescriptor(forTemperatureUnit temperatureUnit: TemperatureUnit, fromRawTemperature rawTemperature: Double) -> String {
         switch temperatureUnit.value {
         case .celsius:
             return "\(String(format:"%.02f", rawTemperature - 273.15))°C"
@@ -58,12 +58,21 @@ class ConversionService {
         }
     }
     
-    public static func windspeedDescriptor(forWindspeedUnit windspeedUnit: SpeedUnitWrappedEnum, forWindspeed windspeed: Double) -> String {
-        switch windspeedUnit.value {
-        case .kilometresPerHour:
+    public static func windspeedDescriptor(forDistanceSpeedUnit distanceSpeedUnit: DistanceSpeedUnit, forWindspeed windspeed: Double) -> String {
+        switch distanceSpeedUnit.value {
+        case .kilometres:
             return "\(String(format:"%.02f", windspeed)) \(NSLocalizedString("kph", comment: ""))"
-        case .milesPerHour:
+        case .miles:
             return "\(String(format:"%.02f", windspeed / 1.609344)) \(NSLocalizedString("mph", comment: ""))"
+        }
+    }
+    
+    public static func distanceDescriptor(forDistanceSpeedUnit distanceSpeedUnit: DistanceSpeedUnit, forDistanceInMetres distance: Double) -> String {
+        switch distanceSpeedUnit.value {
+        case .kilometres:
+            return "\(String(format:"%.02f", distance/1000)) \(NSLocalizedString("km", comment: ""))"
+        case .miles:
+            return "\(String(format:"%.02f", distance/1609.344)) \(NSLocalizedString("mi", comment: ""))"
         }
     }
 }
