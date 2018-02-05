@@ -53,6 +53,11 @@ LocationsListTVC_AlertLocationUnavailable = "Du gestattest NearbyWeather keinen 
 
 WeatherDetailVC_Sunrise = "Sonnenaufgang";
 WeatherDetailVC_Sunset = "Sonnenuntergang";
+
+WeatherDetailVC_CloudCoverage = "Wolkenbedeckung";
+WeatherDetailVC_Humidity = "Luftfeuchtigkeit";
+WeatherDetailVC_Pressure = "Luftdruck";
+
 WeatherDetailVC_Coordinates = "Koordinaten";
 WeatherDetailVC_DistanceFrom = "Entfernung";
 

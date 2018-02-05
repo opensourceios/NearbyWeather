@@ -265,10 +265,10 @@ extension WeatherListViewController: UITableViewDataSource {
             }
         }
         
-        if let weatherData = weatherData {
+        if let weatherDTO = weatherData {
             let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherDataCell", for: indexPath) as! WeatherDataCell
             
-            cell.weatherDataIdentifier = weatherData.cityID
+            cell.weatherDataIdentifier = weatherDTO.cityID
             
             cell.selectionStyle = .none
             cell.backgroundColor = .clear
@@ -282,8 +282,8 @@ extension WeatherListViewController: UITableViewDataSource {
             cell.temperatureLabel.textColor = .white
             cell.temperatureLabel.font = .preferredFont(forTextStyle: .subheadline)
             
-            cell.cloudCoverLabel.textColor = .white
-            cell.cloudCoverLabel.font = .preferredFont(forTextStyle: .subheadline)
+            cell.cloudCoverageLabel.textColor = .white
+            cell.cloudCoverageLabel.font = .preferredFont(forTextStyle: .subheadline)
             
             cell.humidityLabel.textColor = .white
             cell.humidityLabel.font = .preferredFont(forTextStyle: .subheadline)
@@ -291,20 +291,20 @@ extension WeatherListViewController: UITableViewDataSource {
             cell.windspeedLabel.textColor = .white
             cell.windspeedLabel.font = .preferredFont(forTextStyle: .subheadline)
             
-            let weatherConditionSymbol = ConversionService.weatherConditionSymbol(fromWeathercode: weatherData.weatherCondition[0].identifier)
+            let weatherConditionSymbol = ConversionService.weatherConditionSymbol(fromWeathercode: weatherDTO.weatherCondition[0].identifier)
             cell.weatherConditionLabel.text = weatherConditionSymbol
             
-            cell.cityNameLabel.text = weatherData.cityName
+            cell.cityNameLabel.text = weatherDTO.cityName
             
-            let temperatureDescriptor = ConversionService.temperatureDescriptor(forTemperatureUnit: WeatherDataService.shared.temperatureUnit, fromRawTemperature: weatherData.atmosphericInformation.temperatureKelvin)
+            let temperatureDescriptor = ConversionService.temperatureDescriptor(forTemperatureUnit: WeatherDataService.shared.temperatureUnit, fromRawTemperature: weatherDTO.atmosphericInformation.temperatureKelvin)
             cell.temperatureLabel.text = "🌡 \(temperatureDescriptor)"
             
-            cell.cloudCoverLabel.text = "☁️ \(weatherData.cloudCoverage.coverage)%"
+            cell.cloudCoverageLabel.text = "☁️ \(weatherDTO.cloudCoverage.coverage)%"
             
-            cell.humidityLabel.text = "💧 \(weatherData.atmosphericInformation.humidity)%"
+            cell.humidityLabel.text = "💧 \(weatherDTO.atmosphericInformation.humidity)%"
             
-            let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: WeatherDataService.shared.windspeedUnit, forWindspeed: weatherData.windInformation.windspeed)
-            cell.windspeedLabel.text = "💨 \(windspeedDescriptor)"
+            let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: WeatherDataService.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
+            cell.windspeedLabel.text = "🎏 \(windspeedDescriptor)"
             return cell
             
         } else {

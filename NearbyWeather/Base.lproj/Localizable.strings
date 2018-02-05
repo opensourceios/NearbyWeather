@@ -53,6 +53,11 @@ LocationsListTVC_AlertLocationUnavailable = "You do not grant NearbyWeather acce
 
 WeatherDetailVC_Sunrise = "Sunrise";
 WeatherDetailVC_Sunset = "Sunset";
+
+WeatherDetailVC_CloudCoverage = "Cloud Coverage";
+WeatherDetailVC_Humidity = "Humidity";
+WeatherDetailVC_Pressure = "Pressure";
+
 WeatherDetailVC_Coordinates = "Coordinates";
 WeatherDetailVC_Distance = "Distance";
 
@@ -151,8 +156,8 @@ miles_per_hour = "Miles per Hour";
 kilometres = "Kilometres";
 miles = "Miles";
 
-kph = "kmh";
-mph = "mph";
+kph = "km/h";
+mph = "mp/h";
 
 km = "km";
 mi = "mi";

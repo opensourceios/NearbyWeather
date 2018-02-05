@@ -40,6 +40,13 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var sunsetNoteLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
     
+    @IBOutlet weak var cloudCoverNoteLabel: UILabel!
+    @IBOutlet weak var cloudCoverLabel: UILabel!
+    @IBOutlet weak var humidityNoteLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var pressureNoteLabel: UILabel!
+    @IBOutlet weak var pressureLabel: UILabel!
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var coordinatesNoteLabel: UILabel!
     @IBOutlet weak var coordinatesLabel: UILabel!
@@ -99,6 +106,13 @@ class WeatherDetailViewController: UIViewController {
         } else {
             daytimeStackView.isHidden = true
         }
+        
+        cloudCoverNoteLabel.text = "☁️ \(NSLocalizedString("WeatherDetailVC_CloudCoverage", comment: "")):"
+        cloudCoverLabel.text = "\(weatherDTO.cloudCoverage.coverage)%"
+        humidityNoteLabel.text = "💧 \(NSLocalizedString("WeatherDetailVC_Humidity", comment: "")):"
+        humidityLabel.text = "\(weatherDTO.atmosphericInformation.humidity)%"
+        pressureNoteLabel.text = "💨 \(NSLocalizedString("WeatherDetailVC_Pressure", comment: "")):"
+        pressureLabel.text = "\(weatherDTO.atmosphericInformation.pressurePsi) psi"
         
         coordinatesNoteLabel.text = "\(NSLocalizedString("WeatherDetailVC_Coordinates", comment: "")):"
         coordinatesLabel.text = "\(weatherDTO.coordinates.latitude), \(weatherDTO.coordinates.longitude)"

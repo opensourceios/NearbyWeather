@@ -17,7 +17,7 @@ class WeatherDataCell: UITableViewCell {
     @IBOutlet weak var weatherConditionLabel: UILabel!
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var cloudCoverLabel: UILabel!
+    @IBOutlet weak var cloudCoverageLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var windspeedLabel: UILabel!
 }
