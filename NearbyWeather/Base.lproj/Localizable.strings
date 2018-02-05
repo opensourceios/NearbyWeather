@@ -58,6 +58,9 @@ WeatherDetailVC_CloudCoverage = "Cloud Coverage";
 WeatherDetailVC_Humidity = "Humidity";
 WeatherDetailVC_Pressure = "Pressure";
 
+WeatherDetailVC_WindSpeed = "Wind Speed";
+WeatherDetailVC_WindDirection = "Wind Direction";
+
 WeatherDetailVC_Coordinates = "Coordinates";
 WeatherDetailVC_Distance = "Distance";
 

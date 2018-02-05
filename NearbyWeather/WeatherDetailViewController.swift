@@ -47,9 +47,16 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var pressureNoteLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
     
+    @IBOutlet weak var windSpeedNoteLabel: UILabel!
+    @IBOutlet weak var windSpeedLabel: UILabel!
+    @IBOutlet weak var windDirectionStackView: UIStackView!
+    @IBOutlet weak var windDirectionNoteLabel: UILabel!
+    @IBOutlet weak var windDirectionLabel: UILabel!
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var coordinatesNoteLabel: UILabel!
     @IBOutlet weak var coordinatesLabel: UILabel!
+    @IBOutlet weak var distanceStackView: UIStackView!
     @IBOutlet weak var distanceNoteLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     
@@ -114,7 +121,17 @@ class WeatherDetailViewController: UIViewController {
         pressureNoteLabel.text = "💨 \(NSLocalizedString("WeatherDetailVC_Pressure", comment: "")):"
         pressureLabel.text = "\(weatherDTO.atmosphericInformation.pressurePsi) psi"
         
-        coordinatesNoteLabel.text = "\(NSLocalizedString("WeatherDetailVC_Coordinates", comment: "")):"
+        windSpeedNoteLabel.text = "🎏 \(NSLocalizedString("WeatherDetailVC_WindSpeed", comment: "")):"
+        let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: WeatherDataService.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
+        windSpeedLabel.text = windspeedDescriptor
+        if let windDirection = weatherDTO.windInformation.degrees {
+            windDirectionNoteLabel.text = "🌀 \(NSLocalizedString("WeatherDetailVC_WindDirection", comment: "")):"
+            windDirectionLabel.text = ConversionService.windDirectionDescriptor(forWindDirection: windDirection)
+        } else {
+            windDirectionStackView.isHidden = true
+        }
+        
+        coordinatesNoteLabel.text = "📍 \(NSLocalizedString("WeatherDetailVC_Coordinates", comment: "")):"
         coordinatesLabel.text = "\(weatherDTO.coordinates.latitude), \(weatherDTO.coordinates.longitude)"
         if LocationService.shared.locationPermissionsGranted, let userLocation = LocationService.shared.location {
             let location = CLLocation(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
@@ -123,10 +140,10 @@ class WeatherDetailViewController: UIViewController {
             let distanceSpeedUnit = WeatherDataService.shared.windspeedUnit
             let distanceString = ConversionService.distanceDescriptor(forDistanceSpeedUnit: distanceSpeedUnit, forDistanceInMetres: distanceInMetres)
             
-            distanceNoteLabel.text = "\(NSLocalizedString("WeatherDetailVC_Distance", comment: "")):"
+            distanceNoteLabel.text = "🔭 \(NSLocalizedString("WeatherDetailVC_Distance", comment: "")):"
             distanceLabel.text = distanceString
         } else {
-            distanceLabel.isHidden = true
+            distanceStackView.isHidden = true
         }
     }
     
