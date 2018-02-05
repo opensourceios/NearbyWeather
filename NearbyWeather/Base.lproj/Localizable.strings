@@ -51,7 +51,10 @@ LocationsListTVC_AlertLocationUnavailable = "You do not grant NearbyWeather acce
 
 // MARK: - WeatherDetailViewController
 
-WeatherDetailVC_DistanceFrom = "Distance: %@";
+WeatherDetailVC_Sunrise = "Sunrise";
+WeatherDetailVC_Sunset = "Sunset";
+WeatherDetailVC_Coordinates = "Coordinates";
+WeatherDetailVC_Distance = "Distance";
 
 
 // MARK: - NearbyLocationsMapViewController

@@ -34,7 +34,16 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var conditionNameLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
+    @IBOutlet weak var daytimeStackView: UIStackView!
+    @IBOutlet weak var sunriseNoteLabel: UILabel!
+    @IBOutlet weak var sunriseLabel: UILabel!
+    @IBOutlet weak var sunsetNoteLabel: UILabel!
+    @IBOutlet weak var sunsetLabel: UILabel!
+    
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var coordinatesNoteLabel: UILabel!
+    @IBOutlet weak var coordinatesLabel: UILabel!
+    @IBOutlet weak var distanceNoteLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     
     @IBOutlet var separatorLineHeightConstraints: [NSLayoutConstraint]!
@@ -68,13 +77,31 @@ class WeatherDetailViewController: UIViewController {
         
         let weatherCode = weatherDTO.weatherCondition[0].identifier
         conditionSymbolLabel.text = ConversionService.weatherConditionSymbol(fromWeathercode: weatherCode)
-        
         conditionNameLabel.text = weatherDTO.weatherCondition.first?.conditionName
-        
         let temperatureUnit = WeatherDataService.shared.temperatureUnit
         let temperatureKelvin = weatherDTO.atmosphericInformation.temperatureKelvin
-        temperatureLabel.text = "🌡 \(ConversionService.temperatureDescriptor(forTemperatureUnit: temperatureUnit, fromRawTemperature: temperatureKelvin))"
+        temperatureLabel.text = ConversionService.temperatureDescriptor(forTemperatureUnit: temperatureUnit, fromRawTemperature: temperatureKelvin)
         
+        if let sunriseTimeSinceReferenceDate = weatherDTO.daytimeInformation?.sunrise, let sunsetTimeSinceReferenceDate = weatherDTO.daytimeInformation?.sunset {
+            let sunriseDate = Date(timeIntervalSince1970: sunriseTimeSinceReferenceDate)
+            let sunsetDate = Date(timeIntervalSince1970: sunsetTimeSinceReferenceDate)
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.calendar = .current
+            dateFormatter.dateStyle = .none
+            dateFormatter.timeStyle = .short
+            
+            sunriseNoteLabel.text = "🌞 \(NSLocalizedString("WeatherDetailVC_Sunrise", comment: "")):"
+            sunriseLabel.text = dateFormatter.string(from: sunriseDate)
+            
+            sunsetNoteLabel.text = "🌜 \(NSLocalizedString("WeatherDetailVC_Sunset", comment: "")):"
+            sunsetLabel.text = dateFormatter.string(from: sunsetDate)
+        } else {
+            daytimeStackView.isHidden = true
+        }
+        
+        coordinatesNoteLabel.text = "\(NSLocalizedString("WeatherDetailVC_Coordinates", comment: "")):"
+        coordinatesLabel.text = "\(weatherDTO.coordinates.latitude), \(weatherDTO.coordinates.longitude)"
         if LocationService.shared.locationPermissionsGranted, let userLocation = LocationService.shared.location {
             let location = CLLocation(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
             let distanceInMetres = location.distance(from: userLocation)
@@ -82,7 +109,8 @@ class WeatherDetailViewController: UIViewController {
             let distanceSpeedUnit = WeatherDataService.shared.windspeedUnit
             let distanceString = ConversionService.distanceDescriptor(forDistanceSpeedUnit: distanceSpeedUnit, forDistanceInMetres: distanceInMetres)
             
-            distanceLabel.text = String(format: NSLocalizedString("WeatherDetailVC_DistanceFrom", comment: ""), distanceString)
+            distanceNoteLabel.text = "\(NSLocalizedString("WeatherDetailVC_Distance", comment: "")):"
+            distanceLabel.text = distanceString
         } else {
             distanceLabel.isHidden = true
         }

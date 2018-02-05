@@ -84,8 +84,8 @@ struct OWMWeatherDTO: Codable {
     }
     
     struct DaytimeInformation: Codable {
-        var sunrise: Int?
-        var sunset: Int?
+        var sunrise: Double?
+        var sunset: Double?
         
         enum CodingKeys: String, CodingKey {
             case sunrise
@@ -126,8 +126,8 @@ struct OWMWeatherDTO: Codable {
         
         if values.contains(.daytimeInformation) {
             let daytimeInformation = try values.nestedContainer(keyedBy: DaytimeInformation.CodingKeys.self, forKey: .daytimeInformation)
-            let sunrise = try daytimeInformation.decodeIfPresent(Int.self, forKey: DaytimeInformation.CodingKeys.sunrise)
-            let sunset = try daytimeInformation.decodeIfPresent(Int.self, forKey: DaytimeInformation.CodingKeys.sunset)
+            let sunrise = try daytimeInformation.decodeIfPresent(Double.self, forKey: DaytimeInformation.CodingKeys.sunrise)
+            let sunset = try daytimeInformation.decodeIfPresent(Double.self, forKey: DaytimeInformation.CodingKeys.sunset)
             self.daytimeInformation = DaytimeInformation(sunrise: sunrise, sunset: sunset)
         } else {
             self.daytimeInformation = nil
