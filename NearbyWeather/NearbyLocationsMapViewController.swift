@@ -61,10 +61,10 @@ class NearbyLocationsMapViewController: UIViewController {
     
     private func prepareMapAnnotations() {
         
-        let singleLocationAnnotations = WeatherDataService.shared.singleLocationWeatherData?.flatMap {
+        let singleLocationAnnotations = WeatherDataManager.shared.singleLocationWeatherData?.flatMap {
             return WeatherLocationMapAnnotation(weatherDTO: $0)
         }
-        let multiLocationAnnotations = WeatherDataService.shared.multiLocationWeatherData?.flatMap {
+        let multiLocationAnnotations = WeatherDataManager.shared.multiLocationWeatherData?.flatMap {
             return WeatherLocationMapAnnotation(weatherDTO: $0)
         }
         weatherLocationMapAnnotations = [WeatherLocationMapAnnotation]()
@@ -75,10 +75,10 @@ class NearbyLocationsMapViewController: UIViewController {
     }
     
     private func prepareLocations() {
-        let singleLocations = WeatherDataService.shared.singleLocationWeatherData?.flatMap {
+        let singleLocations = WeatherDataManager.shared.singleLocationWeatherData?.flatMap {
             return CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
         }
-        let multiLocations = WeatherDataService.shared.multiLocationWeatherData?.flatMap {
+        let multiLocations = WeatherDataManager.shared.multiLocationWeatherData?.flatMap {
             return CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
         }
         favoritedLocation = singleLocations?.first // this should never be nil, favoritedLocation is implicitely unwrapped

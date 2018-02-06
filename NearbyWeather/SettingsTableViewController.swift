@@ -53,13 +53,13 @@ class SettingsTableViewController: UITableViewController {
             navigationItem.removeTextFromBackBarButton()
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 4:
-            WeatherDataService.shared.amountOfResults = AmountOfResults(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            WeatherDataManager.shared.amountOfResults = AmountOfResults(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         case 5:
-            WeatherDataService.shared.temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            WeatherDataManager.shared.temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         case 6:
-            WeatherDataService.shared.windspeedUnit = DistanceSpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            WeatherDataManager.shared.windspeedUnit = DistanceSpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         default:
             break
@@ -129,7 +129,7 @@ class SettingsTableViewController: UITableViewController {
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
-            cell.contentLabel.text = "\(WeatherDataService.shared.favoritedCity.name), \(WeatherDataService.shared.favoritedCity.country)"
+            cell.contentLabel.text = "\(WeatherDataManager.shared.favoritedCity.name), \(WeatherDataManager.shared.favoritedCity.country)"
             cell.accessoryType = .disclosureIndicator
             return cell
         case 3:
@@ -141,7 +141,7 @@ class SettingsTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
             let amountResults = AmountOfResults(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = "\(amountResults.integerValue) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
-            if amountResults.integerValue == WeatherDataService.shared.amountOfResults.integerValue {
+            if amountResults.integerValue == WeatherDataManager.shared.amountOfResults.integerValue {
                 cell.accessoryType = .checkmark
             } else {
                 cell.accessoryType = .none
@@ -151,7 +151,7 @@ class SettingsTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
             let temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = temperatureUnit.stringValue
-            if temperatureUnit.stringValue == WeatherDataService.shared.temperatureUnit.stringValue {
+            if temperatureUnit.stringValue == WeatherDataManager.shared.temperatureUnit.stringValue {
                 cell.accessoryType = .checkmark
             } else {
                 cell.accessoryType = .none
@@ -161,7 +161,7 @@ class SettingsTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
             let windspeedUnit = DistanceSpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = windspeedUnit.stringDescriptor
-            if windspeedUnit.stringDescriptor == WeatherDataService.shared.windspeedUnit.stringDescriptor {
+            if windspeedUnit.stringDescriptor == WeatherDataManager.shared.windspeedUnit.stringDescriptor {
                 cell.accessoryType = .checkmark
             } else {
                 cell.accessoryType = .none

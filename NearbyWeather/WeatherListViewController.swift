@@ -119,7 +119,7 @@ class WeatherListViewController: UIViewController {
     
     @objc private func updateWeatherData() {
         refreshControl.beginRefreshing()
-        WeatherDataService.shared.update(withCompletionHandler: {
+        WeatherDataManager.shared.update(withCompletionHandler: {
             self.refreshControl.endRefreshing()
             self.tableView.reloadData()
         })
@@ -134,16 +134,16 @@ class WeatherListViewController: UIViewController {
         
         let cancelAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Cancel", comment: ""), style: .cancel, handler: nil)
         let sortByNameAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action1", comment: ""), style: .default, handler: { paramAction in
-            WeatherDataService.shared.sortData(byOrientation: .name)
+            WeatherDataManager.shared.sortData(byOrientation: .name)
             self.tableView.reloadData()
         })
         let sortByTemperatureAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action2", comment: ""), style: .default, handler: { paramAction in
-            WeatherDataService.shared.sortData(byOrientation: .temperature)
+            WeatherDataManager.shared.sortData(byOrientation: .temperature)
             self.tableView.reloadData()
         })
         
         let sortByDistanceAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action3", comment: ""), style: .default, handler: { paramAction in
-            WeatherDataService.shared.sortData(byOrientation: .distance)
+            WeatherDataManager.shared.sortData(byOrientation: .distance)
             self.tableView.reloadData()
         })
         
@@ -196,7 +196,7 @@ extension WeatherListViewController: UITableViewDelegate {
 extension WeatherListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if !WeatherDataService.shared.hasSingleLocationWeatherData && !WeatherDataService.shared.hasMultiLocationWeatherData {
+        if !WeatherDataManager.shared.hasSingleLocationWeatherData && !WeatherDataManager.shared.hasMultiLocationWeatherData {
                 return nil
         }
         switch section {
@@ -210,21 +210,21 @@ extension WeatherListViewController: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if !WeatherDataService.shared.hasSingleLocationWeatherData && !WeatherDataService.shared.hasMultiLocationWeatherData {
+        if !WeatherDataManager.shared.hasSingleLocationWeatherData && !WeatherDataManager.shared.hasMultiLocationWeatherData {
             return 1
         }
         return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !WeatherDataService.shared.hasSingleLocationWeatherData && !WeatherDataService.shared.hasMultiLocationWeatherData {
+        if !WeatherDataManager.shared.hasSingleLocationWeatherData && !WeatherDataManager.shared.hasMultiLocationWeatherData {
             return 1
         }
         switch section {
         case 0:
             return 1
         case 1:
-            guard let multiLocationWeatherData = WeatherDataService.shared.multiLocationWeatherData else {
+            guard let multiLocationWeatherData = WeatherDataManager.shared.multiLocationWeatherData else {
                 return 1
             }
             return multiLocationWeatherData.count
@@ -234,7 +234,7 @@ extension WeatherListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if !WeatherDataService.shared.hasSingleLocationWeatherData && !WeatherDataService.shared.hasMultiLocationWeatherData {
+        if !WeatherDataManager.shared.hasSingleLocationWeatherData && !WeatherDataManager.shared.hasMultiLocationWeatherData {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AlertCell", for: indexPath) as! AlertCell
 
                 cell.backgroundColor = .clear
@@ -251,14 +251,14 @@ extension WeatherListViewController: UITableViewDataSource {
         var alertNotice: String?
         
         if indexPath.section == 0 {
-            if let data = WeatherDataService.shared.singleLocationWeatherData?[indexPath.row] {
+            if let data = WeatherDataManager.shared.singleLocationWeatherData?[indexPath.row] {
                 weatherData = data
             } else {
                 alertNotice = NSLocalizedString("LocationsListTVC_AlertIncorrectFavoritedCity", comment: "")
             }
         }
         if indexPath.section == 1 {
-            if let data = WeatherDataService.shared.multiLocationWeatherData?[indexPath.row] {
+            if let data = WeatherDataManager.shared.multiLocationWeatherData?[indexPath.row] {
                 weatherData = data
             } else {
                 alertNotice = NSLocalizedString("LocationsListTVC_AlertLocationUnavailable", comment: "")
@@ -296,14 +296,14 @@ extension WeatherListViewController: UITableViewDataSource {
             
             cell.cityNameLabel.text = weatherDTO.cityName
             
-            let temperatureDescriptor = ConversionService.temperatureDescriptor(forTemperatureUnit: WeatherDataService.shared.temperatureUnit, fromRawTemperature: weatherDTO.atmosphericInformation.temperatureKelvin)
+            let temperatureDescriptor = ConversionService.temperatureDescriptor(forTemperatureUnit: WeatherDataManager.shared.temperatureUnit, fromRawTemperature: weatherDTO.atmosphericInformation.temperatureKelvin)
             cell.temperatureLabel.text = "🌡 \(temperatureDescriptor)"
             
             cell.cloudCoverageLabel.text = "☁️ \(weatherDTO.cloudCoverage.coverage)%"
             
             cell.humidityLabel.text = "💧 \(weatherDTO.atmosphericInformation.humidity)%"
             
-            let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: WeatherDataService.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
+            let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: WeatherDataManager.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
             cell.windspeedLabel.text = "🎏 \(windspeedDescriptor)"
             return cell
             
@@ -329,7 +329,7 @@ extension WeatherListViewController: UITableViewDataSource {
             let weatherDataIdentifier = selectedCell.weatherDataIdentifier else {
                 return
         }
-        guard let weatherDTO = WeatherDataService.shared.weatherDTO(forIdentifier: weatherDataIdentifier) else {
+        guard let weatherDTO = WeatherDataManager.shared.weatherDTO(forIdentifier: weatherDataIdentifier) else {
             return
         }
 

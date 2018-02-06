@@ -133,11 +133,11 @@ struct WeatherDataServiceStoredContentsWrapper: Codable {
     var multiLocationWeatherData: [OWMWeatherDTO]?
 }
 
-class WeatherDataService {
+class WeatherDataManager {
     
     // MARK: - Public Assets
     
-    public static var shared: WeatherDataService!
+    public static var shared: WeatherDataManager!
     
     public var hasSingleLocationWeatherData: Bool {
         return singleLocationWeatherData != nil && !singleLocationWeatherData!.isEmpty
@@ -170,14 +170,14 @@ class WeatherDataService {
     public var temperatureUnit: TemperatureUnit {
         didSet {
             weatherServiceBackgroundQueue.async {
-                WeatherDataService.storeService()
+                WeatherDataManager.storeService()
             }
         }
     }
     public var windspeedUnit: DistanceSpeedUnit {
         didSet {
             weatherServiceBackgroundQueue.async {
-                WeatherDataService.storeService()
+                WeatherDataManager.storeService()
             }
         }
     }
@@ -210,7 +210,7 @@ class WeatherDataService {
     // MARK: - Public Properties & Methods
     
     public static func instantiateSharedInstance() {
-        shared = WeatherDataService.loadService() ?? WeatherDataService(favoritedLocation: kDefaultFavoritedCity, amountOfResults: AmountOfResults(value: .ten), temperatureUnit: TemperatureUnit(value: .celsius), windspeedUnit: DistanceSpeedUnit(value: .kilometres))
+        shared = WeatherDataManager.loadService() ?? WeatherDataManager(favoritedLocation: kDefaultFavoritedCity, amountOfResults: AmountOfResults(value: .ten), temperatureUnit: TemperatureUnit(value: .celsius), windspeedUnit: DistanceSpeedUnit(value: .kilometres))
     }
     
     public func update(withCompletionHandler completionHandler: (() -> Void)?) {
@@ -230,7 +230,7 @@ class WeatherDataService {
             })
             
             dispatchGroup.wait()
-            WeatherDataService.storeService()
+            WeatherDataManager.storeService()
             DispatchQueue.main.async {
                 UserDefaults.standard.set(Date(), forKey: kWeatherDataLastRefreshDateKey)
                 NotificationCenter.default.post(name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: self)
@@ -278,12 +278,12 @@ class WeatherDataService {
     
     /* Internal Storage Helpers*/
     
-    private static func loadService() -> WeatherDataService? {
+    private static func loadService() -> WeatherDataManager? {
         guard let weatherDataServiceStoredContents = DataStorageService.retrieveJson(fromFileWithName: kWeatherDataServiceStoredContentFileName, andDecodeAsType: WeatherDataServiceStoredContentsWrapper.self) else {
                 return nil
         }
         
-        let weatherService = WeatherDataService(favoritedLocation: weatherDataServiceStoredContents.favoritedCity,
+        let weatherService = WeatherDataManager(favoritedLocation: weatherDataServiceStoredContents.favoritedCity,
                                                 amountOfResults: weatherDataServiceStoredContents.amountOfResults,
                                                 temperatureUnit: weatherDataServiceStoredContents.temperatureUnit,
                                                 windspeedUnit: weatherDataServiceStoredContents.windspeedUnit)
@@ -294,19 +294,19 @@ class WeatherDataService {
     }
     
     private static func storeService() {
-        let weatherDataServiceStoredContents = WeatherDataServiceStoredContentsWrapper(favoritedCity: WeatherDataService.shared.favoritedCity,
-                                                amountOfResults: WeatherDataService.shared.amountOfResults,
-                                                 temperatureUnit: WeatherDataService.shared.temperatureUnit,
-                                                 windspeedUnit: WeatherDataService.shared.windspeedUnit,
-                                                 singleLocationWeatherData: WeatherDataService.shared.singleLocationWeatherData,
-                                                 multiLocationWeatherData: WeatherDataService.shared.multiLocationWeatherData)
+        let weatherDataServiceStoredContents = WeatherDataServiceStoredContentsWrapper(favoritedCity: WeatherDataManager.shared.favoritedCity,
+                                                amountOfResults: WeatherDataManager.shared.amountOfResults,
+                                                 temperatureUnit: WeatherDataManager.shared.temperatureUnit,
+                                                 windspeedUnit: WeatherDataManager.shared.windspeedUnit,
+                                                 singleLocationWeatherData: WeatherDataManager.shared.singleLocationWeatherData,
+                                                 multiLocationWeatherData: WeatherDataManager.shared.multiLocationWeatherData)
         DataStorageService.storeJson(forCodable: weatherDataServiceStoredContents, toFileWithName: kWeatherDataServiceStoredContentFileName)
     }
     
     @objc private func discardLocationBasedWeatherDataIfNeeded() {
         if LocationService.shared.authorizationStatus != .authorizedWhenInUse && LocationService.shared.authorizationStatus != .authorizedAlways {
             multiLocationWeatherData = nil
-            WeatherDataService.storeService()
+            WeatherDataManager.storeService()
             NotificationCenter.default.post(name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: self)
         }
     }
@@ -318,7 +318,7 @@ class WeatherDataService {
         let requestedCity = favoritedCity.identifier
         
         guard let apiKey = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey),
-            let requestURL = URL(string: "\(WeatherDataService.openWeather_SingleLocationBaseURL)?APPID=\(apiKey)&id=\(requestedCity)") else {
+            let requestURL = URL(string: "\(WeatherDataManager.openWeather_SingleLocationBaseURL)?APPID=\(apiKey)&id=\(requestedCity)") else {
                 completionHandler(nil)
                 return
         }
@@ -343,7 +343,7 @@ class WeatherDataService {
         }
         
         guard let apiKey = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey),
-            let requestURL = URL(string: "\(WeatherDataService.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(currentLatitude)&lon=\(currentLongitude)&cnt=\(amountOfResults.integerValue)") else {
+            let requestURL = URL(string: "\(WeatherDataManager.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(currentLatitude)&lon=\(currentLongitude)&cnt=\(amountOfResults.integerValue)") else {
                 completionHandler(nil)
                 return
         }

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         OWMCityService.instantiateSharedInstance()
         
         if UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey) != nil {
-            WeatherDataService.instantiateSharedInstance()
+            WeatherDataManager.instantiateSharedInstance()
             LocationService.shared.requestWhenInUseAuthorization()
         } else {
             let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func refreshWeatherDataIfNeeded() {
         if UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey) != nil,
             UserDefaults.standard.bool(forKey: kRefreshOnAppStartKey) == true {
-            WeatherDataService.shared.update(withCompletionHandler: nil)
+            WeatherDataManager.shared.update(withCompletionHandler: nil)
         }
     }
 }

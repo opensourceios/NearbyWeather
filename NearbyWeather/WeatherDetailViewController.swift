@@ -94,7 +94,7 @@ class WeatherDetailViewController: UIViewController {
         conditionSymbolLabel.text = ConversionService.weatherConditionSymbol(fromWeathercode: weatherCode)
         conditionNameLabel.text = weatherDTO.weatherCondition.first?.conditionName
         conditionDescriptionLabel.text = weatherDTO.weatherCondition.first?.conditionDescription.capitalized
-        let temperatureUnit = WeatherDataService.shared.temperatureUnit
+        let temperatureUnit = WeatherDataManager.shared.temperatureUnit
         let temperatureKelvin = weatherDTO.atmosphericInformation.temperatureKelvin
         temperatureLabel.text = ConversionService.temperatureDescriptor(forTemperatureUnit: temperatureUnit, fromRawTemperature: temperatureKelvin)
         
@@ -124,7 +124,7 @@ class WeatherDetailViewController: UIViewController {
         pressureLabel.text = "\(weatherDTO.atmosphericInformation.pressurePsi) psi"
         
         windSpeedNoteLabel.text = "🎏 \(NSLocalizedString("WeatherDetailVC_WindSpeed", comment: "")):"
-        let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: WeatherDataService.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
+        let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: WeatherDataManager.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
         windSpeedLabel.text = windspeedDescriptor
         if let windDirection = weatherDTO.windInformation.degrees {
             windDirectionNoteLabel.text = "🌀 \(NSLocalizedString("WeatherDetailVC_WindDirection", comment: "")):"
@@ -139,7 +139,7 @@ class WeatherDetailViewController: UIViewController {
             let location = CLLocation(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
             let distanceInMetres = location.distance(from: userLocation)
             
-            let distanceSpeedUnit = WeatherDataService.shared.windspeedUnit
+            let distanceSpeedUnit = WeatherDataManager.shared.windspeedUnit
             let distanceString = ConversionService.distanceDescriptor(forDistanceSpeedUnit: distanceSpeedUnit, forDistanceInMetres: distanceInMetres)
             
             distanceNoteLabel.text = "🔭 \(NSLocalizedString("WeatherDetailVC_Distance", comment: "")):"
