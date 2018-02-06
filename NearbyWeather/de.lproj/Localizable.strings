@@ -85,7 +85,7 @@ InfoTVC_AppTitle = "NearbyWeather - Open Source Wetter";
 InfoTVC_RateVersion = "Im App Store Bewerten";
 InfoTVC_DeveloperNameSubtitle_0 = "Projekt Inhaber";
 InfoTVC_HowToContribute = "Entwicklung Unterstützen";
-InfoTVC_Source = "Quellcode";
+InfoTVC_Source = "Quellcode via GitHub";
 
 
 // MARK: - SettingsTableViewController

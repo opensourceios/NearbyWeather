@@ -18,7 +18,6 @@ class InfoTableViewController: UITableViewController {
     
     @IBOutlet weak var rateVersionLabel: UILabel!
     @IBOutlet weak var sourceNoteLabel: UILabel!
-    @IBOutlet weak var sourceAddressLabel: UILabel!
     
     @IBOutlet weak var developerName_0: UILabel!
     @IBOutlet weak var developerNameSubtitle_0: UILabel!
@@ -121,7 +120,6 @@ class InfoTableViewController: UITableViewController {
         appVersionLabel.text = "Version \(appVersion) Build #\(appBuild)"
         rateVersionLabel.text = NSLocalizedString("InfoTVC_RateVersion", comment: "")
         sourceNoteLabel.text = NSLocalizedString("InfoTVC_Source", comment: "")
-        sourceAddressLabel.textColor = .nearbyWeatherStandard
         developerName_0.text = "Erik Maximilian Martens"
         howToContributeLabel.text = NSLocalizedString("InfoTVC_HowToContribute", comment: "")
         developerNameSubtitle_0.text = NSLocalizedString("InfoTVC_DeveloperNameSubtitle_0", comment: "")
