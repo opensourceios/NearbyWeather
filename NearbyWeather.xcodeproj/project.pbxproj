@@ -35,7 +35,6 @@
 		F28CE96A1F9AA829008319C4 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28CE9691F9AA829008319C4 /* UIViewExtensions.swift */; };
 		F2A5CAA62005762A0071BFFB /* ConversionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5CAA52005762A0071BFFB /* ConversionService.swift */; };
 		F2A5CAA8200587DE0071BFFB /* OWMCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5CAA7200587DE0071BFFB /* OWMCityCell.swift */; };
-		F2A5CAAA200D497B0071BFFB /* HelpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5CAA9200D497B0071BFFB /* HelpTableViewController.swift */; };
 		F2A5CAAC200D51870071BFFB /* UINavigationItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5CAAB200D51870071BFFB /* UINavigationItemExtensions.swift */; };
 		F2B8EA001EA11BA800704E90 /* OWMWeatherDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8E9FF1EA11BA800704E90 /* OWMWeatherDTO.swift */; };
 		F2B8EA021EA121CC00704E90 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA011EA121CC00704E90 /* AlertCell.swift */; };
@@ -110,7 +109,6 @@
 		F28CE9691F9AA829008319C4 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		F2A5CAA52005762A0071BFFB /* ConversionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionService.swift; sourceTree = "<group>"; };
 		F2A5CAA7200587DE0071BFFB /* OWMCityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OWMCityCell.swift; sourceTree = "<group>"; };
-		F2A5CAA9200D497B0071BFFB /* HelpTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTableViewController.swift; sourceTree = "<group>"; };
 		F2A5CAAB200D51870071BFFB /* UINavigationItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationItemExtensions.swift; sourceTree = "<group>"; };
 		F2B8E9FF1EA11BA800704E90 /* OWMWeatherDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OWMWeatherDTO.swift; sourceTree = "<group>"; };
 		F2B8EA011EA121CC00704E90 /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
@@ -263,7 +261,6 @@
 				F2B8EA071EA2A7AB00704E90 /* SetPermissionsViewController.swift */,
 				F28CE9671F9A9893008319C4 /* WeatherListViewController.swift */,
 				F2B8EA0D1EA37BE800704E90 /* InfoTableViewController.swift */,
-				F2A5CAA9200D497B0071BFFB /* HelpTableViewController.swift */,
 				F204B7BC1DF35610000F4371 /* SettingsTableViewController.swift */,
 				F27AFDEF1DF4D36C003957EB /* SettingsInputTableViewController.swift */,
 				F2FE3F022002972800EBC429 /* OWMCityFilterTableViewController.swift */,
@@ -611,7 +608,6 @@
 				F204B77B1DF2EFA3000F4371 /* AppDelegate.swift in Sources */,
 				F2B8EA061EA2893C00704E90 /* WelcomeScreenViewController.swift in Sources */,
 				F28CA53F2026285000209397 /* UserDefaultsKeys.swift in Sources */,
-				F2A5CAAA200D497B0071BFFB /* HelpTableViewController.swift in Sources */,
 				F2B8EA001EA11BA800704E90 /* OWMWeatherDTO.swift in Sources */,
 				F28CA53D202622C200209397 /* ToggleCell.swift in Sources */,
 				F2B8EA0E1EA37BE800704E90 /* InfoTableViewController.swift in Sources */,
