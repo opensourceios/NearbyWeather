@@ -88,35 +88,6 @@ InfoTVC_HowToContribute = "Entwicklung Unterstützen";
 InfoTVC_Source = "Quellcode";
 
 
-// MARK: - HelpTableViewController
-
-HelpTVC_NavigationItemTitle = "Hilfe";
-
-HelpTVC_TableViewSectionHeader0 = "Wetterlage-Symbole";
-HelpTVC_TableViewSectionHeader1 = "Wetterdaten-Symbole";
-
-HelpTVC_Legend_Thunderstorm = "🌩 Gewitter";
-HelpTVC_Legend_ThunderstormWithRain = "⛈ Gewitter mit Regen";
-HelpTVC_Legend_HeavyThunderstorm = "⚡️ Schweres Gewitter";
-HelpTVC_Legend_Drizzle = "🌦 Leichter Regen";
-HelpTVC_Legend_Rain = "🌧 Regen";
-HelpTVC_Legend_Atmosphere = "🌫 Atmospherisch";
-HelpTVC_Legend_HeavyStorm = "🌪 Schwerer Sturm";
-HelpTVC_Legend_SunnyClear = "☀️ Klar";
-HelpTVC_Legend_FewClouds = "🌤 Wenige Wolken";
-HelpTVC_Legend_ScatteredClouds = "⛅️ Leicht Bewölkt";
-HelpTVC_Legend_BrokenClouds = "🌥 Bewölkt";
-HelpTVC_Legend_OvercastClouds = "☁️ Bedeckt";
-HelpTVC_Legend_Breeze = "🌬 Windböhen";
-HelpTVC_Legend_Snow = "❄️ Schnee";
-HelpTVC_Legend_SnowAndRain = "🌨 Schnee & Regen";
-
-HelpTVC_Legend_Temperature = "🌡 Temperatur";
-HelpTVC_Legend_CloudCover = "☁️ Wolkenbedeckung";
-HelpTVC_Legend_Humidity = "💧 Luftfeuchtigkeit";
-HelpTVC_Legend_WindSpeed = "💨 Windgeschwindigkeit";
-
-
 // MARK: - SettingsTableViewController
 
 SettingsTVC_BackButtonTitle = "Wetter";
