@@ -80,21 +80,21 @@ class ConversionService {
         var descriptor = String(format: "%.02f", degrees) + "°"
         switch degrees {
         case let x where x > 337.5 || x <= 22.5:
-            descriptor += " ⬆️"
+            descriptor = "⬆️ " + descriptor
         case let x where x > 25 && x <= 67.5:
-            descriptor += " ↗️"
+            descriptor = "↗️ " + descriptor
         case let x where x > 67.5 && x <= 112.5:
-            descriptor += " ➡️"
+            descriptor = "➡️ " + descriptor
         case let x where x > 112.5 && x <= 157.5:
-            descriptor += " ↘️"
+            descriptor = "↘️" + descriptor
         case let x where x > 157.5 && x <= 202.5:
-            descriptor += " ⬇️"
+            descriptor = "⬇️ " + descriptor
         case let x where x > 202.5 && x <= 247.5:
-            descriptor += " ↙️"
+            descriptor = "↙️ " + descriptor
         case let x where x > 247.5 && x <= 292.5:
-            descriptor += " ⬅️"
+            descriptor = "⬅️ " + descriptor
         case let x where x > 292.5 && x <= 337.5:
-            descriptor += " ↖️"
+            descriptor = "↖️ " + descriptor
         default:
             break
         }

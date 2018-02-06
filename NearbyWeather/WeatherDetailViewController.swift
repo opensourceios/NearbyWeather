@@ -32,6 +32,7 @@ class WeatherDetailViewController: UIViewController {
     
     @IBOutlet weak var conditionSymbolLabel: UILabel!
     @IBOutlet weak var conditionNameLabel: UILabel!
+    @IBOutlet weak var conditionDescriptionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
     @IBOutlet weak var daytimeStackView: UIStackView!
@@ -92,6 +93,7 @@ class WeatherDetailViewController: UIViewController {
         let weatherCode = weatherDTO.weatherCondition[0].identifier
         conditionSymbolLabel.text = ConversionService.weatherConditionSymbol(fromWeathercode: weatherCode)
         conditionNameLabel.text = weatherDTO.weatherCondition.first?.conditionName
+        conditionDescriptionLabel.text = weatherDTO.weatherCondition.first?.conditionDescription.capitalized
         let temperatureUnit = WeatherDataService.shared.temperatureUnit
         let temperatureKelvin = weatherDTO.atmosphericInformation.temperatureKelvin
         temperatureLabel.text = ConversionService.temperatureDescriptor(forTemperatureUnit: temperatureUnit, fromRawTemperature: temperatureKelvin)
