@@ -98,7 +98,7 @@ SettingsTVC_About = "Über";
 
 SettingsTVC_SectionTitle0 = "Allgemein";
 SettingsTVC_SectionTitle1 = "Favorisierte Stadt";
-SettingsTVC_SectionTitle2 = "Open Weather Map API Schlüssel";
+SettingsTVC_SectionTitle2 = "OpenWeatherMap API Schlüssel";
 SettingsTVC_SectionTitle3 = "Anzahl der Such-Ergebnisse";
 SettingsTVC_SectionTitle4 = "Temperatur Einheit";
 SettingsTVC_SectionTitle5 = "Geschwindigkeits/Entfernungs-Einheit";

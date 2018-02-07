@@ -98,7 +98,7 @@ SettingsTVC_About = "About";
 
 SettingsTVC_SectionTitle0 = "General";
 SettingsTVC_SectionTitle1 = "Bookmarked Location";
-SettingsTVC_SectionTitle2 = "Open Weather Map API Key";
+SettingsTVC_SectionTitle2 = "OpenWeatherMap API Key";
 SettingsTVC_SectionTitle3 = "Amount of Search Results";
 SettingsTVC_SectionTitle4 = "Temperature Unit";
 SettingsTVC_SectionTitle5 = "Distance/Speed Unit";
