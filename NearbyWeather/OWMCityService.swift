@@ -14,7 +14,7 @@ class OWMCityService {
     
     public static var shared: OWMCityService!
     
-    public var openWeatherMapCities: [OWMCityDTO]
+    public var openWeatherMapCities: [WeatherLocationDTO]
     
     
     // MARK: - Private Assets
@@ -24,14 +24,14 @@ class OWMCityService {
     
     // MARK: - Initialization
     
-    private init(openWeatherMapCities: [OWMCityDTO]) {
+    private init(openWeatherMapCities: [WeatherLocationDTO]) {
         self.openWeatherMapCities = openWeatherMapCities
     }
     
     private convenience init(fileName: String) {
-        self.init(openWeatherMapCities: [OWMCityDTO]())
+        self.init(openWeatherMapCities: [WeatherLocationDTO]())
         
-        var cities: [OWMCityDTO]?
+        var cities: [WeatherLocationDTO]?
         
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
@@ -42,7 +42,7 @@ class OWMCityService {
             }
             do {
                 let cityJsonData = try Data(contentsOf: path, options: .mappedIfSafe)
-                cities = try JSONDecoder().decode([OWMCityDTO].self, from: cityJsonData)
+                cities = try JSONDecoder().decode([WeatherLocationDTO].self, from: cityJsonData)
                 dispatchGroup.leave()
             } catch let error {
                 dispatchGroup.leave()

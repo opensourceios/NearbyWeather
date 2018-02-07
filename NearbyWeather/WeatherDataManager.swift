@@ -119,13 +119,13 @@ public class AmountOfResults: Codable {
     }
 }
 
-let kDefaultBookmarkedLocation = OWMCityDTO(identifier: 5341145, name: "Cupertino", country: "US", coordinates: Coordinates(latitude: 37.323002, longitude: -122.032181))
+let kDefaultBookmarkedLocation = WeatherLocationDTO(identifier: 5341145, name: "Cupertino", country: "US", coordinates: Coordinates(latitude: 37.323002, longitude: -122.032181))
 let kWeatherServiceDidUpdate = "de.erikmartens.nearbyWeather.weatherServiceDidUpdate"
 
 fileprivate let kWeatherDataServiceStoredContentFileName = "WeatherDataServiceStoredContents"
 
 struct WeatherDataServiceStoredContentsWrapper: Codable {
-    var bookmarkedLocation: OWMCityDTO
+    var bookmarkedLocation: WeatherLocationDTO
     var amountOfResults: AmountOfResults
     var temperatureUnit: TemperatureUnit
     var windspeedUnit: DistanceSpeedUnit
@@ -157,7 +157,7 @@ class WeatherDataManager {
     
     // MARK: - Properties
     
-    public var bookmarkedLocation: OWMCityDTO {
+    public var bookmarkedLocation: WeatherLocationDTO {
         didSet {
             update(withCompletionHandler: nil)
         }
@@ -190,7 +190,7 @@ class WeatherDataManager {
     
     // MARK: - Initialization
     
-    private init(bookmarkedLocation: OWMCityDTO, amountOfResults: AmountOfResults, temperatureUnit: TemperatureUnit, windspeedUnit: DistanceSpeedUnit) {
+    private init(bookmarkedLocation: WeatherLocationDTO, amountOfResults: AmountOfResults, temperatureUnit: TemperatureUnit, windspeedUnit: DistanceSpeedUnit) {
         self.bookmarkedLocation = bookmarkedLocation
         self.amountOfResults = amountOfResults
         

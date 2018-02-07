@@ -14,7 +14,7 @@ class OWMCityFilterTableViewController: UITableViewController {
     // MARK: - Properties
     
     private let searchController = UISearchController(searchResultsController: nil)
-    private var filteredCities = [OWMCityDTO]()
+    private var filteredCities = [WeatherLocationDTO]()
     
     
     // MARK: - ViewController Life Cycle
@@ -79,7 +79,7 @@ extension OWMCityFilterTableViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else {
-            filteredCities = [OWMCityDTO]()
+            filteredCities = [WeatherLocationDTO]()
             tableView.reloadData()
             return
         }

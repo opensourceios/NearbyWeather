@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct OWMCityDTO: Codable {
+struct WeatherLocationDTO: Codable {
     
     var identifier: Int
     var name: String
