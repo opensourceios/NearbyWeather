@@ -1086,16 +1086,16 @@
             </objects>
             <point key="canvasLocation" x="5028" y="922"/>
         </scene>
-        <!--City Filter Table View Controller-->
+        <!--Weather Location Selection Table View Controller-->
         <scene sceneID="U9L-tw-se3">
             <objects>
-                <tableViewController storyboardIdentifier="OWMCityFilterTableViewController" id="AaU-DB-e1y" customClass="OWMCityFilterTableViewController" customModule="NearbyWeather" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="OWMCityFilterTableViewController" id="AaU-DB-e1y" customClass="WeatherLocationSelectionTableViewController" customModule="NearbyWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="aqH-TU-EwH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OWMCityCell" id="fUw-Jx-jyI" userLabel="OWMCityCell" customClass="OWMCityCell" customModule="NearbyWeather" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OWMCityCell" id="fUw-Jx-jyI" userLabel="OWMCityCell" customClass="LocationWeatherDataCell" customModule="NearbyWeather" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fUw-Jx-jyI" id="tdD-Dk-2Uj">

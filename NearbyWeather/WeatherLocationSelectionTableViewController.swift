@@ -9,7 +9,7 @@
 import UIKit
 import PKHUD
 
-class OWMCityFilterTableViewController: UITableViewController {
+class WeatherLocationSelectionTableViewController: UITableViewController {
     
     // MARK: - Properties
     
@@ -57,7 +57,7 @@ class OWMCityFilterTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "OWMCityCell", for: indexPath) as! OWMCityCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OWMCityCell", for: indexPath) as! LocationWeatherDataCell
         cell.contentLabel.text = "\(filteredCities[indexPath.row].name), \(filteredCities[indexPath.row].country)"
         return cell
     }
@@ -75,7 +75,7 @@ class OWMCityFilterTableViewController: UITableViewController {
     
 }
 
-extension OWMCityFilterTableViewController: UISearchResultsUpdating {
+extension WeatherLocationSelectionTableViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else {
@@ -90,7 +90,7 @@ extension OWMCityFilterTableViewController: UISearchResultsUpdating {
     }
 }
 
-extension OWMCityFilterTableViewController: UISearchControllerDelegate {
+extension WeatherLocationSelectionTableViewController: UISearchControllerDelegate {
     func willDismissSearchController(_ searchController: UISearchController) {
         filteredCities = WeatherLocationService.shared.openWeatherMapCities
         tableView.reloadData()

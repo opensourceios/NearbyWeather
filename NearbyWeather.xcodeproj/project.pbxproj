@@ -34,9 +34,9 @@
 		F28CE9681F9A9893008319C4 /* WeatherListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28CE9671F9A9893008319C4 /* WeatherListViewController.swift */; };
 		F28CE96A1F9AA829008319C4 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28CE9691F9AA829008319C4 /* UIViewExtensions.swift */; };
 		F2A5CAA62005762A0071BFFB /* ConversionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5CAA52005762A0071BFFB /* ConversionService.swift */; };
-		F2A5CAA8200587DE0071BFFB /* OWMCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5CAA7200587DE0071BFFB /* OWMCityCell.swift */; };
+		F2A5CAA8200587DE0071BFFB /* LocationWeatherDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5CAA7200587DE0071BFFB /* LocationWeatherDataCell.swift */; };
 		F2A5CAAC200D51870071BFFB /* UINavigationItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5CAAB200D51870071BFFB /* UINavigationItemExtensions.swift */; };
-		F2B8EA001EA11BA800704E90 /* OWMWeatherDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8E9FF1EA11BA800704E90 /* OWMWeatherDTO.swift */; };
+		F2B8EA001EA11BA800704E90 /* LocationWeatherDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8E9FF1EA11BA800704E90 /* LocationWeatherDataDTO.swift */; };
 		F2B8EA021EA121CC00704E90 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA011EA121CC00704E90 /* AlertCell.swift */; };
 		F2B8EA041EA286F000704E90 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2B8EA031EA286F000704E90 /* Welcome.storyboard */; };
 		F2B8EA061EA2893C00704E90 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA051EA2893C00704E90 /* WelcomeScreenViewController.swift */; };
@@ -46,7 +46,7 @@
 		F2FE3EFD20027E6500EBC429 /* cityList_17-04-2017.json in Resources */ = {isa = PBXBuildFile; fileRef = F2FE3EFC20027E6500EBC429 /* cityList_17-04-2017.json */; };
 		F2FE3EFF20027EB400EBC429 /* WeatherLocationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE3EFE20027EB400EBC429 /* WeatherLocationDTO.swift */; };
 		F2FE3F01200285B100EBC429 /* WeatherLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE3F00200285B100EBC429 /* WeatherLocationService.swift */; };
-		F2FE3F032002972800EBC429 /* OWMCityFilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE3F022002972800EBC429 /* OWMCityFilterTableViewController.swift */; };
+		F2FE3F032002972800EBC429 /* WeatherLocationSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE3F022002972800EBC429 /* WeatherLocationSelectionTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,9 +108,9 @@
 		F28CE9671F9A9893008319C4 /* WeatherListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewController.swift; sourceTree = "<group>"; };
 		F28CE9691F9AA829008319C4 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		F2A5CAA52005762A0071BFFB /* ConversionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionService.swift; sourceTree = "<group>"; };
-		F2A5CAA7200587DE0071BFFB /* OWMCityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OWMCityCell.swift; sourceTree = "<group>"; };
+		F2A5CAA7200587DE0071BFFB /* LocationWeatherDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationWeatherDataCell.swift; sourceTree = "<group>"; };
 		F2A5CAAB200D51870071BFFB /* UINavigationItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationItemExtensions.swift; sourceTree = "<group>"; };
-		F2B8E9FF1EA11BA800704E90 /* OWMWeatherDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OWMWeatherDTO.swift; sourceTree = "<group>"; };
+		F2B8E9FF1EA11BA800704E90 /* LocationWeatherDataDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationWeatherDataDTO.swift; sourceTree = "<group>"; };
 		F2B8EA011EA121CC00704E90 /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
 		F2B8EA031EA286F000704E90 /* Welcome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		F2B8EA051EA2893C00704E90 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 		F2FE3EFC20027E6500EBC429 /* cityList_17-04-2017.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "cityList_17-04-2017.json"; sourceTree = "<group>"; };
 		F2FE3EFE20027EB400EBC429 /* WeatherLocationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocationDTO.swift; sourceTree = "<group>"; };
 		F2FE3F00200285B100EBC429 /* WeatherLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocationService.swift; sourceTree = "<group>"; };
-		F2FE3F022002972800EBC429 /* OWMCityFilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OWMCityFilterTableViewController.swift; sourceTree = "<group>"; };
+		F2FE3F022002972800EBC429 /* WeatherLocationSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocationSelectionTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,7 +263,7 @@
 				F2B8EA0D1EA37BE800704E90 /* InfoTableViewController.swift */,
 				F204B7BC1DF35610000F4371 /* SettingsTableViewController.swift */,
 				F27AFDEF1DF4D36C003957EB /* SettingsInputTableViewController.swift */,
-				F2FE3F022002972800EBC429 /* OWMCityFilterTableViewController.swift */,
+				F2FE3F022002972800EBC429 /* WeatherLocationSelectionTableViewController.swift */,
 				F28CA5382016A1BA00209397 /* NearbyLocationsMapViewController.swift */,
 				F28CA54020279EE300209397 /* WeatherDetailViewController.swift */,
 			);
@@ -303,7 +303,7 @@
 		F2B8E9FE1EA11B8100704E90 /* Data Transfer Objects (DTOs) */ = {
 			isa = PBXGroup;
 			children = (
-				F2B8E9FF1EA11BA800704E90 /* OWMWeatherDTO.swift */,
+				F2B8E9FF1EA11BA800704E90 /* LocationWeatherDataDTO.swift */,
 				F2FE3EFE20027EB400EBC429 /* WeatherLocationDTO.swift */,
 			);
 			name = "Data Transfer Objects (DTOs)";
@@ -315,7 +315,7 @@
 				F27AFDEB1DF4C089003957EB /* WeatherDataCell.swift */,
 				F283D26D1DF39095001B879D /* SettingsCell.swift */,
 				F2B8EA011EA121CC00704E90 /* AlertCell.swift */,
-				F2A5CAA7200587DE0071BFFB /* OWMCityCell.swift */,
+				F2A5CAA7200587DE0071BFFB /* LocationWeatherDataCell.swift */,
 				F28CA53C202622C200209397 /* ToggleCell.swift */,
 			);
 			name = TableViewCells;
@@ -608,11 +608,11 @@
 				F204B77B1DF2EFA3000F4371 /* AppDelegate.swift in Sources */,
 				F2B8EA061EA2893C00704E90 /* WelcomeScreenViewController.swift in Sources */,
 				F28CA53F2026285000209397 /* UserDefaultsKeys.swift in Sources */,
-				F2B8EA001EA11BA800704E90 /* OWMWeatherDTO.swift in Sources */,
+				F2B8EA001EA11BA800704E90 /* LocationWeatherDataDTO.swift in Sources */,
 				F28CA53D202622C200209397 /* ToggleCell.swift in Sources */,
 				F2B8EA0E1EA37BE800704E90 /* InfoTableViewController.swift in Sources */,
 				F204B7BD1DF35610000F4371 /* SettingsTableViewController.swift in Sources */,
-				F2FE3F032002972800EBC429 /* OWMCityFilterTableViewController.swift in Sources */,
+				F2FE3F032002972800EBC429 /* WeatherLocationSelectionTableViewController.swift in Sources */,
 				F28CA5392016A1BA00209397 /* NearbyLocationsMapViewController.swift in Sources */,
 				F28CE9681F9A9893008319C4 /* WeatherListViewController.swift in Sources */,
 				F27AFDEC1DF4C089003957EB /* WeatherDataCell.swift in Sources */,
@@ -620,7 +620,7 @@
 				F2B8EA081EA2A7AB00704E90 /* SetPermissionsViewController.swift in Sources */,
 				F260C4431F9D4883000D2BC0 /* UINavigationControllerExtensions.swift in Sources */,
 				F2A5CAAC200D51870071BFFB /* UINavigationItemExtensions.swift in Sources */,
-				F2A5CAA8200587DE0071BFFB /* OWMCityCell.swift in Sources */,
+				F2A5CAA8200587DE0071BFFB /* LocationWeatherDataCell.swift in Sources */,
 				F2B8EA021EA121CC00704E90 /* AlertCell.swift in Sources */,
 				F2D2B1E02004171500C810EF /* DataStorageService.swift in Sources */,
 				F28CE9661F96B537008319C4 /* UINavigationBarExtensions.swift in Sources */,

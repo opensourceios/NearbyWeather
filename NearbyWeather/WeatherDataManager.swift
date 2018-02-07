@@ -129,8 +129,8 @@ struct WeatherDataServiceStoredContentsWrapper: Codable {
     var amountOfResults: AmountOfResults
     var temperatureUnit: TemperatureUnit
     var windspeedUnit: DistanceSpeedUnit
-    var singleLocationWeatherData: [OWMWeatherDTO]?
-    var multiLocationWeatherData: [OWMWeatherDTO]?
+    var singleLocationWeatherData: [LocationWeatherDataDTO]?
+    var multiLocationWeatherData: [LocationWeatherDataDTO]?
 }
 
 class WeatherDataManager {
@@ -182,8 +182,8 @@ class WeatherDataManager {
         }
     }
     
-    public var singleLocationWeatherData: [OWMWeatherDTO]?
-    public var multiLocationWeatherData: [OWMWeatherDTO]?
+    public var singleLocationWeatherData: [LocationWeatherDataDTO]?
+    public var multiLocationWeatherData: [LocationWeatherDataDTO]?
     
     private var locationAuthorizationObserver: NSObjectProtocol!
     
@@ -259,7 +259,7 @@ class WeatherDataManager {
         }
     }
     
-    public func weatherDTO(forIdentifier identifier: Int) -> OWMWeatherDTO? {
+    public func weatherDTO(forIdentifier identifier: Int) -> LocationWeatherDataDTO? {
         if let singleLocationMatch = singleLocationWeatherData?.first(where: { weatherDTO in
             return weatherDTO.cityID == identifier
         }) {
@@ -313,7 +313,7 @@ class WeatherDataManager {
     
     /* Data Retrieval via Network */
     
-    private func fetchSingleLocationWeatherData(completionHandler: @escaping ([OWMWeatherDTO]?) -> Void) {
+    private func fetchSingleLocationWeatherData(completionHandler: @escaping ([LocationWeatherDataDTO]?) -> Void) {
         let session = URLSession.shared
         let requestedCity = bookmarkedLocation.identifier
         
@@ -334,7 +334,7 @@ class WeatherDataManager {
         dataTask.resume()
     }
     
-    private func fetchMultiLocationWeatherData(completionHandler: @escaping ([OWMWeatherDTO]?) -> Void) {
+    private func fetchMultiLocationWeatherData(completionHandler: @escaping ([LocationWeatherDataDTO]?) -> Void) {
         let session = URLSession.shared
         
         guard let currentLatitude = LocationService.shared.currentLatitude, let currentLongitude = LocationService.shared.currentLongitude else {
@@ -368,14 +368,14 @@ class WeatherDataManager {
         return true
     }
     
-    private func extractSingleLocationWeatherData(fromData data: Data) -> [OWMWeatherDTO]? {
+    private func extractSingleLocationWeatherData(fromData data: Data) -> [LocationWeatherDataDTO]? {
         do {
             guard let extractedData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: AnyHashable],
                 let httpStatusCode = extractedData["cod"] as? Int,
                 httpStatusCode == 200 else {
                     return nil
             }
-            let weatherData = try JSONDecoder().decode(OWMWeatherDTO.self, from: data)
+            let weatherData = try JSONDecoder().decode(LocationWeatherDataDTO.self, from: data)
             return [weatherData]
         } catch let error {
             print("💥 WeatherDataService: Error while extracting single-location-data json: \(error.localizedDescription)")
@@ -383,7 +383,7 @@ class WeatherDataManager {
         }
     }
     
-    private func extractMultiLocationWeatherData(fromData data: Data) -> [OWMWeatherDTO]? {
+    private func extractMultiLocationWeatherData(fromData data: Data) -> [LocationWeatherDataDTO]? {
         do {
             guard let extractedData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: AnyHashable],
                 let httpStatusCode = extractedData["cod"] as? String,

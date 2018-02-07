@@ -14,7 +14,7 @@ private let kMapAnnotationIdentifier = "de.nearbyWeather.weatherDetailView.mkAnn
 
 class WeatherDetailViewController: UIViewController {
     
-    static func instantiateFromStoryBoard(withTitle title: String, weatherDTO: OWMWeatherDTO) -> WeatherDetailViewController {
+    static func instantiateFromStoryBoard(withTitle title: String, weatherDTO: LocationWeatherDataDTO) -> WeatherDetailViewController {
         let viewController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "WeatherDetailViewController") as! WeatherDetailViewController
         viewController.titleString = title
         viewController.weatherDTO = weatherDTO
@@ -27,7 +27,7 @@ class WeatherDetailViewController: UIViewController {
     /* Injected */
     
     private var titleString: String!
-    private var weatherDTO: OWMWeatherDTO!
+    private var weatherDTO: LocationWeatherDataDTO!
     
     /* Outlets */
     

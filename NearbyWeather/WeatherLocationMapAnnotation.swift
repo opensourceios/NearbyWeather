@@ -14,7 +14,7 @@ class WeatherLocationMapAnnotation: NSObject, MKAnnotation {
     let subtitle: String?
     let coordinate: CLLocationCoordinate2D
     
-    init(weatherDTO: OWMWeatherDTO) {
+    init(weatherDTO: LocationWeatherDataDTO) {
         let weatherConditionIdentifier = weatherDTO.weatherCondition.first?.identifier
         let weatherConditionSymbol = weatherConditionIdentifier != nil ? ConversionService.weatherConditionSymbol(fromWeathercode: weatherConditionIdentifier!) : nil
         let temperatureDescriptor = ConversionService.temperatureDescriptor(forTemperatureUnit: WeatherDataManager.shared.temperatureUnit, fromRawTemperature: weatherDTO.atmosphericInformation.temperatureKelvin)

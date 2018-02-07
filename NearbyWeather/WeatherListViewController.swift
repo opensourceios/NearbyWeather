@@ -261,7 +261,7 @@ extension WeatherListViewController: UITableViewDataSource {
                 return cell
         }
         
-        var weatherData: OWMWeatherDTO?
+        var weatherData: LocationWeatherDataDTO?
         var alertNotice: String?
         
         if indexPath.section == 0 {

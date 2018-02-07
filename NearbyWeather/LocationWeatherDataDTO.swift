@@ -15,7 +15,7 @@ import CoreLocation
  * This DTO therefore does not exactly mirror the server response
  */
 
-struct OWMWeatherDTO: Codable {
+struct LocationWeatherDataDTO: Codable {
     
     struct Coordinates: Codable {
         var latitude: Double
@@ -136,7 +136,7 @@ struct OWMWeatherDTO: Codable {
 }
 
 struct OWMMultiWeatherDTO: Codable {
-    var list: [OWMWeatherDTO]
+    var list: [LocationWeatherDataDTO]
     
     enum CodingKeys: String, CodingKey {
         case list
