@@ -39,6 +39,17 @@ class LocationService: CLLocationManager, CLLocationManagerDelegate {
         LocationService.shared.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         LocationService.shared.startUpdatingLocation()
     }
+    
+    var locationPermissionsGranted: Bool {
+        return authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse
+    }
+    
+    var currentLocation: CLLocation? {
+        if let latitude = currentLatitude, let longitude = currentLongitude {
+            return CLLocation(latitude: latitude, longitude: longitude)
+        }
+        return nil
+    }
 
     
     // MARK: - Delegate Methods

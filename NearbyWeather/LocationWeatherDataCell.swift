@@ -8,6 +8,6 @@
 
 import UIKit
 
-class OWMCityCell: UITableViewCell {
+class LocationWeatherDataCell: UITableViewCell {
     @IBOutlet weak var contentLabel: UILabel!
 }

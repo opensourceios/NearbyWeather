@@ -16,13 +16,12 @@ class InfoTableViewController: UITableViewController {
     @IBOutlet weak var appTitleLabel: UILabel!
     @IBOutlet weak var appVersionLabel: UILabel!
     
-    @IBOutlet weak var supportNoteLabel: UILabel!
-    @IBOutlet weak var supportAddressLabel: UILabel!
-    
+    @IBOutlet weak var rateVersionLabel: UILabel!
     @IBOutlet weak var sourceNoteLabel: UILabel!
-    @IBOutlet weak var sourceAddressLabel: UILabel!
     
     @IBOutlet weak var developerName_0: UILabel!
+    @IBOutlet weak var developerNameSubtitle_0: UILabel!
+    @IBOutlet weak var howToContributeLabel: UILabel!
     
     
     //MARK: - ViewController Life Cycle
@@ -51,31 +50,30 @@ class InfoTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         
         var urlStringValue: String?
         if indexPath.section == 0 && indexPath.row == 0 {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let destinationViewController = storyboard.instantiateViewController(withIdentifier: "HelpTableViewController") as! HelpTableViewController
-            navigationItem.removeTextFromBackBarButton()
-            navigationController?.pushViewController(destinationViewController, animated: true)
+            let urlString = "https://itunes.apple.com/app/id1227313069?action=write-review&mt=8"
+            UIApplication.shared.openURL(URL(string: urlString)!)
+            return
         }
         if indexPath.section == 0 && indexPath.row == 1 {
-            urlStringValue = "http://www.erikmartens.de/portfolio.html"
-        }
-        if indexPath.section == 0 && indexPath.row == 2 {
             urlStringValue = "https://github.com/erikmartens/NearbyWeather"
         }
         if indexPath.section == 1 && indexPath.row == 0 {
             urlStringValue = "http://www.erikmartens.de/contact.html"
         }
         if indexPath.section == 2 && indexPath.row == 0 {
+            urlStringValue = "https://github.com/erikmartens/NearbyWeather/blob/master/CONTRIBUTING.md"
+        }
+        if indexPath.section == 3 && indexPath.row == 0 {
             urlStringValue = "https://github.com/pkluz/PKHUD"
         }
-        if indexPath.section == 2 && indexPath.row == 1 {
+        if indexPath.section == 3 && indexPath.row == 1 {
             urlStringValue = "https://github.com/Onix-Systems/RainyRefreshControl"
         }
-        if indexPath.section == 2 && indexPath.row == 2 {
+        if indexPath.section == 3 && indexPath.row == 2 {
             urlStringValue = "https://github.com/serralvo/TextFieldCounter"
         }
         
@@ -99,7 +97,8 @@ class InfoTableViewController: UITableViewController {
         switch section {
         case 0: return NSLocalizedString("InfoTVC_TableViewSectionHeader1", comment: "")
         case 1: return NSLocalizedString("InfoTVC_TableViewSectionHeader2", comment: "")
-        case 2: return NSLocalizedString("InfoTVC_TableViewSectionHeader3", comment: "")
+        case 2: return nil
+        case 3: return NSLocalizedString("InfoTVC_TableViewSectionHeader3", comment: "")
         default: return nil
         }
     }
@@ -114,26 +113,15 @@ class InfoTableViewController: UITableViewController {
     }
     
     private func configureText() {
-        appTitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        appTitleLabel.text! = NSLocalizedString("InfoTVC_AppTitle", comment: "")
+        appTitleLabel.text = NSLocalizedString("InfoTVC_AppTitle", comment: "")
         
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "#UNDEFINED"
         let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "#UNDEFINED"
-        appVersionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         appVersionLabel.text = "Version \(appVersion) Build #\(appBuild)"
-        
-        supportNoteLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        supportNoteLabel.text = NSLocalizedString("InfoTVC_Support", comment: "")
-        
-        supportAddressLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        supportAddressLabel.textColor = .nearbyWeatherStandard
-        
-        sourceNoteLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        rateVersionLabel.text = NSLocalizedString("InfoTVC_RateVersion", comment: "")
         sourceNoteLabel.text = NSLocalizedString("InfoTVC_Source", comment: "")
-        
-        sourceAddressLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        sourceAddressLabel.textColor = .nearbyWeatherStandard
-        
-        developerName_0.font = UIFont.preferredFont(forTextStyle: .body)
+        developerName_0.text = "Erik Maximilian Martens"
+        howToContributeLabel.text = NSLocalizedString("InfoTVC_HowToContribute", comment: "")
+        developerNameSubtitle_0.text = NSLocalizedString("InfoTVC_DeveloperNameSubtitle_0", comment: "")
     }
 }

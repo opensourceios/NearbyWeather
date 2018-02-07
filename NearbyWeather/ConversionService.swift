@@ -22,25 +22,15 @@ class ConversionService {
             return "🌦"
         case let x where x >= 500 && x <= 531:
             return "🌧"
-        case let x where x >= 600 && x <= 622:
+        case let x where x >= 600 && x <= 614:
+            return "❄️"
+        case let x where x >= 615 && x <= 622:
             return "🌨"
         case let x where x >= 701 && x <= 771:
             return "🌫"
         case let x where x == 781 || x >= 958:
             return "🌪"
         case let x where x == 800:
-            //Simulate day/night mode for clear skies condition -> sunset @ 18:00, sunrise @ 07:00
-            let currentDateFormatter: DateFormatter = DateFormatter()
-            currentDateFormatter.dateFormat = "ddMMyyyy"
-            let currentDateString: String = currentDateFormatter.string(from: Date())
-            
-            let zeroHourDateFormatter: DateFormatter = DateFormatter()
-            zeroHourDateFormatter.dateFormat = "ddMMyyyyHHmmss"
-            let zeroHourDate = zeroHourDateFormatter.date(from: (currentDateString + "000000"))!
-            
-            if Date().timeIntervalSince(zeroHourDate) > 64800 || Date().timeIntervalSince(zeroHourDate) < 25200 {
-                return "✨"
-            }
             return "☀️"
         case let x where x == 801:
             return "🌤"
@@ -51,13 +41,13 @@ class ConversionService {
         case let x where x == 804:
             return "☁️"
         case let x where x >= 952 && x <= 958:
-            return "💨"
+            return "🌬"
         default:
-            return "☀️"
+            return "❓"
         }
     }
     
-    public static func temperatureDescriptor(forTemperatureUnit temperatureUnit: TemperatureUnitWrappedEnum, fromRawTemperature rawTemperature: Double) -> String {
+    public static func temperatureDescriptor(forTemperatureUnit temperatureUnit: TemperatureUnit, fromRawTemperature rawTemperature: Double) -> String {
         switch temperatureUnit.value {
         case .celsius:
             return "\(String(format:"%.02f", rawTemperature - 273.15))°C"
@@ -68,12 +58,46 @@ class ConversionService {
         }
     }
     
-    public static func windspeedDescriptor(forWindspeedUnit windspeedUnit: SpeedUnitWrappedEnum, forWindspeed windspeed: Double) -> String {
-        switch windspeedUnit.value {
-        case .kilometresPerHour:
+    public static func windspeedDescriptor(forDistanceSpeedUnit distanceSpeedUnit: DistanceSpeedUnit, forWindspeed windspeed: Double) -> String {
+        switch distanceSpeedUnit.value {
+        case .kilometres:
             return "\(String(format:"%.02f", windspeed)) \(NSLocalizedString("kph", comment: ""))"
-        case .milesPerHour:
+        case .miles:
             return "\(String(format:"%.02f", windspeed / 1.609344)) \(NSLocalizedString("mph", comment: ""))"
         }
+    }
+    
+    public static func distanceDescriptor(forDistanceSpeedUnit distanceSpeedUnit: DistanceSpeedUnit, forDistanceInMetres distance: Double) -> String {
+        switch distanceSpeedUnit.value {
+        case .kilometres:
+            return "\(String(format:"%.02f", distance/1000)) \(NSLocalizedString("km", comment: ""))"
+        case .miles:
+            return "\(String(format:"%.02f", distance/1609.344)) \(NSLocalizedString("mi", comment: ""))"
+        }
+    }
+    
+    public static func windDirectionDescriptor(forWindDirection degrees: Double) -> String {
+        var descriptor = String(format: "%.02f", degrees) + "°"
+        switch degrees {
+        case let x where x > 337.5 || x <= 22.5:
+            descriptor = "⬆️ " + descriptor
+        case let x where x > 25 && x <= 67.5:
+            descriptor = "↗️ " + descriptor
+        case let x where x > 67.5 && x <= 112.5:
+            descriptor = "➡️ " + descriptor
+        case let x where x > 112.5 && x <= 157.5:
+            descriptor = "↘️" + descriptor
+        case let x where x > 157.5 && x <= 202.5:
+            descriptor = "⬇️ " + descriptor
+        case let x where x > 202.5 && x <= 247.5:
+            descriptor = "↙️ " + descriptor
+        case let x where x > 247.5 && x <= 292.5:
+            descriptor = "⬅️ " + descriptor
+        case let x where x > 292.5 && x <= 337.5:
+            descriptor = "↖️ " + descriptor
+        default:
+            break
+        }
+        return descriptor
     }
 }

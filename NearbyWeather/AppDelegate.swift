@@ -14,12 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         LocationService.instantiateSharedInstance()
-        OWMCityService.instantiateSharedInstance()
+        WeatherLocationService.instantiateSharedInstance()
         
-        if UserDefaults.standard.value(forKey: "nearby_weather.openWeatherMapApiKey") != nil {
-            WeatherDataService.instantiateSharedInstance()
+        if UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey) != nil {
+            WeatherDataManager.instantiateSharedInstance()
             LocationService.shared.requestWhenInUseAuthorization()
         } else {
             let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
@@ -28,5 +27,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = destinationViewController
         }
         return true
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        refreshWeatherDataIfNeeded()
+    }
+    
+    
+    // MARK: - Private Helpers
+    
+    private func refreshWeatherDataIfNeeded() {
+        if UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey) != nil,
+            UserDefaults.standard.bool(forKey: kRefreshOnAppStartKey) == true {
+            WeatherDataManager.shared.update(withCompletionHandler: nil)
+        }
     }
 }

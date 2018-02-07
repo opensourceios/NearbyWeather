@@ -26,10 +26,11 @@ SetPermissionsVC_AskPermissionsButtonTitle = "Configure";
 
 // MARK: - NearbyLocationsTableViewController
 
-LocationsListTVC_TableViewSectionHeader1 = "Weather in Favorited City";
-LocationsListTVC_TableViewSectionHeader2 = "Weather for Nearby Cities";
+LocationsListTVC_TableViewSectionHeader1 = "Weather in Bookmarked Location";
+LocationsListTVC_TableViewSectionHeader2 = "Weather for Nearby Locations";
 
 LocationsListTVC_RefreshPullHandle = "Pull to refresh";
+LocationsListTVC_LastRefresh = "Last Refresh: %@";
 
 LocationsListTVC_LocationAlert_Title = "Current Location Access Denied";
 LocationsListTVC_LocationAlert_Message = "In order to provide weather data of nearby cities, your current location is required. You have denied NearbyWeather access to your location data. This can be changed within Settings. While your location is not determinable, sample coordinates will be used.";
@@ -39,12 +40,36 @@ LocationsListTVC_LocationAlert_Action2 = "Settings";
 LocationsListTVC_SortAlert_Cancel = "Cancel";
 LocationsListTVC_SortAlert_Action1 = "Sort by Name";
 LocationsListTVC_SortAlert_Action2 = "Sort by Temperature";
+LocationsListTVC_SortAlert_Action3 = "Sort by Distance";
 
 LocationsListTVC_BackButtonTitle = "Back";
 
 LocationsListTVC_AlertNoData = "Data could not be loaded. Ensure that you have a network connection and that your API key is correctly entered.";
-LocationsListTVC_AlertIncorrectFavoritedCity = "The city name you entered did not yield any results. Ensure it is spelled correctly and a city with this name exists.";
+LocationsListTVC_AlertIncorrectBookmarkedCity = "The city name you entered did not yield any results. Ensure it is spelled correctly and a city with this name exists.";
 LocationsListTVC_AlertLocationUnavailable = "You do not grant NearbyWeather access to your location. Therefore no nearby weather data could be loaded.";
+
+
+// MARK: - WeatherDetailViewController
+
+WeatherDetailVC_Sunrise = "Sunrise";
+WeatherDetailVC_Sunset = "Sunset";
+
+WeatherDetailVC_CloudCoverage = "Cloud Coverage";
+WeatherDetailVC_Humidity = "Humidity";
+WeatherDetailVC_Pressure = "Pressure";
+
+WeatherDetailVC_WindSpeed = "Wind Speed";
+WeatherDetailVC_WindDirection = "Wind Direction";
+
+WeatherDetailVC_Coordinates = "Coordinates";
+WeatherDetailVC_Distance = "Distance";
+
+
+// MARK: - NearbyLocationsMapViewController
+
+NearbyLocationsMapVC_NavigationItemTitle = "Weather Station Locations";
+NearbyLocationsMapVC_MapTypeSegmentedControl_Title_0 = "Map";
+NearbyLocationsMapVC_MapTypeSegmentedControl_Title_1 = "Hybrid";
 
 
 // MARK: - InfoTableViewController
@@ -53,25 +78,14 @@ InfoTVC_NavigationItemTitle = "About";
 
 InfoTVC_TableViewSectionHeader1 = "Resources";
 InfoTVC_TableViewSectionHeader2 = "Contributors";
-InfoTVC_TableViewSectionHeader3 = "Libraries";
+InfoTVC_TableViewSectionHeader3 = "Libraries Used";
 
 InfoTVC_AppTitle = "NearbyWeather - Open Source Weather";
 
-InfoTVC_Support = "Support";
-InfoTVC_Source = "Source Code";
-InfoTVC_Icons = "Icons by";
-
-InfoTVC_Legend_Temperature = "🌡 Temperature";
-InfoTVC_Legend_CloudCover = "☁️ Cloud Cover";
-InfoTVC_Legend_Humidity = "💧 Humidity";
-InfoTVC_Legend_WindSpeed = "💨 Windspeed";
-
-
-// MARK: - HelpTableViewController
-
-HelpTVC_NavigationItemTitle = "Help";
-
-InfoTVC_TableViewSectionHeader0 = "Legend";
+InfoTVC_RateVersion = "Rate this Version";
+InfoTVC_DeveloperNameSubtitle_0 = "Project Owner";
+InfoTVC_HowToContribute = "How to Contribute";
+InfoTVC_Source = "Source Code via GitHub";
 
 
 // MARK: - SettingsTableViewController
@@ -80,22 +94,23 @@ SettingsTVC_BackButtonTitle = "Weather";
 
 SettingsTVC_NavigationBarTitle = "Settings";
 
-SettingsTVC_SectionTitle1 = "Favorited City";
-SettingsTVC_SectionTitle2 = "Open Weather Map API Key";
+SettingsTVC_About = "About";
+
+SettingsTVC_SectionTitle0 = "General";
+SettingsTVC_SectionTitle1 = "Bookmarked Location";
+SettingsTVC_SectionTitle2 = "OpenWeatherMap API Key";
 SettingsTVC_SectionTitle3 = "Amount of Search Results";
 SettingsTVC_SectionTitle4 = "Temperature Unit";
-SettingsTVC_SectionTitle5 = "Windspeed Unit";
+SettingsTVC_SectionTitle5 = "Distance/Speed Unit";
 
 SettingsTVC_Results = "Results";
+SettingsTVC_RefreshOnAppStart = "Refresh on App Start";
 
 
 // MARK: - SettingsInputTableViewController
 
 SettingsInputTVC_NavigationBarTitle_Mode_EnterAPIKey = "Set API Key";
-
-InputSettingsTVC_SectionTitle_Mode_EnterFavoritedLocation = "Enter City Name";
 InputSettingsTVC_SectionTitle_Mode_EnterAPIKey = "Enter API Key";
-
 InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "The API Key has a length of exactly 32 characters.";
 
 
@@ -109,5 +124,11 @@ OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Search by City Name";
 kilometres_per_hour = "Kilometres per Hour";
 miles_per_hour = "Miles per Hour";
 
-kph = "kmh";
-mph = "mph";
+kilometres = "Kilometres";
+miles = "Miles";
+
+kph = "km/h";
+mph = "mp/h";
+
+km = "km";
+mi = "mi";

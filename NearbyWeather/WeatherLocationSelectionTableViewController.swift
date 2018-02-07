@@ -9,12 +9,12 @@
 import UIKit
 import PKHUD
 
-class OWMCityFilterTableViewController: UITableViewController {
+class WeatherLocationSelectionTableViewController: UITableViewController {
     
     // MARK: - Properties
     
     private let searchController = UISearchController(searchResultsController: nil)
-    private var filteredCities = [OWMCityDTO]()
+    private var filteredCities = [WeatherLocationDTO]()
     
     
     // MARK: - ViewController Life Cycle
@@ -33,7 +33,7 @@ class OWMCityFilterTableViewController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
         
-        filteredCities = OWMCityService.shared.openWeatherMapCities
+        filteredCities = WeatherLocationService.shared.openWeatherMapCities
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +57,7 @@ class OWMCityFilterTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "OWMCityCell", for: indexPath) as! OWMCityCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OWMCityCell", for: indexPath) as! LocationWeatherDataCell
         cell.contentLabel.text = "\(filteredCities[indexPath.row].name), \(filteredCities[indexPath.row].country)"
         return cell
     }
@@ -68,31 +68,31 @@ class OWMCityFilterTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        WeatherDataService.shared.favoritedCity = filteredCities[indexPath.row]
+        WeatherDataManager.shared.bookmarkedLocation = filteredCities[indexPath.row]
         HUD.flash(.success, delay: 1.0)
         navigationController?.popViewController(animated: true)
     }
     
 }
 
-extension OWMCityFilterTableViewController: UISearchResultsUpdating {
+extension WeatherLocationSelectionTableViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else {
-            filteredCities = [OWMCityDTO]()
+            filteredCities = [WeatherLocationDTO]()
             tableView.reloadData()
             return
         }
-        filteredCities = OWMCityService.shared.openWeatherMapCities.filter {
+        filteredCities = WeatherLocationService.shared.openWeatherMapCities.filter {
             return $0.name.lowercased().contains(searchText.lowercased())
         }
         tableView.reloadData()
     }
 }
 
-extension OWMCityFilterTableViewController: UISearchControllerDelegate {
+extension WeatherLocationSelectionTableViewController: UISearchControllerDelegate {
     func willDismissSearchController(_ searchController: UISearchController) {
-        filteredCities = OWMCityService.shared.openWeatherMapCities
+        filteredCities = WeatherLocationService.shared.openWeatherMapCities
         tableView.reloadData()
     }
 }

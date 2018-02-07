@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 /**
  * OWMWeatherDTO is used to parse the JSON response from the server
@@ -14,7 +15,17 @@ import UIKit
  * This DTO therefore does not exactly mirror the server response
  */
 
-struct OWMWeatherDTO: Codable {
+struct LocationWeatherDataDTO: Codable {
+    
+    struct Coordinates: Codable {
+        var latitude: Double
+        var longitude: Double
+        
+        enum CodingKeys: String, CodingKey {
+            case latitude = "lat"
+            case longitude = "lon"
+        }
+    }
     
     struct WeatherCondition: Codable {
         var identifier: Int
@@ -32,8 +43,8 @@ struct OWMWeatherDTO: Codable {
     
     struct AtmosphericInformation: Codable {
         var temperatureKelvin: Double
-        var pressurePsi: Int
-        var humidity: Int
+        var pressurePsi: Double
+        var humidity: Double
         
         enum CodingKeys: String, CodingKey {
             case temperatureKelvin = "temp"
@@ -44,11 +55,23 @@ struct OWMWeatherDTO: Codable {
     
     struct WindInformation: Codable {
         var windspeed: Double
-        var degrees: Double
+        var degrees: Double?
         
         enum CodingKeys: String, CodingKey {
             case windspeed = "speed"
             case degrees = "deg"
+        }
+        
+        init(from decoder: Decoder) throws {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            
+            self.windspeed = try values.decode(Double.self, forKey: .windspeed)
+            if values.contains(.degrees) {
+                let degrees = try values.decodeIfPresent(Double.self, forKey: CodingKeys.degrees)
+                self.degrees = degrees
+            } else {
+                self.degrees = nil
+            }
         }
     }
     
@@ -61,8 +84,8 @@ struct OWMWeatherDTO: Codable {
     }
     
     struct DaytimeInformation: Codable {
-        var sunrise: Int?
-        var sunset: Int?
+        var sunrise: Double?
+        var sunset: Double?
         
         enum CodingKeys: String, CodingKey {
             case sunrise
@@ -72,6 +95,7 @@ struct OWMWeatherDTO: Codable {
     
     var cityID: Int
     var cityName: String
+    var coordinates: Coordinates
     var weatherCondition: [WeatherCondition]
     var atmosphericInformation: AtmosphericInformation
     var windInformation: WindInformation
@@ -81,6 +105,7 @@ struct OWMWeatherDTO: Codable {
     enum CodingKeys: String, CodingKey {
         case cityID = "id"
         case cityName = "name"
+        case coordinates = "coord"
         case weatherCondition = "weather"
         case atmosphericInformation = "main"
         case windInformation = "wind"
@@ -93,6 +118,7 @@ struct OWMWeatherDTO: Codable {
         
         self.cityID = try values.decode(Int.self, forKey: .cityID)
         self.cityName = try values.decode(String.self, forKey: .cityName)
+        self.coordinates = try values.decode(Coordinates.self, forKey: .coordinates)
         self.weatherCondition = try values.decode([WeatherCondition].self, forKey: .weatherCondition)
         self.atmosphericInformation = try values.decode(AtmosphericInformation.self, forKey: .atmosphericInformation)
         self.windInformation = try values.decode(WindInformation.self, forKey: .windInformation)
@@ -100,8 +126,8 @@ struct OWMWeatherDTO: Codable {
         
         if values.contains(.daytimeInformation) {
             let daytimeInformation = try values.nestedContainer(keyedBy: DaytimeInformation.CodingKeys.self, forKey: .daytimeInformation)
-            let sunrise = try daytimeInformation.decodeIfPresent(Int.self, forKey: DaytimeInformation.CodingKeys.sunrise)
-            let sunset = try daytimeInformation.decodeIfPresent(Int.self, forKey: DaytimeInformation.CodingKeys.sunset)
+            let sunrise = try daytimeInformation.decodeIfPresent(Double.self, forKey: DaytimeInformation.CodingKeys.sunrise)
+            let sunset = try daytimeInformation.decodeIfPresent(Double.self, forKey: DaytimeInformation.CodingKeys.sunset)
             self.daytimeInformation = DaytimeInformation(sunrise: sunrise, sunset: sunset)
         } else {
             self.daytimeInformation = nil
@@ -110,7 +136,7 @@ struct OWMWeatherDTO: Codable {
 }
 
 struct OWMMultiWeatherDTO: Codable {
-    var list: [OWMWeatherDTO]
+    var list: [LocationWeatherDataDTO]
     
     enum CodingKeys: String, CodingKey {
         case list

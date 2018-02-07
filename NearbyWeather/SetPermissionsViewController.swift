@@ -88,7 +88,7 @@ class SetPermissionsViewController: UIViewController {
     }
     
     @objc func launchApp() {        
-        WeatherDataService.instantiateSharedInstance()
+        WeatherDataManager.instantiateSharedInstance()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destinationViewController = storyboard.instantiateInitialViewController()
