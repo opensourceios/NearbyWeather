@@ -45,7 +45,7 @@ LocationsListTVC_SortAlert_Action3 = "Nach Distanz sortieren";
 LocationsListTVC_BackButtonTitle = "Zurück";
 
 LocationsListTVC_AlertNoData = "Es konnten keine Daten geladen werden. Gehe sicher, dass du eine Netzwerkverbindung hast und dein API Schlüssel korrekt eingegeben ist.";
-LocationsListTVC_AlertIncorrectFavoritedCity = "Es konnte keine Daten für die eingebene Stadt gefunden werde. Gehe sicher, dass der Name richtig geschrieben ist und diese Stadt existier.";
+LocationsListTVC_AlertIncorrectBookmarkedCity = "Es konnte keine Daten für die eingebene Stadt gefunden werde. Gehe sicher, dass der Name richtig geschrieben ist und diese Stadt existier.";
 LocationsListTVC_AlertLocationUnavailable = "Du gestattest NearbyWeather keinen Zugriff auf deinen Standtort. Somit können keine Daten für nahegelgene Wetter-Stationen geladen werden.";
 
 
@@ -110,10 +110,7 @@ SettingsTVC_RefreshOnAppStart = "Beim App Start Aktualisieren";
 // MARK: - SettingsInputTableViewController
 
 SettingsInputTVC_NavigationBarTitle_Mode_EnterAPIKey = "API Einstellen";
-
-InputSettingsTVC_SectionTitle_Mode_EnterFavoritedLocation = "Gib eine Städte Namen ein";
 InputSettingsTVC_SectionTitle_Mode_EnterAPIKey = "Gib deinen API Schlüssel ein";
-
 InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "Der API Schlüssel hat eine Länge von genau 32 Zeichen.";
 
 

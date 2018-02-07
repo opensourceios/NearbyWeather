@@ -119,13 +119,13 @@ public class AmountOfResults: Codable {
     }
 }
 
-let kDefaultFavoritedCity = OWMCityDTO(identifier: 5341145, name: "Cupertino", country: "US", coordinates: Coordinates(latitude: 37.323002, longitude: -122.032181))
+let kDefaultBookmarkedLocation = OWMCityDTO(identifier: 5341145, name: "Cupertino", country: "US", coordinates: Coordinates(latitude: 37.323002, longitude: -122.032181))
 let kWeatherServiceDidUpdate = "de.erikmartens.nearbyWeather.weatherServiceDidUpdate"
 
 fileprivate let kWeatherDataServiceStoredContentFileName = "WeatherDataServiceStoredContents"
 
 struct WeatherDataServiceStoredContentsWrapper: Codable {
-    var favoritedCity: OWMCityDTO
+    var bookmarkedLocation: OWMCityDTO
     var amountOfResults: AmountOfResults
     var temperatureUnit: TemperatureUnit
     var windspeedUnit: DistanceSpeedUnit
@@ -157,7 +157,7 @@ class WeatherDataManager {
     
     // MARK: - Properties
     
-    public var favoritedCity: OWMCityDTO {
+    public var bookmarkedLocation: OWMCityDTO {
         didSet {
             update(withCompletionHandler: nil)
         }
@@ -190,8 +190,8 @@ class WeatherDataManager {
     
     // MARK: - Initialization
     
-    private init(favoritedLocation: OWMCityDTO, amountOfResults: AmountOfResults, temperatureUnit: TemperatureUnit, windspeedUnit: DistanceSpeedUnit) {
-        self.favoritedCity = favoritedLocation
+    private init(bookmarkedLocation: OWMCityDTO, amountOfResults: AmountOfResults, temperatureUnit: TemperatureUnit, windspeedUnit: DistanceSpeedUnit) {
+        self.bookmarkedLocation = bookmarkedLocation
         self.amountOfResults = amountOfResults
         
         self.temperatureUnit = temperatureUnit
@@ -210,7 +210,7 @@ class WeatherDataManager {
     // MARK: - Public Properties & Methods
     
     public static func instantiateSharedInstance() {
-        shared = WeatherDataManager.loadService() ?? WeatherDataManager(favoritedLocation: kDefaultFavoritedCity, amountOfResults: AmountOfResults(value: .ten), temperatureUnit: TemperatureUnit(value: .celsius), windspeedUnit: DistanceSpeedUnit(value: .kilometres))
+        shared = WeatherDataManager.loadService() ?? WeatherDataManager(bookmarkedLocation: kDefaultBookmarkedLocation, amountOfResults: AmountOfResults(value: .ten), temperatureUnit: TemperatureUnit(value: .celsius), windspeedUnit: DistanceSpeedUnit(value: .kilometres))
     }
     
     public func update(withCompletionHandler completionHandler: (() -> Void)?) {
@@ -283,7 +283,7 @@ class WeatherDataManager {
                 return nil
         }
         
-        let weatherService = WeatherDataManager(favoritedLocation: weatherDataServiceStoredContents.favoritedCity,
+        let weatherService = WeatherDataManager(bookmarkedLocation: weatherDataServiceStoredContents.bookmarkedLocation,
                                                 amountOfResults: weatherDataServiceStoredContents.amountOfResults,
                                                 temperatureUnit: weatherDataServiceStoredContents.temperatureUnit,
                                                 windspeedUnit: weatherDataServiceStoredContents.windspeedUnit)
@@ -294,7 +294,7 @@ class WeatherDataManager {
     }
     
     private static func storeService() {
-        let weatherDataServiceStoredContents = WeatherDataServiceStoredContentsWrapper(favoritedCity: WeatherDataManager.shared.favoritedCity,
+        let weatherDataServiceStoredContents = WeatherDataServiceStoredContentsWrapper(bookmarkedLocation: WeatherDataManager.shared.bookmarkedLocation,
                                                 amountOfResults: WeatherDataManager.shared.amountOfResults,
                                                  temperatureUnit: WeatherDataManager.shared.temperatureUnit,
                                                  windspeedUnit: WeatherDataManager.shared.windspeedUnit,
@@ -315,7 +315,7 @@ class WeatherDataManager {
     
     private func fetchSingleLocationWeatherData(completionHandler: @escaping ([OWMWeatherDTO]?) -> Void) {
         let session = URLSession.shared
-        let requestedCity = favoritedCity.identifier
+        let requestedCity = bookmarkedLocation.identifier
         
         guard let apiKey = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey),
             let requestURL = URL(string: "\(WeatherDataManager.openWeather_SingleLocationBaseURL)?APPID=\(apiKey)&id=\(requestedCity)") else {

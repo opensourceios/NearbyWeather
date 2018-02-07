@@ -26,8 +26,8 @@ SetPermissionsVC_AskPermissionsButtonTitle = "Configure";
 
 // MARK: - NearbyLocationsTableViewController
 
-LocationsListTVC_TableViewSectionHeader1 = "Weather in Favorited City";
-LocationsListTVC_TableViewSectionHeader2 = "Weather for Nearby Cities";
+LocationsListTVC_TableViewSectionHeader1 = "Weather in Bookmarked Location";
+LocationsListTVC_TableViewSectionHeader2 = "Weather for Nearby Locations";
 
 LocationsListTVC_RefreshPullHandle = "Pull to refresh";
 LocationsListTVC_LastRefresh = "Last Refresh: %@";
@@ -45,7 +45,7 @@ LocationsListTVC_SortAlert_Action3 = "Sort by Distance";
 LocationsListTVC_BackButtonTitle = "Back";
 
 LocationsListTVC_AlertNoData = "Data could not be loaded. Ensure that you have a network connection and that your API key is correctly entered.";
-LocationsListTVC_AlertIncorrectFavoritedCity = "The city name you entered did not yield any results. Ensure it is spelled correctly and a city with this name exists.";
+LocationsListTVC_AlertIncorrectBookmarkedCity = "The city name you entered did not yield any results. Ensure it is spelled correctly and a city with this name exists.";
 LocationsListTVC_AlertLocationUnavailable = "You do not grant NearbyWeather access to your location. Therefore no nearby weather data could be loaded.";
 
 
@@ -97,7 +97,7 @@ SettingsTVC_NavigationBarTitle = "Settings";
 SettingsTVC_About = "About";
 
 SettingsTVC_SectionTitle0 = "General";
-SettingsTVC_SectionTitle1 = "Favorited City";
+SettingsTVC_SectionTitle1 = "Bookmarked Location";
 SettingsTVC_SectionTitle2 = "Open Weather Map API Key";
 SettingsTVC_SectionTitle3 = "Amount of Search Results";
 SettingsTVC_SectionTitle4 = "Temperature Unit";
@@ -110,10 +110,7 @@ SettingsTVC_RefreshOnAppStart = "Refresh on App Start";
 // MARK: - SettingsInputTableViewController
 
 SettingsInputTVC_NavigationBarTitle_Mode_EnterAPIKey = "Set API Key";
-
-InputSettingsTVC_SectionTitle_Mode_EnterFavoritedLocation = "Enter City Name";
 InputSettingsTVC_SectionTitle_Mode_EnterAPIKey = "Enter API Key";
-
 InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "The API Key has a length of exactly 32 characters.";
 
 

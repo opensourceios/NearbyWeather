@@ -810,13 +810,13 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PQk-Il-74x">
-                                    <rect key="frame" x="0.0" y="25" width="0.0" height="120"/>
+                                    <rect key="frame" x="0.0" y="25" width="375" height="120"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDb-dK-OSj">
-                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nearbyweather_webicon" translatesAutoresizingMaskIntoConstraints="NO" id="djW-Ua-f6G">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                                    <rect key="frame" x="150" y="0.0" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="75" id="XGi-Z8-l88"/>
                                                         <constraint firstAttribute="width" secondItem="djW-Ua-f6G" secondAttribute="height" multiplier="1:1" id="b3Z-aR-Pwv"/>
@@ -832,7 +832,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NearbyWeather - Open Source Weather" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6C-kQ-Qmj" userLabel="appTitleLabel">
-                                            <rect key="frame" x="0.0" y="80" width="0.0" height="25"/>
+                                            <rect key="frame" x="0.0" y="80" width="375" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="wVl-qL-80q"/>
                                             </constraints>
@@ -841,7 +841,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.2 Build #6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czi-Ez-K0K" userLabel="appVersionLabel">
-                                            <rect key="frame" x="0.0" y="105" width="0.0" height="15"/>
+                                            <rect key="frame" x="0.0" y="105" width="375" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="JKS-0y-IhZ"/>
                                             </constraints>
@@ -1208,7 +1208,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="focusFavoritedLocationButtonTapped:" destination="QDY-p7-fJq" eventType="touchUpInside" id="wjQ-UT-fL1"/>
+                                                    <action selector="focusBookmarkedLocationButtonTapped:" destination="QDY-p7-fJq" eventType="touchUpInside" id="wjQ-UT-fL1"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1246,7 +1246,7 @@
                     <connections>
                         <outlet property="buttonRowContainerView" destination="pJc-d5-LM4" id="hqE-lM-eaM"/>
                         <outlet property="buttonRowStackView" destination="NVa-xG-GOC" id="rAp-Qg-S3Q"/>
-                        <outlet property="focusFavoritedLocationButton" destination="Bh6-Ny-b9h" id="bVa-yb-DSZ"/>
+                        <outlet property="focusBookmarkedLocationButton" destination="Bh6-Ny-b9h" id="bVa-yb-DSZ"/>
                         <outlet property="focusUserLocationButton" destination="DlE-Pc-1g6" id="1HC-SZ-Blb"/>
                         <outlet property="mapTypeSegmentedControl" destination="iQs-Tf-fpH" id="dr2-tB-Jn6"/>
                         <outlet property="mapView" destination="JMe-uS-5Wh" id="Lxw-Ru-Hce"/>

@@ -268,7 +268,7 @@ extension WeatherListViewController: UITableViewDataSource {
             if let data = WeatherDataManager.shared.singleLocationWeatherData?[indexPath.row] {
                 weatherData = data
             } else {
-                alertNotice = NSLocalizedString("LocationsListTVC_AlertIncorrectFavoritedCity", comment: "")
+                alertNotice = NSLocalizedString("LocationsListTVC_AlertIncorrectBookmarkedCity", comment: "")
             }
         }
         if indexPath.section == 1 {
