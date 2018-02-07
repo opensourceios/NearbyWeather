@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 import RainyRefreshControl
 
 class WeatherListViewController: UIViewController {
@@ -35,7 +36,7 @@ class WeatherListViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 75, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 105, right: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -179,6 +180,19 @@ class WeatherListViewController: UIViewController {
     
     @IBAction func didTapRefreshButton(_ sender: UIButton) {
         updateWeatherData()
+    }
+    
+    @IBAction func openWeatherMapButtonPressed(_ sender: UIButton) {
+        guard let url = URL(string: "https://openweathermap.org") else {
+            return
+        }
+        let safariController = SFSafariViewController(url: url)
+        if #available(iOS 10, *) {
+            safariController.preferredControlTintColor = .nearbyWeatherStandard
+        } else {
+            safariController.view.tintColor = .nearbyWeatherStandard
+        }
+        present(safariController, animated: true, completion: nil)
     }
 }
 

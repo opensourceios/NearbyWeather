@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import SafariServices
 
 private let kMapAnnotationIdentifier = "de.nearbyWeather.weatherDetailView.mkAnnotation"
 
@@ -158,6 +159,22 @@ class WeatherDetailViewController: UIViewController {
         let location = CLLocation(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
         let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 5000, 5000)
         mapView.setRegion(region, animated: false)
+    }
+    
+    
+    // MARK: - IBActions
+    
+    @IBAction func openWeatherMapButtonPressed(_ sender: UIButton) {
+        guard let url = URL(string: "https://openweathermap.org") else {
+                return
+        }
+        let safariController = SFSafariViewController(url: url)
+        if #available(iOS 10, *) {
+            safariController.preferredControlTintColor = .nearbyWeatherStandard
+        } else {
+            safariController.view.tintColor = .nearbyWeatherStandard
+        }
+        present(safariController, animated: true, completion: nil)
     }
 }
 
