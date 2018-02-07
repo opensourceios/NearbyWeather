@@ -33,7 +33,7 @@ class OWMCityFilterTableViewController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
         
-        filteredCities = OWMCityService.shared.openWeatherMapCities
+        filteredCities = WeatherLocationService.shared.openWeatherMapCities
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,7 +83,7 @@ extension OWMCityFilterTableViewController: UISearchResultsUpdating {
             tableView.reloadData()
             return
         }
-        filteredCities = OWMCityService.shared.openWeatherMapCities.filter {
+        filteredCities = WeatherLocationService.shared.openWeatherMapCities.filter {
             return $0.name.lowercased().contains(searchText.lowercased())
         }
         tableView.reloadData()
@@ -92,7 +92,7 @@ extension OWMCityFilterTableViewController: UISearchResultsUpdating {
 
 extension OWMCityFilterTableViewController: UISearchControllerDelegate {
     func willDismissSearchController(_ searchController: UISearchController) {
-        filteredCities = OWMCityService.shared.openWeatherMapCities
+        filteredCities = WeatherLocationService.shared.openWeatherMapCities
         tableView.reloadData()
     }
 }

@@ -8,11 +8,11 @@
 
 import Foundation
 
-class OWMCityService {
+class WeatherLocationService {
     
     // MARK: - Public Assets
     
-    public static var shared: OWMCityService!
+    public static var shared: WeatherLocationService!
     
     public var openWeatherMapCities: [WeatherLocationDTO]
     
@@ -60,6 +60,6 @@ class OWMCityService {
     // MARK: - Public Properties & Methods
     
     public static func instantiateSharedInstance() {
-        shared = OWMCityService(fileName: "cityList_17-04-2017")
+        shared = WeatherLocationService(fileName: "cityList_17-04-2017")
     }
 }

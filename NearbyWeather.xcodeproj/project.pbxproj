@@ -45,7 +45,7 @@
 		F2D2B1E02004171500C810EF /* DataStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D2B1DF2004171500C810EF /* DataStorageService.swift */; };
 		F2FE3EFD20027E6500EBC429 /* cityList_17-04-2017.json in Resources */ = {isa = PBXBuildFile; fileRef = F2FE3EFC20027E6500EBC429 /* cityList_17-04-2017.json */; };
 		F2FE3EFF20027EB400EBC429 /* WeatherLocationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE3EFE20027EB400EBC429 /* WeatherLocationDTO.swift */; };
-		F2FE3F01200285B100EBC429 /* OWMCityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE3F00200285B100EBC429 /* OWMCityService.swift */; };
+		F2FE3F01200285B100EBC429 /* WeatherLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE3F00200285B100EBC429 /* WeatherLocationService.swift */; };
 		F2FE3F032002972800EBC429 /* OWMCityFilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE3F022002972800EBC429 /* OWMCityFilterTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -119,7 +119,7 @@
 		F2D2B1DF2004171500C810EF /* DataStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorageService.swift; sourceTree = "<group>"; };
 		F2FE3EFC20027E6500EBC429 /* cityList_17-04-2017.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "cityList_17-04-2017.json"; sourceTree = "<group>"; };
 		F2FE3EFE20027EB400EBC429 /* WeatherLocationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocationDTO.swift; sourceTree = "<group>"; };
-		F2FE3F00200285B100EBC429 /* OWMCityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OWMCityService.swift; sourceTree = "<group>"; };
+		F2FE3F00200285B100EBC429 /* WeatherLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocationService.swift; sourceTree = "<group>"; };
 		F2FE3F022002972800EBC429 /* OWMCityFilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OWMCityFilterTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -247,7 +247,7 @@
 			children = (
 				F26699571E9AD0F100498F99 /* WeatherDataManager.swift */,
 				F26699591E9ADBC300498F99 /* LocationService.swift */,
-				F2FE3F00200285B100EBC429 /* OWMCityService.swift */,
+				F2FE3F00200285B100EBC429 /* WeatherLocationService.swift */,
 				F2D2B1DF2004171500C810EF /* DataStorageService.swift */,
 				F2A5CAA52005762A0071BFFB /* ConversionService.swift */,
 			);
@@ -603,7 +603,7 @@
 				F26699581E9AD0F100498F99 /* WeatherDataManager.swift in Sources */,
 				F2FE3EFF20027EB400EBC429 /* WeatherLocationDTO.swift in Sources */,
 				F2A5CAA62005762A0071BFFB /* ConversionService.swift in Sources */,
-				F2FE3F01200285B100EBC429 /* OWMCityService.swift in Sources */,
+				F2FE3F01200285B100EBC429 /* WeatherLocationService.swift in Sources */,
 				F266995A1E9ADBC300498F99 /* LocationService.swift in Sources */,
 				F204B77B1DF2EFA3000F4371 /* AppDelegate.swift in Sources */,
 				F2B8EA061EA2893C00704E90 /* WelcomeScreenViewController.swift in Sources */,

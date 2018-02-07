@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         LocationService.instantiateSharedInstance()
-        OWMCityService.instantiateSharedInstance()
+        WeatherLocationService.instantiateSharedInstance()
         
         if UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey) != nil {
             WeatherDataManager.instantiateSharedInstance()
