@@ -60,30 +60,32 @@ class NearbyLocationsMapViewController: UIViewController {
     // MARK: - Private Helpers
     
     private func prepareMapAnnotations() {
+        weatherLocationMapAnnotations = [WeatherLocationMapAnnotation]()
         
-        let singleLocationAnnotations = WeatherDataManager.shared.singleLocationWeatherData?.flatMap {
-            return WeatherLocationMapAnnotation(weatherDTO: $0)
+        if let singleLocationAnnotations = WeatherLocationMapAnnotation(weatherDTO: WeatherDataManager.shared.singleLocationWeatherData?.locationWeatherDataDTO) {
+            weatherLocationMapAnnotations.append(singleLocationAnnotations)
         }
+        
         let multiLocationAnnotations = WeatherDataManager.shared.multiLocationWeatherData?.flatMap {
             return WeatherLocationMapAnnotation(weatherDTO: $0)
         }
-        weatherLocationMapAnnotations = [WeatherLocationMapAnnotation]()
-        weatherLocationMapAnnotations.append(contentsOf: singleLocationAnnotations ?? [WeatherLocationMapAnnotation]())
         weatherLocationMapAnnotations.append(contentsOf: multiLocationAnnotations ?? [WeatherLocationMapAnnotation]())
         
         mapView.addAnnotations(weatherLocationMapAnnotations)
     }
     
     private func prepareLocations() {
-        let singleLocations = WeatherDataManager.shared.singleLocationWeatherData?.flatMap {
-            return CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
+        weatherLocations = [CLLocation]()
+        
+        if let singleLocationWeatherDTO = WeatherDataManager.shared.singleLocationWeatherData?.locationWeatherDataDTO {
+            let location = CLLocation(latitude: singleLocationWeatherDTO.coordinates.latitude, longitude: singleLocationWeatherDTO.coordinates.longitude)
+            weatherLocations.append(location)
+            bookmarkedLocation = location
         }
+        
         let multiLocations = WeatherDataManager.shared.multiLocationWeatherData?.flatMap {
             return CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
         }
-        bookmarkedLocation = singleLocations?.first // this should never be nil, bookmarkedLocation is implicitely unwrapped
-        weatherLocations = [CLLocation]()
-        weatherLocations.append(contentsOf: singleLocations ?? [CLLocation]())
         weatherLocations.append(contentsOf: multiLocations ?? [CLLocation]())
     }
     

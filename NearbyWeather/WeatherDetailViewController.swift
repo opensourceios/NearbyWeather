@@ -153,8 +153,9 @@ class WeatherDetailViewController: UIViewController {
     private func configureMap() {
         mapView.layer.cornerRadius = 10
         
-        let mapAnnotation = WeatherLocationMapAnnotation(weatherDTO: weatherDTO)
-        mapView.addAnnotation(mapAnnotation)
+        if let mapAnnotation = WeatherLocationMapAnnotation(weatherDTO: weatherDTO) {
+            mapView.addAnnotation(mapAnnotation)
+        }
         
         let location = CLLocation(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
         let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 5000, 5000)

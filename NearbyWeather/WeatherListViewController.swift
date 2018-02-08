@@ -265,8 +265,8 @@ extension WeatherListViewController: UITableViewDataSource {
         var alertNotice: String?
         
         if indexPath.section == 0 {
-            if let data = WeatherDataManager.shared.singleLocationWeatherData?[indexPath.row] {
-                weatherData = data
+            if let weatherDTO = WeatherDataManager.shared.singleLocationWeatherData?.locationWeatherDataDTO {
+                weatherData = weatherDTO
             } else {
                 alertNotice = NSLocalizedString("LocationsListTVC_AlertIncorrectBookmarkedCity", comment: "")
             }
