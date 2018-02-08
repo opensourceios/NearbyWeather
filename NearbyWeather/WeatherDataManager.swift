@@ -129,7 +129,7 @@ struct WeatherDataServiceStoredContentsWrapper: Codable {
     var temperatureUnit: TemperatureUnit
     var windspeedUnit: DistanceSpeedUnit
     var singleLocationWeatherData: SingleLocationWeatherData?
-    var multiLocationWeatherData: [WeatherDataDTO]?
+    var multiLocationWeatherData: MultiLocationWeatherData?
 }
 
 class WeatherDataManager {
@@ -142,7 +142,8 @@ class WeatherDataManager {
         return singleLocationWeatherData?.weatherDataDTO != nil
     }
     public var hasMultiLocationWeatherData: Bool {
-        return multiLocationWeatherData != nil && !multiLocationWeatherData!.isEmpty
+        guard let weatherDataDTOs = multiLocationWeatherData?.weatherDataDTOs else { return false }
+        return !weatherDataDTOs.isEmpty
     }
     
     
@@ -182,7 +183,7 @@ class WeatherDataManager {
     }
     
     public var singleLocationWeatherData: SingleLocationWeatherData?
-    public var multiLocationWeatherData: [WeatherDataDTO]?
+    public var multiLocationWeatherData: MultiLocationWeatherData?
     
     private var locationAuthorizationObserver: NSObjectProtocol!
     
@@ -222,8 +223,8 @@ class WeatherDataManager {
             })
             
             dispatchGroup.enter()
-            self.fetchMultiLocationWeatherData(completionHandler: { data in
-                self.multiLocationWeatherData = data
+            self.fetchMultiLocationWeatherData(completionHandler: { multiLocationWeatherData in
+                self.multiLocationWeatherData = multiLocationWeatherData
                 dispatchGroup.leave()
             })
             
@@ -242,14 +243,16 @@ class WeatherDataManager {
             return
         }
         switch byOrientation {
-        case .name: multiLocationWeatherData?.sort { $0.cityName < $1.cityName }
-        case .temperature: multiLocationWeatherData?.sort { $0.atmosphericInformation.temperatureKelvin > $1.atmosphericInformation.temperatureKelvin }
+        case .name:
+            multiLocationWeatherData?.weatherDataDTOs?.sort { $0.cityName < $1.cityName }
+        case .temperature:
+            multiLocationWeatherData?.weatherDataDTOs?.sort { $0.atmosphericInformation.temperatureKelvin > $1.atmosphericInformation.temperatureKelvin }
         case .distance:
             guard LocationService.shared.locationPermissionsGranted,
             let currentLocation = LocationService.shared.currentLocation else {
                 break
             }
-            multiLocationWeatherData?.sort(by: {
+            multiLocationWeatherData?.weatherDataDTOs?.sort(by: {
                 let weatherLocation1 = CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
                 let weatherLocation2 = CLLocation(latitude: $1.coordinates.latitude, longitude: $1.coordinates.longitude)
                 return weatherLocation1.distance(from: currentLocation) < weatherLocation2.distance(from: currentLocation)
@@ -262,7 +265,7 @@ class WeatherDataManager {
             weatherDTO.cityID == identifier {
             return weatherDTO
         }
-        if let multiLocationMatch = multiLocationWeatherData?.first(where: { weatherDTO in
+        if let multiLocationMatch = multiLocationWeatherData?.weatherDataDTOs?.first(where: { weatherDTO in
             return weatherDTO.cityID == identifier
         }) {
             return multiLocationMatch
@@ -331,20 +334,18 @@ class WeatherDataManager {
         dataTask.resume()
     }
     
-    private func fetchMultiLocationWeatherData(completionHandler: @escaping ([WeatherDataDTO]?) -> Void) {
+    private func fetchMultiLocationWeatherData(completionHandler: @escaping (MultiLocationWeatherData?) -> Void) {
         let session = URLSession.shared
         
         guard let currentLatitude = LocationService.shared.currentLatitude, let currentLongitude = LocationService.shared.currentLongitude else {
             completionHandler(nil)
             return
         }
-        
         guard let apiKey = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey),
             let requestURL = URL(string: "\(WeatherDataManager.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(currentLatitude)&lon=\(currentLongitude)&cnt=\(amountOfResults.integerValue)") else {
-                completionHandler(nil)
+                completionHandler(MultiLocationWeatherData(statusCode: 400, weatherDataDTOs: nil))
                 return
         }
-        
         let request = URLRequest(url: requestURL)
         let dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
             guard let receivedData = data, let _ = response, error == nil else {
@@ -367,22 +368,25 @@ class WeatherDataManager {
                 return SingleLocationWeatherData(statusCode: httpStatusCode, weatherDataDTO: weatherData)
             }
             return SingleLocationWeatherData(statusCode: httpStatusCode, weatherDataDTO: nil)
-        } catch let error {
+        } catch {
             print("💥 WeatherDataService: Error while extracting single-location-data json: \(error.localizedDescription)")
             return nil
         }
     }
     
-    private func extractMultiLocationWeatherData(fromData data: Data) -> [WeatherDataDTO]? {
+    private func extractMultiLocationWeatherData(fromData data: Data) -> MultiLocationWeatherData? {
         do {
             guard let extractedData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: AnyHashable],
-                let httpStatusCode = extractedData["cod"] as? String,
-                httpStatusCode == "200" else {
-                    return nil
+                let httpStatusCodeString = extractedData["cod"] as? String,
+                let httpStatusCode = Int(httpStatusCodeString) else {
+                    return MultiLocationWeatherData(statusCode: 422, weatherDataDTOs: nil)
             }
-            let multiWeatherData = try JSONDecoder().decode(OWMMultiWeatherDTO.self, from: data)
-            return multiWeatherData.list
-        } catch let error {
+            if httpStatusCode == 200 {
+                let multiWeatherData = try JSONDecoder().decode(OWMMultiWeatherDTO.self, from: data)
+                return MultiLocationWeatherData(statusCode: httpStatusCode, weatherDataDTOs: multiWeatherData.list)
+            }
+            return MultiLocationWeatherData(statusCode: httpStatusCode, weatherDataDTOs: nil)
+        } catch {
             print("💥 WeatherDataService: Error while extracting multi-location-data json: \(error.localizedDescription)")
             return nil
         }

@@ -241,7 +241,7 @@ extension WeatherListViewController: UITableViewDataSource {
             guard let multiLocationWeatherData = WeatherDataManager.shared.multiLocationWeatherData else {
                 return 1
             }
-            return multiLocationWeatherData.count
+            return multiLocationWeatherData.weatherDataDTOs?.count ?? 0
         default:
             return 0
         }
@@ -272,7 +272,7 @@ extension WeatherListViewController: UITableViewDataSource {
             }
         }
         if indexPath.section == 1 {
-            if let data = WeatherDataManager.shared.multiLocationWeatherData?[indexPath.row] {
+            if let data = WeatherDataManager.shared.multiLocationWeatherData?.weatherDataDTOs?[indexPath.row] {
                 weatherData = data
             } else {
                 alertNotice = NSLocalizedString("LocationsListTVC_AlertLocationUnavailable", comment: "")

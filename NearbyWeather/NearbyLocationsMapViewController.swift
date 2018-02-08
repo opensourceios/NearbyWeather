@@ -66,7 +66,7 @@ class NearbyLocationsMapViewController: UIViewController {
             weatherLocationMapAnnotations.append(singleLocationAnnotations)
         }
         
-        let multiLocationAnnotations = WeatherDataManager.shared.multiLocationWeatherData?.flatMap {
+        let multiLocationAnnotations = WeatherDataManager.shared.multiLocationWeatherData?.weatherDataDTOs?.flatMap {
             return WeatherLocationMapAnnotation(weatherDTO: $0)
         }
         weatherLocationMapAnnotations.append(contentsOf: multiLocationAnnotations ?? [WeatherLocationMapAnnotation]())
@@ -83,7 +83,7 @@ class NearbyLocationsMapViewController: UIViewController {
             bookmarkedLocation = location
         }
         
-        let multiLocations = WeatherDataManager.shared.multiLocationWeatherData?.flatMap {
+        let multiLocations = WeatherDataManager.shared.multiLocationWeatherData?.weatherDataDTOs?.flatMap {
             return CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
         }
         weatherLocations.append(contentsOf: multiLocations ?? [CLLocation]())
