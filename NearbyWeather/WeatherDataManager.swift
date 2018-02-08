@@ -120,7 +120,6 @@ public class AmountOfResults: Codable {
 }
 
 let kDefaultBookmarkedLocation = WeatherLocationDTO(identifier: 5341145, name: "Cupertino", country: "US", coordinates: Coordinates(latitude: 37.323002, longitude: -122.032181))
-let kWeatherServiceDidUpdate = "de.erikmartens.nearbyWeather.weatherServiceDidUpdate"
 
 fileprivate let kWeatherDataServiceStoredContentFileName = "WeatherDataServiceStoredContents"
 
