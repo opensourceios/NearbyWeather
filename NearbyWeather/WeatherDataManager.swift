@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import Alamofire
 
 public enum SortingOrientation: Int {
     case name
@@ -212,7 +213,12 @@ class WeatherDataManager {
         shared = WeatherDataManager.loadService() ?? WeatherDataManager(bookmarkedLocation: kDefaultBookmarkedLocation, amountOfResults: AmountOfResults(value: .ten), temperatureUnit: TemperatureUnit(value: .celsius), windspeedUnit: DistanceSpeedUnit(value: .kilometres))
     }
     
-    public func update(withCompletionHandler completionHandler: (() -> Void)?) {
+    public func update(withCompletionHandler completionHandler: (() -> ())?) {
+        guard NetworkReachabilityManager()!.isReachable else {
+            completionHandler?()
+            return
+        }
+        
         weatherServiceBackgroundQueue.async {
             let dispatchGroup = DispatchGroup()
             
