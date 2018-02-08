@@ -122,7 +122,7 @@ class WeatherDetailViewController: UIViewController {
         humidityNoteLabel.text = "💧 \(NSLocalizedString("WeatherDetailVC_Humidity", comment: "")):"
         humidityLabel.text = "\(weatherDTO.atmosphericInformation.humidity)%"
         pressureNoteLabel.text = "💨 \(NSLocalizedString("WeatherDetailVC_Pressure", comment: "")):"
-        pressureLabel.text = "\(weatherDTO.atmosphericInformation.pressurePsi) psi"
+        pressureLabel.text = "\(weatherDTO.atmosphericInformation.pressurePsi) hpa"
         
         windSpeedNoteLabel.text = "🎏 \(NSLocalizedString("WeatherDetailVC_WindSpeed", comment: "")):"
         let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: WeatherDataManager.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
@@ -165,7 +165,7 @@ class WeatherDetailViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func openWeatherMapButtonPressed(_ sender: UIButton) {
-        guard let url = URL(string: "https://openweathermap.org") else {
+        guard let url = URL(string: "https://openweathermap.org/find?q=\(weatherDTO.cityName)") else {
                 return
         }
         let safariController = SFSafariViewController(url: url)
