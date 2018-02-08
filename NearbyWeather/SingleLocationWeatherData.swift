@@ -11,5 +11,5 @@ import Foundation
 struct SingleLocationWeatherData: Codable {
     
     var statusCode: Int
-    var locationWeatherDataDTO: WeatherDataDTO?
+    var weatherDataDTO: WeatherDataDTO?
 }

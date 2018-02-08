@@ -62,7 +62,7 @@ class NearbyLocationsMapViewController: UIViewController {
     private func prepareMapAnnotations() {
         weatherLocationMapAnnotations = [WeatherLocationMapAnnotation]()
         
-        if let singleLocationAnnotations = WeatherLocationMapAnnotation(weatherDTO: WeatherDataManager.shared.singleLocationWeatherData?.locationWeatherDataDTO) {
+        if let singleLocationAnnotations = WeatherLocationMapAnnotation(weatherDTO: WeatherDataManager.shared.singleLocationWeatherData?.weatherDataDTO) {
             weatherLocationMapAnnotations.append(singleLocationAnnotations)
         }
         
@@ -77,7 +77,7 @@ class NearbyLocationsMapViewController: UIViewController {
     private func prepareLocations() {
         weatherLocations = [CLLocation]()
         
-        if let singleLocationWeatherDTO = WeatherDataManager.shared.singleLocationWeatherData?.locationWeatherDataDTO {
+        if let singleLocationWeatherDTO = WeatherDataManager.shared.singleLocationWeatherData?.weatherDataDTO {
             let location = CLLocation(latitude: singleLocationWeatherDTO.coordinates.latitude, longitude: singleLocationWeatherDTO.coordinates.longitude)
             weatherLocations.append(location)
             bookmarkedLocation = location

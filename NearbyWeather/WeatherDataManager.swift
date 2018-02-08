@@ -140,7 +140,7 @@ class WeatherDataManager {
     public static var shared: WeatherDataManager!
     
     public var hasSingleLocationWeatherData: Bool {
-        return singleLocationWeatherData?.locationWeatherDataDTO != nil
+        return singleLocationWeatherData?.weatherDataDTO != nil
     }
     public var hasMultiLocationWeatherData: Bool {
         return multiLocationWeatherData != nil && !multiLocationWeatherData!.isEmpty
@@ -259,7 +259,7 @@ class WeatherDataManager {
     }
     
     public func weatherDTO(forIdentifier identifier: Int) -> WeatherDataDTO? {
-        if let weatherDTO = singleLocationWeatherData?.locationWeatherDataDTO,
+        if let weatherDTO = singleLocationWeatherData?.weatherDataDTO,
             weatherDTO.cityID == identifier {
             return weatherDTO
         }
@@ -317,7 +317,7 @@ class WeatherDataManager {
         
         guard let apiKey = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey),
             let requestURL = URL(string: "\(WeatherDataManager.openWeather_SingleLocationBaseURL)?APPID=\(apiKey)&id=\(requestedCity)") else {
-                completionHandler(SingleLocationWeatherData(statusCode: 400, locationWeatherDataDTO: nil))
+                completionHandler(SingleLocationWeatherData(statusCode: 400, weatherDataDTO: nil))
                 return
         }
         
@@ -361,13 +361,13 @@ class WeatherDataManager {
         do {
             guard let extractedData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: AnyHashable],
                 let httpStatusCode = extractedData["cod"] as? Int else {
-                    return SingleLocationWeatherData(statusCode: 422, locationWeatherDataDTO: nil)
+                    return SingleLocationWeatherData(statusCode: 422, weatherDataDTO: nil)
             }
             if httpStatusCode == 200 {
                 let weatherData = try JSONDecoder().decode(WeatherDataDTO.self, from: data)
-                return SingleLocationWeatherData(statusCode: httpStatusCode, locationWeatherDataDTO: weatherData)
+                return SingleLocationWeatherData(statusCode: httpStatusCode, weatherDataDTO: weatherData)
             }
-            return SingleLocationWeatherData(statusCode: httpStatusCode, locationWeatherDataDTO: nil)
+            return SingleLocationWeatherData(statusCode: httpStatusCode, weatherDataDTO: nil)
         } catch let error {
             print("💥 WeatherDataService: Error while extracting single-location-data json: \(error.localizedDescription)")
             return nil
