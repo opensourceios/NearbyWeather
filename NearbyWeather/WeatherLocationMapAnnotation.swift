@@ -20,7 +20,7 @@ class WeatherLocationMapAnnotation: NSObject, MKAnnotation {
         self.coordinate = coordinate
     }
     
-    convenience init?(weatherDTO: LocationWeatherDataDTO?) {
+    convenience init?(weatherDTO: WeatherDataDTO?) {
         guard let weatherDTO = weatherDTO else { return nil }
         
         let weatherConditionIdentifier = weatherDTO.weatherCondition.first?.identifier
