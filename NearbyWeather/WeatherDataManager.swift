@@ -382,7 +382,7 @@ class WeatherDataManager {
                     return MultiLocationWeatherData(statusCode: 422, weatherDataDTOs: nil)
             }
             if httpStatusCode == 200 {
-                let multiWeatherData = try JSONDecoder().decode(OWMMultiWeatherDTO.self, from: data)
+                let multiWeatherData = try JSONDecoder().decode(MultiWeatherDataDTO.self, from: data)
                 return MultiLocationWeatherData(statusCode: httpStatusCode, weatherDataDTOs: multiWeatherData.list)
             }
             return MultiLocationWeatherData(statusCode: httpStatusCode, weatherDataDTOs: nil)

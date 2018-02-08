@@ -135,7 +135,7 @@ struct WeatherDataDTO: Codable {
     }
 }
 
-struct OWMMultiWeatherDTO: Codable {
+struct MultiWeatherDataDTO: Codable {
     var list: [WeatherDataDTO]
     
     enum CodingKeys: String, CodingKey {
