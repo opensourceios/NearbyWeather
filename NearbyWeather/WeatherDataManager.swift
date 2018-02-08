@@ -216,19 +216,35 @@ class WeatherDataManager {
         weatherServiceBackgroundQueue.async {
             let dispatchGroup = DispatchGroup()
             
+            var singleLocationWeatherData: SingleLocationWeatherData?
+            var multiLocationWeatherData: MultiLocationWeatherData?
+            
             dispatchGroup.enter()
-            self.fetchSingleLocationWeatherData(completionHandler: { singleLocationWeatherData in
-                self.singleLocationWeatherData = singleLocationWeatherData
+            self.fetchSingleLocationWeatherData(completionHandler: { weatherData in
+                singleLocationWeatherData = weatherData
                 dispatchGroup.leave()
             })
             
             dispatchGroup.enter()
-            self.fetchMultiLocationWeatherData(completionHandler: { multiLocationWeatherData in
-                self.multiLocationWeatherData = multiLocationWeatherData
+            self.fetchMultiLocationWeatherData(completionHandler: { weatherData in
+                multiLocationWeatherData = weatherData
                 dispatchGroup.leave()
             })
-            
             dispatchGroup.wait()
+            
+            // do not publish refresh if not data was loaded
+            if singleLocationWeatherData == nil && multiLocationWeatherData == nil {
+                return
+            }
+            
+            // only override previous record if there is any data
+            if singleLocationWeatherData != nil {
+                self.singleLocationWeatherData = singleLocationWeatherData
+            }
+            if multiLocationWeatherData != nil {
+                self.multiLocationWeatherData = multiLocationWeatherData
+            }
+            
             WeatherDataManager.storeService()
             DispatchQueue.main.async {
                 UserDefaults.standard.set(Date(), forKey: kWeatherDataLastRefreshDateKey)
