@@ -121,8 +121,10 @@ class WeatherListViewController: UIViewController {
     @objc private func updateWeatherData() {
         refreshControl.beginRefreshing()
         WeatherDataManager.shared.update(withCompletionHandler: {
-            self.refreshControl.endRefreshing()
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+                self.tableView.reloadData()
+            }
         })
     }
     
