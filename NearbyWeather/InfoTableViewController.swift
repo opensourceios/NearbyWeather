@@ -68,12 +68,15 @@ class InfoTableViewController: UITableViewController {
             urlStringValue = "https://github.com/erikmartens/NearbyWeather/blob/master/CONTRIBUTING.md"
         }
         if indexPath.section == 3 && indexPath.row == 0 {
-            urlStringValue = "https://github.com/pkluz/PKHUD"
+            urlStringValue = "https://github.com/Alamofire/Alamofire"
         }
         if indexPath.section == 3 && indexPath.row == 1 {
-            urlStringValue = "https://github.com/Onix-Systems/RainyRefreshControl"
+            urlStringValue = "https://github.com/pkluz/PKHUD"
         }
         if indexPath.section == 3 && indexPath.row == 2 {
+            urlStringValue = "https://github.com/Onix-Systems/RainyRefreshControl"
+        }
+        if indexPath.section == 3 && indexPath.row == 3 {
             urlStringValue = "https://github.com/serralvo/TextFieldCounter"
         }
         

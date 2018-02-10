@@ -810,13 +810,13 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PQk-Il-74x">
-                                    <rect key="frame" x="0.0" y="25" width="375" height="120"/>
+                                    <rect key="frame" x="0.0" y="25" width="0.0" height="120"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDb-dK-OSj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="80"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nearbyweather_webicon" translatesAutoresizingMaskIntoConstraints="NO" id="djW-Ua-f6G">
-                                                    <rect key="frame" x="150" y="0.0" width="75" height="75"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="75" id="XGi-Z8-l88"/>
                                                         <constraint firstAttribute="width" secondItem="djW-Ua-f6G" secondAttribute="height" multiplier="1:1" id="b3Z-aR-Pwv"/>
@@ -832,7 +832,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NearbyWeather - Open Source Weather" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6C-kQ-Qmj" userLabel="appTitleLabel">
-                                            <rect key="frame" x="0.0" y="80" width="375" height="25"/>
+                                            <rect key="frame" x="0.0" y="80" width="0.0" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="wVl-qL-80q"/>
                                             </constraints>
@@ -841,7 +841,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.2 Build #6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czi-Ez-K0K" userLabel="appVersionLabel">
-                                            <rect key="frame" x="0.0" y="105" width="375" height="15"/>
+                                            <rect key="frame" x="0.0" y="105" width="0.0" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="JKS-0y-IhZ"/>
                                             </constraints>
@@ -989,8 +989,33 @@
                             </tableViewSection>
                             <tableViewSection id="Gx6-bz-t4e">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="HjA-OH-DF5">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="DzI-gU-t9u">
                                         <rect key="frame" x="0.0" y="449" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DzI-gU-t9u" id="ut0-nK-j5L">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alamofire" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2kK-eS-FG5" userLabel="developerNameLabel">
+                                                    <rect key="frame" x="15" y="5" width="311" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="u89-N9-MAS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2kK-eS-FG5" firstAttribute="leading" secondItem="ut0-nK-j5L" secondAttribute="leading" constant="15" id="68d-ss-kiE"/>
+                                                <constraint firstItem="2kK-eS-FG5" firstAttribute="top" secondItem="ut0-nK-j5L" secondAttribute="top" constant="5" id="FLY-pU-7Nv"/>
+                                                <constraint firstAttribute="bottom" secondItem="2kK-eS-FG5" secondAttribute="bottom" constant="4" id="qRU-v1-Sya"/>
+                                                <constraint firstAttribute="trailing" secondItem="2kK-eS-FG5" secondAttribute="trailing" constant="15" id="rN4-L8-f4b"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="HjA-OH-DF5">
+                                        <rect key="frame" x="0.0" y="493" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HjA-OH-DF5" id="7DQ-tK-KjQ">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -1001,7 +1026,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="R2F-Ac-GBE"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1015,7 +1040,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="te0-Cu-Vxd">
-                                        <rect key="frame" x="0.0" y="493" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="537" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="te0-Cu-Vxd" id="kxn-wc-cva">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -1026,7 +1051,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="IdV-q1-aZE"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1040,7 +1065,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="VSo-MV-XIw">
-                                        <rect key="frame" x="0.0" y="537" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="581" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VSo-MV-XIw" id="wBe-vK-Aqv">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -1051,7 +1076,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="00D-6R-YQl"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
