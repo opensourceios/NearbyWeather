@@ -341,7 +341,7 @@ class WeatherDataManager {
         
         guard let apiKey = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey),
             let requestURL = URL(string: "\(WeatherDataManager.openWeather_SingleLocationBaseURL)?APPID=\(apiKey)&id=\(requestedCity)") else {
-                completionHandler(SingleLocationWeatherData(statusCode: 400, weatherDataDTO: nil))
+                completionHandler(SingleLocationWeatherData(httpStatusCode: 400, weatherDataDTO: nil))
                 return
         }
         
@@ -365,7 +365,7 @@ class WeatherDataManager {
         }
         guard let apiKey = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey),
             let requestURL = URL(string: "\(WeatherDataManager.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(currentLatitude)&lon=\(currentLongitude)&cnt=\(amountOfResults.integerValue)") else {
-                completionHandler(MultiLocationWeatherData(statusCode: 400, weatherDataDTOs: nil))
+                completionHandler(MultiLocationWeatherData(httpStatusCode: 400, weatherDataDTOs: nil))
                 return
         }
         let request = URLRequest(url: requestURL)
@@ -383,13 +383,13 @@ class WeatherDataManager {
         do {
             guard let extractedData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: AnyHashable],
                 let httpStatusCode = extractedData["cod"] as? Int else {
-                    return SingleLocationWeatherData(statusCode: 422, weatherDataDTO: nil)
+                    return SingleLocationWeatherData(httpStatusCode: 422, weatherDataDTO: nil)
             }
             if httpStatusCode == 200 {
                 let weatherData = try JSONDecoder().decode(WeatherDataDTO.self, from: data)
-                return SingleLocationWeatherData(statusCode: httpStatusCode, weatherDataDTO: weatherData)
+                return SingleLocationWeatherData(httpStatusCode: httpStatusCode, weatherDataDTO: weatherData)
             }
-            return SingleLocationWeatherData(statusCode: httpStatusCode, weatherDataDTO: nil)
+            return SingleLocationWeatherData(httpStatusCode: httpStatusCode, weatherDataDTO: nil)
         } catch {
             print("💥 WeatherDataService: Error while extracting single-location-data json: \(error.localizedDescription)")
             return nil
@@ -401,13 +401,13 @@ class WeatherDataManager {
             guard let extractedData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: AnyHashable],
                 let httpStatusCodeString = extractedData["cod"] as? String,
                 let httpStatusCode = Int(httpStatusCodeString) else {
-                    return MultiLocationWeatherData(statusCode: 422, weatherDataDTOs: nil)
+                    return MultiLocationWeatherData(httpStatusCode: 422, weatherDataDTOs: nil)
             }
             if httpStatusCode == 200 {
                 let multiWeatherData = try JSONDecoder().decode(MultiWeatherDataDTO.self, from: data)
-                return MultiLocationWeatherData(statusCode: httpStatusCode, weatherDataDTOs: multiWeatherData.list)
+                return MultiLocationWeatherData(httpStatusCode: httpStatusCode, weatherDataDTOs: multiWeatherData.list)
             }
-            return MultiLocationWeatherData(statusCode: httpStatusCode, weatherDataDTOs: nil)
+            return MultiLocationWeatherData(httpStatusCode: httpStatusCode, weatherDataDTOs: nil)
         } catch {
             print("💥 WeatherDataService: Error while extracting multi-location-data json: \(error.localizedDescription)")
             return nil

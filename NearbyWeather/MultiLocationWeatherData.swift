@@ -10,6 +10,6 @@ import Foundation
 
 struct MultiLocationWeatherData: Codable {
     
-    var statusCode: Int
+    var httpStatusCode: Int
     var weatherDataDTOs: [WeatherDataDTO]?
 }
