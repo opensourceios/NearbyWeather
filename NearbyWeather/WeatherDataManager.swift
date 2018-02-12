@@ -51,6 +51,11 @@ class WeatherDataManager {
             || multiLocationWeatherData?.weatherDataDTOs != nil
     }
     
+    public var apiKeyUnauthorized: Bool {
+        return singleLocationWeatherData?.errorDataDTO?.httpStatusCode == 401
+        || multiLocationWeatherData?.errorDataDTO?.httpStatusCode == 401
+    }
+    
     
     // MARK: - Private Assets
     

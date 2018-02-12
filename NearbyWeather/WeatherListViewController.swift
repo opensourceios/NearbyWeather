@@ -238,8 +238,9 @@ extension WeatherListViewController: UITableViewDelegate {
 extension WeatherListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if !WeatherDataManager.shared.hasDisplayableData {
-                return nil
+        if !WeatherDataManager.shared.hasDisplayableData
+            || WeatherDataManager.shared.apiKeyUnauthorized {
+            return nil
         }
         switch section {
         case 0:
@@ -255,10 +256,9 @@ extension WeatherListViewController: UITableViewDataSource {
         if !WeatherDataManager.shared.hasDisplayableData {
             return 0
         }
-        if !LocationService.shared.locationPermissionsGranted {
-            return 1
-        }
-        if WeatherDataManager.shared.multiLocationWeatherData == nil {
+        if !LocationService.shared.locationPermissionsGranted
+            || WeatherDataManager.shared.multiLocationWeatherData == nil
+            || WeatherDataManager.shared.apiKeyUnauthorized {
             return 1
         }
         return 2
@@ -267,6 +267,9 @@ extension WeatherListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if !WeatherDataManager.shared.hasDisplayableData {
             return 0
+        }
+        if WeatherDataManager.shared.apiKeyUnauthorized {
+            return 1
         }
         switch section {
         case 0:
@@ -292,6 +295,12 @@ extension WeatherListViewController: UITableViewDataSource {
         weatherCell.selectionStyle = .none
         alertCell.backgroundColor = .clear
         alertCell.selectionStyle = .none
+        
+        if WeatherDataManager.shared.apiKeyUnauthorized {
+            let errorDataDTO = WeatherDataManager.shared.singleLocationWeatherData?.errorDataDTO ?? WeatherDataManager.shared.multiLocationWeatherData?.errorDataDTO
+            alertCell.configureWithErrorDataDTO(errorDataDTO)
+            return alertCell
+        }
         
         switch indexPath.section {
         case 0:
