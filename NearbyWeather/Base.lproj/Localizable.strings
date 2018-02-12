@@ -90,6 +90,7 @@ InfoTVC_TableViewSectionHeader3 = "Libraries Used";
 InfoTVC_AppTitle = "NearbyWeather - Open Source Weather";
 
 InfoTVC_RateVersion = "Rate this Version";
+InfoTVC_ReportIssue = "Report a Bug";
 InfoTVC_DeveloperNameSubtitle_0 = "Project Owner";
 InfoTVC_HowToContribute = "How to Contribute";
 InfoTVC_Source = "Source Code via GitHub";
@@ -127,6 +128,9 @@ OpenWeatherMapCityFilterTVC_NavigationBarTitle = "Set City";
 OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Search by City Name";
 
 // MARK: - General
+
+viaEmail = "Mail";
+viaGitHub = "GitHub";
 
 kilometres_per_hour = "Kilometres per Hour";
 miles_per_hour = "Miles per Hour";

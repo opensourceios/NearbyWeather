@@ -115,7 +115,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
             cell.contentLabel.text = NSLocalizedString("SettingsTVC_About", comment: "")
             cell.accessoryType = .disclosureIndicator
             return cell
@@ -128,17 +128,17 @@ class SettingsTableViewController: UITableViewController {
             }
             return cell
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
             cell.contentLabel.text = "\(WeatherDataManager.shared.bookmarkedLocation.name), \(WeatherDataManager.shared.bookmarkedLocation.country)"
             cell.accessoryType = .disclosureIndicator
             return cell
         case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
             cell.contentLabel.text = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey) as? String
             cell.accessoryType = .disclosureIndicator
             return cell
         case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
             let amountResults = AmountOfResults(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = "\(amountResults.integerValue) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
             if amountResults.integerValue == WeatherDataManager.shared.amountOfResults.integerValue {
@@ -148,7 +148,7 @@ class SettingsTableViewController: UITableViewController {
             }
             return cell
         case 5:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
             let temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = temperatureUnit.stringValue
             if temperatureUnit.stringValue == WeatherDataManager.shared.temperatureUnit.stringValue {
@@ -158,7 +158,7 @@ class SettingsTableViewController: UITableViewController {
             }
             return cell
         case 6:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
             let windspeedUnit = DistanceSpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = windspeedUnit.stringDescriptor
             if windspeedUnit.stringDescriptor == WeatherDataManager.shared.windspeedUnit.stringDescriptor {

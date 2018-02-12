@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsCell: UITableViewCell {
+class LabelCell: UITableViewCell {
     
     @IBOutlet weak var contentLabel: UILabel!
 }

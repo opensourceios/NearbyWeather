@@ -291,10 +291,10 @@ extension WeatherListViewController: UITableViewDataSource {
         let weatherCell = tableView.dequeueReusableCell(withIdentifier: "WeatherDataCell", for: indexPath) as! WeatherDataCell
         let alertCell = tableView.dequeueReusableCell(withIdentifier: "AlertCell", for: indexPath) as! AlertCell
         
-        weatherCell.backgroundColor = .clear
-        weatherCell.selectionStyle = .none
-        alertCell.backgroundColor = .clear
-        alertCell.selectionStyle = .none
+        [weatherCell, alertCell].forEach {
+            $0.backgroundColor = .clear
+            $0.selectionStyle = .none
+        }
         
         if WeatherDataManager.shared.apiKeyUnauthorized {
             let errorDataDTO = WeatherDataManager.shared.singleLocationWeatherData?.errorDataDTO ?? WeatherDataManager.shared.multiLocationWeatherData?.errorDataDTO
