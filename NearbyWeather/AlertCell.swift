@@ -35,7 +35,8 @@ class AlertCell: UITableViewCell {
         if let errorDataDTO = errorDataDTO {
             switch errorDataDTO.errorType.value {
             case .httpError:
-                noticeLabel.text = String(format: NSLocalizedString("LocationsListTVC_HttpError", comment: ""), errorDataDTO.httpStatusCode ?? -1)
+                let errorCode = errorDataDTO.httpStatusCode ?? -1
+                noticeLabel.text = String(format: NSLocalizedString("LocationsListTVC_HttpError", comment: ""), "\(errorCode)")
             case .requestTimOutError:
                 noticeLabel.text = NSLocalizedString("LocationsListTVC_RequestTimOutError", comment: "")
             case .malformedUrlError:
