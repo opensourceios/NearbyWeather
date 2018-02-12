@@ -958,18 +958,18 @@
                                     <outlet property="contentLabel" destination="qWM-qt-gAu" id="XJq-wX-g0t"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ButtonCell" id="P1u-ge-HlE" customClass="ButtonCell" customModule="NearbyWeather" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="244.5" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ButtonCell" rowHeight="87" id="P1u-ge-HlE" customClass="ButtonCell" customModule="NearbyWeather" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="244.5" width="375" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P1u-ge-HlE" id="qkA-XC-FTg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="sUL-pw-3HQ">
-                                            <rect key="frame" x="15" y="5" width="345" height="34.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sUL-pw-3HQ">
+                                            <rect key="frame" x="15" y="5" width="345" height="71.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KmX-IL-Pmh" userLabel="contentLabel">
-                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="34"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="36.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="sSq-Lj-w4E"/>
                                                     </constraints>
@@ -978,14 +978,20 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NLI-7O-bmv">
-                                                    <rect key="frame" x="0.0" y="34" width="345" height="0.5"/>
+                                                    <rect key="frame" x="0.0" y="41.5" width="345" height="30"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUv-eM-qo5">
-                                                            <rect key="frame" x="0.0" y="0.0" width="165" height="0.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="165" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="yCe-sC-z23"/>
+                                                            </constraints>
                                                             <state key="normal" title="Button"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Y5-bv-Pyj">
-                                                            <rect key="frame" x="180" y="0.0" width="165" height="0.5"/>
+                                                            <rect key="frame" x="180" y="0.0" width="165" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="d5d-fM-gjG"/>
+                                                            </constraints>
                                                             <state key="normal" title="Button"/>
                                                         </button>
                                                     </subviews>
@@ -1000,7 +1006,7 @@
                                         <constraint firstAttribute="trailing" secondItem="sUL-pw-3HQ" secondAttribute="trailing" constant="15" id="1i4-16-wfH"/>
                                         <constraint firstItem="sUL-pw-3HQ" firstAttribute="leading" secondItem="qkA-XC-FTg" secondAttribute="leading" constant="15" id="Ujk-9j-MNk"/>
                                         <constraint firstItem="sUL-pw-3HQ" firstAttribute="top" secondItem="qkA-XC-FTg" secondAttribute="top" constant="5" id="bJZ-67-8qO"/>
-                                        <constraint firstAttribute="bottom" secondItem="sUL-pw-3HQ" secondAttribute="bottom" constant="4" id="rb6-xd-DgD"/>
+                                        <constraint firstAttribute="bottom" secondItem="sUL-pw-3HQ" secondAttribute="bottom" constant="10" id="rb6-xd-DgD"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1010,7 +1016,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubtitleCell" rowHeight="73" id="VX3-hY-vfd" customClass="SubtitleCell" customModule="NearbyWeather" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="288.5" width="375" height="73"/>
+                                <rect key="frame" x="0.0" y="331.5" width="375" height="73"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VX3-hY-vfd" id="4I0-ay-9wc">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="72.5"/>

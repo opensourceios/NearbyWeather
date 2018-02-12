@@ -63,6 +63,9 @@ class InfoTableViewController: UITableViewController {
             return
         }
         if indexPath.section == 0 && indexPath.row == 1 {
+            return
+        }
+        if indexPath.section == 0 && indexPath.row == 2 {
             urlStringValue = "https://github.com/erikmartens/NearbyWeather"
         }
         if indexPath.section == 1 && indexPath.row == 0 {
@@ -130,17 +133,17 @@ class InfoTableViewController: UITableViewController {
             }
             if indexPath.row == 1 {
                 buttonCell.configure(withTitle: NSLocalizedString("InfoTVC_ReportIssue", comment: ""),
-                                     leftButtonTitle: NSLocalizedString("viaEmail", comment: ""),
-                                     rightButtonTitle: NSLocalizedString("viaGitHub", comment: ""),
+                                     leftButtonTitle: NSLocalizedString("viaGitHub", comment: ""),
+                                     rightButtonTitle: NSLocalizedString("viaEmail", comment: ""),
+                                     leftButtonHandler: { [unowned self] button in
+                                        let urlString = "https://github.com/erikmartens/NearbyWeather/issues"
+                                        self.presentSafariViewController(forUrlString: urlString)
+                },
                                      rightButtonHandler: { [unowned self] button in
                                         let mailAddress = "erikmartens.developer@gmail.com"
                                         let subject = "NearbyWeather - \(NSLocalizedString("InfoTVC_ReportIssue", comment: ""))"
                                         let message = "Hey Erik, \n"
                                         self.sendMail(to: [mailAddress], withSubject: subject, withMessage: message)
-                },
-                                     leftButtonHandler: { [unowned self] button in
-                                        let urlString = "https://github.com/erikmartens/NearbyWeather/issues"
-                                        self.presentSafariViewController(forUrlString: urlString)
                 })
                 return buttonCell
             } else {

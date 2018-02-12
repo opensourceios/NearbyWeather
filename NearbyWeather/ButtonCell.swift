@@ -35,7 +35,12 @@ class ButtonCell: UITableViewCell {
         rightButton.removeTarget(self, action: #selector(ButtonCell.rightButtonPressed(_:)), for: .touchUpInside)
     }
     
-    public func configure(withTitle title: String, leftButtonTitle: String, rightButtonTitle: String, rightButtonHandler: ((UIButton) -> ()), leftButtonHandler: ((UIButton) -> ())) {
+    public func configure(withTitle title: String, leftButtonTitle: String, rightButtonTitle: String, leftButtonHandler: @escaping ((UIButton) -> ()), rightButtonHandler: @escaping ((UIButton) -> ())) {
+        
+        contentLabel.text = title
+        
+        self.rightButtonHandler = rightButtonHandler
+        self.leftButtonHandler = leftButtonHandler
         
         leftButton.setTitle(leftButtonTitle, for: .normal)
         leftButton.addTarget(self, action: #selector(ButtonCell.leftButtonPressed(_:)), for: .touchUpInside)
@@ -43,7 +48,7 @@ class ButtonCell: UITableViewCell {
         rightButton.setTitle(rightButtonTitle, for: .normal)
         rightButton.addTarget(self, action: #selector(ButtonCell.rightButtonPressed(_:)), for: .touchUpInside)
         
-        [rightButton, leftButton].forEach {
+        [rightButton, leftButton].forEach {           
             $0?.layer.cornerRadius = 5.0
             $0?.layer.borderColor = UIColor.nearbyWeatherStandard.cgColor
             $0?.layer.borderWidth = 1.0
