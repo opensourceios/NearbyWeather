@@ -35,7 +35,6 @@ LocationsListTVC_TableViewSectionHeader2 = "Weather for Nearby Locations";
 LocationsListTVC_RefreshPullHandle = "Pull to refresh";
 LocationsListTVC_LastRefresh = "Last Refresh: %@";
 
-LocationsListTVC_LocationAlert_Title = "Current Location Access Denied";
 LocationsListTVC_LocationAlert_Message = "In order to provide weather data of nearby cities, your current location is required. You have denied NearbyWeather access to your location data. This can be changed within Settings. While your location is not determinable, sample coordinates will be used.";
 LocationsListTVC_LocationAlert_Action1 = "Dismiss";
 LocationsListTVC_LocationAlert_Action2 = "Settings";
@@ -107,7 +106,7 @@ SettingsTVC_About = "About";
 SettingsTVC_SectionTitle0 = "General";
 SettingsTVC_SectionTitle1 = "Bookmarked Location";
 SettingsTVC_SectionTitle2 = "OpenWeatherMap API Key";
-SettingsTVC_SectionTitle3 = "Amount of Search Results";
+SettingsTVC_SectionTitle3 = "Amount of Nearby Results";
 SettingsTVC_SectionTitle4 = "Temperature Unit";
 SettingsTVC_SectionTitle5 = "Distance/Speed Unit";
 
