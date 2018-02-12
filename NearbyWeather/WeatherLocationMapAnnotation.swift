@@ -14,15 +14,22 @@ class WeatherLocationMapAnnotation: NSObject, MKAnnotation {
     let subtitle: String?
     let coordinate: CLLocationCoordinate2D
     
-    init(weatherDTO: LocationWeatherDataDTO) {
+    init(title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D) {
+        self.title = title
+        self.subtitle = subtitle
+        self.coordinate = coordinate
+    }
+    
+    convenience init?(weatherDTO: WeatherDataDTO?) {
+        guard let weatherDTO = weatherDTO else { return nil }
+        
         let weatherConditionIdentifier = weatherDTO.weatherCondition.first?.identifier
         let weatherConditionSymbol = weatherConditionIdentifier != nil ? ConversionService.weatherConditionSymbol(fromWeathercode: weatherConditionIdentifier!) : nil
         let temperatureDescriptor = ConversionService.temperatureDescriptor(forTemperatureUnit: WeatherDataManager.shared.temperatureUnit, fromRawTemperature: weatherDTO.atmosphericInformation.temperatureKelvin)
-        let lat = weatherDTO.coordinates.latitude
-        let lon = weatherDTO.coordinates.longitude
         
-        title = weatherDTO.cityName
-        subtitle = weatherConditionSymbol != nil ? "\(weatherConditionSymbol!) \(temperatureDescriptor)" : "\(temperatureDescriptor)"
-        coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        let subtitle = weatherConditionSymbol != nil ? "\(weatherConditionSymbol!) \(temperatureDescriptor)" : "\(temperatureDescriptor)"
+        let coordinate = CLLocationCoordinate2D(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
+        
+        self.init(title: weatherDTO.cityName, subtitle: subtitle, coordinate: coordinate)
     }
 }

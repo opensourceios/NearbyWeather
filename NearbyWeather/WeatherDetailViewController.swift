@@ -14,7 +14,7 @@ private let kMapAnnotationIdentifier = "de.nearbyWeather.weatherDetailView.mkAnn
 
 class WeatherDetailViewController: UIViewController {
     
-    static func instantiateFromStoryBoard(withTitle title: String, weatherDTO: LocationWeatherDataDTO) -> WeatherDetailViewController {
+    static func instantiateFromStoryBoard(withTitle title: String, weatherDTO: WeatherDataDTO) -> WeatherDetailViewController {
         let viewController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "WeatherDetailViewController") as! WeatherDetailViewController
         viewController.titleString = title
         viewController.weatherDTO = weatherDTO
@@ -27,7 +27,7 @@ class WeatherDetailViewController: UIViewController {
     /* Injected */
     
     private var titleString: String!
-    private var weatherDTO: LocationWeatherDataDTO!
+    private var weatherDTO: WeatherDataDTO!
     
     /* Outlets */
     
@@ -41,6 +41,7 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetNoteLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
+    @IBOutlet weak var daytimeExplanationLabel: UILabel!
     
     @IBOutlet weak var cloudCoverNoteLabel: UILabel!
     @IBOutlet weak var cloudCoverLabel: UILabel!
@@ -105,6 +106,7 @@ class WeatherDetailViewController: UIViewController {
             
             let dateFormatter = DateFormatter()
             dateFormatter.calendar = .current
+            dateFormatter.timeZone = .current
             dateFormatter.dateStyle = .none
             dateFormatter.timeStyle = .short
             
@@ -113,6 +115,8 @@ class WeatherDetailViewController: UIViewController {
             
             sunsetNoteLabel.text = "🌜 \(NSLocalizedString("WeatherDetailVC_Sunset", comment: "")):"
             sunsetLabel.text = dateFormatter.string(from: sunsetDate)
+            
+            daytimeExplanationLabel.text = NSLocalizedString("WeatherDetailVC_DaytimeExplanation", comment: "")
         } else {
             daytimeStackView.isHidden = true
         }
@@ -122,7 +126,7 @@ class WeatherDetailViewController: UIViewController {
         humidityNoteLabel.text = "💧 \(NSLocalizedString("WeatherDetailVC_Humidity", comment: "")):"
         humidityLabel.text = "\(weatherDTO.atmosphericInformation.humidity)%"
         pressureNoteLabel.text = "💨 \(NSLocalizedString("WeatherDetailVC_Pressure", comment: "")):"
-        pressureLabel.text = "\(weatherDTO.atmosphericInformation.pressurePsi) psi"
+        pressureLabel.text = "\(weatherDTO.atmosphericInformation.pressurePsi) hpa"
         
         windSpeedNoteLabel.text = "🎏 \(NSLocalizedString("WeatherDetailVC_WindSpeed", comment: "")):"
         let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: WeatherDataManager.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
@@ -153,8 +157,9 @@ class WeatherDetailViewController: UIViewController {
     private func configureMap() {
         mapView.layer.cornerRadius = 10
         
-        let mapAnnotation = WeatherLocationMapAnnotation(weatherDTO: weatherDTO)
-        mapView.addAnnotation(mapAnnotation)
+        if let mapAnnotation = WeatherLocationMapAnnotation(weatherDTO: weatherDTO) {
+            mapView.addAnnotation(mapAnnotation)
+        }
         
         let location = CLLocation(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
         let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 5000, 5000)
@@ -165,7 +170,7 @@ class WeatherDetailViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func openWeatherMapButtonPressed(_ sender: UIButton) {
-        guard let url = URL(string: "https://openweathermap.org") else {
+        guard let url = URL(string: "https://openweathermap.org/find?q=\(weatherDTO.cityName)") else {
                 return
         }
         let safariController = SFSafariViewController(url: url)

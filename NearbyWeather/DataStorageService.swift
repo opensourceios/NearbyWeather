@@ -8,11 +8,6 @@
 
 import Foundation
 
-enum Directory {
-    case documents
-    case caches
-}
-
 class DataStorageService {    
     
     // MARK: -  Public Functions
@@ -34,13 +29,11 @@ class DataStorageService {
         guard let fileBaseURL = documentsDirectoryURL else { return nil }
         let fileExtension = "json"
         let filePathURL = fileBaseURL.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
-        
-        
+    
         if !FileManager.default.fileExists(atPath: filePathURL.path) {
             print("💥 DataStorageService: File at path \(filePathURL.path) does not exist!")
             return nil
         }
-        
         do {
             let data = try Data(contentsOf: filePathURL)
             let model = try JSONDecoder().decode(type, from: data)

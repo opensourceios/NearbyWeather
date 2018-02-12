@@ -8,20 +8,24 @@
 
 import UIKit
 import SafariServices
+import MessageUI
 
 class InfoTableViewController: UITableViewController {
+    
+    struct CocoaPodMeta { var name: String; var urlString: String }
+    private static let cocoaPods: [CocoaPodMeta] = [CocoaPodMeta(name: "Alamofire", urlString: "https://github.com/Alamofire/Alamofire"),
+                                    CocoaPodMeta(name: "PKHUD", urlString: "https://github.com/pkluz/PKHUD"),
+                                    CocoaPodMeta(name: "RainyRefreshControl", urlString: "https://github.com/Onix-Systems/RainyRefreshControl"),
+                                    CocoaPodMeta(name: "TextFieldCounter", urlString: "https://github.com/serralvo/TextFieldCounter")]
+    
+    struct Contributor { var name: String; var subtitle: String }
+    private static let contributors: [Contributor] = [Contributor(name: "Erik Maximilian Martens", subtitle: NSLocalizedString("InfoTVC_DeveloperNameSubtitle_0", comment: ""))]
     
     //MARK: - Assets
     
     @IBOutlet weak var appTitleLabel: UILabel!
     @IBOutlet weak var appVersionLabel: UILabel!
-    
-    @IBOutlet weak var rateVersionLabel: UILabel!
-    @IBOutlet weak var sourceNoteLabel: UILabel!
-    
-    @IBOutlet weak var developerName_0: UILabel!
-    @IBOutlet weak var developerNameSubtitle_0: UILabel!
-    @IBOutlet weak var howToContributeLabel: UILabel!
+
     
     
     //MARK: - ViewController Life Cycle
@@ -59,6 +63,9 @@ class InfoTableViewController: UITableViewController {
             return
         }
         if indexPath.section == 0 && indexPath.row == 1 {
+            return
+        }
+        if indexPath.section == 0 && indexPath.row == 2 {
             urlStringValue = "https://github.com/erikmartens/NearbyWeather"
         }
         if indexPath.section == 1 && indexPath.row == 0 {
@@ -67,31 +74,34 @@ class InfoTableViewController: UITableViewController {
         if indexPath.section == 2 && indexPath.row == 0 {
             urlStringValue = "https://github.com/erikmartens/NearbyWeather/blob/master/CONTRIBUTING.md"
         }
-        if indexPath.section == 3 && indexPath.row == 0 {
-            urlStringValue = "https://github.com/pkluz/PKHUD"
-        }
-        if indexPath.section == 3 && indexPath.row == 1 {
-            urlStringValue = "https://github.com/Onix-Systems/RainyRefreshControl"
-        }
-        if indexPath.section == 3 && indexPath.row == 2 {
-            urlStringValue = "https://github.com/serralvo/TextFieldCounter"
+        if indexPath.section == 3 {
+            urlStringValue = InfoTableViewController.cocoaPods[indexPath.row].urlString
         }
         
-        guard let urlString = urlStringValue,
-            let url = URL(string: urlString) else {
-                return
-        }
-        let safariController = SFSafariViewController(url: url)
-        if #available(iOS 10, *) {
-            safariController.preferredControlTintColor = .nearbyWeatherStandard
-        } else {
-            safariController.view.tintColor = .nearbyWeatherStandard
-        }
-        present(safariController, animated: true, completion: nil)
+        presentSafariViewController(forUrlString: urlStringValue)
     }
     
     
     // MARK: - TableView Data Source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 3
+        case 1:
+            return 1
+        case 2:
+            return 1
+        case 3:
+            return InfoTableViewController.cocoaPods.count
+        default:
+            return 0
+        }
+    }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
@@ -100,6 +110,60 @@ class InfoTableViewController: UITableViewController {
         case 2: return nil
         case 3: return NSLocalizedString("InfoTVC_TableViewSectionHeader3", comment: "")
         default: return nil
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let labelCell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
+        let subtitleCell = tableView.dequeueReusableCell(withIdentifier: "SubtitleCell", for: indexPath) as! SubtitleCell
+        let buttonCell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath) as! ButtonCell
+        
+        [labelCell, subtitleCell].forEach {
+            $0.selectionStyle = .default
+            $0.accessoryType = .disclosureIndicator
+        }
+        buttonCell.selectionStyle = .none
+        buttonCell.accessoryType = .none
+        
+        switch indexPath.section {
+        case 0:
+            if indexPath.row == 0 {
+                labelCell.contentLabel.text = NSLocalizedString("InfoTVC_RateVersion", comment: "")
+                return labelCell
+            }
+            if indexPath.row == 1 {
+                buttonCell.configure(withTitle: NSLocalizedString("InfoTVC_ReportIssue", comment: ""),
+                                     leftButtonTitle: NSLocalizedString("viaGitHub", comment: ""),
+                                     rightButtonTitle: NSLocalizedString("viaEmail", comment: ""),
+                                     leftButtonHandler: { [unowned self] button in
+                                        let urlString = "https://github.com/erikmartens/NearbyWeather/issues"
+                                        self.presentSafariViewController(forUrlString: urlString)
+                },
+                                     rightButtonHandler: { [unowned self] button in
+                                        let mailAddress = "erikmartens.developer@gmail.com"
+                                        let subject = "NearbyWeather - \(NSLocalizedString("InfoTVC_ReportIssue", comment: ""))"
+                                        let message = "Hey Erik, \n"
+                                        self.sendMail(to: [mailAddress], withSubject: subject, withMessage: message)
+                })
+                return buttonCell
+            } else {
+                labelCell.contentLabel.text = NSLocalizedString("InfoTVC_Source", comment: "")
+                return labelCell
+            }
+        case 1:
+            let contributor = InfoTableViewController.contributors[indexPath.row]
+            subtitleCell.contentLabel.text = contributor.name
+            subtitleCell.subtitleLabel.text = contributor.subtitle
+            return subtitleCell
+        case 2:
+            labelCell.contentLabel.text = NSLocalizedString("InfoTVC_HowToContribute", comment: "")
+            return labelCell
+        case 3:
+            let pod = InfoTableViewController.cocoaPods[indexPath.row]
+            labelCell.contentLabel.text = pod.name
+            return labelCell
+        default:
+            return UITableViewCell()
         }
     }
 
@@ -118,10 +182,43 @@ class InfoTableViewController: UITableViewController {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "#UNDEFINED"
         let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "#UNDEFINED"
         appVersionLabel.text = "Version \(appVersion) Build #\(appBuild)"
-        rateVersionLabel.text = NSLocalizedString("InfoTVC_RateVersion", comment: "")
-        sourceNoteLabel.text = NSLocalizedString("InfoTVC_Source", comment: "")
-        developerName_0.text = "Erik Maximilian Martens"
-        howToContributeLabel.text = NSLocalizedString("InfoTVC_HowToContribute", comment: "")
-        developerNameSubtitle_0.text = NSLocalizedString("InfoTVC_DeveloperNameSubtitle_0", comment: "")
+    }
+    
+    private func presentSafariViewController(forUrlString urlString: String?) {
+        guard let urlString = urlString,
+            let url = URL(string: urlString) else {
+                return
+        }
+        DispatchQueue.main.async {
+            let safariController = SFSafariViewController(url: url)
+            if #available(iOS 10, *) {
+                safariController.preferredControlTintColor = .nearbyWeatherStandard
+            } else {
+                safariController.view.tintColor = .nearbyWeatherStandard
+            }
+            self.present(safariController, animated: true, completion: nil)
+        }
+    }
+    
+    private func sendMail(to recipients: [String], withSubject subject: String, withMessage message: String) {
+        guard MFMailComposeViewController.canSendMail() else {
+            return
+        }
+        
+        let mailController = MFMailComposeViewController()
+        mailController.mailComposeDelegate = self
+        
+        mailController.setToRecipients(recipients)
+        mailController.setSubject(subject)
+        mailController.setMessageBody(message, isHTML: false)
+        
+        navigationController?.present(mailController, animated: true, completion: nil)
+    }
+}
+
+extension InfoTableViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
