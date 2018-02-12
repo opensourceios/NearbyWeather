@@ -20,11 +20,14 @@ WelcomeScreenVC_GetInstructionsButtonTitle = "Don't have an API key?";
 
 SetPermissionsVC_NavigationBarTitle = "Location Access";
 
-SetPermissionsVC_Description = "In order to use NearbyWeather's full functionality and get weather data for nearby places, your location is required. Example location data will be used while access is denied.";
+SetPermissionsVC_Description = "In order to get weather data for nearby places, NearbyWeather requires access to your current location. You may use NearbyWeather without disclosing your coordinates, although this limits the app's functionality.";
 SetPermissionsVC_AskPermissionsButtonTitle = "Configure";
 
 
 // MARK: - NearbyLocationsTableViewController
+
+LocationsListTVC_EmptyListTitle = "No Weather Data";
+LocationsListTVC_EmptyListDescription = "Weather data could not be loaded. Make sure you are connected to the Internet.";
 
 LocationsListTVC_TableViewSectionHeader1 = "Weather in Bookmarked Location";
 LocationsListTVC_TableViewSectionHeader2 = "Weather for Nearby Locations";
@@ -45,8 +48,13 @@ LocationsListTVC_SortAlert_Action3 = "Sort by Distance";
 LocationsListTVC_BackButtonTitle = "Back";
 
 LocationsListTVC_AlertNoData = "Data could not be loaded. Ensure that you have a network connection and that your API key is correctly entered.";
-LocationsListTVC_AlertIncorrectBookmarkedCity = "The city name you entered did not yield any results. Ensure it is spelled correctly and a city with this name exists.";
-LocationsListTVC_AlertLocationUnavailable = "You do not grant NearbyWeather access to your location. Therefore no nearby weather data could be loaded.";
+LocationsListTVC_UnknownError = "An unknown error occured while downloading weather data. Please try again later.";
+LocationsListTVC_HttpError = "An http error occurred while downloading weather data. Status code: %@";
+LocationsListTVC_RequestTimOutError = "An error occurred while downloading weather data. The request timed out.";
+LocationsListTVC_MalformedUrlError = "An error occurred while downloading weather data. The request-URL was malformed.";
+LocationsListTVC_UnreadableResult = "An error occurred while downloading weather data. The response could not be parsed.";
+LocationsListTVC_UnauthorizedApiKey = "An error occurred while downloading weather data. Your OpenWeatherMap API key is invalid.";
+LocationsListTVC_LocationUnavailable = "An error occurred while downloading weather data. Your location could not be determined.";
 
 
 // MARK: - WeatherDetailViewController

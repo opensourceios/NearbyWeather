@@ -10,116 +10,6 @@ import Foundation
 import MapKit
 import Alamofire
 
-public enum SortingOrientation: Int {
-    case name
-    case temperature
-    case distance
-}
-
-public class TemperatureUnit: Codable {
-    
-    static let count = 3
-    
-    var value: TemperatureUnitWrappedEnum
-    
-    init(value: TemperatureUnitWrappedEnum) {
-        self.value = value
-    }
-    
-    convenience init?(rawValue: Int) {
-        guard let value = TemperatureUnitWrappedEnum(rawValue: rawValue) else {
-            return nil
-        }
-        self.init(value: value)
-    }
-    
-    enum TemperatureUnitWrappedEnum: Int, Codable {
-        case celsius
-        case fahrenheit
-        case kelvin
-    }
-    
-    var stringValue: String {
-        switch value {
-        case .celsius: return "Celsius"
-        case .fahrenheit: return "Fahrenheit"
-        case .kelvin: return "Kelvin"
-        }
-    }
-}
-
-public class DistanceSpeedUnit: Codable {
-    static let count = 2
-    
-    var value: DistanceSpeedUnitWrappedEnum
-    
-    init(value: DistanceSpeedUnitWrappedEnum) {
-        self.value = value
-    }
-    
-    convenience init?(rawValue: Int) {
-        guard let value = DistanceSpeedUnitWrappedEnum(rawValue: rawValue) else {
-            return nil
-        }
-        self.init(value: value)
-    }
-    
-    enum DistanceSpeedUnitWrappedEnum: Int, Codable {
-        case kilometres
-        case miles
-    }
-    
-    var stringDescriptor: String {
-        switch value {
-        case .kilometres: return "\(NSLocalizedString("kilometres", comment: ""))/\(NSLocalizedString("kilometres_per_hour", comment: ""))"
-        case .miles: return "\(NSLocalizedString("miles", comment: ""))/\(NSLocalizedString("miles_per_hour", comment: ""))"
-        }
-    }
-    
-    var stringShortValue: String {
-        switch value {
-        case .kilometres: return NSLocalizedString("kmh", comment: "")
-        case .miles: return NSLocalizedString("mph", comment: "")
-        }
-    }
-}
-
-public class AmountOfResults: Codable {
-    
-    static let count = 5
-    
-    var value: AmountOfResultsWrappedEnum
-    
-    init(value: AmountOfResultsWrappedEnum) {
-        self.value = value
-    }
-    
-    convenience init?(rawValue: Int) {
-        guard let value = AmountOfResultsWrappedEnum(rawValue: rawValue) else {
-            return nil
-        }
-        self.init(value: value)
-    }
-    
-    enum AmountOfResultsWrappedEnum: Int, Codable {
-        case ten
-        case twenty
-        case thirty
-        case forty
-        case fifty
-    }
-    
-    var integerValue: Int {
-        switch value {
-        case .ten: return 10
-        case .twenty: return 20
-        case .thirty: return 30
-        case .forty: return 40
-        case .fifty: return 50
-        }
-    }
-}
-
 let kDefaultBookmarkedLocation = WeatherLocationDTO(identifier: 5341145, name: "Cupertino", country: "US", coordinates: Coordinates(latitude: 37.323002, longitude: -122.032181))
 
 fileprivate let kWeatherDataServiceStoredContentFileName = "WeatherDataServiceStoredContents"
@@ -133,18 +23,32 @@ struct WeatherDataServiceStoredContentsWrapper: Codable {
     var multiLocationWeatherData: MultiLocationWeatherData?
 }
 
+struct SingleLocationWeatherData: Codable {
+    var errorDataDTO: ErrorDataDTO?
+    var weatherDataDTO: WeatherDataDTO?
+}
+
+struct MultiLocationWeatherData: Codable {
+    var errorDataDTO: ErrorDataDTO?
+    var weatherDataDTOs: [WeatherDataDTO]?
+}
+
 class WeatherDataManager {
     
     // MARK: - Public Assets
     
     public static var shared: WeatherDataManager!
     
-    public var hasSingleLocationWeatherData: Bool {
-        return singleLocationWeatherData?.weatherDataDTO != nil
+    public var hasDisplayableData: Bool {
+        return singleLocationWeatherData?.errorDataDTO != nil
+            || singleLocationWeatherData?.weatherDataDTO != nil
+            || multiLocationWeatherData?.errorDataDTO != nil
+            || multiLocationWeatherData?.weatherDataDTOs != nil
     }
-    public var hasMultiLocationWeatherData: Bool {
-        guard let weatherDataDTOs = multiLocationWeatherData?.weatherDataDTOs else { return false }
-        return !weatherDataDTOs.isEmpty
+    
+    public var hasDisplayableWeatherData: Bool {
+        return singleLocationWeatherData?.weatherDataDTO != nil
+            || multiLocationWeatherData?.weatherDataDTOs != nil
     }
     
     
@@ -326,7 +230,7 @@ class WeatherDataManager {
     }
     
     @objc private func discardLocationBasedWeatherDataIfNeeded() {
-        if LocationService.shared.authorizationStatus != .authorizedWhenInUse && LocationService.shared.authorizationStatus != .authorizedAlways {
+        if !LocationService.shared.locationPermissionsGranted {
             multiLocationWeatherData = nil
             WeatherDataManager.storeService()
             NotificationCenter.default.post(name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: self)
@@ -335,82 +239,97 @@ class WeatherDataManager {
     
     /* Data Retrieval via Network */
     
-    private func fetchSingleLocationWeatherData(completionHandler: @escaping ((SingleLocationWeatherData?) -> ())) {
+    private func fetchSingleLocationWeatherData(completionHandler: @escaping ((SingleLocationWeatherData) -> ())) {
         let session = URLSession.shared
         let requestedCity = bookmarkedLocation.identifier
         
         guard let apiKey = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey),
             let requestURL = URL(string: "\(WeatherDataManager.openWeather_SingleLocationBaseURL)?APPID=\(apiKey)&id=\(requestedCity)") else {
-                completionHandler(SingleLocationWeatherData(httpStatusCode: 400, weatherDataDTO: nil))
-                return
+                let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .malformedUrlError), httpStatusCode: nil)
+                return completionHandler(SingleLocationWeatherData(errorDataDTO: errorDataDTO, weatherDataDTO: nil))
+                
         }
         
         let request = URLRequest(url: requestURL)
         let dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
             guard let receivedData = data, let _ = response, error == nil else {
-                 completionHandler(nil)
-                return
+                let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .httpError), httpStatusCode: (response as? HTTPURLResponse)?.statusCode)
+                return completionHandler(SingleLocationWeatherData(errorDataDTO: errorDataDTO, weatherDataDTO: nil))
             }
             completionHandler(self.extractSingleLocationWeatherData(fromData: receivedData))
         })
         dataTask.resume()
     }
     
-    private func fetchMultiLocationWeatherData(completionHandler: @escaping (MultiLocationWeatherData?) -> Void) {
+    private func fetchMultiLocationWeatherData(completionHandler: @escaping (MultiLocationWeatherData) -> Void) {
         let session = URLSession.shared
         
         guard let currentLatitude = LocationService.shared.currentLatitude, let currentLongitude = LocationService.shared.currentLongitude else {
-            completionHandler(nil)
-            return
+            let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .locationUnavailableError), httpStatusCode: nil)
+            return completionHandler(MultiLocationWeatherData(errorDataDTO: errorDataDTO, weatherDataDTOs: nil))
         }
         guard let apiKey = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey),
             let requestURL = URL(string: "\(WeatherDataManager.openWeather_MultiLocationBaseURL)?APPID=\(apiKey)&lat=\(currentLatitude)&lon=\(currentLongitude)&cnt=\(amountOfResults.integerValue)") else {
-                completionHandler(MultiLocationWeatherData(httpStatusCode: 400, weatherDataDTOs: nil))
-                return
+                let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .malformedUrlError), httpStatusCode: nil)
+                return completionHandler(MultiLocationWeatherData(errorDataDTO: errorDataDTO, weatherDataDTOs: nil))
         }
         let request = URLRequest(url: requestURL)
         let dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
             guard let receivedData = data, let _ = response, error == nil else {
-                completionHandler(nil)
-                return
+                let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .httpError), httpStatusCode: (response as? HTTPURLResponse)?.statusCode)
+                return completionHandler(MultiLocationWeatherData(errorDataDTO: errorDataDTO, weatherDataDTOs: nil))
             }
             completionHandler(self.extractMultiLocationWeatherData(fromData: receivedData))
         })
         dataTask.resume()
     }
     
-    private func extractSingleLocationWeatherData(fromData data: Data) -> SingleLocationWeatherData? {
+    private func extractSingleLocationWeatherData(fromData data: Data) -> SingleLocationWeatherData {
         do {
             guard let extractedData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: AnyHashable],
                 let httpStatusCode = extractedData["cod"] as? Int else {
-                    return SingleLocationWeatherData(httpStatusCode: 422, weatherDataDTO: nil)
+                    let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .unparsableResponseError), httpStatusCode: nil)
+                    return SingleLocationWeatherData(errorDataDTO: errorDataDTO, weatherDataDTO: nil)
             }
-            if httpStatusCode == 200 {
-                let weatherData = try JSONDecoder().decode(WeatherDataDTO.self, from: data)
-                return SingleLocationWeatherData(httpStatusCode: httpStatusCode, weatherDataDTO: weatherData)
+            guard httpStatusCode == 200 else {
+                if httpStatusCode == 401 {
+                    let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .unrecognizedApiKeyError), httpStatusCode: httpStatusCode)
+                    return SingleLocationWeatherData(errorDataDTO: errorDataDTO, weatherDataDTO: nil)
+                }
+                let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .httpError), httpStatusCode: httpStatusCode)
+                return SingleLocationWeatherData(errorDataDTO: errorDataDTO, weatherDataDTO: nil)
             }
-            return SingleLocationWeatherData(httpStatusCode: httpStatusCode, weatherDataDTO: nil)
+            let weatherData = try JSONDecoder().decode(WeatherDataDTO.self, from: data)
+            return SingleLocationWeatherData(errorDataDTO: nil, weatherDataDTO: weatherData)
         } catch {
             print("💥 WeatherDataService: Error while extracting single-location-data json: \(error.localizedDescription)")
-            return nil
+            let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .jsonSerializationError), httpStatusCode: nil)
+            return SingleLocationWeatherData(errorDataDTO: errorDataDTO, weatherDataDTO: nil)
         }
     }
     
-    private func extractMultiLocationWeatherData(fromData data: Data) -> MultiLocationWeatherData? {
+    private func extractMultiLocationWeatherData(fromData data: Data) -> MultiLocationWeatherData {
         do {
             guard let extractedData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: AnyHashable],
                 let httpStatusCodeString = extractedData["cod"] as? String,
                 let httpStatusCode = Int(httpStatusCodeString) else {
-                    return MultiLocationWeatherData(httpStatusCode: 422, weatherDataDTOs: nil)
+                    let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .unparsableResponseError), httpStatusCode: nil)
+                    return MultiLocationWeatherData(errorDataDTO: errorDataDTO, weatherDataDTOs: nil)
             }
-            if httpStatusCode == 200 {
-                let multiWeatherData = try JSONDecoder().decode(MultiWeatherDataDTO.self, from: data)
-                return MultiLocationWeatherData(httpStatusCode: httpStatusCode, weatherDataDTOs: multiWeatherData.list)
+            guard httpStatusCode == 200 else {
+                if httpStatusCode == 401 {
+                    let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .unrecognizedApiKeyError), httpStatusCode: httpStatusCode)
+                    return MultiLocationWeatherData(errorDataDTO: errorDataDTO, weatherDataDTOs: nil)
+                }
+                let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .httpError), httpStatusCode: httpStatusCode)
+                return MultiLocationWeatherData(errorDataDTO: errorDataDTO, weatherDataDTOs: nil)
             }
-            return MultiLocationWeatherData(httpStatusCode: httpStatusCode, weatherDataDTOs: nil)
+            let multiWeatherData = try JSONDecoder().decode(MultiWeatherDataDTO.self, from: data)
+            return MultiLocationWeatherData(errorDataDTO: nil, weatherDataDTOs: multiWeatherData.list)
         } catch {
             print("💥 WeatherDataService: Error while extracting multi-location-data json: \(error.localizedDescription)")
-            return nil
+            let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .jsonSerializationError), httpStatusCode: nil)
+            return MultiLocationWeatherData(errorDataDTO: errorDataDTO, weatherDataDTOs: nil)
         }
     }
 }

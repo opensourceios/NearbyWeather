@@ -9,3 +9,5 @@
 import Foundation
 
 let kWeatherServiceDidUpdate = "de.erikmartens.nearbyWeather.weatherServiceDidUpdate"
+let kLocationAuthorizationUpdated = "de.erikmartens.nearbyWeather.locationAuthorizationUpdated"
+let kNetworkReachabilityChanged = "de.erikmartens.nearbyWeather.networkReachabilityChanged"

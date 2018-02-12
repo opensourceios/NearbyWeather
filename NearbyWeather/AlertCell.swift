@@ -28,7 +28,34 @@ class AlertCell: UITableViewCell {
         timer?.invalidate()
     }
     
-    func startAnimationTimer() {
+    func configureWithErrorDataDTO(_ errorDataDTO: ErrorDataDTO?) {
+        backgroundColorView.layer.cornerRadius = 5.0
+        backgroundColorView.layer.backgroundColor = UIColor.black.cgColor
+        
+        if let errorDataDTO = errorDataDTO {
+            switch errorDataDTO.errorType.value {
+            case .httpError:
+                noticeLabel.text = String(format: NSLocalizedString("LocationsListTVC_HttpError", comment: ""), errorDataDTO.httpStatusCode ?? -1)
+            case .requestTimOutError:
+                noticeLabel.text = NSLocalizedString("LocationsListTVC_RequestTimOutError", comment: "")
+            case .malformedUrlError:
+                noticeLabel.text = NSLocalizedString("LocationsListTVC_MalformedUrlError", comment: "")
+            case .unparsableResponseError:
+                noticeLabel.text = NSLocalizedString("LocationsListTVC_UnreadableResult", comment: "")
+            case .jsonSerializationError:
+                noticeLabel.text = NSLocalizedString("LocationsListTVC_UnreadableResult", comment: "")
+            case .unrecognizedApiKeyError:
+                noticeLabel.text = NSLocalizedString("LocationsListTVC_UnauthorizedApiKey", comment: "")
+            case .locationUnavailableError:
+                noticeLabel.text = NSLocalizedString("LocationsListTVC_LocationUnavailable", comment: "")
+            }
+        } else {
+            noticeLabel.text = NSLocalizedString("LocationsListTVC_UnknownError", comment: "")
+        }
+        startAnimationTimer()
+    }
+    
+    private func startAnimationTimer() {
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(AlertCell.animateWarningShake), userInfo: nil, repeats: false)
     }
     

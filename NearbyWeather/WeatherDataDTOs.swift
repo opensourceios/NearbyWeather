@@ -15,7 +15,16 @@ import CoreLocation
  * This DTO therefore does not exactly mirror the server response
  */
 
-struct WeatherDataDTO: Codable {
+
+public struct MultiWeatherDataDTO: Codable {
+    var list: [WeatherDataDTO]
+    
+    enum CodingKeys: String, CodingKey {
+        case list
+    }
+}
+
+public struct WeatherDataDTO: Codable {
     
     struct Coordinates: Codable {
         var latitude: Double
@@ -113,7 +122,7 @@ struct WeatherDataDTO: Codable {
         case daytimeInformation = "sys"
     }
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         self.cityID = try values.decode(Int.self, forKey: .cityID)
@@ -135,10 +144,35 @@ struct WeatherDataDTO: Codable {
     }
 }
 
-struct MultiWeatherDataDTO: Codable {
-    var list: [WeatherDataDTO]
+public class ErrorType: Codable {
     
-    enum CodingKeys: String, CodingKey {
-        case list
+    static let count = 5
+    
+    var value: ErrorTypeWrappedEnum
+    
+    init(value: ErrorTypeWrappedEnum) {
+        self.value = value
     }
+    
+    convenience init?(rawValue: Int) {
+        guard let value = ErrorTypeWrappedEnum(rawValue: rawValue) else {
+            return nil
+        }
+        self.init(value: value)
+    }
+    
+    enum ErrorTypeWrappedEnum: Int, Codable {
+        case httpError
+        case requestTimOutError
+        case malformedUrlError
+        case unparsableResponseError
+        case jsonSerializationError
+        case unrecognizedApiKeyError
+        case locationUnavailableError
+    }
+}
+
+public struct ErrorDataDTO: Codable {
+    var errorType: ErrorType
+    var httpStatusCode: Int?
 }

@@ -8,8 +8,6 @@
 
 import CoreLocation
 
-let kLocationAuthorizationUpdated = "de.erikmartens.nearbyWeather.locationAuthorizationUpdated"
-
 class LocationService: CLLocationManager, CLLocationManagerDelegate {
     
     // MARK: - Public Assets
@@ -64,8 +62,8 @@ class LocationService: CLLocationManager, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let currentLocation: CLLocationCoordinate2D = manager.location!.coordinate
-        currentLatitude = currentLocation.latitude
-        currentLongitude = currentLocation.longitude
+        let currentLocation = manager.location?.coordinate
+        currentLatitude = currentLocation?.latitude
+        currentLongitude = currentLocation?.longitude
     }
 }
