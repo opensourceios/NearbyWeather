@@ -60,6 +60,7 @@ LocationsListTVC_LocationUnavailable = "Beim Laden der Wetterdaten ist ein Fehle
 
 WeatherDetailVC_Sunrise = "Sonnenaufgang";
 WeatherDetailVC_Sunset = "Sonnenuntergang";
+WeatherDetailVC_DaytimeExplanation = "relativ zu Uhrzeit des Geräts";
 
 WeatherDetailVC_CloudCoverage = "Wolkenbedeckung";
 WeatherDetailVC_Humidity = "Luftfeuchtigkeit";

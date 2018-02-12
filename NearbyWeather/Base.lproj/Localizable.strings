@@ -60,6 +60,7 @@ LocationsListTVC_LocationUnavailable = "An error occurred while downloading weat
 
 WeatherDetailVC_Sunrise = "Sunrise";
 WeatherDetailVC_Sunset = "Sunset";
+WeatherDetailVC_DaytimeExplanation = "based on device's local time";
 
 WeatherDetailVC_CloudCoverage = "Cloud Coverage";
 WeatherDetailVC_Humidity = "Humidity";

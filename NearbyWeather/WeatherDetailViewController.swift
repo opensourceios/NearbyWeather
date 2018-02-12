@@ -41,6 +41,7 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetNoteLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
+    @IBOutlet weak var daytimeExplanationLabel: UILabel!
     
     @IBOutlet weak var cloudCoverNoteLabel: UILabel!
     @IBOutlet weak var cloudCoverLabel: UILabel!
@@ -105,6 +106,7 @@ class WeatherDetailViewController: UIViewController {
             
             let dateFormatter = DateFormatter()
             dateFormatter.calendar = .current
+            dateFormatter.timeZone = .current
             dateFormatter.dateStyle = .none
             dateFormatter.timeStyle = .short
             
@@ -113,6 +115,8 @@ class WeatherDetailViewController: UIViewController {
             
             sunsetNoteLabel.text = "🌜 \(NSLocalizedString("WeatherDetailVC_Sunset", comment: "")):"
             sunsetLabel.text = dateFormatter.string(from: sunsetDate)
+            
+            daytimeExplanationLabel.text = NSLocalizedString("WeatherDetailVC_DaytimeExplanation", comment: "")
         } else {
             daytimeStackView.isHidden = true
         }
