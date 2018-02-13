@@ -202,6 +202,20 @@ class WeatherListViewController: UIViewController {
             self.tableView.reloadData()
         })
         
+        
+        
+        // highlight currently selected option
+        let selectedAction: UIAlertAction?
+        switch PreferencesManager.shared.sortingOrientation.value {
+        case .name:
+            selectedAction = sortByNameAction
+        case .temperature:
+            selectedAction = sortByTemperatureAction
+        case .distance:
+            selectedAction = sortByDistanceAction
+        }
+        selectedAction?.setValue(true, forKey: "checked")
+        
         sortAlert.addAction(cancelAction)
         sortAlert.addAction(sortByNameAction)
         sortAlert.addAction(sortByTemperatureAction)
