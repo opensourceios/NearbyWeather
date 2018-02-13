@@ -110,7 +110,7 @@ SettingsTVC_SectionTitle1 = "Favorisierte Stadt";
 SettingsTVC_SectionTitle2 = "OpenWeatherMap API Schlüssel";
 SettingsTVC_SectionTitle3 = "Anzahl der nahegelegenen Ergebnisse";
 SettingsTVC_SectionTitle4 = "Temperatur Einheit";
-SettingsTVC_SectionTitle5 = "Geschwindigkeits/Entfernungs-Einheit";
+SettingsTVC_SectionTitle5 = "Geschwindigkeits | Entfernungs-Einheit";
 
 SettingsTVC_Results = "Ergebnisse";
 SettingsTVC_RefreshOnAppStart = "Beim App Start Aktualisieren";
