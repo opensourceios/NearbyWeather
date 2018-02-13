@@ -87,8 +87,8 @@ public class DistanceSpeedUnit: Codable {
     
     var stringDescriptor: String {
         switch value {
-        case .kilometres: return "\(NSLocalizedString("kilometres", comment: ""))/\(NSLocalizedString("kilometres_per_hour", comment: ""))"
-        case .miles: return "\(NSLocalizedString("miles", comment: ""))/\(NSLocalizedString("miles_per_hour", comment: ""))"
+        case .kilometres: return "\(NSLocalizedString("kilometres", comment: "")) | \(NSLocalizedString("kilometres_per_hour", comment: ""))"
+        case .miles: return "\(NSLocalizedString("miles", comment: "")) | \(NSLocalizedString("miles_per_hour", comment: ""))"
         }
     }
     
