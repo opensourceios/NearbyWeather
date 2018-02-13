@@ -47,14 +47,14 @@ class WeatherDataCell: UITableViewCell {
         
         cityNameLabel.text = weatherDTO.cityName
         
-        let temperatureDescriptor = ConversionService.temperatureDescriptor(forTemperatureUnit: WeatherDataManager.shared.temperatureUnit, fromRawTemperature: weatherDTO.atmosphericInformation.temperatureKelvin)
+        let temperatureDescriptor = ConversionService.temperatureDescriptor(forTemperatureUnit: PreferencesManager.shared.temperatureUnit, fromRawTemperature: weatherDTO.atmosphericInformation.temperatureKelvin)
         temperatureLabel.text = "🌡 \(temperatureDescriptor)"
         
         cloudCoverageLabel.text = "☁️ \(weatherDTO.cloudCoverage.coverage)%"
         
         humidityLabel.text = "💧 \(weatherDTO.atmosphericInformation.humidity)%"
         
-        let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: WeatherDataManager.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
+        let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: PreferencesManager.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
         windspeedLabel.text = "🎏 \(windspeedDescriptor)"
     }
 }

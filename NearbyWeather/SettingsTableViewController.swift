@@ -53,13 +53,13 @@ class SettingsTableViewController: UITableViewController {
             navigationItem.removeTextFromBackBarButton()
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 4:
-            WeatherDataManager.shared.amountOfResults = AmountOfResults(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            PreferencesManager.shared.amountOfResults = AmountOfResults(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         case 5:
-            WeatherDataManager.shared.temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            PreferencesManager.shared.temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         case 6:
-            WeatherDataManager.shared.windspeedUnit = DistanceSpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
+            PreferencesManager.shared.windspeedUnit = DistanceSpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             tableView.reloadData()
         default:
             break
@@ -141,7 +141,7 @@ class SettingsTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
             let amountResults = AmountOfResults(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = "\(amountResults.integerValue) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
-            if amountResults.integerValue == WeatherDataManager.shared.amountOfResults.integerValue {
+            if amountResults.integerValue == PreferencesManager.shared.amountOfResults.integerValue {
                 cell.accessoryType = .checkmark
             } else {
                 cell.accessoryType = .none
@@ -151,7 +151,7 @@ class SettingsTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
             let temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = temperatureUnit.stringValue
-            if temperatureUnit.stringValue == WeatherDataManager.shared.temperatureUnit.stringValue {
+            if temperatureUnit.stringValue == PreferencesManager.shared.temperatureUnit.stringValue {
                 cell.accessoryType = .checkmark
             } else {
                 cell.accessoryType = .none
@@ -161,7 +161,7 @@ class SettingsTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
             let windspeedUnit = DistanceSpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
             cell.contentLabel.text = windspeedUnit.stringDescriptor
-            if windspeedUnit.stringDescriptor == WeatherDataManager.shared.windspeedUnit.stringDescriptor {
+            if windspeedUnit.stringDescriptor == PreferencesManager.shared.windspeedUnit.stringDescriptor {
                 cell.accessoryType = .checkmark
             } else {
                 cell.accessoryType = .none
