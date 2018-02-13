@@ -61,14 +61,13 @@ class WeatherDataManager {
     private static let openWeather_SingleLocationBaseURL = "http://api.openweathermap.org/data/2.5/weather"
     private static let openWeather_MultiLocationBaseURL = "http://api.openweathermap.org/data/2.5/find"
     
-    private let weatherServiceBackgroundQueue = DispatchQueue(label: "de.erikmartens.nearbyWeather.weatherDataManager", qos: .utility, attributes: [DispatchQueue.Attributes.concurrent], autoreleaseFrequency: .inherit, target: nil)
-    
     
     // MARK: - Properties
     
     public var bookmarkedLocation: WeatherLocationDTO {
         didSet {
             update(withCompletionHandler: nil)
+            WeatherDataManager.storeService()
         }
     }
     
@@ -100,12 +99,14 @@ class WeatherDataManager {
     }
     
     public func update(withCompletionHandler completionHandler: (() -> ())?) {
+        let fetchWeatherDataBackgroundQueue = DispatchQueue(label: "de.erikmaximilianmartens.nearbyWeather.fetchWeatherDataQueue", qos: .userInitiated, attributes: [.concurrent], autoreleaseFrequency: .inherit, target: nil)
+        
         guard NetworkReachabilityManager()!.isReachable else {
             completionHandler?()
             return
         }
         
-        weatherServiceBackgroundQueue.async {
+       fetchWeatherDataBackgroundQueue.async {
             let dispatchGroup = DispatchGroup()
             
             var singleLocationWeatherData: SingleLocationWeatherData?
@@ -177,10 +178,18 @@ class WeatherDataManager {
     }
     
     private static func storeService() {
-        let weatherDataManagerStoredContents = WeatherDataManagerStoredContentsWrapper(bookmarkedLocation: WeatherDataManager.shared.bookmarkedLocation,
-                                                 singleLocationWeatherData: WeatherDataManager.shared.singleLocationWeatherData,
-                                                 multiLocationWeatherData: WeatherDataManager.shared.multiLocationWeatherData)
-        DataStorageService.storeJson(forCodable: weatherDataManagerStoredContents, toFileWithName: kWeatherDataManagerStoredContentsFileName, toStorageLocation: .documents)
+        let weatherServiceBackgroundQueue = DispatchQueue(label: "de.erikmaximilianmartens.nearbyWeather.weatherDataManagerBackgroundQueue", qos: .utility, attributes: [DispatchQueue.Attributes.concurrent], autoreleaseFrequency: .inherit, target: nil)
+        
+        let dispatchSemaphore = DispatchSemaphore(value: 1)
+        
+        dispatchSemaphore.wait()
+        weatherServiceBackgroundQueue.async {
+            let weatherDataManagerStoredContents = WeatherDataManagerStoredContentsWrapper(bookmarkedLocation: WeatherDataManager.shared.bookmarkedLocation,
+                                                                                           singleLocationWeatherData: WeatherDataManager.shared.singleLocationWeatherData,
+                                                                                           multiLocationWeatherData: WeatherDataManager.shared.multiLocationWeatherData)
+            DataStorageService.storeJson(forCodable: weatherDataManagerStoredContents, inFileWithName: kWeatherDataManagerStoredContentsFileName, toStorageLocation: .documents)
+            dispatchSemaphore.signal()
+        }
     }
     
     @objc private func discardLocationBasedWeatherDataIfNeeded() {

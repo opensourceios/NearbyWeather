@@ -152,41 +152,28 @@ class PreferencesManager {
     public static var shared: PreferencesManager!
     
     
-    // MARK: - Private Assets
-    
-    private let preferencesManagerBackgroundQueue = DispatchQueue(label: "de.erikmartens.nearbyWeather.preferencesManager", qos: .utility, attributes: [DispatchQueue.Attributes.concurrent], autoreleaseFrequency: .inherit, target: nil)
-    
-    
     // MARK: - Properties
     
     public var amountOfResults: AmountOfResults {
         didSet {
             WeatherDataManager.shared.update(withCompletionHandler: nil)
-            preferencesManagerBackgroundQueue.async {
-                PreferencesManager.storeService()
-            }
+            PreferencesManager.storeService()
         }
     }
     public var temperatureUnit: TemperatureUnit {
         didSet {
-            preferencesManagerBackgroundQueue.async {
-                PreferencesManager.storeService()
-            }
+            PreferencesManager.storeService()
         }
     }
     public var windspeedUnit: DistanceSpeedUnit {
         didSet {
-            preferencesManagerBackgroundQueue.async {
-                PreferencesManager.storeService()
-            }
+            PreferencesManager.storeService()
         }
     }
     
     public var sortingOrientation: SortingOrientation {
         didSet {
-            preferencesManagerBackgroundQueue.async {
-                PreferencesManager.storeService()
-            }
+             PreferencesManager.storeService()
         }
     }
     
@@ -226,10 +213,18 @@ class PreferencesManager {
     }
     
     private static func storeService() {
-        let preferencesManagerStoredContentsWrapper = PreferencesManagerStoredContentsWrapper(amountOfResults: PreferencesManager.shared.amountOfResults,
-                                                                                       temperatureUnit: PreferencesManager.shared.temperatureUnit,
-                                                                                       windspeedUnit: PreferencesManager.shared.windspeedUnit,
-                                                                                       sortingOrientation: PreferencesManager.shared.sortingOrientation)
-        DataStorageService.storeJson(forCodable: preferencesManagerStoredContentsWrapper, toFileWithName: kPreferencesManagerStoredContentsFileName, toStorageLocation: .applicationSupport)
+        let preferencesManagerBackgroundQueue = DispatchQueue(label: "de.erikmaximilianmartens.nearbyWeather.preferencesManagerBackgroundQueue", qos: .utility, attributes: [DispatchQueue.Attributes.concurrent], autoreleaseFrequency: .inherit, target: nil)
+        
+        let dispatchSemaphore = DispatchSemaphore(value: 1)
+        
+        dispatchSemaphore.wait()
+        preferencesManagerBackgroundQueue.async {
+            let preferencesManagerStoredContentsWrapper = PreferencesManagerStoredContentsWrapper(amountOfResults: PreferencesManager.shared.amountOfResults,
+                                                                                                  temperatureUnit: PreferencesManager.shared.temperatureUnit,
+                                                                                                  windspeedUnit: PreferencesManager.shared.windspeedUnit,
+                                                                                                  sortingOrientation: PreferencesManager.shared.sortingOrientation)
+            DataStorageService.storeJson(forCodable: preferencesManagerStoredContentsWrapper, inFileWithName: kPreferencesManagerStoredContentsFileName, toStorageLocation: .applicationSupport)
+            dispatchSemaphore.signal()
+        }
     }
 }

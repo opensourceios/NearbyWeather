@@ -17,13 +17,21 @@ class DataStorageService {
     
     // MARK: -  Public Functions
     
-    static func storeJson<T: Encodable>(forCodable codable: T, toFileWithName fileName: String, toStorageLocation location: StorageLocationType) {
-        guard let fileBaseURL = directoryURL(forLocation: location) else {
-            print("💥 DataStorageService: Could not construct documents directory url.")
+    static func storeJson<T: Encodable>(forCodable codable: T, inFileWithName fileName: String, toStorageLocation location: StorageLocationType) {
+        guard let destinationDirectoryURL = directoryURL(forLocation: location) else {
+            print("💥 DataStorageService: Could not construct directory url.")
             return
         }
+        if !FileManager.default.fileExists(atPath: destinationDirectoryURL.path, isDirectory: nil) {
+            do {
+                try FileManager.default.createDirectory(at: destinationDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print("💥 DataStorageService: Error while creating directory \(destinationDirectoryURL.path). Error-Description: \(error.localizedDescription)")
+                return
+            }
+        }
         let fileExtension = "json"
-        let filePathURL = fileBaseURL.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
+        let filePathURL = destinationDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
         
         do {
             let data = try JSONEncoder().encode(codable)
@@ -35,7 +43,7 @@ class DataStorageService {
     
     static func retrieveJson<T: Decodable>(fromFileWithName fileName: String, andDecodeAsType type: T.Type, fromStorageLocation location: StorageLocationType) -> T? {
         guard let fileBaseURL = directoryURL(forLocation: location) else {
-            print("💥 DataStorageService: Could not construct documents directory url.")
+            print("💥 DataStorageService: Could not construct directory url.")
             return nil
         }
         let fileExtension = "json"
