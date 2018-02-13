@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class WeatherDataCell: UITableViewCell {
     
@@ -14,7 +15,7 @@ class WeatherDataCell: UITableViewCell {
    
     @IBOutlet weak var backgroundColorView: UIView!
     
-    @IBOutlet weak var weatherConditionLabel: UILabel!
+    @IBOutlet weak var weatherConditionImageView: UIImageView!
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cloudCoverageLabel: UILabel!
@@ -42,8 +43,8 @@ class WeatherDataCell: UITableViewCell {
         windspeedLabel.textColor = .white
         windspeedLabel.font = .preferredFont(forTextStyle: .subheadline)
         
-        let weatherConditionSymbol = ConversionService.weatherConditionSymbol(fromWeathercode: weatherDTO.weatherCondition[0].identifier)
-        weatherConditionLabel.text = weatherConditionSymbol
+        weatherConditionImageView.contentMode = .scaleAspectFill
+        weatherConditionImageView.sd_setImage(with: URL(string: "http://openweathermap.org/img/w/\(weatherDTO.weatherCondition[0].conditionIconCode).png"), placeholderImage: UIImage(named: "conditionPlaceholder"))
         
         cityNameLabel.text = weatherDTO.cityName
         
