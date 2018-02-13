@@ -165,7 +165,7 @@ class WeatherDataManager {
     /* Internal Storage Helpers*/
     
     private static func loadService() -> WeatherDataManager? {
-        guard let weatherDataManagerStoredContents = DataStorageService.retrieveJson(fromFileWithName: kWeatherDataManagerStoredContentsFileName, andDecodeAsType: WeatherDataManagerStoredContentsWrapper.self) else {
+        guard let weatherDataManagerStoredContents = DataStorageService.retrieveJson(fromFileWithName: kWeatherDataManagerStoredContentsFileName, andDecodeAsType: WeatherDataManagerStoredContentsWrapper.self, fromStorageLocation: .documents) else {
                 return nil
         }
         
@@ -180,7 +180,7 @@ class WeatherDataManager {
         let weatherDataManagerStoredContents = WeatherDataManagerStoredContentsWrapper(bookmarkedLocation: WeatherDataManager.shared.bookmarkedLocation,
                                                  singleLocationWeatherData: WeatherDataManager.shared.singleLocationWeatherData,
                                                  multiLocationWeatherData: WeatherDataManager.shared.multiLocationWeatherData)
-        DataStorageService.storeJson(forCodable: weatherDataManagerStoredContents, toFileWithName: kWeatherDataManagerStoredContentsFileName)
+        DataStorageService.storeJson(forCodable: weatherDataManagerStoredContents, toFileWithName: kWeatherDataManagerStoredContentsFileName, toStorageLocation: .documents)
     }
     
     @objc private func discardLocationBasedWeatherDataIfNeeded() {

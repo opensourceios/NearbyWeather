@@ -8,12 +8,20 @@
 
 import Foundation
 
+enum StorageLocationType {
+    case documents
+    case applicationSupport
+}
+
 class DataStorageService {    
     
     // MARK: -  Public Functions
     
-    static func storeJson<T: Encodable>(forCodable codable: T, toFileWithName fileName: String) {
-        guard let fileBaseURL = documentsDirectoryURL else { return }
+    static func storeJson<T: Encodable>(forCodable codable: T, toFileWithName fileName: String, toStorageLocation location: StorageLocationType) {
+        guard let fileBaseURL = directoryURL(forLocation: location) else {
+            print("💥 DataStorageService: Could not construct documents directory url.")
+            return
+        }
         let fileExtension = "json"
         let filePathURL = fileBaseURL.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
         
@@ -25,8 +33,11 @@ class DataStorageService {
         }
     }
     
-    static func retrieveJson<T: Decodable>(fromFileWithName fileName: String, andDecodeAsType type: T.Type) -> T? {
-        guard let fileBaseURL = documentsDirectoryURL else { return nil }
+    static func retrieveJson<T: Decodable>(fromFileWithName fileName: String, andDecodeAsType type: T.Type, fromStorageLocation location: StorageLocationType) -> T? {
+        guard let fileBaseURL = directoryURL(forLocation: location) else {
+            print("💥 DataStorageService: Could not construct documents directory url.")
+            return nil
+        }
         let fileExtension = "json"
         let filePathURL = fileBaseURL.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
     
@@ -47,12 +58,14 @@ class DataStorageService {
     
     // MARK: - Private Functions
     
-    static private var documentsDirectoryURL: URL? {
-        guard let fileBaseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            // nil checking for error reporting
-            print("💥 DataStorageService: Could not construct documents directory url.")
-            return nil
+    static private func directoryURL(forLocation location: StorageLocationType) -> URL? {
+        var fileBaseUrl: URL?
+        switch location {
+        case .documents:
+            fileBaseUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        case .applicationSupport:
+            fileBaseUrl =  FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
         }
-        return fileBaseURL
+        return fileBaseUrl
     }
 }

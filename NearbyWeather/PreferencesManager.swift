@@ -213,7 +213,7 @@ class PreferencesManager {
     /* Internal Storage Helpers*/
     
     private static func loadService() -> PreferencesManager? {
-        guard let preferencesManagerStoredContentsWrapper = DataStorageService.retrieveJson(fromFileWithName: kPreferencesManagerStoredContentsFileName, andDecodeAsType: PreferencesManagerStoredContentsWrapper.self) else {
+        guard let preferencesManagerStoredContentsWrapper = DataStorageService.retrieveJson(fromFileWithName: kPreferencesManagerStoredContentsFileName, andDecodeAsType: PreferencesManagerStoredContentsWrapper.self, fromStorageLocation: .applicationSupport) else {
             return nil
         }
         
@@ -230,6 +230,6 @@ class PreferencesManager {
                                                                                        temperatureUnit: PreferencesManager.shared.temperatureUnit,
                                                                                        windspeedUnit: PreferencesManager.shared.windspeedUnit,
                                                                                        sortingOrientation: PreferencesManager.shared.sortingOrientation)
-        DataStorageService.storeJson(forCodable: preferencesManagerStoredContentsWrapper, toFileWithName: kPreferencesManagerStoredContentsFileName)
+        DataStorageService.storeJson(forCodable: preferencesManagerStoredContentsWrapper, toFileWithName: kPreferencesManagerStoredContentsFileName, toStorageLocation: .applicationSupport)
     }
 }
