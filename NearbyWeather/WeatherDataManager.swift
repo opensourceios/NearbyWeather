@@ -95,7 +95,7 @@ class WeatherDataManager {
     public func update(withCompletionHandler completionHandler: (() -> ())?) {
         let fetchWeatherDataBackgroundQueue = DispatchQueue(label: "de.erikmaximilianmartens.nearbyWeather.fetchWeatherDataQueue", qos: .userInitiated, attributes: [.concurrent], autoreleaseFrequency: .inherit, target: nil)
         
-        guard NetworkReachabilityManager()!.isReachable else {
+        guard NetworkingService.shared.reachabilityStatus == .connected else {
             completionHandler?()
             return
         }

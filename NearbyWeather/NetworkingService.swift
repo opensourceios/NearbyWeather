@@ -23,17 +23,12 @@ class NetworkingService {
     // MARK: - Public Assets
     
     public static var shared: NetworkingService!
-    
-    
-    // MARK: - Private Assets
-    
-    
-    
+
     
     // MARK: - Properties
     
     private let reachabilityManager: NetworkReachabilityManager?
-    private var reachabilityStatus: ReachabilityStatus
+    public private(set) var reachabilityStatus: ReachabilityStatus
     
     // MARK: - Initialization
     
