@@ -65,14 +65,14 @@ class InfoTableViewController: UITableViewController {
         if indexPath.section == 0 && indexPath.row == 1 {
             return
         }
-        if indexPath.section == 0 && indexPath.row == 2 {
-            urlStringValue = "https://github.com/erikmartens/NearbyWeather"
-        }
         if indexPath.section == 1 && indexPath.row == 0 {
             urlStringValue = "http://www.erikmartens.de/contact.html"
         }
         if indexPath.section == 2 && indexPath.row == 0 {
             urlStringValue = "https://github.com/erikmartens/NearbyWeather/blob/master/CONTRIBUTING.md"
+        }
+        if indexPath.section == 2 && indexPath.row == 1 {
+            urlStringValue = "https://github.com/erikmartens/NearbyWeather"
         }
         if indexPath.section == 3 {
             urlStringValue = InfoTableViewController.cocoaPods[indexPath.row].urlString
@@ -91,11 +91,11 @@ class InfoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 3
+            return 2
         case 1:
             return 1
         case 2:
-            return 1
+            return 2
         case 3:
             return InfoTableViewController.cocoaPods.count
         default:
@@ -130,8 +130,7 @@ class InfoTableViewController: UITableViewController {
             if indexPath.row == 0 {
                 labelCell.contentLabel.text = NSLocalizedString("InfoTVC_RateVersion", comment: "")
                 return labelCell
-            }
-            if indexPath.row == 1 {
+            } else {
                 buttonCell.configure(withTitle: NSLocalizedString("InfoTVC_ReportIssue", comment: ""),
                                      leftButtonTitle: NSLocalizedString("viaGitHub", comment: ""),
                                      rightButtonTitle: NSLocalizedString("viaEmail", comment: ""),
@@ -146,9 +145,6 @@ class InfoTableViewController: UITableViewController {
                                         self.sendMail(to: [mailAddress], withSubject: subject, withMessage: message)
                 })
                 return buttonCell
-            } else {
-                labelCell.contentLabel.text = NSLocalizedString("InfoTVC_Source", comment: "")
-                return labelCell
             }
         case 1:
             let contributor = InfoTableViewController.contributors[indexPath.row]
@@ -156,8 +152,13 @@ class InfoTableViewController: UITableViewController {
             subtitleCell.subtitleLabel.text = contributor.subtitle
             return subtitleCell
         case 2:
-            labelCell.contentLabel.text = NSLocalizedString("InfoTVC_HowToContribute", comment: "")
-            return labelCell
+            if indexPath.row == 0 {
+                labelCell.contentLabel.text = NSLocalizedString("InfoTVC_HowToContribute", comment: "")
+                return labelCell
+            } else {
+                labelCell.contentLabel.text = NSLocalizedString("InfoTVC_Source", comment: "")
+                return labelCell
+            }
         case 3:
             let pod = InfoTableViewController.cocoaPods[indexPath.row]
             labelCell.contentLabel.text = pod.name

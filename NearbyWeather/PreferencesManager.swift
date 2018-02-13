@@ -8,10 +8,28 @@
 
 import Foundation
 
-public enum SortingOrientation: Int {
-    case name
-    case temperature
-    case distance
+public class SortingOrientation: Codable {
+    
+    static let count = 3
+    
+    var value: SortingOrientationWrappedEnum
+    
+    init(value: SortingOrientationWrappedEnum) {
+        self.value = value
+    }
+    
+    convenience init?(rawValue: Int) {
+        guard let value = SortingOrientationWrappedEnum(rawValue: rawValue) else {
+            return nil
+        }
+        self.init(value: value)
+    }
+    
+    public enum SortingOrientationWrappedEnum: Int, Codable {
+        case name
+        case temperature
+        case distance
+    }
 }
 
 public class TemperatureUnit: Codable {
@@ -69,8 +87,8 @@ public class DistanceSpeedUnit: Codable {
     
     var stringDescriptor: String {
         switch value {
-        case .kilometres: return "\(NSLocalizedString("kilometres", comment: ""))/\(NSLocalizedString("kilometres_per_hour", comment: ""))"
-        case .miles: return "\(NSLocalizedString("miles", comment: ""))/\(NSLocalizedString("miles_per_hour", comment: ""))"
+        case .kilometres: return "\(NSLocalizedString("kilometres", comment: "")) | \(NSLocalizedString("kilometres_per_hour", comment: ""))"
+        case .miles: return "\(NSLocalizedString("miles", comment: "")) | \(NSLocalizedString("miles_per_hour", comment: ""))"
         }
     }
     
@@ -118,7 +136,95 @@ public class AmountOfResults: Codable {
     }
 }
 
-//class PreferencesManager {
-//    
-//}
+fileprivate let kPreferencesManagerStoredContentsFileName = "PreferencesManagerStoredContents"
 
+struct PreferencesManagerStoredContentsWrapper: Codable {
+    var amountOfResults: AmountOfResults
+    var temperatureUnit: TemperatureUnit
+    var windspeedUnit: DistanceSpeedUnit
+    var sortingOrientation: SortingOrientation
+}
+
+class PreferencesManager {
+    
+    // MARK: - Public Assets
+    
+    public static var shared: PreferencesManager!
+    
+    
+    // MARK: - Properties
+    
+    public var amountOfResults: AmountOfResults {
+        didSet {
+            WeatherDataManager.shared.update(withCompletionHandler: nil)
+            PreferencesManager.storeService()
+        }
+    }
+    public var temperatureUnit: TemperatureUnit {
+        didSet {
+            PreferencesManager.storeService()
+        }
+    }
+    public var windspeedUnit: DistanceSpeedUnit {
+        didSet {
+            PreferencesManager.storeService()
+        }
+    }
+    
+    public var sortingOrientation: SortingOrientation {
+        didSet {
+             PreferencesManager.storeService()
+        }
+    }
+    
+    
+    // MARK: - Initialization
+    
+    private init(amountOfResults: AmountOfResults, temperatureUnit: TemperatureUnit, windspeedUnit: DistanceSpeedUnit, sortingOrientation: SortingOrientation) {
+        self.amountOfResults = amountOfResults
+        self.temperatureUnit = temperatureUnit
+        self.windspeedUnit = windspeedUnit
+        self.sortingOrientation = sortingOrientation
+    }
+    
+    
+    // MARK: - Public Properties & Methods
+    
+    public static func instantiateSharedInstance() {
+        shared = PreferencesManager.loadService() ?? PreferencesManager(amountOfResults: AmountOfResults(value: .ten), temperatureUnit: TemperatureUnit(value: .celsius), windspeedUnit: DistanceSpeedUnit(value: .kilometres), sortingOrientation: SortingOrientation(value: .name))
+    }
+    
+    
+    // MARK: - Private Helper Methods
+    
+    /* Internal Storage Helpers*/
+    
+    private static func loadService() -> PreferencesManager? {
+        guard let preferencesManagerStoredContentsWrapper = DataStorageService.retrieveJson(fromFileWithName: kPreferencesManagerStoredContentsFileName, andDecodeAsType: PreferencesManagerStoredContentsWrapper.self, fromStorageLocation: .applicationSupport) else {
+            return nil
+        }
+        
+        let weatherService = PreferencesManager(amountOfResults: preferencesManagerStoredContentsWrapper.amountOfResults,
+                                                temperatureUnit: preferencesManagerStoredContentsWrapper.temperatureUnit,
+                                                windspeedUnit: preferencesManagerStoredContentsWrapper.windspeedUnit,
+                                                sortingOrientation: preferencesManagerStoredContentsWrapper.sortingOrientation)
+        
+        return weatherService
+    }
+    
+    private static func storeService() {
+        let preferencesManagerBackgroundQueue = DispatchQueue(label: "de.erikmaximilianmartens.nearbyWeather.preferencesManagerBackgroundQueue", qos: .utility, attributes: [DispatchQueue.Attributes.concurrent], autoreleaseFrequency: .inherit, target: nil)
+        
+        let dispatchSemaphore = DispatchSemaphore(value: 1)
+        
+        dispatchSemaphore.wait()
+        preferencesManagerBackgroundQueue.async {
+            let preferencesManagerStoredContentsWrapper = PreferencesManagerStoredContentsWrapper(amountOfResults: PreferencesManager.shared.amountOfResults,
+                                                                                                  temperatureUnit: PreferencesManager.shared.temperatureUnit,
+                                                                                                  windspeedUnit: PreferencesManager.shared.windspeedUnit,
+                                                                                                  sortingOrientation: PreferencesManager.shared.sortingOrientation)
+            DataStorageService.storeJson(forCodable: preferencesManagerStoredContentsWrapper, inFileWithName: kPreferencesManagerStoredContentsFileName, toStorageLocation: .applicationSupport)
+            dispatchSemaphore.signal()
+        }
+    }
+}

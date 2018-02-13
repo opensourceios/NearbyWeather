@@ -91,7 +91,7 @@ InfoTVC_TableViewSectionHeader3 = "Verwendete Bibliotheken";
 InfoTVC_AppTitle = "NearbyWeather - Open Source Wetter";
 
 InfoTVC_RateVersion = "Im App Store Bewerten";
-InfoTVC_ReportIssue = "Bug Melden";
+InfoTVC_ReportIssue = "Feature Vorschlagen | Bug Melden";
 InfoTVC_DeveloperNameSubtitle_0 = "Projekt Inhaber";
 InfoTVC_HowToContribute = "Entwicklung Unterstützen";
 InfoTVC_Source = "Quellcode via GitHub";
@@ -110,7 +110,7 @@ SettingsTVC_SectionTitle1 = "Favorisierte Stadt";
 SettingsTVC_SectionTitle2 = "OpenWeatherMap API Schlüssel";
 SettingsTVC_SectionTitle3 = "Anzahl der nahegelegenen Ergebnisse";
 SettingsTVC_SectionTitle4 = "Temperatur Einheit";
-SettingsTVC_SectionTitle5 = "Geschwindigkeits/Entfernungs-Einheit";
+SettingsTVC_SectionTitle5 = "Geschwindigkeits | Entfernungs-Einheit";
 
 SettingsTVC_Results = "Ergebnisse";
 SettingsTVC_RefreshOnAppStart = "Beim App Start Aktualisieren";

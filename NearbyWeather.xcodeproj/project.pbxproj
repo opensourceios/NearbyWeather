@@ -258,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				F26699571E9AD0F100498F99 /* WeatherDataManager.swift */,
+				F274FC3A2030ED5A00049144 /* PreferencesManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -294,7 +295,6 @@
 				F2D2B1DF2004171500C810EF /* DataStorageService.swift */,
 				F2A5CAA52005762A0071BFFB /* ConversionService.swift */,
 				F274FC38202F9A9300049144 /* NetworkingService.swift */,
-				F274FC3A2030ED5A00049144 /* PreferencesManager.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";

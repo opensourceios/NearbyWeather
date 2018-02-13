@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 import SafariServices
 import RainyRefreshControl
 
@@ -15,6 +16,31 @@ class WeatherListViewController: UIViewController {
     // MARK: - Properties
     
     private var refreshControl = RainyRefreshControl()
+    
+    fileprivate var singleLocationWeatherDataDTO: WeatherDataDTO? {
+        return WeatherDataManager.shared.singleLocationWeatherData?.weatherDataDTO
+    }
+    fileprivate var multiLocationWeatherDataDTOs: [WeatherDataDTO]? {
+        guard let multiLocationWeatherData = WeatherDataManager.shared.multiLocationWeatherData else {
+            return nil
+        }
+        switch PreferencesManager.shared.sortingOrientation.value {
+        case .name:
+            return multiLocationWeatherData.weatherDataDTOs?.sorted { $0.cityName < $1.cityName }
+        case .temperature:
+            return multiLocationWeatherData.weatherDataDTOs?.sorted { $0.atmosphericInformation.temperatureKelvin > $1.atmosphericInformation.temperatureKelvin }
+        case .distance:
+            guard LocationService.shared.locationPermissionsGranted,
+                let currentLocation = LocationService.shared.currentLocation else {
+                    return multiLocationWeatherData.weatherDataDTOs
+            }
+            return multiLocationWeatherData.weatherDataDTOs?.sorted {
+                let weatherLocation1 = CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
+                let weatherLocation2 = CLLocation(latitude: $1.coordinates.latitude, longitude: $1.coordinates.longitude)
+                return weatherLocation1.distance(from: currentLocation) < weatherLocation2.distance(from: currentLocation)
+            }
+        }
+    }
     
     
     // MARK: - Outlets
@@ -163,18 +189,32 @@ class WeatherListViewController: UIViewController {
         
         let cancelAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Cancel", comment: ""), style: .cancel, handler: nil)
         let sortByNameAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action1", comment: ""), style: .default, handler: { paramAction in
-            WeatherDataManager.shared.sortData(byOrientation: .name)
+            PreferencesManager.shared.sortingOrientation = SortingOrientation(value: .name)
             self.tableView.reloadData()
         })
         let sortByTemperatureAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action2", comment: ""), style: .default, handler: { paramAction in
-            WeatherDataManager.shared.sortData(byOrientation: .temperature)
+            PreferencesManager.shared.sortingOrientation = SortingOrientation(value: .temperature)
             self.tableView.reloadData()
         })
         
         let sortByDistanceAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action3", comment: ""), style: .default, handler: { paramAction in
-            WeatherDataManager.shared.sortData(byOrientation: .distance)
+            PreferencesManager.shared.sortingOrientation = SortingOrientation(value: .distance)
             self.tableView.reloadData()
         })
+        
+        
+        
+        // highlight currently selected option
+        let selectedAction: UIAlertAction?
+        switch PreferencesManager.shared.sortingOrientation.value {
+        case .name:
+            selectedAction = sortByNameAction
+        case .temperature:
+            selectedAction = sortByTemperatureAction
+        case .distance:
+            selectedAction = sortByDistanceAction
+        }
+        selectedAction?.setValue(true, forKey: "checked")
         
         sortAlert.addAction(cancelAction)
         sortAlert.addAction(sortByNameAction)
@@ -304,14 +344,14 @@ extension WeatherListViewController: UITableViewDataSource {
         
         switch indexPath.section {
         case 0:
-            guard let weatherDTO = WeatherDataManager.shared.singleLocationWeatherData?.weatherDataDTO else {
+            guard let weatherDTO = singleLocationWeatherDataDTO else {
                 alertCell.configureWithErrorDataDTO(WeatherDataManager.shared.singleLocationWeatherData?.errorDataDTO)
                 return alertCell
             }
             weatherCell.configureWithWeatherDTO(weatherDTO)
             return weatherCell
         case 1:
-            guard let weatherDTO = WeatherDataManager.shared.multiLocationWeatherData?.weatherDataDTOs?[indexPath.row] else {
+            guard let weatherDTO = multiLocationWeatherDataDTOs?[indexPath.row] else {
                 alertCell.configureWithErrorDataDTO(WeatherDataManager.shared.singleLocationWeatherData?.errorDataDTO)
                 return alertCell
             }
