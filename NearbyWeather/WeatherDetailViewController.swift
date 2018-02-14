@@ -147,7 +147,7 @@ class WeatherDetailViewController: UIViewController {
         let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: PreferencesManager.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
         windSpeedLabel.text = windspeedDescriptor
         if let windDirection = weatherDTO.windInformation.degrees {
-            windDirectionImageView.transform = windDirectionImageView.transform.rotated(by: CGFloat(windDirection))
+            windDirectionImageView.transform = CGAffineTransform(rotationAngle: CGFloat(windDirection)*0.0174532925199) // convert to radians
             windDirectionImageView.tintColor = .darkGray
             windDirectionNoteLabel.text = " \(NSLocalizedString("WeatherDetailVC_WindDirection", comment: "")):"
             windDirectionLabel.text = ConversionService.windDirectionDescriptor(forWindDirection: windDirection)
