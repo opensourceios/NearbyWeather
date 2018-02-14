@@ -1,11 +1,13 @@
 PODS:
   - Alamofire (4.6.0)
+  - APTimeZones (1.1)
   - PKHUD (5.0.0)
   - RainyRefreshControl (0.4.0)
   - TextFieldCounter (0.0.6)
 
 DEPENDENCIES:
   - Alamofire
+  - APTimeZones
   - PKHUD
   - RainyRefreshControl
   - TextFieldCounter (from `https://github.com/serralvo/TextFieldCounter.git`, branch `master`)
@@ -22,10 +24,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  APTimeZones: ddb9aca50fff41d6313eb29d86d37b1edf9d2942
   PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
   RainyRefreshControl: de2236ad2f46d6cfb22bf029e0067b48cdcb2925
   TextFieldCounter: 3e01b495f7e90a398e914f6c6fcaca24efacefc7
 
-PODFILE CHECKSUM: 22b8076c05b5d45eea50862d48bf976baf4a2e65
+PODFILE CHECKSUM: a12bb48656e5c1b03b719598a53904c60420e9c6
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0
