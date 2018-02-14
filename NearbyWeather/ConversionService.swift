@@ -49,7 +49,7 @@ class ConversionService {
         case let x where x == 903:
             return "❄️"
         case let x where x == 904:
-            return "♨️"
+            return "🌡"
         case let x where x == 962:
             return "🌋"
         default:
