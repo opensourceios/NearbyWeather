@@ -7,17 +7,23 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - APTimeZones
+  - APTimeZones (from `https://github.com/Alterplay/APTimeZones.git`, branch `master`)
   - PKHUD
   - RainyRefreshControl
   - TextFieldCounter (from `https://github.com/serralvo/TextFieldCounter.git`, branch `master`)
 
 EXTERNAL SOURCES:
+  APTimeZones:
+    :branch: master
+    :git: https://github.com/Alterplay/APTimeZones.git
   TextFieldCounter:
     :branch: master
     :git: https://github.com/serralvo/TextFieldCounter.git
 
 CHECKOUT OPTIONS:
+  APTimeZones:
+    :commit: 9ffd1473e76fdf15e9a78d39b9e3f8dfad0b0255
+    :git: https://github.com/Alterplay/APTimeZones.git
   TextFieldCounter:
     :commit: b1c781ec5d4b77b223147c1b04efc65381d4c7e5
     :git: https://github.com/serralvo/TextFieldCounter.git
@@ -29,6 +35,6 @@ SPEC CHECKSUMS:
   RainyRefreshControl: de2236ad2f46d6cfb22bf029e0067b48cdcb2925
   TextFieldCounter: 3e01b495f7e90a398e914f6c6fcaca24efacefc7
 
-PODFILE CHECKSUM: a12bb48656e5c1b03b719598a53904c60420e9c6
+PODFILE CHECKSUM: 66ea0e5e03dd4263816b08f71289b056d0a42192
 
 COCOAPODS: 1.4.0

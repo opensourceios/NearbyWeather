@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import SafariServices
+import APTimeZones
+import MapKit
 
 private let kMapAnnotationIdentifier = "de.nearbyWeather.weatherDetailView.mkAnnotation"
 
@@ -113,9 +115,11 @@ class WeatherDetailViewController: UIViewController {
             let sunriseDate = Date(timeIntervalSince1970: sunriseTimeSinceReferenceDate)
             let sunsetDate = Date(timeIntervalSince1970: sunsetTimeSinceReferenceDate)
             
+            let location = CLLocation(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
+            
             let dateFormatter = DateFormatter()
             dateFormatter.calendar = .current
-            dateFormatter.timeZone = .current
+            dateFormatter.timeZone = location.timeZone()
             dateFormatter.dateStyle = .none
             dateFormatter.timeStyle = .short
             
