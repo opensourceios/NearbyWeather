@@ -48,6 +48,7 @@ class WeatherListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var separatoLineViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var emptyListOverlayContainerView: UIView!
     @IBOutlet weak var emptyListImageView: UIImageView!
     @IBOutlet weak var emptyListTitleLabel: UILabel!
     @IBOutlet weak var emptyListDescriptionLabel: UILabel!
@@ -113,6 +114,7 @@ class WeatherListViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(WeatherListViewController.updateWeatherData), for: .valueChanged)
         tableView.addSubview(refreshControl)
         tableView.isHidden = !WeatherDataManager.shared.hasDisplayableData
+        emptyListOverlayContainerView.isHidden = WeatherDataManager.shared.hasDisplayableData
         separatoLineViewHeightConstraint.constant = 1/UIScreen.main.scale
     }
     
