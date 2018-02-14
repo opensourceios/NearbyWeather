@@ -45,7 +45,6 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var sunsetImageView: UIImageView!
     @IBOutlet weak var sunsetNoteLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
-    @IBOutlet weak var daytimeExplanationLabel: UILabel!
     
     @IBOutlet weak var cloudCoverImageView: UIImageView!
     @IBOutlet weak var cloudCoverNoteLabel: UILabel!
@@ -130,8 +129,6 @@ class WeatherDetailViewController: UIViewController {
             sunsetImageView.tintColor = .darkGray
             sunsetNoteLabel.text = "\(NSLocalizedString("WeatherDetailVC_Sunset", comment: "")):"
             sunsetLabel.text = dateFormatter.string(from: sunsetDate)
-            
-            daytimeExplanationLabel.text = NSLocalizedString("WeatherDetailVC_DaytimeExplanation", comment: "")
         } else {
             daytimeStackView.isHidden = true
         }
