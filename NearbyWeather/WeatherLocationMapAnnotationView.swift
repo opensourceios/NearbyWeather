@@ -26,13 +26,13 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
     private var titleLabel = UILabel()
     private var subtitleLabel = UILabel()
     
-    private var title: String! {
+    private var title: String? {
         didSet {
             titleLabel.text = title
         }
     }
     
-    private var subtitle: String! {
+    private var subtitle: String? {
         didSet {
             subtitleLabel.text = subtitle
         }
@@ -85,11 +85,13 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
         titleLabel = label(withFontSize: 14)
         titleLabel.frame.size = CGSize(width: labelWidth, height: labelHeight)
         titleLabel.center = CGPoint(x: frame.size.width/2, y: titleLabel.frame.size.height/2 + kMargin)
+        titleLabel.text = title
         addSubview(titleLabel)
         
         subtitleLabel = label(withFontSize: 10)
         subtitleLabel.frame.size = CGSize(width: labelWidth, height: labelHeight)
         subtitleLabel.center = CGPoint(x: frame.size.width/2, y: titleLabel.frame.size.height/2 + kMargin + titleLabel.frame.size.height)
+        subtitleLabel.text = subtitle
         addSubview(subtitleLabel)
     }
     
