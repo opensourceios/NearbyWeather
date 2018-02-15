@@ -168,8 +168,15 @@ extension NearbyLocationsMapViewController: MKMapViewDelegate {
             viewForCurrentAnnotation = WeatherLocationMapAnnotationView(frame: kMapAnnotationViewInitialFrame)
         }
         viewForCurrentAnnotation?.annotation = annotation
-        viewForCurrentAnnotation?.configure(withTitle: annotation.title ?? "<Not Set>", subtitle: annotation.subtitle ?? "<Not Set>", tapHandler: nil)
-    
+        viewForCurrentAnnotation?.configure(withTitle: annotation.title ?? "<Not Set>", subtitle: annotation.subtitle ?? "<Not Set>", tapHandler: { [unowned self] sender in
+            guard let weatherDTO = WeatherDataManager.shared.weatherDTO(forIdentifier: annotation.locationId) else {
+                return
+            }
+            let destinationViewController = WeatherDetailViewController.instantiateFromStoryBoard(withTitle: weatherDTO.cityName, weatherDTO: weatherDTO)
+            let destinationNavigationController = UINavigationController(rootViewController: destinationViewController)
+            destinationNavigationController.addVerticalCloseButton(withCompletionHandler: nil)
+            self.navigationController?.present(destinationNavigationController, animated: true, completion: nil)
+        })
         return viewForCurrentAnnotation
     }
     

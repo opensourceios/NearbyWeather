@@ -77,7 +77,7 @@ class WelcomeScreenViewController: UIViewController {
         
         saveButton.setTitle(NSLocalizedString("WelcomeScreenVC_SaveButtonTitle", comment: "").uppercased(), for: .normal)
         saveButton.setTitleColor(.nearbyWeatherStandard, for: .normal)
-        saveButton.setTitleColor(.nearbyWeatherBubble, for: .highlighted)
+        saveButton.setTitleColor(.nearbyWeatherStandard, for: .highlighted)
         saveButton.setTitleColor(.lightGray, for: .disabled)
         saveButton.layer.cornerRadius = 5.0
         saveButton.layer.borderColor = UIColor.lightGray.cgColor
@@ -85,7 +85,7 @@ class WelcomeScreenViewController: UIViewController {
         
         getInstructionsButtons.setTitle(NSLocalizedString("WelcomeScreenVC_GetInstructionsButtonTitle", comment: "").uppercased(), for: .normal)
         getInstructionsButtons.setTitleColor(.nearbyWeatherStandard, for: .normal)
-        getInstructionsButtons.setTitleColor(.nearbyWeatherBubble, for: .highlighted)
+        getInstructionsButtons.setTitleColor(.nearbyWeatherStandard, for: .highlighted)
     }
     
     fileprivate func startAnimationTimer() {

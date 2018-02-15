@@ -32,7 +32,7 @@ class WeatherDataCell: UITableViewCell {
         weatherDataIdentifier = weatherDTO.cityID
         
         backgroundColorView.layer.cornerRadius = 5.0
-        backgroundColorView.layer.backgroundColor = UIColor.nearbyWeatherBubble.cgColor
+        backgroundColorView.layer.backgroundColor = UIColor.nearbyWeatherStandard.cgColor
         
         cityNameLabel.textColor = .white
         cityNameLabel.font = .preferredFont(forTextStyle: .headline)

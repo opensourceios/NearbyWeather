@@ -38,7 +38,8 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
         }
     }
     
-    private var tapHandler: (()->())?
+    private var gestureRecognizer = UITapGestureRecognizer()
+    private var tapHandler: ((UITapGestureRecognizer)->())?
     
     
     // MARK: - Overrides
@@ -50,6 +51,7 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
     override func prepareForReuse() {
         super.prepareForReuse()
         tapHandler = nil
+        removeGestureRecognizer(gestureRecognizer)
     }
     
     override func draw(_ rect: CGRect){
@@ -60,16 +62,25 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
     
     // MARK: - Public Functions
     
-    func configure(withTitle title: String, subtitle: String, tapHandler: (()->())?) {
+    func configure(withTitle title: String, subtitle: String, tapHandler: ((UITapGestureRecognizer)->())?) {
         self.title = title
         self.subtitle = subtitle
-        self.tapHandler = tapHandler
         
+        if let tapHandler = tapHandler {
+            self.tapHandler = tapHandler
+            gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(WeatherLocationMapAnnotationView.didTapAnnotationView(_:)))
+            addGestureRecognizer(gestureRecognizer)
+        }
+
         backgroundColor = .clear
     }
     
     
     // MARK: - Private Helpers
+    
+    @objc private func didTapAnnotationView(_ sender: UITapGestureRecognizer) {
+        tapHandler?(sender)
+    }
     
     private func drawAnnotationView() {
         let circleLayer = CAShapeLayer()
@@ -115,12 +126,12 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
         
         let path = UIBezierPath()
         path.move(to: CGPoint(x: rect.width/2, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.width/2 - kTriangleHeight/2, y: rect.maxY - kTriangleHeight))
+        path.addLine(to: CGPoint(x: rect.width/2 - kTriangleHeight*0.75, y: rect.maxY - kTriangleHeight))
         path.addArc(withCenter: CGPoint(x: rect.minX + radiusBorderAdjusted + kMargin/4, y: rect.maxY - radiusBorderAdjusted - kTriangleHeight), radius: radiusBorderAdjusted, startAngle: CGFloat(CGFloat.pi/2), endAngle: CGFloat(CGFloat.pi), clockwise: true)
         path.addArc(withCenter: CGPoint(x: rect.minX + radiusBorderAdjusted + kMargin/4, y: rect.minY + radiusBorderAdjusted + kMargin/4), radius: radiusBorderAdjusted, startAngle: CGFloat(CGFloat.pi), endAngle: CGFloat(-CGFloat.pi/2), clockwise: true)
         path.addArc(withCenter: CGPoint(x: rect.maxX - radiusBorderAdjusted - kMargin/4, y: rect.minY + radiusBorderAdjusted + kMargin/4), radius: radiusBorderAdjusted, startAngle: CGFloat(-CGFloat.pi/2), endAngle: 0, clockwise: true)
         path.addArc(withCenter: CGPoint(x: rect.maxX - radiusBorderAdjusted - kMargin/4, y: rect.maxY - radiusBorderAdjusted - kTriangleHeight), radius: radiusBorderAdjusted, startAngle: 0, endAngle: CGFloat(CGFloat.pi/2), clockwise: true)
-        path.addLine(to: CGPoint(x: rect.width/2 + kTriangleHeight/2, y: rect.maxY - kTriangleHeight))
+        path.addLine(to: CGPoint(x: rect.width/2 + kTriangleHeight*0.75, y: rect.maxY - kTriangleHeight))
         path.close()
         return path
     }
