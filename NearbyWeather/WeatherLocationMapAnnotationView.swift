@@ -85,18 +85,22 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
         titleLabel = label(withFontSize: 14)
         titleLabel.frame.size = CGSize(width: labelWidth, height: labelHeight)
         titleLabel.center = CGPoint(x: frame.size.width/2, y: titleLabel.frame.size.height/2 + kMargin)
+        titleLabel.frame = titleLabel.frame.offsetBy(dx: 0, dy: -kHeight/2)
         titleLabel.text = title
         addSubview(titleLabel)
         
         subtitleLabel = label(withFontSize: 10)
         subtitleLabel.frame.size = CGSize(width: labelWidth, height: labelHeight)
         subtitleLabel.center = CGPoint(x: frame.size.width/2, y: titleLabel.frame.size.height/2 + kMargin + titleLabel.frame.size.height)
+        subtitleLabel.frame = subtitleLabel.frame.offsetBy(dx: 0, dy: -kHeight/2)
         subtitleLabel.text = subtitle
         addSubview(subtitleLabel)
+        
+        clipsToBounds = false
     }
     
     private func bubblePath(forContentSize size: CGSize) -> UIBezierPath {
-        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height) //.offsetBy(dx: kRadius, dy: kRadius + kTriangleHeight)
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height).offsetBy(dx: 0, dy: -kHeight/2)
         let radiusBorderAdjusted = kRadius - kBorderWidth/2
         
         let path = UIBezierPath()
