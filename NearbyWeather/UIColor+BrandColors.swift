@@ -16,9 +16,15 @@ extension UIColor {
         }
     }
     
-    open class var nearbyWeatherBubble: UIColor {
+    open class var nearbyWeatherStandardDark: UIColor {
         get {
-            return UIColor(red: 100/255, green: 190/255, blue: 250/255, alpha: 1.0)
+            return UIColor(red: 80/255, green: 138/255, blue: 250/255, alpha: 1.0)
+        }
+    }
+    
+    open class var nearbyWeatherNight: UIColor {
+        get {
+            return UIColor(red: 150/255, green: 80/255, blue: 250/255, alpha: 1.0)
         }
     }
 }

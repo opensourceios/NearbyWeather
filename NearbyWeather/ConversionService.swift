@@ -22,13 +22,13 @@ class ConversionService {
             return "🌦"
         case let x where x >= 500 && x <= 531:
             return "🌧"
-        case let x where x >= 600 && x <= 614:
-            return "❄️"
-        case let x where x >= 615 && x <= 622:
+        case let x where x >= 600 && x <= 602:
+            return "☃️"
+        case let x where x >= 603 && x <= 622:
             return "🌨"
         case let x where x >= 701 && x <= 771:
             return "🌫"
-        case let x where x == 781 || x >= 958:
+        case let x where x == 781 || x == 900:
             return "🌪"
         case let x where x == 800:
             return "☀️"
@@ -40,8 +40,18 @@ class ConversionService {
             return "🌥"
         case let x where x == 804:
             return "☁️"
-        case let x where x >= 952 && x <= 958:
+        case let x where x >= 952 && x <= 956 || x == 905:
             return "🌬"
+        case let x where x >= 957 && x <= 961 || x == 771:
+            return "💨"
+        case let x where x == 901 || x == 902 || x == 962:
+            return "🌀"
+        case let x where x == 903:
+            return "❄️"
+        case let x where x == 904:
+            return "🌡"
+        case let x where x == 962:
+            return "🌋"
         default:
             return "❓"
         }
@@ -77,27 +87,6 @@ class ConversionService {
     }
     
     public static func windDirectionDescriptor(forWindDirection degrees: Double) -> String {
-        var descriptor = String(format: "%.02f", degrees) + "°"
-        switch degrees {
-        case let x where x > 337.5 || x <= 22.5:
-            descriptor = "⬆️ " + descriptor
-        case let x where x > 25 && x <= 67.5:
-            descriptor = "↗️ " + descriptor
-        case let x where x > 67.5 && x <= 112.5:
-            descriptor = "➡️ " + descriptor
-        case let x where x > 112.5 && x <= 157.5:
-            descriptor = "↘️" + descriptor
-        case let x where x > 157.5 && x <= 202.5:
-            descriptor = "⬇️ " + descriptor
-        case let x where x > 202.5 && x <= 247.5:
-            descriptor = "↙️ " + descriptor
-        case let x where x > 247.5 && x <= 292.5:
-            descriptor = "⬅️ " + descriptor
-        case let x where x > 292.5 && x <= 337.5:
-            descriptor = "↖️ " + descriptor
-        default:
-            break
-        }
-        return descriptor
+        return String(format: "%.02f", degrees) + "°"
     }
 }

@@ -72,7 +72,7 @@ class SetPermissionsViewController: UIViewController {
         
         askPermissionsButton.setTitle(NSLocalizedString("SetPermissionsVC_AskPermissionsButtonTitle", comment: "").uppercased(), for: .normal)
         askPermissionsButton.setTitleColor(.nearbyWeatherStandard, for: .normal)
-        askPermissionsButton.setTitleColor(.nearbyWeatherBubble, for: .highlighted)
+        askPermissionsButton.setTitleColor(.nearbyWeatherStandard, for: .highlighted)
         askPermissionsButton.layer.cornerRadius = 5.0
         askPermissionsButton.layer.borderColor = UIColor.nearbyWeatherStandard.cgColor
         askPermissionsButton.layer.borderWidth = 1.0

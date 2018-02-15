@@ -9,8 +9,6 @@
 import UIKit
 import MapKit
 
-private let kMapAnnotationIdentifier = "de.nearbyWeather.nearbyLocationsMapView.mkAnnotation"
-
 class NearbyLocationsMapViewController: UIViewController {
     
     // MARK: - Assets
@@ -33,6 +31,8 @@ class NearbyLocationsMapViewController: UIViewController {
     var weatherLocations: [CLLocation]!
     var weatherLocationMapAnnotations: [WeatherLocationMapAnnotation]!
     
+    private var previousRegion: MKCoordinateRegion?
+    
     
     // MARK: - ViewController Lifecycle
     
@@ -49,10 +49,6 @@ class NearbyLocationsMapViewController: UIViewController {
         configure()
         prepareMapAnnotations()
         prepareLocations()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         focusOnAvailableLocation()
     }
     
@@ -90,6 +86,10 @@ class NearbyLocationsMapViewController: UIViewController {
     }
     
     private func focusOnAvailableLocation() {
+        if let previousRegion = previousRegion {
+            mapView.setRegion(previousRegion, animated: true)
+            return
+        }
         guard LocationService.shared.locationPermissionsGranted, LocationService.shared.currentLocation != nil else {
             focusMapOnBookmarkedLocation()
             return
@@ -163,29 +163,25 @@ extension NearbyLocationsMapViewController: MKMapViewDelegate {
             return nil
         }
         
-        if #available(iOS 11, *) {
-            var viewForCurrentAnnotation: MKMarkerAnnotationView?
-            if let dequeuedAnnotation = mapView.dequeueReusableAnnotationView(withIdentifier: kMapAnnotationIdentifier) as? MKMarkerAnnotationView {
-                dequeuedAnnotation.annotation = annotation
-                viewForCurrentAnnotation = dequeuedAnnotation
-            } else {
-                viewForCurrentAnnotation = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: kMapAnnotationIdentifier)
-                viewForCurrentAnnotation?.canShowCallout = true
-                viewForCurrentAnnotation?.calloutOffset = CGPoint(x: -5, y: 5)
-            }
-            return viewForCurrentAnnotation
+        var viewForCurrentAnnotation: WeatherLocationMapAnnotationView?
+        if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: kMapAnnotationViewIdentifier) as? WeatherLocationMapAnnotationView {
+            viewForCurrentAnnotation = dequeuedAnnotationView
         } else {
-            var viewForCurrentAnnotation: MKAnnotationView?
-            if let dequeuedAnnotation = mapView.dequeueReusableAnnotationView(withIdentifier: kMapAnnotationIdentifier) {
-                dequeuedAnnotation.annotation = annotation
-                viewForCurrentAnnotation = dequeuedAnnotation
-            } else {
-                viewForCurrentAnnotation = MKAnnotationView(annotation: annotation, reuseIdentifier: kMapAnnotationIdentifier)
-                viewForCurrentAnnotation?.canShowCallout = true
-                viewForCurrentAnnotation?.calloutOffset = CGPoint(x: -5, y: 5)
-            }
-            return viewForCurrentAnnotation
+            viewForCurrentAnnotation = WeatherLocationMapAnnotationView(frame: kMapAnnotationViewInitialFrame)
         }
+        viewForCurrentAnnotation?.annotation = annotation
+        viewForCurrentAnnotation?.configure(withTitle: annotation.title ?? "<Not Set>", subtitle: annotation.subtitle ?? "<Not Set>", tapHandler: { [unowned self] sender in
+            guard let weatherDTO = WeatherDataManager.shared.weatherDTO(forIdentifier: annotation.locationId) else {
+                return
+            }
+            self.previousRegion = mapView.region
+            
+            let destinationViewController = WeatherDetailViewController.instantiateFromStoryBoard(withTitle: weatherDTO.cityName, weatherDTO: weatherDTO)
+            let destinationNavigationController = UINavigationController(rootViewController: destinationViewController)
+            destinationNavigationController.addVerticalCloseButton(withCompletionHandler: nil)
+            self.navigationController?.present(destinationNavigationController, animated: true, completion: nil)
+        })
+        return viewForCurrentAnnotation
     }
     
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {

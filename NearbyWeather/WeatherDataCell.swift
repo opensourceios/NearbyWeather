@@ -13,32 +13,43 @@ class WeatherDataCell: UITableViewCell {
     var weatherDataIdentifier: Int!
    
     @IBOutlet weak var backgroundColorView: UIView!
-    
     @IBOutlet weak var weatherConditionLabel: UILabel!
     @IBOutlet weak var cityNameLabel: UILabel!
+    
+    @IBOutlet weak var temperatureImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
+    
+    @IBOutlet weak var cloudCoverImageView: UIImageView!
     @IBOutlet weak var cloudCoverageLabel: UILabel!
+    
+    @IBOutlet weak var humidityImageView: UIImageView!
     @IBOutlet weak var humidityLabel: UILabel!
+    
+    @IBOutlet weak var windSpeedImageView: UIImageView!
     @IBOutlet weak var windspeedLabel: UILabel!
     
     func configureWithWeatherDTO(_ weatherDTO: WeatherDataDTO) {
         weatherDataIdentifier = weatherDTO.cityID
         
         backgroundColorView.layer.cornerRadius = 5.0
-        backgroundColorView.layer.backgroundColor = UIColor.nearbyWeatherBubble.cgColor
+        backgroundColorView.layer.backgroundColor = UIColor.nearbyWeatherStandard.cgColor
         
         cityNameLabel.textColor = .white
         cityNameLabel.font = .preferredFont(forTextStyle: .headline)
         
+        temperatureImageView.tintColor = .white
         temperatureLabel.textColor = .white
         temperatureLabel.font = .preferredFont(forTextStyle: .subheadline)
         
+        cloudCoverImageView.tintColor = .white
         cloudCoverageLabel.textColor = .white
         cloudCoverageLabel.font = .preferredFont(forTextStyle: .subheadline)
         
+        humidityImageView.tintColor = .white
         humidityLabel.textColor = .white
         humidityLabel.font = .preferredFont(forTextStyle: .subheadline)
         
+        windSpeedImageView.tintColor = .white
         windspeedLabel.textColor = .white
         windspeedLabel.font = .preferredFont(forTextStyle: .subheadline)
         
@@ -48,13 +59,13 @@ class WeatherDataCell: UITableViewCell {
         cityNameLabel.text = weatherDTO.cityName
         
         let temperatureDescriptor = ConversionService.temperatureDescriptor(forTemperatureUnit: PreferencesManager.shared.temperatureUnit, fromRawTemperature: weatherDTO.atmosphericInformation.temperatureKelvin)
-        temperatureLabel.text = "🌡 \(temperatureDescriptor)"
+        temperatureLabel.text = "\(temperatureDescriptor)"
         
-        cloudCoverageLabel.text = "☁️ \(weatherDTO.cloudCoverage.coverage)%"
+        cloudCoverageLabel.text = "\(weatherDTO.cloudCoverage.coverage)%"
         
-        humidityLabel.text = "💧 \(weatherDTO.atmosphericInformation.humidity)%"
+        humidityLabel.text = "\(weatherDTO.atmosphericInformation.humidity)%"
         
         let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: PreferencesManager.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
-        windspeedLabel.text = "🎏 \(windspeedDescriptor)"
+        windspeedLabel.text = "\(windspeedDescriptor)"
     }
 }

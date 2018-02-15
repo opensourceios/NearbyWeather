@@ -10,6 +10,7 @@ def nearbyweather_pods
     pod 'RainyRefreshControl'
     pod 'TextFieldCounter', :git => 'https://github.com/serralvo/TextFieldCounter.git', :branch => 'master'
     pod 'Alamofire'
+    pod 'APTimeZones', :git => 'https://github.com/Alterplay/APTimeZones.git', :branch => 'master'
 end
 
 target 'NearbyWeather' do

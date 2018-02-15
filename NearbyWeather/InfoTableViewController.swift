@@ -14,9 +14,10 @@ class InfoTableViewController: UITableViewController {
     
     struct CocoaPodMeta { var name: String; var urlString: String }
     private static let cocoaPods: [CocoaPodMeta] = [CocoaPodMeta(name: "Alamofire", urlString: "https://github.com/Alamofire/Alamofire"),
-                                    CocoaPodMeta(name: "PKHUD", urlString: "https://github.com/pkluz/PKHUD"),
-                                    CocoaPodMeta(name: "RainyRefreshControl", urlString: "https://github.com/Onix-Systems/RainyRefreshControl"),
-                                    CocoaPodMeta(name: "TextFieldCounter", urlString: "https://github.com/serralvo/TextFieldCounter")]
+                                                    CocoaPodMeta(name: "APTimeZones", urlString: "https://github.com/Alterplay/APTimeZones"),
+                                                    CocoaPodMeta(name: "PKHUD", urlString: "https://github.com/pkluz/PKHUD"),
+                                                    CocoaPodMeta(name: "RainyRefreshControl", urlString: "https://github.com/Onix-Systems/RainyRefreshControl"),
+                                                    CocoaPodMeta(name: "TextFieldCounter", urlString: "https://github.com/serralvo/TextFieldCounter")]
     
     struct Contributor { var name: String; var subtitle: String }
     private static let contributors: [Contributor] = [Contributor(name: "Erik Maximilian Martens", subtitle: NSLocalizedString("InfoTVC_DeveloperNameSubtitle_0", comment: ""))]

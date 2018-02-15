@@ -13,11 +13,13 @@ class WeatherLocationMapAnnotation: NSObject, MKAnnotation {
     let title: String?
     let subtitle: String?
     let coordinate: CLLocationCoordinate2D
+    let locationId: Int
     
-    init(title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D) {
+    init(title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D, locationId: Int) {
         self.title = title
         self.subtitle = subtitle
         self.coordinate = coordinate
+        self.locationId = locationId
     }
     
     convenience init?(weatherDTO: WeatherDataDTO?) {
@@ -30,6 +32,6 @@ class WeatherLocationMapAnnotation: NSObject, MKAnnotation {
         let subtitle = weatherConditionSymbol != nil ? "\(weatherConditionSymbol!) \(temperatureDescriptor)" : "\(temperatureDescriptor)"
         let coordinate = CLLocationCoordinate2D(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
         
-        self.init(title: weatherDTO.cityName, subtitle: subtitle, coordinate: coordinate)
+        self.init(title: weatherDTO.cityName, subtitle: subtitle, coordinate: coordinate, locationId: weatherDTO.cityID)
     }
 }
