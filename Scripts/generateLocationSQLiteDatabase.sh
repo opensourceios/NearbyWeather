@@ -4,7 +4,7 @@
 #  Created by Erik Maximilian Martens on 15.02.18.
 
 
-LOCATIONS_SQLITE_GENERATOR_LOCATION=$PWD"./GenerateLocationsSQLite/"
+LOCATIONS_SQLITE_GENERATOR_LOCATION=$PWD"/GenerateLocationsSQLite"
 
 echo '>>>> Generating Locations SQLite Database'
 

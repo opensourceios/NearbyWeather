@@ -1,7 +1,6 @@
 'use strict'
 
-const Promise = require('bluebird')
-const fs = Promise.promisifyAll(require('fs'))
+const fs = require('fs-extra')
 const path = require('path')
 const sqlite3 = require('sqlite3').verbose()
 const StreamArray = require('stream-json/utils/StreamArray')
@@ -22,28 +21,26 @@ class LocationsSQLiteGenerator {
     const jsonStream = StreamArray.make()
     const db = new sqlite3.Database(outputFilePath)
 
+    fs.copySync(templateFilePath, outputFilePath)
+    fs.createReadStream(inputFilePath).pipe(jsonStream.input)
 
-    return fs.copyFile(templateFilePath, outputFilePath)
-      .then((error) => {
-        if (error) return error
-        fs.createReadStream(inputFilePath).pipe(jsonStream.input)
+    
 
-        jsonStream.output.on('data', (index, value) => {
-          db.run('INSERT INTO location(id, name, country, latitude, longitude) VALUES ($id, $name, $country, $latitude, $longitude)', {
-            $id: value.index, 
-            $name: value.name, 
-            $country: value.country,
-            $latitude: value.coord.lat, 
-            $longitude: value.coord.lon
-          }, (error) => {
-            console.log('DB Write Error:', error)
-          })
-        })
-        
-        jsonStream.output.on('end', () => {
-          console.log('All Objects Imported to DataBase')
-        })
+    jsonStream.output.on('data', (object) => {
+      db.run('INSERT INTO locations(id, name, country, latitude, longitude) VALUES ($id, $name, $country, $latitude, $longitude)', {
+        $id: object.value.id,
+        $name: object.value.name,
+        $country: object.value.country,
+        $latitude: object.value.coord.lat,
+        $longitude: object.value.coord.lon
+      }, (error) => {
+        console.log('DB Write Error:', error)
       })
+    })
+
+    jsonStream.output.on('end', () => {
+      console.log('Stream did end')
+    })
   }
 }
 
