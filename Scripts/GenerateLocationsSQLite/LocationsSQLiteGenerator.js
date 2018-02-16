@@ -24,8 +24,6 @@ class LocationsSQLiteGenerator {
     fs.copySync(templateFilePath, outputFilePath)
     fs.createReadStream(inputFilePath).pipe(jsonStream.input)
 
-    
-
     jsonStream.output.on('data', (object) => {
       db.run('INSERT INTO locations(id, name, country, latitude, longitude) VALUES ($id, $name, $country, $latitude, $longitude)', {
         $id: object.value.id,
