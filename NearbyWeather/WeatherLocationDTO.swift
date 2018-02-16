@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FMDB
 
 struct WeatherLocationDTO: Codable {
     
@@ -20,6 +21,29 @@ struct WeatherLocationDTO: Codable {
         case name
         case country
         case coordinates = "coord"
+    }
+    
+    init(identifier: Int, name: String, country: String, coordinates: Coordinates) {
+        self.identifier = identifier
+        self.name = name
+        self.country = country
+        self.coordinates = coordinates
+    }
+    
+    init?(from resultSet: FMResultSet) {
+        guard let id = resultSet.string(forColumn: "id"),
+            let identifier = Int(id),
+            let name = resultSet.string(forColumn: "name"),
+            let country = resultSet.string(forColumn: "country") else {
+                return nil
+        }
+        let latitude = resultSet.double(forColumn: "latitude")
+        let longitude = resultSet.double(forColumn: "longitude")
+        
+        self.identifier = identifier
+        self.name = name
+        self.country = country
+        self.coordinates = Coordinates(latitude: latitude, longitude: longitude)
     }
 }
 

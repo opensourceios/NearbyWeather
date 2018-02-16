@@ -18,6 +18,7 @@
 		F204B7B01DF2F1BC000F4371 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F204B7B21DF2F1BC000F4371 /* Localizable.strings */; };
 		F204B7BD1DF35610000F4371 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F204B7BC1DF35610000F4371 /* SettingsTableViewController.swift */; };
 		F22F99552034E4B500B7CB6B /* WeatherLocationMapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F99542034E4B500B7CB6B /* WeatherLocationMapAnnotationView.swift */; };
+		F22F99572037A30800B7CB6B /* locationsSQLite.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = F22F99562037676B00B7CB6B /* locationsSQLite.sqlite */; };
 		F260C4431F9D4883000D2BC0 /* UINavigationControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F260C4421F9D4883000D2BC0 /* UINavigationControllerExtensions.swift */; };
 		F26699581E9AD0F100498F99 /* WeatherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699571E9AD0F100498F99 /* WeatherDataManager.swift */; };
 		F266995A1E9ADBC300498F99 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26699591E9ADBC300498F99 /* LocationService.swift */; };
@@ -482,6 +483,7 @@
 				F204B7851DF2EFA3000F4371 /* LaunchScreen.storyboard in Resources */,
 				F204B7B01DF2F1BC000F4371 /* Localizable.strings in Resources */,
 				F204B7821DF2EFA3000F4371 /* Assets.xcassets in Resources */,
+				F22F99572037A30800B7CB6B /* locationsSQLite.sqlite in Resources */,
 				F204B7801DF2EFA3000F4371 /* Main.storyboard in Resources */,
 				F283D2731DF393B2001B879D /* InfoPlist.strings in Resources */,
 				F2B8EA041EA286F000704E90 /* Welcome.storyboard in Resources */,
