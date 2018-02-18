@@ -114,7 +114,7 @@ class NearbyLocationsMapViewController: UIViewController {
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
-        mapView.mapType = .standard
+        mapView.mapType = mapTypeSegmentedControl.selectedSegmentIndex == 0 ? .standard : .hybrid
         
         buttonRowContainerView.layer.cornerRadius = 10
         buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.cgColor
