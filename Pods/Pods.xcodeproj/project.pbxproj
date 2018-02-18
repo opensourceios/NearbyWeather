@@ -7,274 +7,320 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E153632A414101E0A66AE23569802B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D87FEF6EFB6FC1ACE13A29756512B51 /* Result.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		0461398F9E3E93C5EEE345D8467F0189 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615930B0DC90E8E0B636F466AF629A43 /* Foundation.framework */; };
-		079D990738735591330332B5F2551AE4 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AC47C4F7A58B1F0C6CAB42D9C97AC /* NetworkReachabilityManager.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		08DFB08827FC686B60A6FDA32B449C24 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59341F35B1C246E1306E0C2ECD9BD1BD /* HUD.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		0F4F707A9D88FCBFD49220EFDF91639B /* CLPlacemark+APTimeZones.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E86C80BBBC635C7FA972D96F7D26A21 /* CLPlacemark+APTimeZones.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		14CECE238604E1D44104E5BCD14EB2BE /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E32BB33CDBA4B0FCC06EB1EAF9DB533 /* SessionDelegate.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		164781197625A3149B3BDBCAA2AC8CC3 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD99E8D1366B53C60C00512298CA266F /* Validation.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		1929F91EB38B923FBFA0B2F53C0C4877 /* PKHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A06F34149065747044F7CD9F2A8588A /* PKHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1AA62B53F99111C5BECC3EE1247DF183 /* TextFieldCounter-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C01E6C6449B6B5EA90AB2621A3EBF4 /* TextFieldCounter-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1B241D22B142541C7B51EF28FDF2A8C6 /* PKHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 593639AA5D790BC6CCF16A2CC9C862AD /* PKHUD-dummy.m */; };
-		1B926C3810B64A757B86B407E96657E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615930B0DC90E8E0B636F466AF629A43 /* Foundation.framework */; };
-		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BF374E728F8E5AEEDE37F0416CBE5463 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00E153632A414101E0A66AE23569802B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68D6F1DE817C5293C444A9759BB41D /* Result.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		079D990738735591330332B5F2551AE4 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302F258D6084C0223E2CD8F3074E833E /* NetworkReachabilityManager.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		08DFB08827FC686B60A6FDA32B449C24 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05816612B98EA2A421997040A594A3A4 /* HUD.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		0E2AD51ED51DFB10FB84FB48BFA21A29 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615930B0DC90E8E0B636F466AF629A43 /* Foundation.framework */; };
+		0F4F707A9D88FCBFD49220EFDF91639B /* CLPlacemark+APTimeZones.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B39360FD83AE55D863BDD152F8D4522 /* CLPlacemark+APTimeZones.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		14CECE238604E1D44104E5BCD14EB2BE /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E4F8CAE02652F63272C7B8F3B5B4AC /* SessionDelegate.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		164781197625A3149B3BDBCAA2AC8CC3 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B320488A66DECD63D875B6BA426258C4 /* Validation.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		166FFA6B0BA9CBF4B150991D4A5FB6DD /* Pods-NearbyWeather-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF671316744287FA399A8010413E1CC /* Pods-NearbyWeather-dummy.m */; };
+		18A3D09126EF0ECE726024885DE5F0C4 /* RainyRefreshControl-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A95E71632D389E41BA4B857A15EA8009 /* RainyRefreshControl-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1929F91EB38B923FBFA0B2F53C0C4877 /* PKHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0736715CB0BAD72A1B4AB6801D3132 /* PKHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B241D22B142541C7B51EF28FDF2A8C6 /* PKHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E5F5C57E6D38207AB831682866970C /* PKHUD-dummy.m */; };
+		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D8E4A4568F59F2A92D65B99A2F6726F6 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D074B9127FA5FC2639ADEABB5B3D2A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615930B0DC90E8E0B636F466AF629A43 /* Foundation.framework */; };
-		204944D67267632DD7CD4BEFB60AC389 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15277B11B78AD9C59E0AD932E3E7C346 /* Response.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		25296207497F52341E34C3F4E35B3FE6 /* PKHUDSquareBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBBD13C93E4E40980F572834E2481A0 /* PKHUDSquareBaseView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		27087E6071F20E476D9E3F71C122D1CB /* CLLocation+APTimeZones.m in Sources */ = {isa = PBXBuildFile; fileRef = F8491EF6F9954737698CB31C1E292A9C /* CLLocation+APTimeZones.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		283AB0DE4A22E40C9AE71254F696BC81 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFA4EED79C46474DB5C7E3D95C7053 /* spark.png */; };
-		29AC65FADD69BF18F249DD96156E7D35 /* RainyRefreshControl.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53417B376107205DFB409AE7D9ACC6E2 /* RainyRefreshControl.bundle */; };
-		2A67FB67B2037FEA772B750068D896CD /* PKHUDAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F65ABDF73CD2EAF6E91AC3DFD458E0 /* PKHUDAnimation.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		2B58B070F9D7324583D01EE906BC918C /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09DE6DE298B9CFD510A5A9E644E334 /* SessionManager.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		2DCA4225866D2445C444325589BD9744 /* PKHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = D8C8067FF0E0D53A4B05BC4770A454F2 /* PKHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		343B30C989188B77FB1149FED753A63C /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3222F132238FA73884EF9CB8CD5C6AA /* ServerTrustPolicy.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		34D8AB5C8FA400C58D7CA084633DF744 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C77870675287993FA62E7E01D8D3B7B3 /* Images.xcassets */; };
-		36B4616E83B2DDE3C216DF569725EE9C /* PKHUDErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E2C8DF65F2998B5E9C3190CC80988C /* PKHUDErrorView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		36E7F8EE68FAA321A6F79A81FA8356F8 /* CLLocation+APTimeZones.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FD1C6C41C7A49EA4BFA433454E663AC /* CLLocation+APTimeZones.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		535996CB23B12591AF302FC758C6D1F3 /* timezonesDB.json in Resources */ = {isa = PBXBuildFile; fileRef = 0BFFCE25CA4AA14A6A63F6D237DC68F2 /* timezonesDB.json */; };
-		58812AABBC0A1E7AE019752424DF31A7 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C23D1364BAF02CDDB80538933B246 /* MultipartFormData.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		596B417CAB38CB148042CC170270C01D /* PKHUDSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C05AC6DB278BB8EFE0E06C677AC58 /* PKHUDSuccessView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		5D3679598DC840B8E4A05D77188DFFCC /* Pods-NearbyWeather-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E22A51F6DC38A2106595CA83EAB72CCB /* Pods-NearbyWeather-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5E25BCD30BDE2E7A68D1A6FAF7253AD4 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87081E894E55BEA1C7FAD3BBE2086D68 /* DispatchQueue+Alamofire.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		5F1730E909EF941385D7E2AE9E025DF2 /* TextFieldCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CECFE4E968EC970CCCB4446D415A12C /* TextFieldCounter.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		60EA9B3E5F496C56D03820DEC077BC4F /* TextFieldCounter-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF17CF5DCE9535DDC3DA8A55ABB6C9F /* TextFieldCounter-dummy.m */; };
-		64F4548590DDC7379BBB34FD9362313A /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C97D61AFAB3D8A129D82409FF11E296 /* SpriteKit.framework */; };
-		6540CC4D369A32F6DE54AFA8D5D6FAF9 /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE9A37A4E186C0DD1445306F0076333 /* Alamofire-dummy.m */; };
-		68958CB7433459741BE8BB36020C4404 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615930B0DC90E8E0B636F466AF629A43 /* Foundation.framework */; };
-		706C8D6F2B0890CD474EB60478ABD7D5 /* Umbrella.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA74670AE83D22312820A181C2BF87 /* Umbrella.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		204944D67267632DD7CD4BEFB60AC389 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF183C599588A25ECC5DA22F3E3068E /* Response.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2108EE65C2480F86A64CB7E9FC40B07B /* ONXRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CFD761F5E6ABEAB344B0286A9B65CC /* ONXRefreshControl.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		22554065FA07F1BFE5308A685394CB12 /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = C077597D3D150DEF5F85109C03B3EF1F /* FMDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		25296207497F52341E34C3F4E35B3FE6 /* PKHUDSquareBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBE3D6F937FA290C86EFD8FA97FC4E /* PKHUDSquareBaseView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		27087E6071F20E476D9E3F71C122D1CB /* CLLocation+APTimeZones.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F00EAF9FC9866567753ACFC9F2CEBAB /* CLLocation+APTimeZones.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2A67FB67B2037FEA772B750068D896CD /* PKHUDAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68878731A7CC24CF28E5F3E6C5D56B33 /* PKHUDAnimation.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2B58B070F9D7324583D01EE906BC918C /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5899FF0F89D098AC486D8E0020D0F7C6 /* SessionManager.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2DCA4225866D2445C444325589BD9744 /* PKHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B4D83663EDB5A3EB79492ED32B49DCD /* PKHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		31348FF1DEE3546F59B6D51AF7230543 /* TextFieldCounter-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B4D53121D213B55CC243E025760B507 /* TextFieldCounter-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		328D4F1ABF3745E6AB5EE96933CC75B0 /* RainyRefreshControl-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 090D0FE31A0D6B0D0C28989A09B613B5 /* RainyRefreshControl-dummy.m */; };
+		343B30C989188B77FB1149FED753A63C /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9DCB458CCCF97B52E26E012A84EDF7 /* ServerTrustPolicy.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		34D8AB5C8FA400C58D7CA084633DF744 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B4EE55435AFD8B053697ABC326D2507 /* Images.xcassets */; };
+		36B4616E83B2DDE3C216DF569725EE9C /* PKHUDErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89066C97A890FCC699827F0FE9F42F99 /* PKHUDErrorView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		36E7F8EE68FAA321A6F79A81FA8356F8 /* CLLocation+APTimeZones.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D846495935F9D59AB29CE240E482DEF /* CLLocation+APTimeZones.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B616A5340CDB796FD6CBC226A792E18 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 50679F0159EE0FEDF2B5F6ACC274D8E3 /* spark.png */; };
+		3C43855754F92CB3613AA95F8A297B1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615930B0DC90E8E0B636F466AF629A43 /* Foundation.framework */; };
+		3E43906B70EB01C06F3AE17008B853B9 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F0B99F79E06FFBECCBE08745789A4B0 /* FMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		400D12D6663B1E1A0817AF79AA0C59CE /* RainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0207ACF64E483CA74EFAD4CDFF031FC0 /* RainScene.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		4204208B5665F2ED0DED7529E4294839 /* RainyRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCCB9166498375550DE6FC05EEF6C28 /* RainyRefreshControl.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		441686B26FE576A79BCD660DDBD10E71 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB3775ABAB8A793F1D8511F0317B98A /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		4730EA7A3864EBBB02575CB29DABEEEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615930B0DC90E8E0B636F466AF629A43 /* Foundation.framework */; };
+		4EF2DF2579818F5975E3B1C1DB0CDAC9 /* Umbrella.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1230FFDA5168C2F07C89D62F957B9426 /* Umbrella.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		535996CB23B12591AF302FC758C6D1F3 /* timezonesDB.json in Resources */ = {isa = PBXBuildFile; fileRef = 413A91DA9F3279D24DD1AA7B5975503B /* timezonesDB.json */; };
+		538587E82C2813D0F25787B89EB86824 /* rain.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1C3C732EE766B74719FF0F3FD81BB107 /* rain.sks */; };
+		58812AABBC0A1E7AE019752424DF31A7 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C7F789A315F0CBAFC5DE753CB1E4B /* MultipartFormData.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		596B417CAB38CB148042CC170270C01D /* PKHUDSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA9D08AA56D0996C6DE50EF8168D65 /* PKHUDSuccessView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		5E25BCD30BDE2E7A68D1A6FAF7253AD4 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A290D5D131525079FF172DD46CA115 /* DispatchQueue+Alamofire.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		6540CC4D369A32F6DE54AFA8D5D6FAF9 /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F9B6348C81D636F301DBC4F63E38D /* Alamofire-dummy.m */; };
+		72563ADE99DC9E753B27D48B16AA3654 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615930B0DC90E8E0B636F466AF629A43 /* Foundation.framework */; };
 		73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615930B0DC90E8E0B636F466AF629A43 /* Foundation.framework */; };
-		78F4229B4A746A38341474FEB9DADB25 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA90F8C344C9F40A3AA239AB0AEE0FE3 /* ParameterEncoding.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		79E19D4A9D695AB78A6D17183BCC7F52 /* RainyRefreshControl-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FA1DEDFE50FF0C0A2BA2E490340833A /* RainyRefreshControl-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7F2CB2EA7DE248C3F87B7B6E90E42ED3 /* ONXRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAEF27BAD5993FF13024F1CF6D5EEBC /* ONXRefreshControl.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		83B723F498384E585B5540B1A4A2662C /* Pods-NearbyWeather-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF671316744287FA399A8010413E1CC /* Pods-NearbyWeather-dummy.m */; };
-		861921DE738D3714974C13F7B3F48FED /* PKHUDWideBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B852DADA15BE145087D8A617854A35C /* PKHUDWideBaseView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8F5C0849D2757FC5A7C81B81BA3813C3 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9F1D02C50276874D8FF8DB8478242 /* ResponseSerialization.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		981EFF1371FCE40F1907DA262743B93E /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A446B667E41CF54D3FF72A71DBCC3F20 /* Notifications.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		9EF008EB1A357E7FCFC3D7FF3CDE54CE /* APTimeZones-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1278056730067C04DD32BA22BA7689 /* APTimeZones-dummy.m */; };
+		73E7127CD7B075173EB7FF7716273434 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460342999E92064ACB5994E0F352E4C /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		78F4229B4A746A38341474FEB9DADB25 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC1418BC6F33BBD03932910DF9B2523 /* ParameterEncoding.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		7D560237EA6DAE324C417CD89CCD5DBD /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9968E4067099F91AED8F99FF1DA740 /* FMDatabaseQueue.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		861921DE738D3714974C13F7B3F48FED /* PKHUDWideBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF612D80E44ADA98B4762D3C3C74CDEB /* PKHUDWideBaseView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		8F5C0849D2757FC5A7C81B81BA3813C3 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FACA4AD5EDA4CC8D2B852AA946F070 /* ResponseSerialization.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		96E70B43FC04BC99AED1BBD4FB1D7581 /* FMDB-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E7BC7A59346D061C26D1BBF2E119E63A /* FMDB-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		981EFF1371FCE40F1907DA262743B93E /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD75DC009D9E9DC7F6817C487E05E11D /* Notifications.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		9B8D84996694C541CD3434386E0A081A /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = FA8F841F513FACFED1106ACF5E6694F2 /* FMDatabasePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9EF008EB1A357E7FCFC3D7FF3CDE54CE /* APTimeZones-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4D63BE5269B8E03DCC5F6DA68DE854 /* APTimeZones-dummy.m */; };
+		A01ED730C9D0BEE358727ADA708EA1CE /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C97D61AFAB3D8A129D82409FF11E296 /* SpriteKit.framework */; };
+		A33AA0F747639C1AC27D6B08D71DE29A /* Pods-NearbyWeatherTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D2DD8712CB02FF111C8644BF909404 /* Pods-NearbyWeatherTests-dummy.m */; };
 		A4DAE577EC5D52A33455C061E6393F17 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E659A66271656B58C9B872D198DA60 /* CoreLocation.framework */; };
-		AA2554D7E59EC30FE32823144BA6E56A /* PKHUDAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC97BB643EDEAB7AAF2324D47ABA318 /* PKHUDAssets.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		AB7843FDC2A5F823CD570246A3E12D0B /* PKHUDAnimating.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D50E2D81E21A1E37F2D088A9243F6 /* PKHUDAnimating.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		AD2C576F50E67B2417C1D17FBF5E32B2 /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74501698D2C585D0A24B6663E6D47485 /* AFError.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		ADF3C807D3C2EFE5016962A67EF55BB9 /* PKHUDTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FF4BCD8D3C2D6C451B962248CDBF74 /* PKHUDTextView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		AE025D19541FEAB4AF1EBFA24FCDEAD3 /* RainyRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54FBC3AFEABFAE4F7A186094DA76FB /* RainyRefreshControl.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		B76D5EE9B364172C51DCCB3819C5B50E /* APTimeZones-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0368C75C6236A596BDF92E84049F873A /* APTimeZones-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BA0E41C065B9B89DA1CB474E7B8751D0 /* CLPlacemark+APTimeZones.h in Headers */ = {isa = PBXBuildFile; fileRef = 823407C4F76B3BD63EA2ECB0BDEB158A /* CLPlacemark+APTimeZones.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A548833BE5FAD40830428F36E77D0F52 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EB7CCD3277373CE69F9B1873BA9D842A /* FMDatabaseAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6D64CBD8226401173F924212A6E183D /* Pods-NearbyWeatherTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C0F7A673FDADC9B5D9EDA271B41E374C /* Pods-NearbyWeatherTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA2554D7E59EC30FE32823144BA6E56A /* PKHUDAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66BF5DC84CC27CBCB5AB49BED635C29 /* PKHUDAssets.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		AB7843FDC2A5F823CD570246A3E12D0B /* PKHUDAnimating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E28BF6C8E9AC1CF8C51EAF427D7A54 /* PKHUDAnimating.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		AD2C576F50E67B2417C1D17FBF5E32B2 /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99221F28314FFE7772C8FE4268CB5E /* AFError.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		ADF3C807D3C2EFE5016962A67EF55BB9 /* PKHUDTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B23CE18FAEF08B8E4E17284C087A51 /* PKHUDTextView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		B0FE4538E3801CDB2E312436142C0593 /* TextFieldCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52F05AC648458C6110E746FCC1D550 /* TextFieldCounter.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		B76D5EE9B364172C51DCCB3819C5B50E /* APTimeZones-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B948B0AFE547F8BB4AA0381667FA2A5E /* APTimeZones-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA0E41C065B9B89DA1CB474E7B8751D0 /* CLPlacemark+APTimeZones.h in Headers */ = {isa = PBXBuildFile; fileRef = 97F604A0BE4456BF389415411F8F6572 /* CLPlacemark+APTimeZones.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BCB2F8436E4D2ED0BC6E9B1E41322382 /* TextFieldCounter-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E25984A3A26202C3A08C46A0D1D347B /* TextFieldCounter-dummy.m */; };
 		C3942058D269FEF92EEEAFC2593AC4C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615930B0DC90E8E0B636F466AF629A43 /* Foundation.framework */; };
-		C5FD57751548EFFA6567AFD2EB47CD56 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E130D4D749D962A52B04519AD9DE2AC1 /* Request.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		C793E31699992609E7C76C746610737D /* WindowRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315C01797B7EA9502A335F6C1187FAB8 /* WindowRootViewController.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		C8354F41639596E6116260B382329804 /* Pods-NearbyWeatherTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D2DD8712CB02FF111C8644BF909404 /* Pods-NearbyWeatherTests-dummy.m */; };
-		CB69668C869F000C95B7CD1FC4A8AA30 /* PKHUDRotatingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A37636C2E7FFD7D88361D041B107E4 /* PKHUDRotatingImageView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		CC668A57CEB4260426919C1EB261B181 /* RainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF11F0AA65273029896B38F3588F7EDE /* RainScene.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		CC8FCDE085D83949D8FC0E5A12DFB372 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AC580B092A387B80C7E99101A30127 /* Window.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		CDA9B76E69D46A47E5B3A45D9DBD96CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615930B0DC90E8E0B636F466AF629A43 /* Foundation.framework */; };
-		CF065EDD10F7CB0C7FDFA4E87638071A /* APTimeZones.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D2CDF7A05333FB11FD95FCBBB5F326 /* APTimeZones.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		CF72B20EE0B81B63162EBBAD22653554 /* APTimeZones.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E4BAEFB0C9CC34E9B1C6FCBBF85F328 /* APTimeZones.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D5686072DEC1A0E14F8C100FCC873F73 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A190A82E522CD68485D307955721A111 /* TaskDelegate.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		D5D7DC2C619E61A49CA4B11C11F76E14 /* Pods-NearbyWeatherTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C0F7A673FDADC9B5D9EDA271B41E374C /* Pods-NearbyWeatherTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D8AB5693A4BA949370FDCAB55BBD1950 /* PKHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78782D89B36136F2F69C2B5000420C0 /* PKHUD.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		DF4774DA6F27D354518C787EC48A999E /* PKHUDProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556E38DBC29A36AC978FA0F7EE179B17 /* PKHUDProgressView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		E198F398404F07805E5189165F3C1E64 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ADD3A873DF77C59070DFA1BC6F535 /* Timeline.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		EBA06512F07D7C8D7BEC613E1FCD27AA /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC4FA3EED21312B47700B9D9698F985 /* FrameView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		EBA0781A1E2822CF7DFD56ACD394A63E /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46973475448179B9394637A35626FC55 /* Alamofire.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		EDCAA86D9E10B4289C3E0CC0E8077C47 /* rain.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8C46DBBEEF61424BCF56117F0DBBE52F /* rain.sks */; };
-		F503933704EBB803A158F05F39461FDA /* RainyRefreshControl-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BC5B628D8C5DF890FD2322C1DBB7CE /* RainyRefreshControl-dummy.m */; };
-		FB106BFBD84A8AF57F544C61AD79A008 /* PKHUDSystemActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F4B5EC1067E1230F6701CD5824051E /* PKHUDSystemActivityIndicatorView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		C4FB31FA39C226C895A15305C7F9FD49 /* RainyRefreshControl.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 58E59BAA4F172498B22A5DE2EF3BF60E /* RainyRefreshControl.bundle */; };
+		C5FD57751548EFFA6567AFD2EB47CD56 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A314B899AEAA5031B4EB64909571BD4 /* Request.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		C793E31699992609E7C76C746610737D /* WindowRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41555F4D5F53BE33D17A331208FE06 /* WindowRootViewController.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		CB69668C869F000C95B7CD1FC4A8AA30 /* PKHUDRotatingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977FCE6B1A30D129E35DE8C0607C1540 /* PKHUDRotatingImageView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		CC8FCDE085D83949D8FC0E5A12DFB372 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0E58D9A6AC4F16D2B1D446D7C9D51F /* Window.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		CCB74062CE0F4B8E5B7483599BC398DA /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = C26EA0D61AFA802CBABE1DBF90D0D992 /* FMDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CF065EDD10F7CB0C7FDFA4E87638071A /* APTimeZones.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D72546E2457E52EC7C03DA6F06CC9EC /* APTimeZones.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		CF72B20EE0B81B63162EBBAD22653554 /* APTimeZones.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B9515B525666A8CA769F3CA609435F0 /* APTimeZones.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D46008A1C00B5D2575BA44E5D6581BD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615930B0DC90E8E0B636F466AF629A43 /* Foundation.framework */; };
+		D5686072DEC1A0E14F8C100FCC873F73 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2B0B1A454BEF996E801DB0CB69D02C /* TaskDelegate.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		D5991941DC41DDDDDACAE0B5D47A4639 /* FMDB-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E0CC2299631ABA83C73BB6F0094676 /* FMDB-dummy.m */; };
+		D6CD11B8E28F2CFCAB7EA5A17C44DB56 /* Pods-NearbyWeather-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E22A51F6DC38A2106595CA83EAB72CCB /* Pods-NearbyWeather-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D75C0D3E0496EAD28E03F3F82836A0C1 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 63EAF63DBF994C27E01880E7CDC5FF2A /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		D8AB5693A4BA949370FDCAB55BBD1950 /* PKHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4BFFC920C34234A03643479416949D /* PKHUD.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		DD099837A33ABA0D8C0FE90F8C61A616 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = D84F16AB7D1E09C273CC59B1B58CF679 /* FMDatabasePool.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		DF4774DA6F27D354518C787EC48A999E /* PKHUDProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127040AAC4CC3DC9972F1C1F27C71214 /* PKHUDProgressView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E198F398404F07805E5189165F3C1E64 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E24D2B1ADB1B05D8713560C2F39E73 /* Timeline.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		EBA06512F07D7C8D7BEC613E1FCD27AA /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660C5002CD84880CDBE6106E6F4EDA2 /* FrameView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		EBA0781A1E2822CF7DFD56ACD394A63E /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3CB157A89646BF8B0E207ACF7700FB /* Alamofire.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		F11FAB91014130EE233A3429439D38D7 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 431012053752B9F4B2CCAA3C857A37E5 /* FMDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FB106BFBD84A8AF57F544C61AD79A008 /* PKHUDSystemActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC4D711F9DD32188504BA14F77A72F1 /* PKHUDSystemActivityIndicatorView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		20DD551E926EA5EAE1BAA27BEC026AD7 /* PBXContainerItemProxy */ = {
+		16C80BC3A873F204941E5F0868797604 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4A77E1A69D8851058F3FD36B41BAA076;
-			remoteInfo = RainyRefreshControl;
+			remoteGlobalIDString = 34DA237D90576A8BC4B1D7B05287E650;
+			remoteInfo = APTimeZones;
 		};
-		4944B8B5CE140CF6B2EB429EC705DABD /* PBXContainerItemProxy */ = {
+		1CB16FE61F4300DAF66796462C48879D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 88E9EC28B8B46C3631E6B242B50F4442;
-			remoteInfo = Alamofire;
-		};
-		4C8F572EBE92136203BC31DFE6E5C3E7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 88E9EC28B8B46C3631E6B242B50F4442;
-			remoteInfo = Alamofire;
-		};
-		5D41D96607C348C34C4A2205FA388E32 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2E64A8BA96B72A08444A14E9085E6546;
+			remoteGlobalIDString = F3B50CD1C7C6EF8A5FADD9221DE71A41;
 			remoteInfo = TextFieldCounter;
 		};
-		65A64C5D30B12BD6EEF3B9824148931A /* PBXContainerItemProxy */ = {
+		1D1DA0020573C9B1A017C9553D2D7C24 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CD4B6C69BD5B18113BCB86AFCD0DE44E;
+			remoteGlobalIDString = 1AF806359D494A6EB806A01B2E919686;
 			remoteInfo = "RainyRefreshControl-RainyRefreshControl";
 		};
-		88F09E0533ED0E7ACB1E844EF1739D74 /* PBXContainerItemProxy */ = {
+		1D465FEDC538B34CDC249A670BAB6290 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88E9EC28B8B46C3631E6B242B50F4442;
+			remoteInfo = Alamofire;
+		};
+		30BBE5357E85C2F0A179D12F9EF6E9BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47D6058DD5F74230F513D82CE9BCB647;
+			remoteInfo = RainyRefreshControl;
+		};
+		3AE27BAB7E633742E85C85F7DE8409E0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D7A75F149082140741FC1E0B5B2863C8;
 			remoteInfo = PKHUD;
 		};
-		9D89E9CC2CDB0EA42475B653EB51D8C0 /* PBXContainerItemProxy */ = {
+		5156F841B30D1EFA9F159927EC7BA02B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D7A75F149082140741FC1E0B5B2863C8;
-			remoteInfo = PKHUD;
-		};
-		BA53E819CCB41B4F85DA1846CD1B7B8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 34DA237D90576A8BC4B1D7B05287E650;
-			remoteInfo = APTimeZones;
-		};
-		DE4E20A885820FBEBE0F1C844B633D85 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 34DA237D90576A8BC4B1D7B05287E650;
-			remoteInfo = APTimeZones;
-		};
-		F5C4F6C8A0303112DCF61872C3F10DD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2E64A8BA96B72A08444A14E9085E6546;
+			remoteGlobalIDString = F3B50CD1C7C6EF8A5FADD9221DE71A41;
 			remoteInfo = TextFieldCounter;
 		};
-		F83E884F37F48DC697DCA1D0AA131EA4 /* PBXContainerItemProxy */ = {
+		67B961545D0E7C07AE1D59C9906C84BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4A77E1A69D8851058F3FD36B41BAA076;
+			remoteGlobalIDString = D7A75F149082140741FC1E0B5B2863C8;
+			remoteInfo = PKHUD;
+		};
+		854EB50E7577DEB4481B561B37BD6362 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88E9EC28B8B46C3631E6B242B50F4442;
+			remoteInfo = Alamofire;
+		};
+		9811D2300BDCECB92808087CA136E11B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 251BAD17812F7EBF6532EACF66F941C3;
+			remoteInfo = FMDB;
+		};
+		B63C7A1113A309A5DC7A7B1EDB1E42B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 251BAD17812F7EBF6532EACF66F941C3;
+			remoteInfo = FMDB;
+		};
+		B73E10DD24664122B76F2854D0DAE681 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34DA237D90576A8BC4B1D7B05287E650;
+			remoteInfo = APTimeZones;
+		};
+		C0DB36A5B45CF53746626131F1BF6572 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47D6058DD5F74230F513D82CE9BCB647;
 			remoteInfo = RainyRefreshControl;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0368C75C6236A596BDF92E84049F873A /* APTimeZones-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "APTimeZones-umbrella.h"; sourceTree = "<group>"; };
-		07AC580B092A387B80C7E99101A30127 /* Window.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Window.swift; path = PKHUD/Window.swift; sourceTree = "<group>"; };
-		0A4BA515C6B92C402A0EFA2A15DE5F65 /* PKHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PKHUD.framework; path = PKHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0B852DADA15BE145087D8A617854A35C /* PKHUDWideBaseView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDWideBaseView.swift; path = PKHUD/PKHUDWideBaseView.swift; sourceTree = "<group>"; };
-		0BFFCE25CA4AA14A6A63F6D237DC68F2 /* timezonesDB.json */ = {isa = PBXFileReference; includeInIndex = 1; name = timezonesDB.json; path = APTimeZones/timezonesDB.json; sourceTree = "<group>"; };
+		0118B9EA7B9A7074DF64639AE295426E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0207ACF64E483CA74EFAD4CDFF031FC0 /* RainScene.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RainScene.swift; path = Sources/RainScene.swift; sourceTree = "<group>"; };
+		05816612B98EA2A421997040A594A3A4 /* HUD.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HUD.swift; path = PKHUD/HUD.swift; sourceTree = "<group>"; };
+		0660C5002CD84880CDBE6106E6F4EDA2 /* FrameView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FrameView.swift; path = PKHUD/FrameView.swift; sourceTree = "<group>"; };
+		090D0FE31A0D6B0D0C28989A09B613B5 /* RainyRefreshControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RainyRefreshControl-dummy.m"; sourceTree = "<group>"; };
+		0A0C4150F4BAA921C65BF33E92B2E9DB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A0E58D9A6AC4F16D2B1D446D7C9D51F /* Window.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Window.swift; path = PKHUD/Window.swift; sourceTree = "<group>"; };
 		0CF7126DE06F84B225C40EBDBC4EC99D /* Pods-NearbyWeather-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NearbyWeather-acknowledgements.markdown"; sourceTree = "<group>"; };
-		0ED0B52E7A518D5D63650B2FDB95928C /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
-		13A6B859B440D1BE756BF613261FE6CD /* APTimeZones.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = APTimeZones.framework; path = APTimeZones.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		15277B11B78AD9C59E0AD932E3E7C346 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
-		15C01E6C6449B6B5EA90AB2621A3EBF4 /* TextFieldCounter-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldCounter-umbrella.h"; sourceTree = "<group>"; };
-		2078B2D15B454A2CE0C3ADA62A5A894A /* TextFieldCounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TextFieldCounter.framework; path = TextFieldCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		23A2BF7E071B2EDC31DCB0C6F0CBB8CE /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D3C64505C2BEDC1CE0C24CFEC9E6DEA /* PKHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PKHUD.xcconfig; sourceTree = "<group>"; };
+		0D5BA8EA772B0E864ED895229B8066B3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F10886AB1A6E24AED38505E7019F064 /* APTimeZones.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = APTimeZones.framework; path = APTimeZones.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1230FFDA5168C2F07C89D62F957B9426 /* Umbrella.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Umbrella.swift; path = Sources/Umbrella.swift; sourceTree = "<group>"; };
+		127040AAC4CC3DC9972F1C1F27C71214 /* PKHUDProgressView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDProgressView.swift; path = PKHUD/PKHUDProgressView.swift; sourceTree = "<group>"; };
+		12E4F8CAE02652F63272C7B8F3B5B4AC /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
+		17DEAD700DF16D3B57A764A1BFEBA017 /* TextFieldCounter.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TextFieldCounter.modulemap; sourceTree = "<group>"; };
+		1A1D4A13560B9BFDEB7B100233CE80A7 /* RainyRefreshControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = RainyRefreshControl.modulemap; sourceTree = "<group>"; };
+		1A314B899AEAA5031B4EB64909571BD4 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		1AB696E8C277D8FD93A028B8993F2087 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B39360FD83AE55D863BDD152F8D4522 /* CLPlacemark+APTimeZones.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CLPlacemark+APTimeZones.m"; path = "APTimeZones/Categories/CLPlacemark+APTimeZones.m"; sourceTree = "<group>"; };
+		1C3C732EE766B74719FF0F3FD81BB107 /* rain.sks */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.sks; name = rain.sks; path = Sources/Assets/rain.sks; sourceTree = "<group>"; };
+		1F3C7F789A315F0CBAFC5DE753CB1E4B /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
+		21E277E2E7FDC5C914908BF0890A25AD /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		25EBBF0D8B087BBFAFE05F4469BA2AD4 /* Pods-NearbyWeatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NearbyWeatherTests.release.xcconfig"; sourceTree = "<group>"; };
-		26E9F1D02C50276874D8FF8DB8478242 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		2BA49A5080E42ECC3C9170FA3D182401 /* RainyRefreshControl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RainyRefreshControl.xcconfig; sourceTree = "<group>"; };
 		2C97D61AFAB3D8A129D82409FF11E296 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/SpriteKit.framework; sourceTree = DEVELOPER_DIR; };
-		2D1278056730067C04DD32BA22BA7689 /* APTimeZones-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "APTimeZones-dummy.m"; sourceTree = "<group>"; };
-		2E15B74AE3CFA3400436ABC3905FBC86 /* RainyRefreshControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = RainyRefreshControl.modulemap; sourceTree = "<group>"; };
-		2FA05AD90A2E2BB02EB2EE034CC0B676 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E25984A3A26202C3A08C46A0D1D347B /* TextFieldCounter-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TextFieldCounter-dummy.m"; sourceTree = "<group>"; };
+		302F258D6084C0223E2CD8F3074E833E /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		30E82DD116FC2ECAB990B51DAE7B5B5B /* Pods-NearbyWeather-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NearbyWeather-resources.sh"; sourceTree = "<group>"; };
-		315C01797B7EA9502A335F6C1187FAB8 /* WindowRootViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WindowRootViewController.swift; path = PKHUD/WindowRootViewController.swift; sourceTree = "<group>"; };
 		32D2DD8712CB02FF111C8644BF909404 /* Pods-NearbyWeatherTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NearbyWeatherTests-dummy.m"; sourceTree = "<group>"; };
-		32F4B5EC1067E1230F6701CD5824051E /* PKHUDSystemActivityIndicatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDSystemActivityIndicatorView.swift; path = PKHUD/PKHUDSystemActivityIndicatorView.swift; sourceTree = "<group>"; };
-		3426FAF75C18616E8974B185A83BE601 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
-		3FA1DEDFE50FF0C0A2BA2E490340833A /* RainyRefreshControl-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RainyRefreshControl-umbrella.h"; sourceTree = "<group>"; };
-		46973475448179B9394637A35626FC55 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
+		35CBE3D6F937FA290C86EFD8FA97FC4E /* PKHUDSquareBaseView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDSquareBaseView.swift; path = PKHUD/PKHUDSquareBaseView.swift; sourceTree = "<group>"; };
+		3813DEFBB0B06B2B84665FE398453276 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BBE7062E33117583ECBC98732FBC8F9 /* TextFieldCounter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TextFieldCounter.xcconfig; sourceTree = "<group>"; };
+		3DB3775ABAB8A793F1D8511F0317B98A /* FMDatabase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
+		413A91DA9F3279D24DD1AA7B5975503B /* timezonesDB.json */ = {isa = PBXFileReference; includeInIndex = 1; name = timezonesDB.json; path = APTimeZones/timezonesDB.json; sourceTree = "<group>"; };
+		431012053752B9F4B2CCAA3C857A37E5 /* FMDatabase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
+		43E28BF6C8E9AC1CF8C51EAF427D7A54 /* PKHUDAnimating.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDAnimating.swift; path = PKHUD/PKHUDAnimating.swift; sourceTree = "<group>"; };
+		46FACA4AD5EDA4CC8D2B852AA946F070 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
 		49B5D10E9FA06687859A29EE81E15C96 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		53417B376107205DFB409AE7D9ACC6E2 /* RainyRefreshControl.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = RainyRefreshControl.bundle; path = "RainyRefreshControl-RainyRefreshControl.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
-		556E38DBC29A36AC978FA0F7EE179B17 /* PKHUDProgressView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDProgressView.swift; path = PKHUD/PKHUDProgressView.swift; sourceTree = "<group>"; };
-		57F65ABDF73CD2EAF6E91AC3DFD458E0 /* PKHUDAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDAnimation.swift; path = PKHUD/PKHUDAnimation.swift; sourceTree = "<group>"; };
-		59341F35B1C246E1306E0C2ECD9BD1BD /* HUD.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HUD.swift; path = PKHUD/HUD.swift; sourceTree = "<group>"; };
-		593639AA5D790BC6CCF16A2CC9C862AD /* PKHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PKHUD-dummy.m"; sourceTree = "<group>"; };
-		5C476FD87EF7B2271191EE9000DCA18B /* APTimeZones.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = APTimeZones.modulemap; sourceTree = "<group>"; };
+		4D23A584C0284568445D95065B2F8A1F /* RainyRefreshControl-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RainyRefreshControl-prefix.pch"; sourceTree = "<group>"; };
+		4D846495935F9D59AB29CE240E482DEF /* CLLocation+APTimeZones.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CLLocation+APTimeZones.h"; path = "APTimeZones/Categories/CLLocation+APTimeZones.h"; sourceTree = "<group>"; };
+		4E9968E4067099F91AED8F99FF1DA740 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = src/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
+		4F00EAF9FC9866567753ACFC9F2CEBAB /* CLLocation+APTimeZones.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CLLocation+APTimeZones.m"; path = "APTimeZones/Categories/CLLocation+APTimeZones.m"; sourceTree = "<group>"; };
+		50679F0159EE0FEDF2B5F6ACC274D8E3 /* spark.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = spark.png; path = Sources/Assets/spark.png; sourceTree = "<group>"; };
+		525B5846981701EB54BFEAE5D0B67061 /* ResourceBundle-RainyRefreshControl-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-RainyRefreshControl-Info.plist"; sourceTree = "<group>"; };
+		5604CB6EA91DBB6548CEF1DCC1A2CCB6 /* PKHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PKHUD.framework; path = PKHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		587830BA0D959F540E35C87A48AB899B /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		5899FF0F89D098AC486D8E0020D0F7C6 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
+		58E59BAA4F172498B22A5DE2EF3BF60E /* RainyRefreshControl.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = RainyRefreshControl.bundle; path = "RainyRefreshControl-RainyRefreshControl.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A68D6F1DE817C5293C444A9759BB41D /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
+		5B4D83663EDB5A3EB79492ED32B49DCD /* PKHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PKHUD.h; path = PKHUD/PKHUD.h; sourceTree = "<group>"; };
+		5B4EE55435AFD8B053697ABC326D2507 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = PKHUD/Images.xcassets; sourceTree = "<group>"; };
 		5D92395DEC6FB614A86092D3B3ABE71F /* Pods-NearbyWeatherTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-NearbyWeatherTests.modulemap"; sourceTree = "<group>"; };
-		60973A8B59592D39D5AD8B1264014B0F /* TextFieldCounter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TextFieldCounter.xcconfig; sourceTree = "<group>"; };
 		615930B0DC90E8E0B636F466AF629A43 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		61E47A157B9B4A5100578E4941AAEA8B /* Pods-NearbyWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NearbyWeather.debug.xcconfig"; sourceTree = "<group>"; };
-		61EDD3142318DC04B0BAC6916F8C098A /* ResourceBundle-RainyRefreshControl-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-RainyRefreshControl-Info.plist"; sourceTree = "<group>"; };
-		62D2CDF7A05333FB11FD95FCBBB5F326 /* APTimeZones.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = APTimeZones.m; path = APTimeZones/APTimeZones.m; sourceTree = "<group>"; };
+		63EAF63DBF994C27E01880E7CDC5FF2A /* FMResultSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
 		6440D8F0A7C58BAA96596A83A93EE858 /* Pods-NearbyWeatherTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NearbyWeatherTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6460342999E92064ACB5994E0F352E4C /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = src/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
 		6475D4162F277047F7B3875E3D333967 /* Pods-NearbyWeatherTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NearbyWeatherTests-resources.sh"; sourceTree = "<group>"; };
-		65EFA4EED79C46474DB5C7E3D95C7053 /* spark.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = spark.png; path = Sources/Assets/spark.png; sourceTree = "<group>"; };
 		67DF38B7A56F5CAC394212397EA506EE /* Pods-NearbyWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NearbyWeather.release.xcconfig"; sourceTree = "<group>"; };
+		68878731A7CC24CF28E5F3E6C5D56B33 /* PKHUDAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDAnimation.swift; path = PKHUD/PKHUDAnimation.swift; sourceTree = "<group>"; };
 		692B580E201DDF5C98C224E303F1F68B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6CECFE4E968EC970CCCB4446D415A12C /* TextFieldCounter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextFieldCounter.swift; sourceTree = "<group>"; };
-		6DE9A37A4E186C0DD1445306F0076333 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
-		717F096E17F08EA96FBDE09C2DCA5559 /* PKHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PKHUD.modulemap; sourceTree = "<group>"; };
-		74501698D2C585D0A24B6663E6D47485 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
-		7AA6A0E98822C6ACD3A4D8585A8292B4 /* TextFieldCounter-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldCounter-prefix.pch"; sourceTree = "<group>"; };
+		72A290D5D131525079FF172DD46CA115 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
+		72E0CC2299631ABA83C73BB6F0094676 /* FMDB-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FMDB-dummy.m"; sourceTree = "<group>"; };
+		73E1DD5F124E54D3D3FDCD263CAA3823 /* FMDB.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FMDB.xcconfig; sourceTree = "<group>"; };
+		764BB3E0CB0B9C68B7F990905033CAB1 /* Pods_NearbyWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NearbyWeather.framework; path = "Pods-NearbyWeather.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A9DCB458CCCF97B52E26E012A84EDF7 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		7B4D63BE5269B8E03DCC5F6DA68DE854 /* APTimeZones-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "APTimeZones-dummy.m"; sourceTree = "<group>"; };
+		7B9515B525666A8CA769F3CA609435F0 /* APTimeZones.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = APTimeZones.h; path = APTimeZones/APTimeZones.h; sourceTree = "<group>"; };
+		7D72546E2457E52EC7C03DA6F06CC9EC /* APTimeZones.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = APTimeZones.m; path = APTimeZones/APTimeZones.m; sourceTree = "<group>"; };
 		7EF671316744287FA399A8010413E1CC /* Pods-NearbyWeather-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NearbyWeather-dummy.m"; sourceTree = "<group>"; };
-		823407C4F76B3BD63EA2ECB0BDEB158A /* CLPlacemark+APTimeZones.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CLPlacemark+APTimeZones.h"; path = "APTimeZones/Categories/CLPlacemark+APTimeZones.h"; sourceTree = "<group>"; };
-		87081E894E55BEA1C7FAD3BBE2086D68 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
-		87FF4BCD8D3C2D6C451B962248CDBF74 /* PKHUDTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDTextView.swift; path = PKHUD/PKHUDTextView.swift; sourceTree = "<group>"; };
-		8A09DE6DE298B9CFD510A5A9E644E334 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
-		8AC4FA3EED21312B47700B9D9698F985 /* FrameView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FrameView.swift; path = PKHUD/FrameView.swift; sourceTree = "<group>"; };
-		8B1924F91B7088BB95CA47CC7E51B679 /* TextFieldCounter.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TextFieldCounter.modulemap; sourceTree = "<group>"; };
-		8C46DBBEEF61424BCF56117F0DBBE52F /* rain.sks */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.sks; name = rain.sks; path = Sources/Assets/rain.sks; sourceTree = "<group>"; };
-		8CAEF27BAD5993FF13024F1CF6D5EEBC /* ONXRefreshControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ONXRefreshControl.swift; path = Sources/ONXRefreshControl.swift; sourceTree = "<group>"; };
-		8D87FEF6EFB6FC1ACE13A29756512B51 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
-		8E4BAEFB0C9CC34E9B1C6FCBBF85F328 /* APTimeZones.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = APTimeZones.h; path = APTimeZones/APTimeZones.h; sourceTree = "<group>"; };
-		8E86C80BBBC635C7FA972D96F7D26A21 /* CLPlacemark+APTimeZones.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CLPlacemark+APTimeZones.m"; path = "APTimeZones/Categories/CLPlacemark+APTimeZones.m"; sourceTree = "<group>"; };
-		8FD1C6C41C7A49EA4BFA433454E663AC /* CLLocation+APTimeZones.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CLLocation+APTimeZones.h"; path = "APTimeZones/Categories/CLLocation+APTimeZones.h"; sourceTree = "<group>"; };
-		903857C04C895CDE51BF790AFAFD8274 /* PKHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PKHUD-prefix.pch"; sourceTree = "<group>"; };
+		7F0B99F79E06FFBECCBE08745789A4B0 /* FMResultSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
+		89066C97A890FCC699827F0FE9F42F99 /* PKHUDErrorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDErrorView.swift; path = PKHUD/PKHUDErrorView.swift; sourceTree = "<group>"; };
+		8AC5E7EFAAD34C7459222B7579803863 /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FMDB.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B0F9B6348C81D636F301DBC4F63E38D /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
+		8B4D53121D213B55CC243E025760B507 /* TextFieldCounter-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldCounter-umbrella.h"; sourceTree = "<group>"; };
+		8CCCB9166498375550DE6FC05EEF6C28 /* RainyRefreshControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RainyRefreshControl.swift; path = Sources/RainyRefreshControl.swift; sourceTree = "<group>"; };
+		8F1BA16184A2D573374AC77FEC5D632A /* Pods_NearbyWeatherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NearbyWeatherTests.framework; path = "Pods-NearbyWeatherTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		904F1FCC7502D1AC133CCF6BEDE453BD /* Pods-NearbyWeather-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NearbyWeather-acknowledgements.plist"; sourceTree = "<group>"; };
-		907C23D1364BAF02CDDB80538933B246 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
+		91DC22E800687515BAF6790AD61DBE15 /* PKHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PKHUD-prefix.pch"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		941CB02C58860AD3CE72F1BF0041C0D2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		95C01DEEF9106FB9BB3884C041261358 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		977AC47C4F7A58B1F0C6CAB42D9C97AC /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
-		98E2C8DF65F2998B5E9C3190CC80988C /* PKHUDErrorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDErrorView.swift; path = PKHUD/PKHUDErrorView.swift; sourceTree = "<group>"; };
-		9A06F34149065747044F7CD9F2A8588A /* PKHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PKHUD-umbrella.h"; sourceTree = "<group>"; };
-		9AF35C2B1FA31E3E110DBA4374959804 /* APTimeZones-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "APTimeZones-prefix.pch"; sourceTree = "<group>"; };
-		9B4ADD3A873DF77C59070DFA1BC6F535 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
-		9E32BB33CDBA4B0FCC06EB1EAF9DB533 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
+		944A5D5E025A4B0089FAEA7850003C51 /* APTimeZones.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = APTimeZones.xcconfig; sourceTree = "<group>"; };
+		977FCE6B1A30D129E35DE8C0607C1540 /* PKHUDRotatingImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDRotatingImageView.swift; path = PKHUD/PKHUDRotatingImageView.swift; sourceTree = "<group>"; };
+		97F604A0BE4456BF389415411F8F6572 /* CLPlacemark+APTimeZones.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CLPlacemark+APTimeZones.h"; path = "APTimeZones/Categories/CLPlacemark+APTimeZones.h"; sourceTree = "<group>"; };
 		9F17881F2F60CFB3CFDFAB58EA78D761 /* Pods-NearbyWeatherTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NearbyWeatherTests-frameworks.sh"; sourceTree = "<group>"; };
-		A0508CD9D021936BD6792112601D39AF /* PKHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PKHUD.xcconfig; sourceTree = "<group>"; };
-		A190A82E522CD68485D307955721A111 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
-		A446B667E41CF54D3FF72A71DBCC3F20 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
-		A4BC5B628D8C5DF890FD2322C1DBB7CE /* RainyRefreshControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RainyRefreshControl-dummy.m"; sourceTree = "<group>"; };
-		A98E4459D1E677E57EC4938BA6309334 /* Pods_NearbyWeatherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NearbyWeatherTests.framework; path = "Pods-NearbyWeatherTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9A37636C2E7FFD7D88361D041B107E4 /* PKHUDRotatingImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDRotatingImageView.swift; path = PKHUD/PKHUDRotatingImageView.swift; sourceTree = "<group>"; };
-		ABBBD13C93E4E40980F572834E2481A0 /* PKHUDSquareBaseView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDSquareBaseView.swift; path = PKHUD/PKHUDSquareBaseView.swift; sourceTree = "<group>"; };
-		ADC97BB643EDEAB7AAF2324D47ABA318 /* PKHUDAssets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDAssets.swift; path = PKHUD/PKHUDAssets.swift; sourceTree = "<group>"; };
-		AEC74936E0E147C2AC3D16F31207B3C4 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
-		B039B7F68BBE7E441F05FBB9DA6C27B3 /* APTimeZones.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = APTimeZones.xcconfig; sourceTree = "<group>"; };
-		B3222F132238FA73884EF9CB8CD5C6AA /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
-		B810927CD19EB1797250DEBF902968EA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FEDD1176D35024CA5A05D76856D9977 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A630ACD709BB7860E9B1542878BC5DC9 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A95E71632D389E41BA4B857A15EA8009 /* RainyRefreshControl-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RainyRefreshControl-umbrella.h"; sourceTree = "<group>"; };
+		AA4BFFC920C34234A03643479416949D /* PKHUD.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUD.swift; path = PKHUD/PKHUD.swift; sourceTree = "<group>"; };
+		AEAA9D08AA56D0996C6DE50EF8168D65 /* PKHUDSuccessView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDSuccessView.swift; path = PKHUD/PKHUDSuccessView.swift; sourceTree = "<group>"; };
+		B320488A66DECD63D875B6BA426258C4 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		B65E436D1FDCB99E83A7A4DEDA6447BC /* APTimeZones-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "APTimeZones-prefix.pch"; sourceTree = "<group>"; };
 		B8E240922BF314617E78CEE77895DE14 /* Pods-NearbyWeatherTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NearbyWeatherTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		BB91527AD3EF2F21CF3440A096AFAB29 /* Pods_NearbyWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NearbyWeather.framework; path = "Pods-NearbyWeather.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC179805F2BF8A6A7A8496B038100C87 /* RainyRefreshControl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RainyRefreshControl.xcconfig; sourceTree = "<group>"; };
-		BF374E728F8E5AEEDE37F0416CBE5463 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
-		BFA8B4F2522B0DAA99AE0E67D464CD88 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B948B0AFE547F8BB4AA0381667FA2A5E /* APTimeZones-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "APTimeZones-umbrella.h"; sourceTree = "<group>"; };
+		BA52F05AC648458C6110E746FCC1D550 /* TextFieldCounter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextFieldCounter.swift; sourceTree = "<group>"; };
+		BC41555F4D5F53BE33D17A331208FE06 /* WindowRootViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WindowRootViewController.swift; path = PKHUD/WindowRootViewController.swift; sourceTree = "<group>"; };
+		BD75DC009D9E9DC7F6817C487E05E11D /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
+		BDC1418BC6F33BBD03932910DF9B2523 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		C077597D3D150DEF5F85109C03B3EF1F /* FMDatabaseQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
 		C0F7A673FDADC9B5D9EDA271B41E374C /* Pods-NearbyWeatherTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NearbyWeatherTests-umbrella.h"; sourceTree = "<group>"; };
-		C59C05AC6DB278BB8EFE0E06C677AC58 /* PKHUDSuccessView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDSuccessView.swift; path = PKHUD/PKHUDSuccessView.swift; sourceTree = "<group>"; };
-		C77870675287993FA62E7E01D8D3B7B3 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = PKHUD/Images.xcassets; sourceTree = "<group>"; };
-		D8C8067FF0E0D53A4B05BC4770A454F2 /* PKHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PKHUD.h; path = PKHUD/PKHUD.h; sourceTree = "<group>"; };
-		D8DA74670AE83D22312820A181C2BF87 /* Umbrella.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Umbrella.swift; path = Sources/Umbrella.swift; sourceTree = "<group>"; };
+		C26EA0D61AFA802CBABE1DBF90D0D992 /* FMDB.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = src/fmdb/FMDB.h; sourceTree = "<group>"; };
+		CB238104FF323AF1FFC386968CBC671B /* TextFieldCounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TextFieldCounter.framework; path = TextFieldCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF0420AFAFF22A1459D0FBEC570EB4CE /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
+		CF2B0B1A454BEF996E801DB0CB69D02C /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
+		D3853DC8BA57038AD5145F422283B6F3 /* FMDB.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FMDB.modulemap; sourceTree = "<group>"; };
+		D84F16AB7D1E09C273CC59B1B58CF679 /* FMDatabasePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = src/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
+		D8E24D2B1ADB1B05D8713560C2F39E73 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
+		D8E4A4568F59F2A92D65B99A2F6726F6 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		DA0736715CB0BAD72A1B4AB6801D3132 /* PKHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PKHUD-umbrella.h"; sourceTree = "<group>"; };
 		DB78886D5176BB9154D7E2C67E52E1DD /* Pods-NearbyWeather-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NearbyWeather-frameworks.sh"; sourceTree = "<group>"; };
 		DE82BAB6E53B94996EDBB9E871EE7515 /* Pods-NearbyWeather.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-NearbyWeather.modulemap"; sourceTree = "<group>"; };
-		DF11F0AA65273029896B38F3588F7EDE /* RainScene.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RainScene.swift; path = Sources/RainScene.swift; sourceTree = "<group>"; };
-		E130D4D749D962A52B04519AD9DE2AC1 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		DFC4D711F9DD32188504BA14F77A72F1 /* PKHUDSystemActivityIndicatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDSystemActivityIndicatorView.swift; path = PKHUD/PKHUDSystemActivityIndicatorView.swift; sourceTree = "<group>"; };
+		E0E5F5C57E6D38207AB831682866970C /* PKHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PKHUD-dummy.m"; sourceTree = "<group>"; };
 		E22A51F6DC38A2106595CA83EAB72CCB /* Pods-NearbyWeather-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NearbyWeather-umbrella.h"; sourceTree = "<group>"; };
-		E78782D89B36136F2F69C2B5000420C0 /* PKHUD.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUD.swift; path = PKHUD/PKHUD.swift; sourceTree = "<group>"; };
-		EA90F8C344C9F40A3AA239AB0AEE0FE3 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
-		EEF17CF5DCE9535DDC3DA8A55ABB6C9F /* TextFieldCounter-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TextFieldCounter-dummy.m"; sourceTree = "<group>"; };
-		F427F212A39888D865855AB3B16EE0CF /* RainyRefreshControl-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RainyRefreshControl-prefix.pch"; sourceTree = "<group>"; };
+		E3B23CE18FAEF08B8E4E17284C087A51 /* PKHUDTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDTextView.swift; path = PKHUD/PKHUDTextView.swift; sourceTree = "<group>"; };
+		E6CFD761F5E6ABEAB344B0286A9B65CC /* ONXRefreshControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ONXRefreshControl.swift; path = Sources/ONXRefreshControl.swift; sourceTree = "<group>"; };
+		E7BC7A59346D061C26D1BBF2E119E63A /* FMDB-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FMDB-umbrella.h"; sourceTree = "<group>"; };
+		E9BA3784D78E5E860BE190D359B5FBC7 /* RainyRefreshControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RainyRefreshControl.framework; path = RainyRefreshControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9FF704AD405AC8FD60A54514E87FF60 /* FMDB-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FMDB-prefix.pch"; sourceTree = "<group>"; };
+		EB7CCD3277373CE69F9B1873BA9D842A /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		EC3CB157A89646BF8B0E207ACF7700FB /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
+		EC856D6C721B7812AD8D18E03E9F662D /* TextFieldCounter-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldCounter-prefix.pch"; sourceTree = "<group>"; };
+		EF612D80E44ADA98B4762D3C3C74CDEB /* PKHUDWideBaseView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDWideBaseView.swift; path = PKHUD/PKHUDWideBaseView.swift; sourceTree = "<group>"; };
 		F4E659A66271656B58C9B872D198DA60 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
-		F8491EF6F9954737698CB31C1E292A9C /* CLLocation+APTimeZones.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CLLocation+APTimeZones.m"; path = "APTimeZones/Categories/CLLocation+APTimeZones.m"; sourceTree = "<group>"; };
+		F59839603C8E7BED23B31E5215648524 /* APTimeZones.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = APTimeZones.modulemap; sourceTree = "<group>"; };
+		F66BF5DC84CC27CBCB5AB49BED635C29 /* PKHUDAssets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDAssets.swift; path = PKHUD/PKHUDAssets.swift; sourceTree = "<group>"; };
 		F96D7A230711920B50A217D4A731C376 /* Pods-NearbyWeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NearbyWeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
-		FA2D50E2D81E21A1E37F2D088A9243F6 /* PKHUDAnimating.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDAnimating.swift; path = PKHUD/PKHUDAnimating.swift; sourceTree = "<group>"; };
-		FB169E7AC55B9AC34CF19BB908CE0114 /* RainyRefreshControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RainyRefreshControl.framework; path = RainyRefreshControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC54FBC3AFEABFAE4F7A186094DA76FB /* RainyRefreshControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RainyRefreshControl.swift; path = Sources/RainyRefreshControl.swift; sourceTree = "<group>"; };
-		FD99E8D1366B53C60C00512298CA266F /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		FA231355EEE27627501245A40C412888 /* PKHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PKHUD.modulemap; sourceTree = "<group>"; };
+		FA8F841F513FACFED1106ACF5E6694F2 /* FMDatabasePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
+		FA99221F28314FFE7772C8FE4268CB5E /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
+		FEF183C599588A25ECC5DA22F3E3068E /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,35 +332,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		39BFD2A305BD7C10F09589D250021A45 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0461398F9E3E93C5EEE345D8467F0189 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5A87962655A47E91DE8FB64A139505AC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CDA9B76E69D46A47E5B3A45D9DBD96CB /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5C8CDCE38D9099813C11195545172672 /* Frameworks */ = {
+		2CEF86F220237A8BEFB7A9275FC79593 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		921A658FA450BA1BDBDE364CA0E0E8F3 /* Frameworks */ = {
+		392A4BD21484EC471CBEA74DBE693E40 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68958CB7433459741BE8BB36020C4404 /* Foundation.framework in Frameworks */,
-				64F4548590DDC7379BBB34FD9362313A /* SpriteKit.framework in Frameworks */,
+				D46008A1C00B5D2575BA44E5D6581BD7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F8F78AC5D5F475F7B8E68BCAA010754 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E2AD51ED51DFB10FB84FB48BFA21A29 /* Foundation.framework in Frameworks */,
+				A01ED730C9D0BEE358727ADA708EA1CE /* SpriteKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,11 +364,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9D845E44E2B853C6AD584A064273442B /* Frameworks */ = {
+		9C7E5DD6403ACA5C8B8EEA9D74533DFD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B926C3810B64A757B86B407E96657E0 /* Foundation.framework in Frameworks */,
+				3C43855754F92CB3613AA95F8A297B1F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,23 +381,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EBBDAEE35B66E2CD3D85D95D8D65AC1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4730EA7A3864EBBB02575CB29DABEEEE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEFB61A65EB8DA6653B544822EB9CE44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72563ADE99DC9E753B27D48B16AA3654 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A5DE4A3A450FB896C52FC09C9746364 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				BFA8B4F2522B0DAA99AE0E67D464CD88 /* Info.plist */,
-				717F096E17F08EA96FBDE09C2DCA5559 /* PKHUD.modulemap */,
-				A0508CD9D021936BD6792112601D39AF /* PKHUD.xcconfig */,
-				593639AA5D790BC6CCF16A2CC9C862AD /* PKHUD-dummy.m */,
-				903857C04C895CDE51BF790AFAFD8274 /* PKHUD-prefix.pch */,
-				9A06F34149065747044F7CD9F2A8588A /* PKHUD-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/PKHUD";
-			sourceTree = "<group>";
-		};
 		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,76 +408,97 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		12B57AEFD4E7B0E7A9A02B26B15D860F /* Support Files */ = {
+		257537C2F4F08DA2F1349C1C0C8A7CEE /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				5C476FD87EF7B2271191EE9000DCA18B /* APTimeZones.modulemap */,
-				B039B7F68BBE7E441F05FBB9DA6C27B3 /* APTimeZones.xcconfig */,
-				2D1278056730067C04DD32BA22BA7689 /* APTimeZones-dummy.m */,
-				9AF35C2B1FA31E3E110DBA4374959804 /* APTimeZones-prefix.pch */,
-				0368C75C6236A596BDF92E84049F873A /* APTimeZones-umbrella.h */,
-				2FA05AD90A2E2BB02EB2EE034CC0B676 /* Info.plist */,
+				21E277E2E7FDC5C914908BF0890A25AD /* Alamofire.modulemap */,
+				CF0420AFAFF22A1459D0FBEC570EB4CE /* Alamofire.xcconfig */,
+				8B0F9B6348C81D636F301DBC4F63E38D /* Alamofire-dummy.m */,
+				587830BA0D959F540E35C87A48AB899B /* Alamofire-prefix.pch */,
+				D8E4A4568F59F2A92D65B99A2F6726F6 /* Alamofire-umbrella.h */,
+				1AB696E8C277D8FD93A028B8993F2087 /* Info.plist */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/APTimeZones";
+			path = "../Target Support Files/Alamofire";
 			sourceTree = "<group>";
 		};
-		1983F7905F8593E8E00E491F6A5A86EB /* Support Files */ = {
+		2EB54C32846074FABEE2E922436330E5 /* APTimeZones */ = {
 			isa = PBXGroup;
 			children = (
-				95C01DEEF9106FB9BB3884C041261358 /* Info.plist */,
-				2E15B74AE3CFA3400436ABC3905FBC86 /* RainyRefreshControl.modulemap */,
-				BC179805F2BF8A6A7A8496B038100C87 /* RainyRefreshControl.xcconfig */,
-				A4BC5B628D8C5DF890FD2322C1DBB7CE /* RainyRefreshControl-dummy.m */,
-				F427F212A39888D865855AB3B16EE0CF /* RainyRefreshControl-prefix.pch */,
-				3FA1DEDFE50FF0C0A2BA2E490340833A /* RainyRefreshControl-umbrella.h */,
-				61EDD3142318DC04B0BAC6916F8C098A /* ResourceBundle-RainyRefreshControl-Info.plist */,
+				7B9515B525666A8CA769F3CA609435F0 /* APTimeZones.h */,
+				7D72546E2457E52EC7C03DA6F06CC9EC /* APTimeZones.m */,
+				4D846495935F9D59AB29CE240E482DEF /* CLLocation+APTimeZones.h */,
+				4F00EAF9FC9866567753ACFC9F2CEBAB /* CLLocation+APTimeZones.m */,
+				97F604A0BE4456BF389415411F8F6572 /* CLPlacemark+APTimeZones.h */,
+				1B39360FD83AE55D863BDD152F8D4522 /* CLPlacemark+APTimeZones.m */,
+				A12CB210D6AA30B0220AC7120C5EA302 /* Resources */,
+				7E33F4CEE73D165143E5728C53B93DF9 /* Support Files */,
+			);
+			name = APTimeZones;
+			path = APTimeZones;
+			sourceTree = "<group>";
+		};
+		38A93D845034D90FBE3B323E27691064 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				9295162EFC0C203F6D4AB19933905C09 /* standard */,
+				57A9FC82127F9EE83E14DD21501E73D5 /* Support Files */,
+			);
+			name = FMDB;
+			path = FMDB;
+			sourceTree = "<group>";
+		};
+		45C9C23D2E051A86BD714BE053422723 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3813DEFBB0B06B2B84665FE398453276 /* Info.plist */,
+				FA231355EEE27627501245A40C412888 /* PKHUD.modulemap */,
+				0D3C64505C2BEDC1CE0C24CFEC9E6DEA /* PKHUD.xcconfig */,
+				E0E5F5C57E6D38207AB831682866970C /* PKHUD-dummy.m */,
+				91DC22E800687515BAF6790AD61DBE15 /* PKHUD-prefix.pch */,
+				DA0736715CB0BAD72A1B4AB6801D3132 /* PKHUD-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PKHUD";
+			sourceTree = "<group>";
+		};
+		57A9FC82127F9EE83E14DD21501E73D5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D3853DC8BA57038AD5145F422283B6F3 /* FMDB.modulemap */,
+				73E1DD5F124E54D3D3FDCD263CAA3823 /* FMDB.xcconfig */,
+				72E0CC2299631ABA83C73BB6F0094676 /* FMDB-dummy.m */,
+				E9FF704AD405AC8FD60A54514E87FF60 /* FMDB-prefix.pch */,
+				E7BC7A59346D061C26D1BBF2E119E63A /* FMDB-umbrella.h */,
+				0118B9EA7B9A7074DF64639AE295426E /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FMDB";
+			sourceTree = "<group>";
+		};
+		6C49B45185064A9C05184D0485745952 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9FEDD1176D35024CA5A05D76856D9977 /* Info.plist */,
+				1A1D4A13560B9BFDEB7B100233CE80A7 /* RainyRefreshControl.modulemap */,
+				2BA49A5080E42ECC3C9170FA3D182401 /* RainyRefreshControl.xcconfig */,
+				090D0FE31A0D6B0D0C28989A09B613B5 /* RainyRefreshControl-dummy.m */,
+				4D23A584C0284568445D95065B2F8A1F /* RainyRefreshControl-prefix.pch */,
+				A95E71632D389E41BA4B857A15EA8009 /* RainyRefreshControl-umbrella.h */,
+				525B5846981701EB54BFEAE5D0B67061 /* ResourceBundle-RainyRefreshControl-Info.plist */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/RainyRefreshControl";
 			sourceTree = "<group>";
 		};
-		3B8E5190EA69117E5E070775506B3839 /* Resources */ = {
+		759F5EFDF65191508B9F63B4860C51B3 /* TextFieldCounter */ = {
 			isa = PBXGroup;
 			children = (
-				0BFFCE25CA4AA14A6A63F6D237DC68F2 /* timezonesDB.json */,
+				BA52F05AC648458C6110E746FCC1D550 /* TextFieldCounter.swift */,
+				E5AB3A49C5900AB0E20E2717B0319A89 /* Support Files */,
 			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		503182543E849507795C285C4ABB9D3F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				C77870675287993FA62E7E01D8D3B7B3 /* Images.xcassets */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		6297FCE63783E8DD0BECAB9C1DBCBFA8 /* PKHUD */ = {
-			isa = PBXGroup;
-			children = (
-				8AC4FA3EED21312B47700B9D9698F985 /* FrameView.swift */,
-				59341F35B1C246E1306E0C2ECD9BD1BD /* HUD.swift */,
-				D8C8067FF0E0D53A4B05BC4770A454F2 /* PKHUD.h */,
-				E78782D89B36136F2F69C2B5000420C0 /* PKHUD.swift */,
-				FA2D50E2D81E21A1E37F2D088A9243F6 /* PKHUDAnimating.swift */,
-				57F65ABDF73CD2EAF6E91AC3DFD458E0 /* PKHUDAnimation.swift */,
-				ADC97BB643EDEAB7AAF2324D47ABA318 /* PKHUDAssets.swift */,
-				98E2C8DF65F2998B5E9C3190CC80988C /* PKHUDErrorView.swift */,
-				556E38DBC29A36AC978FA0F7EE179B17 /* PKHUDProgressView.swift */,
-				A9A37636C2E7FFD7D88361D041B107E4 /* PKHUDRotatingImageView.swift */,
-				ABBBD13C93E4E40980F572834E2481A0 /* PKHUDSquareBaseView.swift */,
-				C59C05AC6DB278BB8EFE0E06C677AC58 /* PKHUDSuccessView.swift */,
-				32F4B5EC1067E1230F6701CD5824051E /* PKHUDSystemActivityIndicatorView.swift */,
-				87FF4BCD8D3C2D6C451B962248CDBF74 /* PKHUDTextView.swift */,
-				0B852DADA15BE145087D8A617854A35C /* PKHUDWideBaseView.swift */,
-				07AC580B092A387B80C7E99101A30127 /* Window.swift */,
-				315C01797B7EA9502A335F6C1187FAB8 /* WindowRootViewController.swift */,
-				503182543E849507795C285C4ABB9D3F /* Resources */,
-				0A5DE4A3A450FB896C52FC09C9746364 /* Support Files */,
-			);
-			name = PKHUD;
-			path = PKHUD;
+			name = TextFieldCounter;
+			path = TextFieldCounter;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -445,116 +506,128 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
-				B13890D0B30BDE29ADB439D964168EDE /* Pods */,
-				FEAC059D4C094E37A76993BDD1E5CB0E /* Products */,
+				DC2A2682EFA38B25D47893FD4DD75742 /* Pods */,
+				8CA5C569D8209C088AE78A0E8EDE62BC /* Products */,
 				E915D453218CF869972CDFE1B4EB2B23 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		818B2DDD7B92B5DBBFAAE3F0D08FAD0F /* Support Files */ = {
+		7E33F4CEE73D165143E5728C53B93DF9 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				0ED0B52E7A518D5D63650B2FDB95928C /* Alamofire.modulemap */,
-				3426FAF75C18616E8974B185A83BE601 /* Alamofire.xcconfig */,
-				6DE9A37A4E186C0DD1445306F0076333 /* Alamofire-dummy.m */,
-				AEC74936E0E147C2AC3D16F31207B3C4 /* Alamofire-prefix.pch */,
-				BF374E728F8E5AEEDE37F0416CBE5463 /* Alamofire-umbrella.h */,
-				941CB02C58860AD3CE72F1BF0041C0D2 /* Info.plist */,
+				F59839603C8E7BED23B31E5215648524 /* APTimeZones.modulemap */,
+				944A5D5E025A4B0089FAEA7850003C51 /* APTimeZones.xcconfig */,
+				7B4D63BE5269B8E03DCC5F6DA68DE854 /* APTimeZones-dummy.m */,
+				B65E436D1FDCB99E83A7A4DEDA6447BC /* APTimeZones-prefix.pch */,
+				B948B0AFE547F8BB4AA0381667FA2A5E /* APTimeZones-umbrella.h */,
+				0A0C4150F4BAA921C65BF33E92B2E9DB /* Info.plist */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/Alamofire";
+			path = "../Target Support Files/APTimeZones";
 			sourceTree = "<group>";
 		};
-		8683A1D6E25D62122B86AF715974F3CD /* APTimeZones */ = {
+		832E11B0B011599F1D43AECDD55FAE22 /* PKHUD */ = {
 			isa = PBXGroup;
 			children = (
-				8E4BAEFB0C9CC34E9B1C6FCBBF85F328 /* APTimeZones.h */,
-				62D2CDF7A05333FB11FD95FCBBB5F326 /* APTimeZones.m */,
-				8FD1C6C41C7A49EA4BFA433454E663AC /* CLLocation+APTimeZones.h */,
-				F8491EF6F9954737698CB31C1E292A9C /* CLLocation+APTimeZones.m */,
-				823407C4F76B3BD63EA2ECB0BDEB158A /* CLPlacemark+APTimeZones.h */,
-				8E86C80BBBC635C7FA972D96F7D26A21 /* CLPlacemark+APTimeZones.m */,
-				3B8E5190EA69117E5E070775506B3839 /* Resources */,
-				12B57AEFD4E7B0E7A9A02B26B15D860F /* Support Files */,
+				0660C5002CD84880CDBE6106E6F4EDA2 /* FrameView.swift */,
+				05816612B98EA2A421997040A594A3A4 /* HUD.swift */,
+				5B4D83663EDB5A3EB79492ED32B49DCD /* PKHUD.h */,
+				AA4BFFC920C34234A03643479416949D /* PKHUD.swift */,
+				43E28BF6C8E9AC1CF8C51EAF427D7A54 /* PKHUDAnimating.swift */,
+				68878731A7CC24CF28E5F3E6C5D56B33 /* PKHUDAnimation.swift */,
+				F66BF5DC84CC27CBCB5AB49BED635C29 /* PKHUDAssets.swift */,
+				89066C97A890FCC699827F0FE9F42F99 /* PKHUDErrorView.swift */,
+				127040AAC4CC3DC9972F1C1F27C71214 /* PKHUDProgressView.swift */,
+				977FCE6B1A30D129E35DE8C0607C1540 /* PKHUDRotatingImageView.swift */,
+				35CBE3D6F937FA290C86EFD8FA97FC4E /* PKHUDSquareBaseView.swift */,
+				AEAA9D08AA56D0996C6DE50EF8168D65 /* PKHUDSuccessView.swift */,
+				DFC4D711F9DD32188504BA14F77A72F1 /* PKHUDSystemActivityIndicatorView.swift */,
+				E3B23CE18FAEF08B8E4E17284C087A51 /* PKHUDTextView.swift */,
+				EF612D80E44ADA98B4762D3C3C74CDEB /* PKHUDWideBaseView.swift */,
+				0A0E58D9A6AC4F16D2B1D446D7C9D51F /* Window.swift */,
+				BC41555F4D5F53BE33D17A331208FE06 /* WindowRootViewController.swift */,
+				DFEB2EA5A8AB94880DED0B5CB976D7C6 /* Resources */,
+				45C9C23D2E051A86BD714BE053422723 /* Support Files */,
 			);
-			name = APTimeZones;
-			path = APTimeZones;
+			name = PKHUD;
+			path = PKHUD;
 			sourceTree = "<group>";
 		};
-		8AC9941B6A63085813F1A6B29A24F215 /* Support Files */ = {
+		8A3EDE5E9292BDA39A2F22F96B21EA73 /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
-				B810927CD19EB1797250DEBF902968EA /* Info.plist */,
-				8B1924F91B7088BB95CA47CC7E51B679 /* TextFieldCounter.modulemap */,
-				60973A8B59592D39D5AD8B1264014B0F /* TextFieldCounter.xcconfig */,
-				EEF17CF5DCE9535DDC3DA8A55ABB6C9F /* TextFieldCounter-dummy.m */,
-				7AA6A0E98822C6ACD3A4D8585A8292B4 /* TextFieldCounter-prefix.pch */,
-				15C01E6C6449B6B5EA90AB2621A3EBF4 /* TextFieldCounter-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/TextFieldCounter";
-			sourceTree = "<group>";
-		};
-		9CA9D0454D99290D9B7A5D0687BEB187 /* Alamofire */ = {
-			isa = PBXGroup;
-			children = (
-				74501698D2C585D0A24B6663E6D47485 /* AFError.swift */,
-				46973475448179B9394637A35626FC55 /* Alamofire.swift */,
-				87081E894E55BEA1C7FAD3BBE2086D68 /* DispatchQueue+Alamofire.swift */,
-				907C23D1364BAF02CDDB80538933B246 /* MultipartFormData.swift */,
-				977AC47C4F7A58B1F0C6CAB42D9C97AC /* NetworkReachabilityManager.swift */,
-				A446B667E41CF54D3FF72A71DBCC3F20 /* Notifications.swift */,
-				EA90F8C344C9F40A3AA239AB0AEE0FE3 /* ParameterEncoding.swift */,
-				E130D4D749D962A52B04519AD9DE2AC1 /* Request.swift */,
-				15277B11B78AD9C59E0AD932E3E7C346 /* Response.swift */,
-				26E9F1D02C50276874D8FF8DB8478242 /* ResponseSerialization.swift */,
-				8D87FEF6EFB6FC1ACE13A29756512B51 /* Result.swift */,
-				B3222F132238FA73884EF9CB8CD5C6AA /* ServerTrustPolicy.swift */,
-				9E32BB33CDBA4B0FCC06EB1EAF9DB533 /* SessionDelegate.swift */,
-				8A09DE6DE298B9CFD510A5A9E644E334 /* SessionManager.swift */,
-				A190A82E522CD68485D307955721A111 /* TaskDelegate.swift */,
-				9B4ADD3A873DF77C59070DFA1BC6F535 /* Timeline.swift */,
-				FD99E8D1366B53C60C00512298CA266F /* Validation.swift */,
-				818B2DDD7B92B5DBBFAAE3F0D08FAD0F /* Support Files */,
+				FA99221F28314FFE7772C8FE4268CB5E /* AFError.swift */,
+				EC3CB157A89646BF8B0E207ACF7700FB /* Alamofire.swift */,
+				72A290D5D131525079FF172DD46CA115 /* DispatchQueue+Alamofire.swift */,
+				1F3C7F789A315F0CBAFC5DE753CB1E4B /* MultipartFormData.swift */,
+				302F258D6084C0223E2CD8F3074E833E /* NetworkReachabilityManager.swift */,
+				BD75DC009D9E9DC7F6817C487E05E11D /* Notifications.swift */,
+				BDC1418BC6F33BBD03932910DF9B2523 /* ParameterEncoding.swift */,
+				1A314B899AEAA5031B4EB64909571BD4 /* Request.swift */,
+				FEF183C599588A25ECC5DA22F3E3068E /* Response.swift */,
+				46FACA4AD5EDA4CC8D2B852AA946F070 /* ResponseSerialization.swift */,
+				5A68D6F1DE817C5293C444A9759BB41D /* Result.swift */,
+				7A9DCB458CCCF97B52E26E012A84EDF7 /* ServerTrustPolicy.swift */,
+				12E4F8CAE02652F63272C7B8F3B5B4AC /* SessionDelegate.swift */,
+				5899FF0F89D098AC486D8E0020D0F7C6 /* SessionManager.swift */,
+				CF2B0B1A454BEF996E801DB0CB69D02C /* TaskDelegate.swift */,
+				D8E24D2B1ADB1B05D8713560C2F39E73 /* Timeline.swift */,
+				B320488A66DECD63D875B6BA426258C4 /* Validation.swift */,
+				257537C2F4F08DA2F1349C1C0C8A7CEE /* Support Files */,
 			);
 			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
-		AFC66FCE0F135F2FFC5CA0CA333A6604 /* RainyRefreshControl */ = {
+		8CA5C569D8209C088AE78A0E8EDE62BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8CAEF27BAD5993FF13024F1CF6D5EEBC /* ONXRefreshControl.swift */,
-				DF11F0AA65273029896B38F3588F7EDE /* RainScene.swift */,
-				FC54FBC3AFEABFAE4F7A186094DA76FB /* RainyRefreshControl.swift */,
-				D8DA74670AE83D22312820A181C2BF87 /* Umbrella.swift */,
-				D9DC02A5A16B4FFBAFA05754163E28F6 /* Resources */,
-				1983F7905F8593E8E00E491F6A5A86EB /* Support Files */,
+				A630ACD709BB7860E9B1542878BC5DC9 /* Alamofire.framework */,
+				0F10886AB1A6E24AED38505E7019F064 /* APTimeZones.framework */,
+				8AC5E7EFAAD34C7459222B7579803863 /* FMDB.framework */,
+				5604CB6EA91DBB6548CEF1DCC1A2CCB6 /* PKHUD.framework */,
+				764BB3E0CB0B9C68B7F990905033CAB1 /* Pods_NearbyWeather.framework */,
+				8F1BA16184A2D573374AC77FEC5D632A /* Pods_NearbyWeatherTests.framework */,
+				58E59BAA4F172498B22A5DE2EF3BF60E /* RainyRefreshControl.bundle */,
+				E9BA3784D78E5E860BE190D359B5FBC7 /* RainyRefreshControl.framework */,
+				CB238104FF323AF1FFC386968CBC671B /* TextFieldCounter.framework */,
 			);
-			name = RainyRefreshControl;
-			path = RainyRefreshControl;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		B13890D0B30BDE29ADB439D964168EDE /* Pods */ = {
+		9295162EFC0C203F6D4AB19933905C09 /* standard */ = {
 			isa = PBXGroup;
 			children = (
-				9CA9D0454D99290D9B7A5D0687BEB187 /* Alamofire */,
-				8683A1D6E25D62122B86AF715974F3CD /* APTimeZones */,
-				6297FCE63783E8DD0BECAB9C1DBCBFA8 /* PKHUD */,
-				AFC66FCE0F135F2FFC5CA0CA333A6604 /* RainyRefreshControl */,
-				C61EBE30E8E363AAB66C820A0136014D /* TextFieldCounter */,
+				431012053752B9F4B2CCAA3C857A37E5 /* FMDatabase.h */,
+				3DB3775ABAB8A793F1D8511F0317B98A /* FMDatabase.m */,
+				EB7CCD3277373CE69F9B1873BA9D842A /* FMDatabaseAdditions.h */,
+				6460342999E92064ACB5994E0F352E4C /* FMDatabaseAdditions.m */,
+				FA8F841F513FACFED1106ACF5E6694F2 /* FMDatabasePool.h */,
+				D84F16AB7D1E09C273CC59B1B58CF679 /* FMDatabasePool.m */,
+				C077597D3D150DEF5F85109C03B3EF1F /* FMDatabaseQueue.h */,
+				4E9968E4067099F91AED8F99FF1DA740 /* FMDatabaseQueue.m */,
+				C26EA0D61AFA802CBABE1DBF90D0D992 /* FMDB.h */,
+				7F0B99F79E06FFBECCBE08745789A4B0 /* FMResultSet.h */,
+				63EAF63DBF994C27E01880E7CDC5FF2A /* FMResultSet.m */,
 			);
-			name = Pods;
+			name = standard;
 			sourceTree = "<group>";
 		};
-		C61EBE30E8E363AAB66C820A0136014D /* TextFieldCounter */ = {
+		A12CB210D6AA30B0220AC7120C5EA302 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6CECFE4E968EC970CCCB4446D415A12C /* TextFieldCounter.swift */,
-				8AC9941B6A63085813F1A6B29A24F215 /* Support Files */,
+				413A91DA9F3279D24DD1AA7B5975503B /* timezonesDB.json */,
 			);
-			name = TextFieldCounter;
-			path = TextFieldCounter;
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		CC436ACA72D94A051CEB9A6528660B33 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1C3C732EE766B74719FF0F3FD81BB107 /* rain.sks */,
+				50679F0159EE0FEDF2B5F6ACC274D8E3 /* spark.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		CD5AACCA8A49B6FD03FAFA2982748473 /* Pods-NearbyWeather */ = {
@@ -575,13 +648,53 @@
 			path = "Target Support Files/Pods-NearbyWeather";
 			sourceTree = "<group>";
 		};
-		D9DC02A5A16B4FFBAFA05754163E28F6 /* Resources */ = {
+		DC2A2682EFA38B25D47893FD4DD75742 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8C46DBBEEF61424BCF56117F0DBBE52F /* rain.sks */,
-				65EFA4EED79C46474DB5C7E3D95C7053 /* spark.png */,
+				8A3EDE5E9292BDA39A2F22F96B21EA73 /* Alamofire */,
+				2EB54C32846074FABEE2E922436330E5 /* APTimeZones */,
+				38A93D845034D90FBE3B323E27691064 /* FMDB */,
+				832E11B0B011599F1D43AECDD55FAE22 /* PKHUD */,
+				E1CA5072CC7CB4F157EA159DF0B772BB /* RainyRefreshControl */,
+				759F5EFDF65191508B9F63B4860C51B3 /* TextFieldCounter */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DFEB2EA5A8AB94880DED0B5CB976D7C6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5B4EE55435AFD8B053697ABC326D2507 /* Images.xcassets */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		E1CA5072CC7CB4F157EA159DF0B772BB /* RainyRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				E6CFD761F5E6ABEAB344B0286A9B65CC /* ONXRefreshControl.swift */,
+				0207ACF64E483CA74EFAD4CDFF031FC0 /* RainScene.swift */,
+				8CCCB9166498375550DE6FC05EEF6C28 /* RainyRefreshControl.swift */,
+				1230FFDA5168C2F07C89D62F957B9426 /* Umbrella.swift */,
+				CC436ACA72D94A051CEB9A6528660B33 /* Resources */,
+				6C49B45185064A9C05184D0485745952 /* Support Files */,
+			);
+			name = RainyRefreshControl;
+			path = RainyRefreshControl;
+			sourceTree = "<group>";
+		};
+		E5AB3A49C5900AB0E20E2717B0319A89 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0D5BA8EA772B0E864ED895229B8066B3 /* Info.plist */,
+				17DEAD700DF16D3B57A764A1BFEBA017 /* TextFieldCounter.modulemap */,
+				3BBE7062E33117583ECBC98732FBC8F9 /* TextFieldCounter.xcconfig */,
+				2E25984A3A26202C3A08C46A0D1D347B /* TextFieldCounter-dummy.m */,
+				EC856D6C721B7812AD8D18E03E9F662D /* TextFieldCounter-prefix.pch */,
+				8B4D53121D213B55CC243E025760B507 /* TextFieldCounter-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TextFieldCounter";
 			sourceTree = "<group>";
 		};
 		E915D453218CF869972CDFE1B4EB2B23 /* Targets Support Files */ = {
@@ -621,45 +734,36 @@
 			path = "Target Support Files/Pods-NearbyWeatherTests";
 			sourceTree = "<group>";
 		};
-		FEAC059D4C094E37A76993BDD1E5CB0E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				23A2BF7E071B2EDC31DCB0C6F0CBB8CE /* Alamofire.framework */,
-				13A6B859B440D1BE756BF613261FE6CD /* APTimeZones.framework */,
-				0A4BA515C6B92C402A0EFA2A15DE5F65 /* PKHUD.framework */,
-				BB91527AD3EF2F21CF3440A096AFAB29 /* Pods_NearbyWeather.framework */,
-				A98E4459D1E677E57EC4938BA6309334 /* Pods_NearbyWeatherTests.framework */,
-				53417B376107205DFB409AE7D9ACC6E2 /* RainyRefreshControl.bundle */,
-				FB169E7AC55B9AC34CF19BB908CE0114 /* RainyRefreshControl.framework */,
-				2078B2D15B454A2CE0C3ADA62A5A894A /* TextFieldCounter.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		137DCC8E3CE84F18C3BFA8E4BCC5283B /* Headers */ = {
+		16E0CC28ADEC8E47264BDBCE331D669A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79E19D4A9D695AB78A6D17183BCC7F52 /* RainyRefreshControl-umbrella.h in Headers */,
+				31348FF1DEE3546F59B6D51AF7230543 /* TextFieldCounter-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4E127CB6304AC31A7A0612623F383FD9 /* Headers */ = {
+		23AB4493DA0E9706E0A7D103E68542C9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AA62B53F99111C5BECC3EE1247DF183 /* TextFieldCounter-umbrella.h in Headers */,
+				D6CD11B8E28F2CFCAB7EA5A17C44DB56 /* Pods-NearbyWeather-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		571EA3E8B2154EFE7EFC46AB6E6EB790 /* Headers */ = {
+		3D2A080C5CD4ED4520C6AEFA1D6BA26F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D3679598DC840B8E4A05D77188DFFCC /* Pods-NearbyWeather-umbrella.h in Headers */,
+				F11FAB91014130EE233A3429439D38D7 /* FMDatabase.h in Headers */,
+				A548833BE5FAD40830428F36E77D0F52 /* FMDatabaseAdditions.h in Headers */,
+				9B8D84996694C541CD3434386E0A081A /* FMDatabasePool.h in Headers */,
+				22554065FA07F1BFE5308A685394CB12 /* FMDatabaseQueue.h in Headers */,
+				96E70B43FC04BC99AED1BBD4FB1D7581 /* FMDB-umbrella.h in Headers */,
+				CCB74062CE0F4B8E5B7483599BC398DA /* FMDB.h in Headers */,
+				3E43906B70EB01C06F3AE17008B853B9 /* FMResultSet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,11 +775,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BACAC58ADCD3CFCB4B658738DA037F1F /* Headers */ = {
+		CC399AA5D835990DFC7ED013AF97EA7C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5D7DC2C619E61A49CA4B11C11F76E14 /* Pods-NearbyWeatherTests-umbrella.h in Headers */,
+				A6D64CBD8226401173F924212A6E183D /* Pods-NearbyWeatherTests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,24 +803,49 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E41D1EEFA7280F47011198209FB1655E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18A3D09126EF0ECE726024885DE5F0C4 /* RainyRefreshControl-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2E64A8BA96B72A08444A14E9085E6546 /* TextFieldCounter */ = {
+		1AF806359D494A6EB806A01B2E919686 /* RainyRefreshControl-RainyRefreshControl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E798C548221092CBF1EFD3412BD1A160 /* Build configuration list for PBXNativeTarget "TextFieldCounter" */;
+			buildConfigurationList = DB0F22605A2060EA51337D1F560ADC92 /* Build configuration list for PBXNativeTarget "RainyRefreshControl-RainyRefreshControl" */;
 			buildPhases = (
-				D61BD45CF5297219EEB8AC7B337E3227 /* Sources */,
-				39BFD2A305BD7C10F09589D250021A45 /* Frameworks */,
-				4E127CB6304AC31A7A0612623F383FD9 /* Headers */,
+				40B787858760C9C86A5EFA6AB22AEAB8 /* Sources */,
+				2CEF86F220237A8BEFB7A9275FC79593 /* Frameworks */,
+				7B6930F7C3BFCC1677D0B5CA75EA081D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = TextFieldCounter;
-			productName = TextFieldCounter;
-			productReference = 2078B2D15B454A2CE0C3ADA62A5A894A /* TextFieldCounter.framework */;
+			name = "RainyRefreshControl-RainyRefreshControl";
+			productName = "RainyRefreshControl-RainyRefreshControl";
+			productReference = 58E59BAA4F172498B22A5DE2EF3BF60E /* RainyRefreshControl.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		251BAD17812F7EBF6532EACF66F941C3 /* FMDB */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B0566FF0CE681AC326D316CEC45A8CF /* Build configuration list for PBXNativeTarget "FMDB" */;
+			buildPhases = (
+				8FE0D4B503A94502F3431DC0DCB58040 /* Sources */,
+				EEFB61A65EB8DA6653B544822EB9CE44 /* Frameworks */,
+				3D2A080C5CD4ED4520C6AEFA1D6BA26F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FMDB;
+			productName = FMDB;
+			productReference = 8AC5E7EFAAD34C7459222B7579803863 /* FMDB.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		34DA237D90576A8BC4B1D7B05287E650 /* APTimeZones */ = {
@@ -734,48 +863,26 @@
 			);
 			name = APTimeZones;
 			productName = APTimeZones;
-			productReference = 13A6B859B440D1BE756BF613261FE6CD /* APTimeZones.framework */;
+			productReference = 0F10886AB1A6E24AED38505E7019F064 /* APTimeZones.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		48180DB38D0CCCD372D650F61EB5374D /* Pods-NearbyWeather */ = {
+		47D6058DD5F74230F513D82CE9BCB647 /* RainyRefreshControl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 55F48E5E5FFE5455BF32D38EB5918107 /* Build configuration list for PBXNativeTarget "Pods-NearbyWeather" */;
+			buildConfigurationList = BC549DC8A8E69282F6D7F177531C9D73 /* Build configuration list for PBXNativeTarget "RainyRefreshControl" */;
 			buildPhases = (
-				4150D4217BA7F5191B40CF4BD87A1666 /* Sources */,
-				9D845E44E2B853C6AD584A064273442B /* Frameworks */,
-				571EA3E8B2154EFE7EFC46AB6E6EB790 /* Headers */,
+				B7B037DA81912FC50DA9C0FD8EBFAA96 /* Sources */,
+				7F8F78AC5D5F475F7B8E68BCAA010754 /* Frameworks */,
+				864EBB2976B9ADB54350591B35F106B5 /* Resources */,
+				E41D1EEFA7280F47011198209FB1655E /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A6D6CB7FE6055ED2D50AB008606EBF23 /* PBXTargetDependency */,
-				9CC35C7B42BD6C2D01A23553F0BF85CD /* PBXTargetDependency */,
-				BC729A2FE8D8EB7722542CDC94792394 /* PBXTargetDependency */,
-				A74B453AE5C90C2DC3CE1E532BA7E523 /* PBXTargetDependency */,
-				87D0F06B17267A444E9FB7E34BC8063A /* PBXTargetDependency */,
-			);
-			name = "Pods-NearbyWeather";
-			productName = "Pods-NearbyWeather";
-			productReference = BB91527AD3EF2F21CF3440A096AFAB29 /* Pods_NearbyWeather.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		4A77E1A69D8851058F3FD36B41BAA076 /* RainyRefreshControl */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 04924A0FD655857470DBA200EF1E3E78 /* Build configuration list for PBXNativeTarget "RainyRefreshControl" */;
-			buildPhases = (
-				23FC25DC90C7F3FBA57D3EC5A4DFDBE2 /* Sources */,
-				921A658FA450BA1BDBDE364CA0E0E8F3 /* Frameworks */,
-				610D5CCBB8D4C3D8F5A35CCD016392E9 /* Resources */,
-				137DCC8E3CE84F18C3BFA8E4BCC5283B /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6E77EAA75FF01E2C3DCD3BFCC171173F /* PBXTargetDependency */,
+				674FBFBB8037728326AF6B1195BD926B /* PBXTargetDependency */,
 			);
 			name = RainyRefreshControl;
 			productName = RainyRefreshControl;
-			productReference = FB169E7AC55B9AC34CF19BB908CE0114 /* RainyRefreshControl.framework */;
+			productReference = E9BA3784D78E5E860BE190D359B5FBC7 /* RainyRefreshControl.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */ = {
@@ -792,47 +899,31 @@
 			);
 			name = Alamofire;
 			productName = Alamofire;
-			productReference = 23A2BF7E071B2EDC31DCB0C6F0CBB8CE /* Alamofire.framework */;
+			productReference = A630ACD709BB7860E9B1542878BC5DC9 /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C0CE8FD6B0B4E3AEFDA48DB7305512D7 /* Pods-NearbyWeatherTests */ = {
+		B170C37573E5A8B0C896C839A404BADC /* Pods-NearbyWeather */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B7FD3B4AD058D98C3711D7B833E47F98 /* Build configuration list for PBXNativeTarget "Pods-NearbyWeatherTests" */;
+			buildConfigurationList = 25197CE38B321DE3AA216050933062DD /* Build configuration list for PBXNativeTarget "Pods-NearbyWeather" */;
 			buildPhases = (
-				4E2016C0BA2EB8D22D240C2EDF9599D2 /* Sources */,
-				5A87962655A47E91DE8FB64A139505AC /* Frameworks */,
-				BACAC58ADCD3CFCB4B658738DA037F1F /* Headers */,
+				B923D5C9124CD32C52606BF9EB1B83EA /* Sources */,
+				392A4BD21484EC471CBEA74DBE693E40 /* Frameworks */,
+				23AB4493DA0E9706E0A7D103E68542C9 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				AC7F4E8775027A9FB97BBC31A67BB642 /* PBXTargetDependency */,
-				9EA7B2D96AE0329E366CB61086F55899 /* PBXTargetDependency */,
-				00820C45CA36EFB73DCE8A5C0D12983E /* PBXTargetDependency */,
-				95DB4384AE7FE53A3BC15ADE7C6CA1AF /* PBXTargetDependency */,
-				DD06BA7D0E57E22DD592DC3FB2158BD0 /* PBXTargetDependency */,
+				A41000668996B8EC40B0AFDF3A1147D9 /* PBXTargetDependency */,
+				D9B863EADD7377F763678F22DADB7C1B /* PBXTargetDependency */,
+				47B4B3125840D611ED2D421A1E054D70 /* PBXTargetDependency */,
+				5EC6386E4A9D9B77DFCB32CDB60F1304 /* PBXTargetDependency */,
+				2249F4506E384384AF9FA91B38152B7B /* PBXTargetDependency */,
+				14D85EE6D52F5EAE7FE0184C45033D6D /* PBXTargetDependency */,
 			);
-			name = "Pods-NearbyWeatherTests";
-			productName = "Pods-NearbyWeatherTests";
-			productReference = A98E4459D1E677E57EC4938BA6309334 /* Pods_NearbyWeatherTests.framework */;
+			name = "Pods-NearbyWeather";
+			productName = "Pods-NearbyWeather";
+			productReference = 764BB3E0CB0B9C68B7F990905033CAB1 /* Pods_NearbyWeather.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		CD4B6C69BD5B18113BCB86AFCD0DE44E /* RainyRefreshControl-RainyRefreshControl */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C3AE24A329FD279AAC07E5D0D8E11B39 /* Build configuration list for PBXNativeTarget "RainyRefreshControl-RainyRefreshControl" */;
-			buildPhases = (
-				13172BC856DEAA1C5E9DA20F2F033B9F /* Sources */,
-				5C8CDCE38D9099813C11195545172672 /* Frameworks */,
-				9B824F06CF26008404EC75E860E5D9F2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "RainyRefreshControl-RainyRefreshControl";
-			productName = "RainyRefreshControl-RainyRefreshControl";
-			productReference = 53417B376107205DFB409AE7D9ACC6E2 /* RainyRefreshControl.bundle */;
-			productType = "com.apple.product-type.bundle";
 		};
 		D7A75F149082140741FC1E0B5B2863C8 /* PKHUD */ = {
 			isa = PBXNativeTarget;
@@ -849,7 +940,47 @@
 			);
 			name = PKHUD;
 			productName = PKHUD;
-			productReference = 0A4BA515C6B92C402A0EFA2A15DE5F65 /* PKHUD.framework */;
+			productReference = 5604CB6EA91DBB6548CEF1DCC1A2CCB6 /* PKHUD.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F3B50CD1C7C6EF8A5FADD9221DE71A41 /* TextFieldCounter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C8E92FD1EC0F966500CFA22F8117A8E /* Build configuration list for PBXNativeTarget "TextFieldCounter" */;
+			buildPhases = (
+				75A8265EE72B4B4CB65CD9B018FACE54 /* Sources */,
+				9C7E5DD6403ACA5C8B8EEA9D74533DFD /* Frameworks */,
+				16E0CC28ADEC8E47264BDBCE331D669A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TextFieldCounter;
+			productName = TextFieldCounter;
+			productReference = CB238104FF323AF1FFC386968CBC671B /* TextFieldCounter.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FE98B0635F506CEB57A3E45D29539B4E /* Pods-NearbyWeatherTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 412D453BE8F2568CA1ABE1C3F3C3D365 /* Build configuration list for PBXNativeTarget "Pods-NearbyWeatherTests" */;
+			buildPhases = (
+				385A26EFA3153033E1AF6D0558D05DD1 /* Sources */,
+				EBBDAEE35B66E2CD3D85D95D8D65AC1A /* Frameworks */,
+				CC399AA5D835990DFC7ED013AF97EA7C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2CBC62C51AEDBA7F0A9DF7549C91F41B /* PBXTargetDependency */,
+				C0609DD46E3B508980CF01C375F4D13E /* PBXTargetDependency */,
+				02EF1EF3B4A136C4CF869AF59932F193 /* PBXTargetDependency */,
+				98C76022A479D3FB1BA08BF9A4978094 /* PBXTargetDependency */,
+				7AA4C1AB5DF7A9DA886252C500147109 /* PBXTargetDependency */,
+				98BE5FF0B176918660F59196FB1EB334 /* PBXTargetDependency */,
+			);
+			name = "Pods-NearbyWeatherTests";
+			productName = "Pods-NearbyWeatherTests";
+			productReference = 8F1BA16184A2D573374AC77FEC5D632A /* Pods_NearbyWeatherTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -869,18 +1000,19 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = FEAC059D4C094E37A76993BDD1E5CB0E /* Products */;
+			productRefGroup = 8CA5C569D8209C088AE78A0E8EDE62BC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */,
 				34DA237D90576A8BC4B1D7B05287E650 /* APTimeZones */,
+				251BAD17812F7EBF6532EACF66F941C3 /* FMDB */,
 				D7A75F149082140741FC1E0B5B2863C8 /* PKHUD */,
-				48180DB38D0CCCD372D650F61EB5374D /* Pods-NearbyWeather */,
-				C0CE8FD6B0B4E3AEFDA48DB7305512D7 /* Pods-NearbyWeatherTests */,
-				4A77E1A69D8851058F3FD36B41BAA076 /* RainyRefreshControl */,
-				CD4B6C69BD5B18113BCB86AFCD0DE44E /* RainyRefreshControl-RainyRefreshControl */,
-				2E64A8BA96B72A08444A14E9085E6546 /* TextFieldCounter */,
+				B170C37573E5A8B0C896C839A404BADC /* Pods-NearbyWeather */,
+				FE98B0635F506CEB57A3E45D29539B4E /* Pods-NearbyWeatherTests */,
+				47D6058DD5F74230F513D82CE9BCB647 /* RainyRefreshControl */,
+				1AF806359D494A6EB806A01B2E919686 /* RainyRefreshControl-RainyRefreshControl */,
+				F3B50CD1C7C6EF8A5FADD9221DE71A41 /* TextFieldCounter */,
 			);
 		};
 /* End PBXProject section */
@@ -894,20 +1026,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		610D5CCBB8D4C3D8F5A35CCD016392E9 /* Resources */ = {
+		7B6930F7C3BFCC1677D0B5CA75EA081D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29AC65FADD69BF18F249DD96156E7D35 /* RainyRefreshControl.bundle in Resources */,
+				538587E82C2813D0F25787B89EB86824 /* rain.sks in Resources */,
+				3B616A5340CDB796FD6CBC226A792E18 /* spark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9B824F06CF26008404EC75E860E5D9F2 /* Resources */ = {
+		864EBB2976B9ADB54350591B35F106B5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDCAA86D9E10B4289C3E0CC0E8077C47 /* rain.sks in Resources */,
-				283AB0DE4A22E40C9AE71254F696BC81 /* spark.png in Resources */,
+				C4FB31FA39C226C895A15305C7F9FD49 /* RainyRefreshControl.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -922,30 +1054,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		13172BC856DEAA1C5E9DA20F2F033B9F /* Sources */ = {
+		385A26EFA3153033E1AF6D0558D05DD1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A33AA0F747639C1AC27D6B08D71DE29A /* Pods-NearbyWeatherTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23FC25DC90C7F3FBA57D3EC5A4DFDBE2 /* Sources */ = {
+		40B787858760C9C86A5EFA6AB22AEAB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F2CB2EA7DE248C3F87B7B6E90E42ED3 /* ONXRefreshControl.swift in Sources */,
-				CC668A57CEB4260426919C1EB261B181 /* RainScene.swift in Sources */,
-				F503933704EBB803A158F05F39461FDA /* RainyRefreshControl-dummy.m in Sources */,
-				AE025D19541FEAB4AF1EBFA24FCDEAD3 /* RainyRefreshControl.swift in Sources */,
-				706C8D6F2B0890CD474EB60478ABD7D5 /* Umbrella.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4150D4217BA7F5191B40CF4BD87A1666 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83B723F498384E585B5540B1A4A2662C /* Pods-NearbyWeather-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -974,14 +1094,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4E2016C0BA2EB8D22D240C2EDF9599D2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C8354F41639596E6116260B382329804 /* Pods-NearbyWeatherTests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		73598F4ABDF4C10070B28D2CD789BA21 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -990,6 +1102,28 @@
 				CF065EDD10F7CB0C7FDFA4E87638071A /* APTimeZones.m in Sources */,
 				27087E6071F20E476D9E3F71C122D1CB /* CLLocation+APTimeZones.m in Sources */,
 				0F4F707A9D88FCBFD49220EFDF91639B /* CLPlacemark+APTimeZones.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75A8265EE72B4B4CB65CD9B018FACE54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCB2F8436E4D2ED0BC6E9B1E41322382 /* TextFieldCounter-dummy.m in Sources */,
+				B0FE4538E3801CDB2E312436142C0593 /* TextFieldCounter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE0D4B503A94502F3431DC0DCB58040 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				441686B26FE576A79BCD660DDBD10E71 /* FMDatabase.m in Sources */,
+				73E7127CD7B075173EB7FF7716273434 /* FMDatabaseAdditions.m in Sources */,
+				DD099837A33ABA0D8C0FE90F8C61A616 /* FMDatabasePool.m in Sources */,
+				7D560237EA6DAE324C417CD89CCD5DBD /* FMDatabaseQueue.m in Sources */,
+				D5991941DC41DDDDDACAE0B5D47A4639 /* FMDB-dummy.m in Sources */,
+				D75C0D3E0496EAD28E03F3F82836A0C1 /* FMResultSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,221 +1151,113 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D61BD45CF5297219EEB8AC7B337E3227 /* Sources */ = {
+		B7B037DA81912FC50DA9C0FD8EBFAA96 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60EA9B3E5F496C56D03820DEC077BC4F /* TextFieldCounter-dummy.m in Sources */,
-				5F1730E909EF941385D7E2AE9E025DF2 /* TextFieldCounter.swift in Sources */,
+				2108EE65C2480F86A64CB7E9FC40B07B /* ONXRefreshControl.swift in Sources */,
+				400D12D6663B1E1A0817AF79AA0C59CE /* RainScene.swift in Sources */,
+				328D4F1ABF3745E6AB5EE96933CC75B0 /* RainyRefreshControl-dummy.m in Sources */,
+				4204208B5665F2ED0DED7529E4294839 /* RainyRefreshControl.swift in Sources */,
+				4EF2DF2579818F5975E3B1C1DB0CDAC9 /* Umbrella.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B923D5C9124CD32C52606BF9EB1B83EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				166FFA6B0BA9CBF4B150991D4A5FB6DD /* Pods-NearbyWeather-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		00820C45CA36EFB73DCE8A5C0D12983E /* PBXTargetDependency */ = {
+		02EF1EF3B4A136C4CF869AF59932F193 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FMDB;
+			target = 251BAD17812F7EBF6532EACF66F941C3 /* FMDB */;
+			targetProxy = B63C7A1113A309A5DC7A7B1EDB1E42B8 /* PBXContainerItemProxy */;
+		};
+		14D85EE6D52F5EAE7FE0184C45033D6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TextFieldCounter;
+			target = F3B50CD1C7C6EF8A5FADD9221DE71A41 /* TextFieldCounter */;
+			targetProxy = 5156F841B30D1EFA9F159927EC7BA02B /* PBXContainerItemProxy */;
+		};
+		2249F4506E384384AF9FA91B38152B7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RainyRefreshControl;
+			target = 47D6058DD5F74230F513D82CE9BCB647 /* RainyRefreshControl */;
+			targetProxy = C0DB36A5B45CF53746626131F1BF6572 /* PBXContainerItemProxy */;
+		};
+		2CBC62C51AEDBA7F0A9DF7549C91F41B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = APTimeZones;
+			target = 34DA237D90576A8BC4B1D7B05287E650 /* APTimeZones */;
+			targetProxy = 16C80BC3A873F204941E5F0868797604 /* PBXContainerItemProxy */;
+		};
+		47B4B3125840D611ED2D421A1E054D70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FMDB;
+			target = 251BAD17812F7EBF6532EACF66F941C3 /* FMDB */;
+			targetProxy = 9811D2300BDCECB92808087CA136E11B /* PBXContainerItemProxy */;
+		};
+		5EC6386E4A9D9B77DFCB32CDB60F1304 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PKHUD;
 			target = D7A75F149082140741FC1E0B5B2863C8 /* PKHUD */;
-			targetProxy = 88F09E0533ED0E7ACB1E844EF1739D74 /* PBXContainerItemProxy */;
+			targetProxy = 67B961545D0E7C07AE1D59C9906C84BD /* PBXContainerItemProxy */;
 		};
-		6E77EAA75FF01E2C3DCD3BFCC171173F /* PBXTargetDependency */ = {
+		674FBFBB8037728326AF6B1195BD926B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "RainyRefreshControl-RainyRefreshControl";
-			target = CD4B6C69BD5B18113BCB86AFCD0DE44E /* RainyRefreshControl-RainyRefreshControl */;
-			targetProxy = 65A64C5D30B12BD6EEF3B9824148931A /* PBXContainerItemProxy */;
+			target = 1AF806359D494A6EB806A01B2E919686 /* RainyRefreshControl-RainyRefreshControl */;
+			targetProxy = 1D1DA0020573C9B1A017C9553D2D7C24 /* PBXContainerItemProxy */;
 		};
-		87D0F06B17267A444E9FB7E34BC8063A /* PBXTargetDependency */ = {
+		7AA4C1AB5DF7A9DA886252C500147109 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RainyRefreshControl;
+			target = 47D6058DD5F74230F513D82CE9BCB647 /* RainyRefreshControl */;
+			targetProxy = 30BBE5357E85C2F0A179D12F9EF6E9BA /* PBXContainerItemProxy */;
+		};
+		98BE5FF0B176918660F59196FB1EB334 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = TextFieldCounter;
-			target = 2E64A8BA96B72A08444A14E9085E6546 /* TextFieldCounter */;
-			targetProxy = F5C4F6C8A0303112DCF61872C3F10DD5 /* PBXContainerItemProxy */;
+			target = F3B50CD1C7C6EF8A5FADD9221DE71A41 /* TextFieldCounter */;
+			targetProxy = 1CB16FE61F4300DAF66796462C48879D /* PBXContainerItemProxy */;
 		};
-		95DB4384AE7FE53A3BC15ADE7C6CA1AF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RainyRefreshControl;
-			target = 4A77E1A69D8851058F3FD36B41BAA076 /* RainyRefreshControl */;
-			targetProxy = F83E884F37F48DC697DCA1D0AA131EA4 /* PBXContainerItemProxy */;
-		};
-		9CC35C7B42BD6C2D01A23553F0BF85CD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Alamofire;
-			target = 88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */;
-			targetProxy = 4C8F572EBE92136203BC31DFE6E5C3E7 /* PBXContainerItemProxy */;
-		};
-		9EA7B2D96AE0329E366CB61086F55899 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Alamofire;
-			target = 88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */;
-			targetProxy = 4944B8B5CE140CF6B2EB429EC705DABD /* PBXContainerItemProxy */;
-		};
-		A6D6CB7FE6055ED2D50AB008606EBF23 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = APTimeZones;
-			target = 34DA237D90576A8BC4B1D7B05287E650 /* APTimeZones */;
-			targetProxy = BA53E819CCB41B4F85DA1846CD1B7B8A /* PBXContainerItemProxy */;
-		};
-		A74B453AE5C90C2DC3CE1E532BA7E523 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RainyRefreshControl;
-			target = 4A77E1A69D8851058F3FD36B41BAA076 /* RainyRefreshControl */;
-			targetProxy = 20DD551E926EA5EAE1BAA27BEC026AD7 /* PBXContainerItemProxy */;
-		};
-		AC7F4E8775027A9FB97BBC31A67BB642 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = APTimeZones;
-			target = 34DA237D90576A8BC4B1D7B05287E650 /* APTimeZones */;
-			targetProxy = DE4E20A885820FBEBE0F1C844B633D85 /* PBXContainerItemProxy */;
-		};
-		BC729A2FE8D8EB7722542CDC94792394 /* PBXTargetDependency */ = {
+		98C76022A479D3FB1BA08BF9A4978094 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PKHUD;
 			target = D7A75F149082140741FC1E0B5B2863C8 /* PKHUD */;
-			targetProxy = 9D89E9CC2CDB0EA42475B653EB51D8C0 /* PBXContainerItemProxy */;
+			targetProxy = 3AE27BAB7E633742E85C85F7DE8409E0 /* PBXContainerItemProxy */;
 		};
-		DD06BA7D0E57E22DD592DC3FB2158BD0 /* PBXTargetDependency */ = {
+		A41000668996B8EC40B0AFDF3A1147D9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = TextFieldCounter;
-			target = 2E64A8BA96B72A08444A14E9085E6546 /* TextFieldCounter */;
-			targetProxy = 5D41D96607C348C34C4A2205FA388E32 /* PBXContainerItemProxy */;
+			name = APTimeZones;
+			target = 34DA237D90576A8BC4B1D7B05287E650 /* APTimeZones */;
+			targetProxy = B73E10DD24664122B76F2854D0DAE681 /* PBXContainerItemProxy */;
+		};
+		C0609DD46E3B508980CF01C375F4D13E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = 88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */;
+			targetProxy = 854EB50E7577DEB4481B561B37BD6362 /* PBXContainerItemProxy */;
+		};
+		D9B863EADD7377F763678F22DADB7C1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = 88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */;
+			targetProxy = 1D465FEDC538B34CDC249A670BAB6290 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0D8EF5706BAE801BA6D6CABEB1AD1489 /* Debug */ = {
+		0F4189B2C8E7630E6195C76DED4C0755 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60973A8B59592D39D5AD8B1264014B0F /* TextFieldCounter.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/TextFieldCounter/TextFieldCounter-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TextFieldCounter/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TextFieldCounter/TextFieldCounter.modulemap";
-				PRODUCT_NAME = TextFieldCounter;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		1ACEE82E56DFCF3B6C76DF927D325353 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60973A8B59592D39D5AD8B1264014B0F /* TextFieldCounter.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/TextFieldCounter/TextFieldCounter-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TextFieldCounter/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TextFieldCounter/TextFieldCounter.modulemap";
-				PRODUCT_NAME = TextFieldCounter;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		1E98EA1E4AD495B2335C5A474138E88A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25EBBF0D8B087BBFAFE05F4469BA2AD4 /* Pods-NearbyWeatherTests.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-NearbyWeatherTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-NearbyWeatherTests/Pods-NearbyWeatherTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_NearbyWeatherTests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		20636BD8545B653AE44AF00323AE0D09 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F96D7A230711920B50A217D4A731C376 /* Pods-NearbyWeatherTests.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-NearbyWeatherTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-NearbyWeatherTests/Pods-NearbyWeatherTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_NearbyWeatherTests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3E06CF1D8B923E396F97EF6AAB491D81 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC179805F2BF8A6A7A8496B038100C87 /* RainyRefreshControl.xcconfig */;
+			baseConfigurationReference = 2BA49A5080E42ECC3C9170FA3D182401 /* RainyRefreshControl.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1260,9 +1286,57 @@
 			};
 			name = Debug;
 		};
+		2293CFDFECA89C693824540B94606731 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BA49A5080E42ECC3C9170FA3D182401 /* RainyRefreshControl.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/RainyRefreshControl/RainyRefreshControl-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RainyRefreshControl/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/RainyRefreshControl/RainyRefreshControl.modulemap";
+				PRODUCT_NAME = RainyRefreshControl;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		41EF4F796503779B439CF62431E3AB55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BA49A5080E42ECC3C9170FA3D182401 /* RainyRefreshControl.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/RainyRefreshControl";
+				INFOPLIST_FILE = "Target Support Files/RainyRefreshControl/ResourceBundle-RainyRefreshControl-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = RainyRefreshControl;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
 		64C2D07D9403B50A8AA59AA7B1D09C3D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A0508CD9D021936BD6792112601D39AF /* PKHUD.xcconfig */;
+			baseConfigurationReference = 0D3C64505C2BEDC1CE0C24CFEC9E6DEA /* PKHUD.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1294,7 +1368,7 @@
 		};
 		6D85C295DE88487C4673B4084797FA06 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B039B7F68BBE7E441F05FBB9DA6C27B3 /* APTimeZones.xcconfig */;
+			baseConfigurationReference = 944A5D5E025A4B0089FAEA7850003C51 /* APTimeZones.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1377,9 +1451,77 @@
 			};
 			name = Release;
 		};
+		7B843B8BFB5001933B6A02F54E641A3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61E47A157B9B4A5100578E4941AAEA8B /* Pods-NearbyWeather.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-NearbyWeather/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NearbyWeather/Pods-NearbyWeather.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_NearbyWeather;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8A919ADE568FFBF13F6539A3EA051306 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67DF38B7A56F5CAC394212397EA506EE /* Pods-NearbyWeather.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-NearbyWeather/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NearbyWeather/Pods-NearbyWeather.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_NearbyWeather;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		8B917F4EC1238C86189D5AC304804949 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A0508CD9D021936BD6792112601D39AF /* PKHUD.xcconfig */;
+			baseConfigurationReference = 0D3C64505C2BEDC1CE0C24CFEC9E6DEA /* PKHUD.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1408,9 +1550,43 @@
 			};
 			name = Debug;
 		};
+		8C65E91A2840061F621F70302034D684 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F96D7A230711920B50A217D4A731C376 /* Pods-NearbyWeatherTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-NearbyWeatherTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NearbyWeatherTests/Pods-NearbyWeatherTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_NearbyWeatherTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		9BAFAF41F449CDB98A26927B697914B8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B039B7F68BBE7E441F05FBB9DA6C27B3 /* APTimeZones.xcconfig */;
+			baseConfigurationReference = 944A5D5E025A4B0089FAEA7850003C51 /* APTimeZones.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1439,9 +1615,25 @@
 			};
 			name = Release;
 		};
+		A92A01FEF33F1E0CDE52B3B879CAA3C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BA49A5080E42ECC3C9170FA3D182401 /* RainyRefreshControl.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/RainyRefreshControl";
+				INFOPLIST_FILE = "Target Support Files/RainyRefreshControl/ResourceBundle-RainyRefreshControl-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = RainyRefreshControl;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		B0F5F1530D3F4E518BE2B1A52F98487A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3426FAF75C18616E8974B185A83BE601 /* Alamofire.xcconfig */;
+			baseConfigurationReference = CF0420AFAFF22A1459D0FBEC570EB4CE /* Alamofire.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1469,6 +1661,38 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		B161E8BEE4EB0F19FEE928A07BA21C8A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BBE7062E33117583ECBC98732FBC8F9 /* TextFieldCounter.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TextFieldCounter/TextFieldCounter-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TextFieldCounter/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TextFieldCounter/TextFieldCounter.modulemap";
+				PRODUCT_NAME = TextFieldCounter;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		B57951D085A1B98A97F8A1062A5E5C5B /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1532,7 +1756,7 @@
 		};
 		B8CA02655A4B738D82484691EE8CA58F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3426FAF75C18616E8974B185A83BE601 /* Alamofire.xcconfig */;
+			baseConfigurationReference = CF0420AFAFF22A1459D0FBEC570EB4CE /* Alamofire.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1562,25 +1786,9 @@
 			};
 			name = Release;
 		};
-		BD08D1C0553DA4FE5FC85D0E6B232F68 /* Debug */ = {
+		DF59F9EAD3A14631E9FFD007E1A70265 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC179805F2BF8A6A7A8496B038100C87 /* RainyRefreshControl.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/RainyRefreshControl";
-				INFOPLIST_FILE = "Target Support Files/RainyRefreshControl/ResourceBundle-RainyRefreshControl-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_NAME = RainyRefreshControl;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		BE526FFB61AB9978434681514CCC3C44 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67DF38B7A56F5CAC394212397EA506EE /* Pods-NearbyWeather.release.xcconfig */;
+			baseConfigurationReference = 73E1DD5F124E54D3D3FDCD263CAA3823 /* FMDB.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1591,101 +1799,46 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-NearbyWeather/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/FMDB/FMDB-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FMDB/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-NearbyWeather/Pods-NearbyWeather.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_NearbyWeather;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		C9055F320940042A7E22C69580CD8CB9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC179805F2BF8A6A7A8496B038100C87 /* RainyRefreshControl.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/RainyRefreshControl";
-				INFOPLIST_FILE = "Target Support Files/RainyRefreshControl/ResourceBundle-RainyRefreshControl-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_NAME = RainyRefreshControl;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		D62D149E7F349EDD894FFA55C8A2FDAD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61E47A157B9B4A5100578E4941AAEA8B /* Pods-NearbyWeather.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-NearbyWeather/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-NearbyWeather/Pods-NearbyWeather.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_NearbyWeather;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		F156DC2612466C2B4E931C1EAD125C4E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC179805F2BF8A6A7A8496B038100C87 /* RainyRefreshControl.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/RainyRefreshControl/RainyRefreshControl-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/RainyRefreshControl/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/RainyRefreshControl/RainyRefreshControl.modulemap";
-				PRODUCT_NAME = RainyRefreshControl;
+				MODULEMAP_FILE = "Target Support Files/FMDB/FMDB.modulemap";
+				PRODUCT_NAME = FMDB;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F4A3BE47E5388D694D21599E3DD420CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73E1DD5F124E54D3D3FDCD263CAA3823 /* FMDB.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FMDB/FMDB-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FMDB/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FMDB/FMDB.modulemap";
+				PRODUCT_NAME = FMDB;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1694,14 +1847,79 @@
 			};
 			name = Release;
 		};
+		F97DBCAFE8F2F444F1B0E53706520ECF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25EBBF0D8B087BBFAFE05F4469BA2AD4 /* Pods-NearbyWeatherTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-NearbyWeatherTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NearbyWeatherTests/Pods-NearbyWeatherTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_NearbyWeatherTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FA1A4B3A466877C564FC4F3C2C3FD192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BBE7062E33117583ECBC98732FBC8F9 /* TextFieldCounter.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TextFieldCounter/TextFieldCounter-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TextFieldCounter/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TextFieldCounter/TextFieldCounter.modulemap";
+				PRODUCT_NAME = TextFieldCounter;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04924A0FD655857470DBA200EF1E3E78 /* Build configuration list for PBXNativeTarget "RainyRefreshControl" */ = {
+		25197CE38B321DE3AA216050933062DD /* Build configuration list for PBXNativeTarget "Pods-NearbyWeather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3E06CF1D8B923E396F97EF6AAB491D81 /* Debug */,
-				F156DC2612466C2B4E931C1EAD125C4E /* Release */,
+				7B843B8BFB5001933B6A02F54E641A3F /* Debug */,
+				8A919ADE568FFBF13F6539A3EA051306 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1715,6 +1933,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		412D453BE8F2568CA1ABE1C3F3C3D365 /* Build configuration list for PBXNativeTarget "Pods-NearbyWeatherTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C65E91A2840061F621F70302034D684 /* Debug */,
+				F97DBCAFE8F2F444F1B0E53706520ECF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		419E5D95491847CD79841B971A8A3277 /* Build configuration list for PBXNativeTarget "Alamofire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1724,11 +1951,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		55F48E5E5FFE5455BF32D38EB5918107 /* Build configuration list for PBXNativeTarget "Pods-NearbyWeather" */ = {
+		4C8E92FD1EC0F966500CFA22F8117A8E /* Build configuration list for PBXNativeTarget "TextFieldCounter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D62D149E7F349EDD894FFA55C8A2FDAD /* Debug */,
-				BE526FFB61AB9978434681514CCC3C44 /* Release */,
+				FA1A4B3A466877C564FC4F3C2C3FD192 /* Debug */,
+				B161E8BEE4EB0F19FEE928A07BA21C8A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B0566FF0CE681AC326D316CEC45A8CF /* Build configuration list for PBXNativeTarget "FMDB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF59F9EAD3A14631E9FFD007E1A70265 /* Debug */,
+				F4A3BE47E5388D694D21599E3DD420CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1751,29 +1987,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B7FD3B4AD058D98C3711D7B833E47F98 /* Build configuration list for PBXNativeTarget "Pods-NearbyWeatherTests" */ = {
+		BC549DC8A8E69282F6D7F177531C9D73 /* Build configuration list for PBXNativeTarget "RainyRefreshControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				20636BD8545B653AE44AF00323AE0D09 /* Debug */,
-				1E98EA1E4AD495B2335C5A474138E88A /* Release */,
+				0F4189B2C8E7630E6195C76DED4C0755 /* Debug */,
+				2293CFDFECA89C693824540B94606731 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C3AE24A329FD279AAC07E5D0D8E11B39 /* Build configuration list for PBXNativeTarget "RainyRefreshControl-RainyRefreshControl" */ = {
+		DB0F22605A2060EA51337D1F560ADC92 /* Build configuration list for PBXNativeTarget "RainyRefreshControl-RainyRefreshControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BD08D1C0553DA4FE5FC85D0E6B232F68 /* Debug */,
-				C9055F320940042A7E22C69580CD8CB9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E798C548221092CBF1EFD3412BD1A160 /* Build configuration list for PBXNativeTarget "TextFieldCounter" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0D8EF5706BAE801BA6D6CABEB1AD1489 /* Debug */,
-				1ACEE82E56DFCF3B6C76DF927D325353 /* Release */,
+				41EF4F796503779B439CF62431E3AB55 /* Debug */,
+				A92A01FEF33F1E0CDE52B3B879CAA3C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

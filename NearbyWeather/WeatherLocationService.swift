@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FMDB
 
 class WeatherLocationService {
     
@@ -14,52 +15,60 @@ class WeatherLocationService {
     
     public static var shared: WeatherLocationService!
     
-    public var openWeatherMapCities: [WeatherLocationDTO]
-    
     
     // MARK: - Private Assets
     
     private let openWeatherMapCityServiceBackgroundQueue = DispatchQueue(label: "de.erikmaximilianmartens.nearbyWeather.openWeatherMapCityService", qos: DispatchQoS.background, attributes: [DispatchQueue.Attributes.concurrent], autoreleaseFrequency: .inherit, target: nil)
     
+    fileprivate let databaseQueue: FMDatabaseQueue
+    
     
     // MARK: - Initialization
     
-    private init(openWeatherMapCities: [WeatherLocationDTO]) {
-        self.openWeatherMapCities = openWeatherMapCities
-    }
-    
-    private convenience init(fileName: String) {
-        self.init(openWeatherMapCities: [WeatherLocationDTO]())
-        
-        var cities: [WeatherLocationDTO]?
-        
-        let dispatchGroup = DispatchGroup()
-        dispatchGroup.enter()
-        openWeatherMapCityServiceBackgroundQueue.async {
-            guard let path = Bundle.main.url(forResource: fileName, withExtension: "json") else {
-                dispatchGroup.leave()
-                return
-            }
-            do {
-                let cityJsonData = try Data(contentsOf: path, options: .mappedIfSafe)
-                cities = try JSONDecoder().decode([WeatherLocationDTO].self, from: cityJsonData)
-                dispatchGroup.leave()
-            } catch let error {
-                dispatchGroup.leave()
-                print(error.localizedDescription)
-                return
-            }
-        }
-        dispatchGroup.notify(queue: DispatchQueue.main, execute: {
-            if let openWeatherMapCities = cities {
-                self.openWeatherMapCities = openWeatherMapCities
-            }
-        })
+    private init() {
+        let sqliteFilePath = Bundle.main.path(forResource: "locationsSQLite", ofType: "sqlite")! // crash app if not found, cannot run without db
+        self.databaseQueue = FMDatabaseQueue(path: sqliteFilePath)
     }
     
     // MARK: - Public Properties & Methods
     
     public static func instantiateSharedInstance() {
-        shared = WeatherLocationService(fileName: "cityList_17-04-2017")
+        shared = WeatherLocationService()
+    }
+    
+    public func locations(forSearchString searchString: String, completionHandler: @escaping (([WeatherLocationDTO]?)->())) {
+        
+        if searchString.count == 0 || searchString == "" { return completionHandler(nil) }
+        
+        databaseQueue.inDatabase { database in
+            
+            let query = "SELECT * FROM locations WHERE (lower(name) LIKE '%\(searchString.lowercased())%')"
+            var queryResult: FMResultSet?
+            
+            do {
+                queryResult = try database.executeQuery(query, values: nil)
+            } catch {
+                print(error.localizedDescription)
+                return completionHandler(nil)
+            }
+            
+            guard let result = queryResult else {
+                completionHandler(nil)
+                return
+            }
+            
+            var retrievedLocations = [WeatherLocationDTO]()
+            while result.next() {
+                guard let location = WeatherLocationDTO(from: result) else {
+                    return
+                }
+                retrievedLocations.append(location)
+            }
+            
+            guard !retrievedLocations.isEmpty else {
+                return completionHandler(nil)
+            }
+            completionHandler(retrievedLocations)
+        }
     }
 }

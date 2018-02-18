@@ -32,8 +32,6 @@ class WeatherLocationSelectionTableViewController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
-        
-        filteredCities = WeatherLocationService.shared.openWeatherMapCities
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,16 +81,22 @@ extension WeatherLocationSelectionTableViewController: UISearchResultsUpdating {
             tableView.reloadData()
             return
         }
-        filteredCities = WeatherLocationService.shared.openWeatherMapCities.filter {
-            return $0.name.lowercased().contains(searchText.lowercased())
-        }
-        tableView.reloadData()
+        WeatherLocationService.shared.locations(forSearchString: searchText, completionHandler: { [unowned self] weatherLocationDTOs in
+            if let weatherLocationDTOs = weatherLocationDTOs {
+                self.filteredCities = weatherLocationDTOs
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
+        
     }
 }
 
 extension WeatherLocationSelectionTableViewController: UISearchControllerDelegate {
+    
     func willDismissSearchController(_ searchController: UISearchController) {
-        filteredCities = WeatherLocationService.shared.openWeatherMapCities
+        filteredCities = [WeatherLocationDTO]()
         tableView.reloadData()
     }
 }

@@ -15,6 +15,7 @@ class InfoTableViewController: UITableViewController {
     struct CocoaPodMeta { var name: String; var urlString: String }
     private static let cocoaPods: [CocoaPodMeta] = [CocoaPodMeta(name: "Alamofire", urlString: "https://github.com/Alamofire/Alamofire"),
                                                     CocoaPodMeta(name: "APTimeZones", urlString: "https://github.com/Alterplay/APTimeZones"),
+                                                    CocoaPodMeta(name: "FMDB", urlString: "https://github.com/ccgus/fmdb"),
                                                     CocoaPodMeta(name: "PKHUD", urlString: "https://github.com/pkluz/PKHUD"),
                                                     CocoaPodMeta(name: "RainyRefreshControl", urlString: "https://github.com/Onix-Systems/RainyRefreshControl"),
                                                     CocoaPodMeta(name: "TextFieldCounter", urlString: "https://github.com/serralvo/TextFieldCounter")]
