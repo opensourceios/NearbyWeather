@@ -21,16 +21,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emF-ra-DfX" userLabel="EmptyListOverlay">
-                                <rect key="frame" x="0.0" y="-3352" width="375" height="7371.5"/>
+                                <rect key="frame" x="0.0" y="257" width="0.0" height="153.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GoQ-X0-C04">
-                                        <rect key="frame" x="20" y="0.5" width="335" height="7371.5"/>
+                                        <rect key="frame" x="0.0" y="0.5" width="0.0" height="153.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BEa-pQ-8ou">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="103"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="103"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SadCloud" translatesAutoresizingMaskIntoConstraints="NO" id="QRd-v4-MWg">
-                                                        <rect key="frame" x="92.5" y="0.5" width="150" height="103"/>
+                                                        <rect key="frame" x="0.0" y="0.5" width="150" height="103"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="QRd-v4-MWg" secondAttribute="height" multiplier="150:103" id="0YJ-cq-y5S"/>
                                                             <constraint firstAttribute="width" constant="150" id="7dF-E3-noZ"/>
@@ -45,16 +45,16 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Xn8-ZN-U03">
-                                                <rect key="frame" x="0.0" y="123" width="335" height="7248.5"/>
+                                                <rect key="frame" x="0.0" y="123" width="0.0" height="30.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Weather Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ty3-Y9-aU0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="20.5"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather data could not be loaded. Make sure you are connected to the Internet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccx-2t-Xmu">
-                                                        <rect key="frame" x="0.0" y="30.5" width="335" height="7218"/>
+                                                        <rect key="frame" x="0.0" y="30.5" width="0.0" height="0.0"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -73,10 +73,10 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Mgw-Bz-sT3">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="667"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="99J-tm-PbI">
-                                    <rect key="frame" x="0.0" y="258.5" width="0.0" height="41"/>
+                                    <rect key="frame" x="0.0" y="258.5" width="375" height="41"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7iY-79-fIX" userLabel="Line View">
@@ -113,7 +113,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherDataCell" rowHeight="125" id="Nkq-jB-OG2" userLabel="WeatherDataCell" customClass="WeatherDataCell" customModule="NearbyWeather" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="0.0" height="125"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nkq-jB-OG2" id="bHJ-cd-yLS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
@@ -255,7 +255,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlertCell" rowHeight="60" id="KNU-hd-cig" userLabel="AlertCell" customClass="AlertCell" customModule="NearbyWeather" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="180.5" width="0.0" height="60"/>
+                                        <rect key="frame" x="0.0" y="180.5" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KNU-hd-cig" id="iGh-Rv-kuf">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -323,10 +323,10 @@
                                 <sections/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="66v-OR-ig0">
-                                <rect key="frame" x="15" y="592" width="345" height="60"/>
+                                <rect key="frame" x="0.0" y="592" width="0.0" height="60"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cO7-FX-PEe">
-                                        <rect key="frame" x="10" y="5" width="325" height="50"/>
+                                        <rect key="frame" x="0.0" y="5" width="0.0" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAw-iC-6ti">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -341,7 +341,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQ1-2i-5Af">
-                                                <rect key="frame" x="91.5" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="116.5" y="0.0" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="GQ1-2i-5Af" secondAttribute="height" multiplier="1:1" id="2s9-i6-h0h"/>
                                                 </constraints>
@@ -353,7 +353,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlV-Vb-JpW">
-                                                <rect key="frame" x="183.5" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="208.5" y="0.0" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="nlV-Vb-JpW" secondAttribute="height" multiplier="1:1" id="MDz-zk-hIb"/>
                                                 </constraints>
@@ -365,7 +365,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPo-ZW-m5T">
-                                                <rect key="frame" x="275" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="SPo-ZW-m5T" secondAttribute="height" multiplier="1:1" id="1ZD-zq-mZv"/>
                                                 </constraints>
@@ -1005,13 +1005,13 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PQk-Il-74x">
-                                    <rect key="frame" x="0.0" y="25" width="0.0" height="120"/>
+                                    <rect key="frame" x="0.0" y="25" width="375" height="120"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDb-dK-OSj">
-                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nearbyweather_webicon" translatesAutoresizingMaskIntoConstraints="NO" id="djW-Ua-f6G">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                                    <rect key="frame" x="150" y="0.0" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="75" id="XGi-Z8-l88"/>
                                                         <constraint firstAttribute="width" secondItem="djW-Ua-f6G" secondAttribute="height" multiplier="1:1" id="b3Z-aR-Pwv"/>
@@ -1027,7 +1027,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NearbyWeather - Open Source Weather" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6C-kQ-Qmj" userLabel="appTitleLabel">
-                                            <rect key="frame" x="0.0" y="80" width="0.0" height="25"/>
+                                            <rect key="frame" x="0.0" y="80" width="375" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="wVl-qL-80q"/>
                                             </constraints>
@@ -1036,7 +1036,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.2 Build #6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czi-Ez-K0K" userLabel="appVersionLabel">
-                                            <rect key="frame" x="0.0" y="105" width="0.0" height="15"/>
+                                            <rect key="frame" x="0.0" y="105" width="375" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="JKS-0y-IhZ"/>
                                             </constraints>
