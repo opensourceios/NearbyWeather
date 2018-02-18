@@ -103,7 +103,7 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
         let labelWidth: CGFloat = kWidth - 2 * kMargin
         let labelHeight: CGFloat = (kHeight - 2 * kMargin - kTriangleHeight)/2
         
-        titleLabel = label(withFontSize: 14)
+        titleLabel = label(withFontSize: 12)
         titleLabel.frame.size = CGSize(width: labelWidth, height: labelHeight)
         titleLabel.center = CGPoint(x: frame.size.width/2, y: titleLabel.frame.size.height/2 + kMargin)
         titleLabel.frame = titleLabel.frame.offsetBy(dx: 0, dy: -kHeight/2)
