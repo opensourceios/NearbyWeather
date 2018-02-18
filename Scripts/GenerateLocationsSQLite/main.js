@@ -10,10 +10,3 @@ const outputFilePath = process.argv[5]
 const locationsSQLiteGenerator = new LocationsSQLiteGenerator(inputFileUrl, temporaryFilePath, templateFilePath, outputFilePath)
 
 locationsSQLiteGenerator.run()
-  // .then(() => {
-  //   console.log('Done!')
-  // })
-  // .catch((error) => {
-  //   console.error('An unexpected error occured!')
-  //   console.error(error)
-  // })
