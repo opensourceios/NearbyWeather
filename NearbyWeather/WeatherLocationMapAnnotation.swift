@@ -10,28 +10,17 @@ import Foundation
 import MapKit
 
 class WeatherLocationMapAnnotation: NSObject, MKAnnotation {
-    let title: String?
-    let subtitle: String?
-    let coordinate: CLLocationCoordinate2D
-    let locationId: Int
+    let weatherDTO: WeatherDataDTO
+    var coordinate: CLLocationCoordinate2D
     
-    init(title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D, locationId: Int) {
-        self.title = title
-        self.subtitle = subtitle
-        self.coordinate = coordinate
-        self.locationId = locationId
+    init(weatherDTO: WeatherDataDTO) {
+        self.weatherDTO = weatherDTO
+        self.coordinate = CLLocationCoordinate2D(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
     }
     
     convenience init?(weatherDTO: WeatherDataDTO?) {
         guard let weatherDTO = weatherDTO else { return nil }
         
-        let weatherConditionIdentifier = weatherDTO.weatherCondition.first?.identifier
-        let weatherConditionSymbol = weatherConditionIdentifier != nil ? ConversionService.weatherConditionSymbol(fromWeathercode: weatherConditionIdentifier!) : nil
-        let temperatureDescriptor = ConversionService.temperatureDescriptor(forTemperatureUnit: PreferencesManager.shared.temperatureUnit, fromRawTemperature: weatherDTO.atmosphericInformation.temperatureKelvin)
-        
-        let subtitle = weatherConditionSymbol != nil ? "\(weatherConditionSymbol!) \(temperatureDescriptor)" : "\(temperatureDescriptor)"
-        let coordinate = CLLocationCoordinate2D(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
-        
-        self.init(title: weatherDTO.cityName, subtitle: subtitle, coordinate: coordinate, locationId: weatherDTO.cityID)
+        self.init(weatherDTO: weatherDTO)
     }
 }

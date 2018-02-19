@@ -215,7 +215,7 @@ extension WeatherDetailViewController: MKMapViewDelegate {
             viewForCurrentAnnotation = WeatherLocationMapAnnotationView(frame: kMapAnnotationViewInitialFrame)
         }
         viewForCurrentAnnotation?.annotation = annotation
-        viewForCurrentAnnotation?.configure(withTitle: annotation.title ?? "<Not Set>", subtitle: annotation.subtitle ?? "<Not Set>", tapHandler: nil)
+        viewForCurrentAnnotation?.configure(withWeatherDTO: annotation.weatherDTO, tapHandler: nil)
         
         return viewForCurrentAnnotation
     }

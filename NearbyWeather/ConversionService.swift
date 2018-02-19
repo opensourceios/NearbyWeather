@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import MapKit
+import APTimeZones
 
 class ConversionService {
     
@@ -88,5 +90,40 @@ class ConversionService {
     
     public static func windDirectionDescriptor(forWindDirection degrees: Double) -> String {
         return String(format: "%.02f", degrees) + "°"
+    }
+    
+    public static func isDayTime(forWeatherDTO weatherDTO: WeatherDataDTO?) -> Bool? {
+        
+        guard let weatherDTO = weatherDTO,
+            let sunrise =  weatherDTO.daytimeInformation?.sunrise,
+            let sunset =  weatherDTO.daytimeInformation?.sunset else {
+                return nil
+        }
+        let location = CLLocation(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
+        
+        var calendar = Calendar.current
+        calendar.timeZone = location.timeZone()
+        
+        let currentTimeDateComponents = calendar.dateComponents([.hour, .minute], from: Date())
+        let sunriseDate = Date(timeIntervalSince1970: sunrise)
+        let sunriseDateComponents = calendar.dateComponents([.hour, .minute], from: sunriseDate)
+        let sunsetDate = Date(timeIntervalSince1970: sunset)
+        let sunsetDateComponents = calendar.dateComponents([.hour, .minute], from: sunsetDate)
+        
+        guard let currentTimeDateComponentHour = currentTimeDateComponents.hour,
+            let currentTimeDateComponentMinute = currentTimeDateComponents.minute,
+            let sunriseDateComponentHour = sunriseDateComponents.hour,
+            let sunriseDateComponentMinute = sunriseDateComponents.minute,
+            let sunsetDateComponentHour = sunsetDateComponents.hour,
+            let sunsetDateComponentMinute = sunsetDateComponents.minute else {
+                return nil
+        }
+        
+        return ((currentTimeDateComponentHour == sunriseDateComponentHour
+            && currentTimeDateComponentMinute >= sunriseDateComponentMinute)
+            || currentTimeDateComponentHour > sunriseDateComponentHour)
+            && ((currentTimeDateComponentHour == sunsetDateComponentHour
+                && currentTimeDateComponentMinute <= sunsetDateComponentMinute)
+                || currentTimeDateComponentHour < sunsetDateComponentHour)
     }
 }
