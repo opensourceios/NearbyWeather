@@ -34,20 +34,20 @@ class SettingsTableViewController: UITableViewController {
         
         switch indexPath.section {
         case 0:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "Settings", bundle: nil)
             let destinationViewController = storyboard.instantiateViewController(withIdentifier: "InfoTableViewController") as! InfoTableViewController
             navigationItem.removeTextFromBackBarButton()
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 1:
             break
         case 2:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "Settings", bundle: nil)
             let destinationViewController = storyboard.instantiateViewController(withIdentifier: "OWMCityFilterTableViewController") as! WeatherLocationSelectionTableViewController
 
             navigationItem.removeTextFromBackBarButton()
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 3:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "Settings", bundle: nil)
             let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsInputTVC") as! SettingsInputTableViewController
             
             navigationItem.removeTextFromBackBarButton()
