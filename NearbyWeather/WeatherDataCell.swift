@@ -29,10 +29,13 @@ class WeatherDataCell: UITableViewCell {
     @IBOutlet weak var windspeedLabel: UILabel!
     
     func configureWithWeatherDTO(_ weatherDTO: WeatherDataDTO) {
+        let bubbleColor: UIColor = ConversionService.isDayTime(forWeatherDTO: weatherDTO) ?? true ? .nearbyWeatherStandard : .nearbyWeatherNight // default to blue colored cells
+        
+        
         weatherDataIdentifier = weatherDTO.cityID
         
         backgroundColorView.layer.cornerRadius = 5.0
-        backgroundColorView.layer.backgroundColor = UIColor.nearbyWeatherStandard.cgColor
+        backgroundColorView.layer.backgroundColor = bubbleColor.cgColor
         
         cityNameLabel.textColor = .white
         cityNameLabel.font = .preferredFont(forTextStyle: .headline)

@@ -114,7 +114,7 @@ class NearbyLocationsMapViewController: UIViewController {
         navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
-        mapView.mapType = .standard
+        mapView.mapType = mapTypeSegmentedControl.selectedSegmentIndex == 0 ? .standard : .hybrid
         
         buttonRowContainerView.layer.cornerRadius = 10
         buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.cgColor
@@ -170,8 +170,8 @@ extension NearbyLocationsMapViewController: MKMapViewDelegate {
             viewForCurrentAnnotation = WeatherLocationMapAnnotationView(frame: kMapAnnotationViewInitialFrame)
         }
         viewForCurrentAnnotation?.annotation = annotation
-        viewForCurrentAnnotation?.configure(withTitle: annotation.title ?? "<Not Set>", subtitle: annotation.subtitle ?? "<Not Set>", tapHandler: { [unowned self] sender in
-            guard let weatherDTO = WeatherDataManager.shared.weatherDTO(forIdentifier: annotation.locationId) else {
+        viewForCurrentAnnotation?.configure(withWeatherDTO: annotation.weatherDTO, tapHandler: { [unowned self] sender in
+            guard let weatherDTO = WeatherDataManager.shared.weatherDTO(forIdentifier: annotation.weatherDTO.cityID) else {
                 return
             }
             self.previousRegion = mapView.region

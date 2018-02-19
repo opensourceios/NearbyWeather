@@ -43,6 +43,14 @@ class WeatherLocationSelectionTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        DispatchQueue.main.async {
+            self.searchController.searchBar.becomeFirstResponder()
+        }
+    }
+    
     
     // MARK: - TableViewDataSource
     
@@ -95,7 +103,7 @@ extension WeatherLocationSelectionTableViewController: UISearchResultsUpdating {
 
 extension WeatherLocationSelectionTableViewController: UISearchControllerDelegate {
     
-    func willDismissSearchController(_ searchController: UISearchController) {
+    func didDismissSearchController(_ searchController: UISearchController) {
         filteredCities = [WeatherLocationDTO]()
         tableView.reloadData()
     }

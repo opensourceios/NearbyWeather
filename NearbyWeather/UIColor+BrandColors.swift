@@ -24,7 +24,7 @@ extension UIColor {
     
     open class var nearbyWeatherNight: UIColor {
         get {
-            return UIColor(red: 150/255, green: 80/255, blue: 250/255, alpha: 1.0)
+            return UIColor(red: 50/255, green: 113/255, blue: 156/255, alpha: 1.0)
         }
     }
 }
