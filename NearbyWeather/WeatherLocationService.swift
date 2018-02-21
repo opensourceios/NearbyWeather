@@ -36,7 +36,7 @@ class WeatherLocationService {
         shared = WeatherLocationService()
     }
     
-    public func locations(forSearchString searchString: String, completionHandler: @escaping (([WeatherLocationDTO]?)->())) {
+    public func locations(forSearchString searchString: String, completionHandler: @escaping (([WeatherStationDTO]?)->())) {
         
         if searchString.count == 0 || searchString == "" { return completionHandler(nil) }
         
@@ -58,9 +58,9 @@ class WeatherLocationService {
                     return
                 }
                 
-                var retrievedLocations = [WeatherLocationDTO]()
+                var retrievedLocations = [WeatherStationDTO]()
                 while result.next() {
-                    guard let location = WeatherLocationDTO(from: result) else {
+                    guard let location = WeatherStationDTO(from: result) else {
                         return
                     }
                     retrievedLocations.append(location)

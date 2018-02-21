@@ -17,24 +17,27 @@ class WeatherListViewController: UIViewController {
     
     private var refreshControl = RainyRefreshControl()
     
-    fileprivate var singleLocationWeatherDataDTO: WeatherDataDTO? {
-        return WeatherDataManager.shared.singleLocationWeatherData?.weatherDataDTO
+    fileprivate var bookmarkedWeatherInformationDTOs: [WeatherInformationDTO]? {
+        return WeatherDataManager.shared.bookmarkedWeatherDataObjects?.flatMap {
+            return $0.weatherInformationDTO
+        }
     }
-    fileprivate var multiLocationWeatherDataDTOs: [WeatherDataDTO]? {
-        guard let multiLocationWeatherData = WeatherDataManager.shared.multiLocationWeatherData else {
+    
+    fileprivate var nearbyWeatherInformationDTOs: [WeatherInformationDTO]? {
+        guard let multiLocationWeatherData = WeatherDataManager.shared.nearbyWeatherDataObject else {
             return nil
         }
         switch PreferencesManager.shared.sortingOrientation.value {
         case .name:
-            return multiLocationWeatherData.weatherDataDTOs?.sorted { $0.cityName < $1.cityName }
+            return multiLocationWeatherData.weatherInformationDTOs?.sorted { $0.cityName < $1.cityName }
         case .temperature:
-            return multiLocationWeatherData.weatherDataDTOs?.sorted { $0.atmosphericInformation.temperatureKelvin > $1.atmosphericInformation.temperatureKelvin }
+            return multiLocationWeatherData.weatherInformationDTOs?.sorted { $0.atmosphericInformation.temperatureKelvin > $1.atmosphericInformation.temperatureKelvin }
         case .distance:
             guard LocationService.shared.locationPermissionsGranted,
                 let currentLocation = LocationService.shared.currentLocation else {
-                    return multiLocationWeatherData.weatherDataDTOs
+                    return multiLocationWeatherData.weatherInformationDTOs
             }
-            return multiLocationWeatherData.weatherDataDTOs?.sorted {
+            return multiLocationWeatherData.weatherInformationDTOs?.sorted {
                 let weatherLocation1 = CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
                 let weatherLocation2 = CLLocation(latitude: $1.coordinates.latitude, longitude: $1.coordinates.longitude)
                 return weatherLocation1.distance(from: currentLocation) < weatherLocation2.distance(from: currentLocation)
@@ -159,7 +162,7 @@ class WeatherListViewController: UIViewController {
     private func configureButtonRowButtons() {
         let locationAvailable = LocationService.shared.locationPermissionsGranted
         let weatherDataAvailable = WeatherDataManager.shared.hasDisplayableWeatherData
-        let multiLocationDataAvailable = !(WeatherDataManager.shared.multiLocationWeatherData?.weatherDataDTOs?.isEmpty ?? true)
+        let multiLocationDataAvailable = !(WeatherDataManager.shared.nearbyWeatherDataObject?.weatherInformationDTOs?.isEmpty ?? true)
         
         refreshButton.tintColor = .white
         
@@ -299,7 +302,7 @@ extension WeatherListViewController: UITableViewDataSource {
             return 0
         }
         if !LocationService.shared.locationPermissionsGranted
-            || WeatherDataManager.shared.multiLocationWeatherData == nil
+            || WeatherDataManager.shared.nearbyWeatherDataObject == nil
             || WeatherDataManager.shared.apiKeyUnauthorized {
             return 1
         }
@@ -315,15 +318,18 @@ extension WeatherListViewController: UITableViewDataSource {
         }
         switch section {
         case 0:
-            return 1
+            if WeatherDataManager.shared.bookmarkedWeatherDataObjects == nil {
+                return 0
+            }
+            return WeatherDataManager.shared.bookmarkedWeatherDataObjects?.count ?? 1
         case 1:
             if !LocationService.shared.locationPermissionsGranted {
                 return 0
             }
-            if WeatherDataManager.shared.multiLocationWeatherData == nil {
+            if WeatherDataManager.shared.nearbyWeatherDataObject == nil {
                 return 0
             }
-            return WeatherDataManager.shared.multiLocationWeatherData?.weatherDataDTOs?.count ?? 1
+            return WeatherDataManager.shared.nearbyWeatherDataObject?.weatherInformationDTOs?.count ?? 1
         default:
             return 0
         }
@@ -339,22 +345,22 @@ extension WeatherListViewController: UITableViewDataSource {
         }
         
         if WeatherDataManager.shared.apiKeyUnauthorized {
-            let errorDataDTO = WeatherDataManager.shared.singleLocationWeatherData?.errorDataDTO ?? WeatherDataManager.shared.multiLocationWeatherData?.errorDataDTO
+            let errorDataDTO = (WeatherDataManager.shared.bookmarkedWeatherDataObjects?.first { $0.errorDataDTO != nil})?.errorDataDTO ?? WeatherDataManager.shared.nearbyWeatherDataObject?.errorDataDTO
             alertCell.configureWithErrorDataDTO(errorDataDTO)
             return alertCell
         }
         
         switch indexPath.section {
         case 0:
-            guard let weatherDTO = singleLocationWeatherDataDTO else {
-                alertCell.configureWithErrorDataDTO(WeatherDataManager.shared.singleLocationWeatherData?.errorDataDTO)
-                return alertCell
+            guard let weatherDTO = bookmarkedWeatherInformationDTOs?[indexPath.row] else {
+                    alertCell.configureWithErrorDataDTO(WeatherDataManager.shared.bookmarkedWeatherDataObjects?[indexPath.row].errorDataDTO)
+                    return alertCell
             }
             weatherCell.configureWithWeatherDTO(weatherDTO)
             return weatherCell
         case 1:
-            guard let weatherDTO = multiLocationWeatherDataDTOs?[indexPath.row] else {
-                alertCell.configureWithErrorDataDTO(WeatherDataManager.shared.singleLocationWeatherData?.errorDataDTO)
+            guard let weatherDTO = nearbyWeatherInformationDTOs?[indexPath.row] else {
+                alertCell.configureWithErrorDataDTO(WeatherDataManager.shared.nearbyWeatherDataObject?.errorDataDTO)
                 return alertCell
             }
             weatherCell.configureWithWeatherDTO(weatherDTO)

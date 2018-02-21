@@ -129,7 +129,7 @@ class SettingsTableViewController: UITableViewController {
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
-            cell.contentLabel.text = "\(WeatherDataManager.shared.bookmarkedLocation.name), \(WeatherDataManager.shared.bookmarkedLocation.country)"
+            cell.contentLabel.text = "\(WeatherDataManager.shared.bookmarkedLocations[indexPath.row].name), \(WeatherDataManager.shared.bookmarkedLocations[indexPath.row].country)"
             cell.accessoryType = .disclosureIndicator
             return cell
         case 3:

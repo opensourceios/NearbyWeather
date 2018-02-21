@@ -51,7 +51,7 @@
 		F2B8EA081EA2A7AB00704E90 /* SetPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA071EA2A7AB00704E90 /* SetPermissionsViewController.swift */; };
 		F2B8EA0E1EA37BE800704E90 /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8EA0D1EA37BE800704E90 /* InfoTableViewController.swift */; };
 		F2D2B1E02004171500C810EF /* DataStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D2B1DF2004171500C810EF /* DataStorageService.swift */; };
-		F2FE3EFF20027EB400EBC429 /* WeatherLocationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE3EFE20027EB400EBC429 /* WeatherLocationDTO.swift */; };
+		F2FE3EFF20027EB400EBC429 /* WeatherStationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE3EFE20027EB400EBC429 /* WeatherStationDTO.swift */; };
 		F2FE3F01200285B100EBC429 /* WeatherLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE3F00200285B100EBC429 /* WeatherLocationService.swift */; };
 		F2FE3F032002972800EBC429 /* WeatherLocationSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE3F022002972800EBC429 /* WeatherLocationSelectionTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -132,7 +132,7 @@
 		F2B8EA071EA2A7AB00704E90 /* SetPermissionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPermissionsViewController.swift; sourceTree = "<group>"; };
 		F2B8EA0D1EA37BE800704E90 /* InfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
 		F2D2B1DF2004171500C810EF /* DataStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorageService.swift; sourceTree = "<group>"; };
-		F2FE3EFE20027EB400EBC429 /* WeatherLocationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocationDTO.swift; sourceTree = "<group>"; };
+		F2FE3EFE20027EB400EBC429 /* WeatherStationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStationDTO.swift; sourceTree = "<group>"; };
 		F2FE3F00200285B100EBC429 /* WeatherLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocationService.swift; sourceTree = "<group>"; };
 		F2FE3F022002972800EBC429 /* WeatherLocationSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocationSelectionTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -331,7 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				F2B8E9FF1EA11BA800704E90 /* WeatherDataDTOs.swift */,
-				F2FE3EFE20027EB400EBC429 /* WeatherLocationDTO.swift */,
+				F2FE3EFE20027EB400EBC429 /* WeatherStationDTO.swift */,
 			);
 			name = "Data Transfer Objects";
 			sourceTree = "<group>";
@@ -644,7 +644,7 @@
 				F283D26E1DF39095001B879D /* LabelCell.swift in Sources */,
 				F28CA5442027AEB500209397 /* WeatherLocationMapAnnotation.swift in Sources */,
 				F26699581E9AD0F100498F99 /* WeatherDataManager.swift in Sources */,
-				F2FE3EFF20027EB400EBC429 /* WeatherLocationDTO.swift in Sources */,
+				F2FE3EFF20027EB400EBC429 /* WeatherStationDTO.swift in Sources */,
 				F22F99552034E4B500B7CB6B /* WeatherLocationMapAnnotationView.swift in Sources */,
 				F2A5CAA62005762A0071BFFB /* ConversionService.swift in Sources */,
 				F2FE3F01200285B100EBC429 /* WeatherLocationService.swift in Sources */,

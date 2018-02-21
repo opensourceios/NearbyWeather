@@ -9,7 +9,7 @@
 import Foundation
 import FMDB
 
-struct WeatherLocationDTO: Codable {
+struct WeatherStationDTO: Codable {
     
     var identifier: Int
     var name: String

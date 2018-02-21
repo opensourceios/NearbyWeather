@@ -26,7 +26,7 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
     private var titleLabel = UILabel()
     private var subtitleLabel = UILabel()
     
-    private var weatherDTO: WeatherDataDTO?
+    private var weatherDTO: WeatherInformationDTO?
     private var title: String? {
         return weatherDTO?.cityName
     }
@@ -65,7 +65,7 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
     
     // MARK: - Public Functions
     
-    func configure(withWeatherDTO weatherDTO: WeatherDataDTO, tapHandler: ((UITapGestureRecognizer)->())?) {
+    func configure(withWeatherDTO weatherDTO: WeatherInformationDTO, tapHandler: ((UITapGestureRecognizer)->())?) {
         self.weatherDTO = weatherDTO
         
         if let tapHandler = tapHandler {

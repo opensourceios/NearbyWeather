@@ -28,7 +28,7 @@ class WeatherDataCell: UITableViewCell {
     @IBOutlet weak var windSpeedImageView: UIImageView!
     @IBOutlet weak var windspeedLabel: UILabel!
     
-    func configureWithWeatherDTO(_ weatherDTO: WeatherDataDTO) {
+    func configureWithWeatherDTO(_ weatherDTO: WeatherInformationDTO) {
         let bubbleColor: UIColor = ConversionService.isDayTime(forWeatherDTO: weatherDTO) ?? true ? .nearbyWeatherStandard : .nearbyWeatherNight // default to blue colored cells
         
         

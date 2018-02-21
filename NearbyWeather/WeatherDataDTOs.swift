@@ -1,5 +1,5 @@
 //
-//  WeatherDTO.swift
+//  WeatherDTOs.swift
 //  NearbyWeather
 //
 //  Created by Erik Maximilian Martens on 14.04.17.
@@ -16,15 +16,15 @@ import CoreLocation
  */
 
 
-public struct MultiWeatherDataDTO: Codable {
-    var list: [WeatherDataDTO]
+public struct MultiWeatherInformationDTO: Codable {
+    var list: [WeatherInformationDTO]
     
     enum CodingKeys: String, CodingKey {
         case list
     }
 }
 
-public struct WeatherDataDTO: Codable {
+public struct WeatherInformationDTO: Codable {
     
     struct Coordinates: Codable {
         var latitude: Double
