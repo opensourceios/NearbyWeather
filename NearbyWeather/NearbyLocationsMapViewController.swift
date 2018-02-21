@@ -171,8 +171,8 @@ extension NearbyLocationsMapViewController: MKMapViewDelegate {
             viewForCurrentAnnotation = WeatherLocationMapAnnotationView(frame: kMapAnnotationViewInitialFrame)
         }
         viewForCurrentAnnotation?.annotation = annotation
-        viewForCurrentAnnotation?.configure(withWeatherDTO: annotation.weatherDTO, tapHandler: { [unowned self] sender in
-            guard let weatherDTO = WeatherDataManager.shared.weatherDTO(forIdentifier: annotation.weatherDTO.cityID) else {
+        viewForCurrentAnnotation?.configure(withTitle: annotation.title ?? "<Not Set>", subtitle: annotation.subtitle ?? "<Not Set>", fillColor: (annotation.isDayTime ?? true) ? .nearbyWeatherStandard : .nearbyWeatherNight, tapHandler: { [unowned self] sender in
+            guard let weatherDTO = WeatherDataManager.shared.weatherDTO(forIdentifier: annotation.locationId) else {
                 return
             }
             self.previousRegion = mapView.region

@@ -26,17 +26,22 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
     private var titleLabel = UILabel()
     private var subtitleLabel = UILabel()
     
-    private var weatherDTO: WeatherInformationDTO?
     private var title: String? {
-        return weatherDTO?.cityName
+        didSet {
+            titleLabel.text = title
+        }
     }
+    
     private var subtitle: String? {
-        guard let weatherDTO = self.weatherDTO else { return nil}
-        let weatherConditionSymbol = ConversionService.weatherConditionSymbol(fromWeathercode: weatherDTO.weatherCondition[0].identifier)
-        let temperature = weatherDTO.atmosphericInformation.temperatureKelvin
-        let temperatureUnit = PreferencesManager.shared.temperatureUnit
-        let temperatureDescriptor = ConversionService.temperatureDescriptor(forTemperatureUnit: temperatureUnit, fromRawTemperature: temperature)
-        return "\(weatherConditionSymbol) \(temperatureDescriptor)"
+        didSet {
+            subtitleLabel.text = subtitle
+        }
+    }
+    
+    private var fillColor: UIColor? {
+        didSet {
+            layer.sublayers?.forEach { ($0 as? CAShapeLayer)?.fillColor = fillColor?.cgColor }
+        }
     }
     
     private var gestureRecognizer = UITapGestureRecognizer()
@@ -57,16 +62,17 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
     
     override func draw(_ rect: CGRect){
         super.draw(rect)
-        
-        let fillColor: UIColor = ConversionService.isDayTime(forWeatherDTO: weatherDTO) ?? true ? .nearbyWeatherStandard : .nearbyWeatherNight
-        drawAnnotationView(withFillColor: fillColor)
+        drawAnnotationView()
     }
     
     
     // MARK: - Public Functions
     
-    func configure(withWeatherDTO weatherDTO: WeatherInformationDTO, tapHandler: ((UITapGestureRecognizer)->())?) {
-        self.weatherDTO = weatherDTO
+    // gets called before draw
+    func configure(withTitle title: String, subtitle: String, fillColor: UIColor, tapHandler: ((UITapGestureRecognizer)->())?) {
+        self.title = title
+        self.subtitle = subtitle
+        self.fillColor = fillColor
         
         if let tapHandler = tapHandler {
             self.tapHandler = tapHandler
@@ -84,12 +90,12 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
         tapHandler?(sender)
     }
     
-    private func drawAnnotationView(withFillColor fillColor: UIColor) {
+    private func drawAnnotationView() {
         let circleLayer = CAShapeLayer()
         circleLayer.path = UIBezierPath(arcCenter: CGPoint(x: kRadius, y: kRadius), radius: CGFloat(kRadius - kBorderWidth/2), startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true).cgPath
         circleLayer.frame.size = CGSize(width: kRadius*2, height: kRadius*2)
         circleLayer.bounds.origin = CGPoint(x: -frame.width/2 + kRadius, y: -frame.height/2 + kRadius)
-        circleLayer.fillColor = fillColor.cgColor
+        circleLayer.fillColor = fillColor?.cgColor ?? UIColor.nearbyWeatherStandard.cgColor
         circleLayer.strokeColor = UIColor.white.cgColor
         circleLayer.lineWidth = kBorderWidth/2
         layer.addSublayer(circleLayer)
@@ -97,7 +103,7 @@ class WeatherLocationMapAnnotationView: MKAnnotationView {
         
         let speechBubbleLayer = CAShapeLayer()
         speechBubbleLayer.path = bubblePath(forContentSize: CGSize(width: kWidth, height: kHeight)).cgPath
-        speechBubbleLayer.fillColor = fillColor.cgColor
+        speechBubbleLayer.fillColor = fillColor?.cgColor ?? UIColor.nearbyWeatherStandard.cgColor
         speechBubbleLayer.strokeColor = UIColor.white.cgColor
         speechBubbleLayer.position = .zero
         layer.addSublayer(speechBubbleLayer)
