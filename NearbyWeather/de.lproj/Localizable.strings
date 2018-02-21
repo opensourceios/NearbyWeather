@@ -29,7 +29,7 @@ SetPermissionsVC_AskPermissionsButtonTitle = "Konfigurieren";
 LocationsListTVC_EmptyListTitle = "Keine Wetterdaten";
 LocationsListTVC_EmptyListDescription = "Wetterdaten konnten nicht geladen werden. Gehe sicher, dass du eine Internetverbindung hast.";
 
-LocationsListTVC_TableViewSectionHeader1 = "Wetter in Favorisiertem Ort";
+LocationsListTVC_TableViewSectionHeader1 = "Wetter in Favorisierten Orten";
 LocationsListTVC_TableViewSectionHeader2 = "Wetter in Nahegelegenen Ort";
 
 LocationsListTVC_RefreshPullHandle = "Zum Aktualisieren herunterziehen";
@@ -106,7 +106,7 @@ SettingsTVC_NavigationBarTitle = "Einstellungen";
 SettingsTVC_About = "Über";
 
 SettingsTVC_SectionTitle0 = "Allgemein";
-SettingsTVC_SectionTitle1 = "Favorisierte Stadt";
+SettingsTVC_SectionTitle1 = "Favorisierte Orte";
 SettingsTVC_SectionTitle2 = "OpenWeatherMap API Schlüssel";
 SettingsTVC_SectionTitle3 = "Anzahl der nahegelegenen Ergebnisse";
 SettingsTVC_SectionTitle4 = "Temperatur Einheit";

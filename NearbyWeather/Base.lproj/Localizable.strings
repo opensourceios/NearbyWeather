@@ -29,7 +29,7 @@ SetPermissionsVC_AskPermissionsButtonTitle = "Configure";
 LocationsListTVC_EmptyListTitle = "No Weather Data";
 LocationsListTVC_EmptyListDescription = "Weather data could not be loaded. Make sure you are connected to the Internet.";
 
-LocationsListTVC_TableViewSectionHeader1 = "Weather in Bookmarked Location";
+LocationsListTVC_TableViewSectionHeader1 = "Weather in Bookmarked Locations";
 LocationsListTVC_TableViewSectionHeader2 = "Weather for Nearby Locations";
 
 LocationsListTVC_RefreshPullHandle = "Pull to refresh";
@@ -106,7 +106,7 @@ SettingsTVC_NavigationBarTitle = "Settings";
 SettingsTVC_About = "About";
 
 SettingsTVC_SectionTitle0 = "General";
-SettingsTVC_SectionTitle1 = "Bookmarked Location";
+SettingsTVC_SectionTitle1 = "Bookmarked Locations";
 SettingsTVC_SectionTitle2 = "OpenWeatherMap API Key";
 SettingsTVC_SectionTitle3 = "Amount of Nearby Results";
 SettingsTVC_SectionTitle4 = "Temperature Unit";
