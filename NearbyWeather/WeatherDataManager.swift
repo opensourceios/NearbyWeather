@@ -127,6 +127,7 @@ class WeatherDataManager {
                 nearbyWeatherDataObject = weatherData
                 dispatchGroup.leave()
             })
+            
             let waitResult = dispatchGroup.wait(timeout: .now() + 60.0)
             if waitResult == .timedOut {
                 completionHandler?() // todo: notify user

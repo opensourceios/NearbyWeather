@@ -132,6 +132,8 @@ OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Search by City Name";
 
 // MARK: - General
 
+reload = "Reload";
+
 viaEmail = "Mail";
 viaGitHub = "GitHub";
 

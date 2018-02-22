@@ -59,6 +59,8 @@ class WeatherListViewController: UIViewController {
     @IBOutlet weak var mapButton: UIBarButtonItem!
     @IBOutlet weak var settingsButton: UIBarButtonItem!
     
+    @IBOutlet weak var reloadButton: UIButton!
+    
     
     // MARK: - ViewController Lifecycle
     
@@ -77,6 +79,10 @@ class WeatherListViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reconfigureOnDidAppBecomeActive), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reconfigureOnWeatherDataServiceDidUpdate), name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: nil)
+        
+        if !WeatherDataManager.shared.hasDisplayableData {
+            NotificationCenter.default.addObserver(self, selector: #selector(WeatherListViewController.reconfigureOnNetworkDidBecomeAvailable), name: Notification.Name(rawValue: kNetworkReachabilityChanged), object: nil)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,7 +110,7 @@ class WeatherListViewController: UIViewController {
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         configureNavigationTitle()
-        configureButtonRowButtons()
+        configureButtons()
         configureWeatherDataUnavailableElements()
         
         refreshControl.addTarget(self, action: #selector(WeatherListViewController.updateWeatherData), for: .valueChanged)
@@ -115,14 +121,20 @@ class WeatherListViewController: UIViewController {
     }
     
     @objc private func reconfigureOnDidAppBecomeActive() {
-        configureButtonRowButtons()
+        configureButtons()
     }
     
     @objc private func reconfigureOnWeatherDataServiceDidUpdate() {
         configureNavigationTitle()
-        configureButtonRowButtons()
+        configureButtons()
         tableView.isHidden = !WeatherDataManager.shared.hasDisplayableData
         tableView.reloadData()
+    }
+    
+    @objc private func reconfigureOnNetworkDidBecomeAvailable() {
+        UIView.animate(withDuration: 0.5) {
+            self.reloadButton.isHidden = NetworkingService.shared.reachabilityStatus != .connected
+        }
     }
     
     private func configureWeatherDataUnavailableElements() {
@@ -145,13 +157,21 @@ class WeatherListViewController: UIViewController {
         }
     }
     
-    private func configureButtonRowButtons() {
+    private func configureButtons() {
         let weatherDataAvailable = WeatherDataManager.shared.hasDisplayableWeatherData
         
         mapButton.isEnabled = weatherDataAvailable
         mapButton.tintColor = weatherDataAvailable ? .white : .darkGray
         
         settingsButton.tintColor = .white
+        
+        reloadButton.setTitle(NSLocalizedString("Reload", comment: "").uppercased(), for: .normal)
+        reloadButton.setTitleColor(.nearbyWeatherStandard, for: .normal)
+        reloadButton.layer.cornerRadius = 5.0
+        reloadButton.layer.borderColor = UIColor.nearbyWeatherStandard.cgColor
+        reloadButton.layer.borderWidth = 1.0
+        
+        reloadButton.isHidden = NetworkingService.shared.reachabilityStatus != .connected
     }
     
     @objc private func updateWeatherData() {
@@ -187,6 +207,9 @@ class WeatherListViewController: UIViewController {
         navigationController?.present(destinationNavigationController, animated: true, completion: nil)
     }
 
+    @IBAction func didTapReloadButton(_ sender: UIButton) {
+        updateWeatherData()
+    }
     
     @IBAction func openWeatherMapButtonPressed(_ sender: UIButton) {
         guard let url = URL(string: "https://openweathermap.org") else {
