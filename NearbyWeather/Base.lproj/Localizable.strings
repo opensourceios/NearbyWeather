@@ -78,7 +78,6 @@ WeatherDetailVC_Distance = "Distance";
 
 // MARK: - NearbyLocationsMapViewController
 
-NearbyLocationsMapVC_NavigationItemTitle = "Weather Station Locations";
 NearbyLocationsMapVC_MapTypeSegmentedControl_Title_0 = "Map";
 NearbyLocationsMapVC_MapTypeSegmentedControl_Title_1 = "Hybrid";
 

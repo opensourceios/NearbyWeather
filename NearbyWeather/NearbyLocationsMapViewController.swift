@@ -17,12 +17,9 @@ class NearbyLocationsMapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
-    @IBOutlet weak var buttonRowContainerView: UIView!
-    @IBOutlet weak var buttonRowStackView: UIStackView!
-    
     @IBOutlet weak var mapTypeSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var focusUserLocationButton: UIButton!
-    @IBOutlet weak var focusBookmarkedLocationButton: UIButton!
+    @IBOutlet weak var focusUserLocationButton: UIBarButtonItem!
+    @IBOutlet weak var focusBookmarkedLocationButton: UIBarButtonItem!
     
     
     /* Properties */
@@ -39,7 +36,8 @@ class NearbyLocationsMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = NSLocalizedString("NearbyLocationsMapVC_NavigationItemTitle", comment: "")
+        navigationItem.titleView = mapTypeSegmentedControl
+        navigationItem.rightBarButtonItems = [focusBookmarkedLocationButton, focusUserLocationButton]
         mapView.delegate = self
     }
     
@@ -102,13 +100,14 @@ class NearbyLocationsMapViewController: UIViewController {
         if LocationService.shared.locationPermissionsGranted, let currentLocation = LocationService.shared.currentLocation {
             let region = MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 15000, 15000)
             mapView.setRegion(region, animated: true)
-            focusUserLocationButton.setImage(UIImage(named: "LocateUserActiveIcon"), for: .normal)
+            focusUserLocationButton.image = UIImage(named: "LocateUserActiveIcon")
         }
     }
+    
     private func focusMapOnBookmarkedLocation() {
         let region = MKCoordinateRegionMakeWithDistance(bookmarkedLocations[0].coordinate, 15000, 15000)
         mapView.setRegion(region, animated: true)
-        focusBookmarkedLocationButton.setImage(UIImage(named: "LocateFavoriteActiveIcon"), for: .normal)
+        focusBookmarkedLocationButton.image = UIImage(named: "LocateFavoriteActiveIcon")
     }
     
     private func configure() {
@@ -116,12 +115,6 @@ class NearbyLocationsMapViewController: UIViewController {
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         mapView.mapType = mapTypeSegmentedControl.selectedSegmentIndex == 0 ? .standard : .hybrid
-        
-        buttonRowContainerView.layer.cornerRadius = 10
-        buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.cgColor
-        buttonRowContainerView.addDropShadow(radius: 10)
-        
-        buttonRowContainerView.bringSubview(toFront: buttonRowStackView)
         
         mapTypeSegmentedControl.tintColor = .white
         mapTypeSegmentedControl.setTitle(NSLocalizedString("NearbyLocationsMapVC_MapTypeSegmentedControl_Title_0", comment: ""), forSegmentAt: 0)
@@ -139,11 +132,11 @@ class NearbyLocationsMapViewController: UIViewController {
     
     // MARK: - IBActions
     
-    @IBAction func focusUserLocationButtonTapped(_ sender: UIButton) {
+    @IBAction func focusUserLocationButtonTapped(_ sender: UIBarButtonItem) {
         focusMapOnUserLocation()
     }
     
-    @IBAction func focusBookmarkedLocationButtonTapped(_ sender: UIButton) {
+    @IBAction func focusBookmarkedLocationButtonTapped(_ sender: UIBarButtonItem) {
         focusMapOnBookmarkedLocation()
     }
     
@@ -186,8 +179,8 @@ extension NearbyLocationsMapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        focusUserLocationButton.setImage(UIImage(named: "LocateUserInactiveIcon"), for: .normal)
-        focusBookmarkedLocationButton.setImage(UIImage(named: "LocateFavoriteInactiveIcon"), for: .normal)
+        focusUserLocationButton.image = UIImage(named: "LocateUserInactiveIcon")
+        focusBookmarkedLocationButton.image = UIImage(named: "LocateFavoriteInactiveIcon")
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
@@ -195,11 +188,11 @@ extension NearbyLocationsMapViewController: MKMapViewDelegate {
             let currentLocation = LocationService.shared.currentLocation,
             mapView.region.center.latitude == currentLocation.coordinate.latitude
                 && mapView.region.center.longitude == currentLocation.coordinate.longitude {
-            focusUserLocationButton.setImage(UIImage(named: "LocateUserActiveIcon"), for: .normal)
+            focusUserLocationButton.image = UIImage(named: "LocateUserActiveIcon")
         }
         if mapView.region.center.latitude == bookmarkedLocations[0].coordinate.latitude
             && mapView.region.center.longitude == bookmarkedLocations[0].coordinate.longitude {
-            focusBookmarkedLocationButton.setImage(UIImage(named: "LocateFavoriteActiveIcon"), for: .normal)
+            focusBookmarkedLocationButton.image = UIImage(named: "LocateFavoriteActiveIcon")
         }
     }
 }

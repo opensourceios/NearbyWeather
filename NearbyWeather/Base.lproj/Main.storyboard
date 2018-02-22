@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -844,86 +843,11 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMe-uS-5Wh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJc-d5-LM4">
-                                <rect key="frame" x="15" y="587" width="345" height="60"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="NVa-xG-GOC">
-                                        <rect key="frame" x="10" y="5" width="325" height="50"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uox-0D-YNT">
-                                                <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
-                                                <subviews>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iQs-Tf-fpH">
-                                                        <rect key="frame" x="0.0" y="10" width="200" height="31"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="owr-Jp-X8r"/>
-                                                        </constraints>
-                                                        <segments>
-                                                            <segment title="First"/>
-                                                            <segment title="Second"/>
-                                                        </segments>
-                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <connections>
-                                                            <action selector="mapTypeSegmentedControlTapped:" destination="QDY-p7-fJq" eventType="valueChanged" id="Pua-1r-ElV"/>
-                                                        </connections>
-                                                    </segmentedControl>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="iQs-Tf-fpH" firstAttribute="leading" secondItem="Uox-0D-YNT" secondAttribute="leading" id="68y-hM-Jzo"/>
-                                                    <constraint firstItem="iQs-Tf-fpH" firstAttribute="centerY" secondItem="Uox-0D-YNT" secondAttribute="centerY" id="96E-JP-9Xo"/>
-                                                    <constraint firstAttribute="trailing" secondItem="iQs-Tf-fpH" secondAttribute="trailing" id="vqb-ia-Y5L"/>
-                                                </constraints>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DlE-Pc-1g6">
-                                                <rect key="frame" x="212.5" y="0.0" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="DlE-Pc-1g6" secondAttribute="height" multiplier="1:1" id="ga8-9C-Fpe"/>
-                                                </constraints>
-                                                <state key="normal" image="LocateUserInactiveIcon">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="focusUserLocationButtonTapped:" destination="QDY-p7-fJq" eventType="touchUpInside" id="1w5-IF-nBp"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bh6-Ny-b9h">
-                                                <rect key="frame" x="275" y="0.0" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Bh6-Ny-b9h" secondAttribute="height" multiplier="1:1" id="Uzh-6p-QjR"/>
-                                                </constraints>
-                                                <state key="normal" image="LocateFavoriteInactiveIcon">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="focusBookmarkedLocationButtonTapped:" destination="QDY-p7-fJq" eventType="touchUpInside" id="wjQ-UT-fL1"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="DlE-Pc-1g6" firstAttribute="width" secondItem="Uox-0D-YNT" secondAttribute="width" multiplier="0.25" id="1NM-5x-whl"/>
-                                            <constraint firstItem="DlE-Pc-1g6" firstAttribute="width" secondItem="DlE-Pc-1g6" secondAttribute="height" multiplier="1:1" id="Nkj-Tm-vLm"/>
-                                            <constraint firstItem="Bh6-Ny-b9h" firstAttribute="width" secondItem="Bh6-Ny-b9h" secondAttribute="height" multiplier="1:1" id="aBT-wi-X2V"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.31232208010000001" green="0.70485514400000004" blue="0.97927659749999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="NVa-xG-GOC" firstAttribute="leading" secondItem="pJc-d5-LM4" secondAttribute="leading" constant="10" id="6wx-TM-t1a"/>
-                                    <constraint firstAttribute="trailing" secondItem="NVa-xG-GOC" secondAttribute="trailing" constant="10" id="Xyd-2Y-cmr"/>
-                                    <constraint firstAttribute="bottom" secondItem="NVa-xG-GOC" secondAttribute="bottom" constant="5" id="g5e-kj-Wfj"/>
-                                    <constraint firstAttribute="height" constant="60" id="gPQ-b9-Vtb"/>
-                                    <constraint firstItem="NVa-xG-GOC" firstAttribute="top" secondItem="pJc-d5-LM4" secondAttribute="top" constant="5" id="wVK-4g-bsj"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="JMe-uS-5Wh" firstAttribute="top" secondItem="LhJ-JJ-qI5" secondAttribute="top" id="0Yc-hM-Xpq"/>
-                            <constraint firstItem="eL2-KE-POt" firstAttribute="bottom" secondItem="pJc-d5-LM4" secondAttribute="bottom" constant="20" id="1bI-X0-9lI"/>
-                            <constraint firstItem="eL2-KE-POt" firstAttribute="trailing" secondItem="pJc-d5-LM4" secondAttribute="trailing" constant="15" id="7gD-68-Epc"/>
                             <constraint firstItem="JMe-uS-5Wh" firstAttribute="leading" secondItem="LhJ-JJ-qI5" secondAttribute="leading" id="VJ6-Zb-IBR"/>
-                            <constraint firstItem="pJc-d5-LM4" firstAttribute="leading" secondItem="eL2-KE-POt" secondAttribute="leading" constant="15" id="ZEk-lk-swc"/>
                             <constraint firstItem="JMe-uS-5Wh" firstAttribute="width" secondItem="LhJ-JJ-qI5" secondAttribute="width" id="csk-Qp-Jc6"/>
                             <constraint firstAttribute="trailing" secondItem="JMe-uS-5Wh" secondAttribute="trailing" id="gew-H6-uAz"/>
                             <constraint firstItem="JMe-uS-5Wh" firstAttribute="height" secondItem="LhJ-JJ-qI5" secondAttribute="height" id="qZ2-se-HNg"/>
@@ -931,16 +855,36 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eL2-KE-POt"/>
                     </view>
+                    <toolbarItems/>
                     <connections>
-                        <outlet property="buttonRowContainerView" destination="pJc-d5-LM4" id="hqE-lM-eaM"/>
-                        <outlet property="buttonRowStackView" destination="NVa-xG-GOC" id="rAp-Qg-S3Q"/>
-                        <outlet property="focusBookmarkedLocationButton" destination="Bh6-Ny-b9h" id="bVa-yb-DSZ"/>
-                        <outlet property="focusUserLocationButton" destination="DlE-Pc-1g6" id="1HC-SZ-Blb"/>
-                        <outlet property="mapTypeSegmentedControl" destination="iQs-Tf-fpH" id="dr2-tB-Jn6"/>
+                        <outlet property="focusBookmarkedLocationButton" destination="Ryu-Qk-ojB" id="e4b-Hs-f6U"/>
+                        <outlet property="focusUserLocationButton" destination="xQz-jH-Buh" id="Oa6-MC-buI"/>
+                        <outlet property="mapTypeSegmentedControl" destination="FeV-Kh-e6R" id="bt8-wo-sub"/>
                         <outlet property="mapView" destination="JMe-uS-5Wh" id="Lxw-Ru-Hce"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fEf-49-wjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="FeV-Kh-e6R">
+                    <rect key="frame" x="0.0" y="0.0" width="121" height="28"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="First"/>
+                        <segment title="Second"/>
+                    </segments>
+                    <connections>
+                        <action selector="mapTypeSegmentedControlTapped:" destination="QDY-p7-fJq" eventType="valueChanged" id="iWv-bY-xUv"/>
+                    </connections>
+                </segmentedControl>
+                <barButtonItem title="Item" id="xQz-jH-Buh">
+                    <connections>
+                        <action selector="focusUserLocationButtonTapped:" destination="QDY-p7-fJq" id="tp2-BT-foL"/>
+                    </connections>
+                </barButtonItem>
+                <barButtonItem title="Item" id="Ryu-Qk-ojB">
+                    <connections>
+                        <action selector="focusBookmarkedLocationButtonTapped:" destination="QDY-p7-fJq" id="IaC-tk-oY9"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="2834" y="196"/>
         </scene>
@@ -971,8 +915,6 @@
         <image name="ExclamationMark" width="25" height="25"/>
         <image name="Humidity" width="25" height="25"/>
         <image name="HumidityFilled" width="25" height="25"/>
-        <image name="LocateFavoriteInactiveIcon" width="25" height="25"/>
-        <image name="LocateUserInactiveIcon" width="25" height="25"/>
         <image name="Location" width="25" height="25"/>
         <image name="Map" width="25" height="25"/>
         <image name="OpenWeatherMapLogo" width="207" height="20"/>
