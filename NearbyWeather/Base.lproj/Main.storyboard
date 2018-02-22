@@ -21,16 +21,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emF-ra-DfX" userLabel="EmptyListOverlay">
-                                <rect key="frame" x="0.0" y="257" width="0.0" height="153.5"/>
+                                <rect key="frame" x="0.0" y="-3352" width="375" height="7371.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GoQ-X0-C04">
-                                        <rect key="frame" x="0.0" y="0.5" width="0.0" height="153.5"/>
+                                        <rect key="frame" x="20" y="0.5" width="335" height="7371.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BEa-pQ-8ou">
-                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="103"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="103"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SadCloud" translatesAutoresizingMaskIntoConstraints="NO" id="QRd-v4-MWg">
-                                                        <rect key="frame" x="0.0" y="0.5" width="150" height="103"/>
+                                                        <rect key="frame" x="92.5" y="0.5" width="150" height="103"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="QRd-v4-MWg" secondAttribute="height" multiplier="150:103" id="0YJ-cq-y5S"/>
                                                             <constraint firstAttribute="width" constant="150" id="7dF-E3-noZ"/>
@@ -45,16 +45,16 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Xn8-ZN-U03">
-                                                <rect key="frame" x="0.0" y="123" width="0.0" height="30.5"/>
+                                                <rect key="frame" x="0.0" y="123" width="335" height="7248.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Weather Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ty3-Y9-aU0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather data could not be loaded. Make sure you are connected to the Internet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccx-2t-Xmu">
-                                                        <rect key="frame" x="0.0" y="30.5" width="0.0" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="30.5" width="335" height="7218"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Mgw-Bz-sT3">
-                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="99J-tm-PbI">
                                     <rect key="frame" x="0.0" y="258.5" width="375" height="41"/>
@@ -322,109 +322,39 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="66v-OR-ig0">
-                                <rect key="frame" x="0.0" y="592" width="0.0" height="60"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cO7-FX-PEe">
-                                        <rect key="frame" x="0.0" y="5" width="0.0" height="50"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAw-iC-6ti">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="EAw-iC-6ti" secondAttribute="height" multiplier="1:1" id="Wne-ox-xXe"/>
-                                                </constraints>
-                                                <state key="normal" image="Reload">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="didTapRefreshButton:" destination="Ri3-mc-4Zu" eventType="touchUpInside" id="Y92-vO-hrV"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQ1-2i-5Af">
-                                                <rect key="frame" x="116.5" y="0.0" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="GQ1-2i-5Af" secondAttribute="height" multiplier="1:1" id="2s9-i6-h0h"/>
-                                                </constraints>
-                                                <state key="normal" image="Sorting">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="sortButtonPressed:" destination="Ri3-mc-4Zu" eventType="touchUpInside" id="OLo-oD-Xpq"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlV-Vb-JpW">
-                                                <rect key="frame" x="208.5" y="0.0" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="nlV-Vb-JpW" secondAttribute="height" multiplier="1:1" id="MDz-zk-hIb"/>
-                                                </constraints>
-                                                <state key="normal" image="Map">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="didTapInfoButton:" destination="Ri3-mc-4Zu" eventType="touchUpInside" id="v9W-kc-BTo"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPo-ZW-m5T">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="SPo-ZW-m5T" secondAttribute="height" multiplier="1:1" id="1ZD-zq-mZv"/>
-                                                </constraints>
-                                                <state key="normal" image="Settings">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="didTapSettingsButton:" destination="Ri3-mc-4Zu" eventType="touchUpInside" id="U3b-nM-Nfi"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="GQ1-2i-5Af" firstAttribute="width" secondItem="GQ1-2i-5Af" secondAttribute="height" multiplier="1:1" id="XB7-cP-Oig"/>
-                                            <constraint firstItem="SPo-ZW-m5T" firstAttribute="width" secondItem="SPo-ZW-m5T" secondAttribute="height" multiplier="1:1" id="dY4-Et-ARR"/>
-                                            <constraint firstItem="nlV-Vb-JpW" firstAttribute="width" secondItem="nlV-Vb-JpW" secondAttribute="height" multiplier="1:1" id="fvM-Va-do7"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="cO7-FX-PEe" firstAttribute="top" secondItem="66v-OR-ig0" secondAttribute="top" constant="5" id="0FL-15-Tf8"/>
-                                    <constraint firstAttribute="height" constant="60" id="C0c-ax-ZuY"/>
-                                    <constraint firstAttribute="trailing" secondItem="cO7-FX-PEe" secondAttribute="trailing" constant="10" id="CFO-Ce-cHw"/>
-                                    <constraint firstAttribute="bottom" secondItem="cO7-FX-PEe" secondAttribute="bottom" constant="5" id="CWX-Xt-hhc"/>
-                                    <constraint firstItem="cO7-FX-PEe" firstAttribute="leading" secondItem="66v-OR-ig0" secondAttribute="leading" constant="10" id="dj7-sM-RAt"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Mgw-Bz-sT3" secondAttribute="bottom" id="70R-UP-W8N"/>
                             <constraint firstItem="Mgw-Bz-sT3" firstAttribute="leading" secondItem="Y8Z-AY-YLj" secondAttribute="leading" id="781-O0-0Oh"/>
                             <constraint firstItem="emF-ra-DfX" firstAttribute="centerX" secondItem="WPE-pZ-JQ9" secondAttribute="centerX" id="PaK-9V-NDO"/>
-                            <constraint firstItem="Y8Z-AY-YLj" firstAttribute="trailing" secondItem="66v-OR-ig0" secondAttribute="trailing" constant="15" id="Qmf-Kc-zbW"/>
                             <constraint firstItem="emF-ra-DfX" firstAttribute="centerY" secondItem="WPE-pZ-JQ9" secondAttribute="centerY" id="T18-Oz-tYF"/>
                             <constraint firstItem="Y8Z-AY-YLj" firstAttribute="trailing" secondItem="Mgw-Bz-sT3" secondAttribute="trailing" id="fWP-PI-VUG"/>
-                            <constraint firstItem="Y8Z-AY-YLj" firstAttribute="bottom" secondItem="66v-OR-ig0" secondAttribute="bottom" constant="15" id="lLt-P2-P4G"/>
                             <constraint firstItem="emF-ra-DfX" firstAttribute="width" secondItem="WPE-pZ-JQ9" secondAttribute="width" id="q5G-5G-8AI"/>
                             <constraint firstItem="Mgw-Bz-sT3" firstAttribute="height" secondItem="WPE-pZ-JQ9" secondAttribute="height" id="u9y-Ld-mbJ"/>
-                            <constraint firstItem="66v-OR-ig0" firstAttribute="leading" secondItem="Y8Z-AY-YLj" secondAttribute="leading" constant="15" id="wNh-w2-16S"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Y8Z-AY-YLj"/>
                     </view>
                     <navigationItem key="navigationItem" id="D4f-tt-Xjg">
-                        <barButtonItem key="leftBarButtonItem" image="Map" id="9Q7-IV-NTY"/>
-                        <barButtonItem key="rightBarButtonItem" image="Settings" id="JOL-EW-upG"/>
+                        <barButtonItem key="leftBarButtonItem" image="Map" id="9Q7-IV-NTY">
+                            <connections>
+                                <action selector="didTapMapButton:" destination="Ri3-mc-4Zu" id="Lls-Xb-c4q"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="Settings" id="JOL-EW-upG">
+                            <connections>
+                                <action selector="didTapSettingsButton:" destination="Ri3-mc-4Zu" id="VkR-ZY-JlG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="buttonRowContainerView" destination="66v-OR-ig0" id="B9G-4b-vS6"/>
-                        <outlet property="buttonRowStackView" destination="cO7-FX-PEe" id="eZj-SU-sIi"/>
                         <outlet property="emptyListDescriptionLabel" destination="ccx-2t-Xmu" id="HFc-lL-Qsn"/>
                         <outlet property="emptyListImageView" destination="QRd-v4-MWg" id="k3R-Sp-AXC"/>
                         <outlet property="emptyListOverlayContainerView" destination="emF-ra-DfX" id="HTL-Ku-ByD"/>
                         <outlet property="emptyListTitleLabel" destination="Ty3-Y9-aU0" id="XzB-PE-ssK"/>
-                        <outlet property="mapButton" destination="nlV-Vb-JpW" id="9hz-4g-AJb"/>
-                        <outlet property="refreshButton" destination="EAw-iC-6ti" id="AOb-PQ-WTB"/>
+                        <outlet property="mapButton" destination="9Q7-IV-NTY" id="rvA-uJ-gzC"/>
                         <outlet property="separatoLineViewHeightConstraint" destination="ARc-KT-01s" id="GHC-TY-4y7"/>
-                        <outlet property="settingsButton" destination="SPo-ZW-m5T" id="BZV-85-nqX"/>
-                        <outlet property="sortButton" destination="GQ1-2i-5Af" id="O5Z-8H-8To"/>
+                        <outlet property="settingsButton" destination="JOL-EW-upG" id="J1L-XW-i45"/>
                         <outlet property="tableView" destination="Mgw-Bz-sT3" id="usa-dy-QN7"/>
                     </connections>
                 </viewController>
@@ -1046,10 +976,8 @@
         <image name="Location" width="25" height="25"/>
         <image name="Map" width="25" height="25"/>
         <image name="OpenWeatherMapLogo" width="207" height="20"/>
-        <image name="Reload" width="25" height="25"/>
         <image name="SadCloud" width="150" height="103"/>
         <image name="Settings" width="25" height="25"/>
-        <image name="Sorting" width="25" height="25"/>
         <image name="Sunrise" width="25" height="25"/>
         <image name="Sunset" width="25" height="25"/>
         <image name="Temperature" width="25" height="25"/>

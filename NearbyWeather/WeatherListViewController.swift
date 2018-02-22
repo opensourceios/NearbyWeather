@@ -56,13 +56,8 @@ class WeatherListViewController: UIViewController {
     @IBOutlet weak var emptyListTitleLabel: UILabel!
     @IBOutlet weak var emptyListDescriptionLabel: UILabel!
     
-    @IBOutlet weak var buttonRowContainerView: UIView!
-    @IBOutlet weak var buttonRowStackView: UIStackView!
-    
-    @IBOutlet weak var refreshButton: UIButton!
-    @IBOutlet weak var sortButton: UIButton!
-    @IBOutlet weak var mapButton: UIButton!
-    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var mapButton: UIBarButtonItem!
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
     
     
     // MARK: - ViewController Lifecycle
@@ -72,7 +67,6 @@ class WeatherListViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 105, right: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,7 +104,6 @@ class WeatherListViewController: UIViewController {
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         configureNavigationTitle()
-        configureButtonRow()
         configureButtonRowButtons()
         configureWeatherDataUnavailableElements()
         
@@ -152,25 +145,11 @@ class WeatherListViewController: UIViewController {
         }
     }
     
-    private func configureButtonRow() {
-        buttonRowContainerView.layer.cornerRadius = 10
-        buttonRowContainerView.layer.backgroundColor = UIColor.nearbyWeatherStandard.cgColor
-        buttonRowContainerView.addDropShadow(radius: 10)
-        buttonRowContainerView.bringSubview(toFront: buttonRowStackView)
-    }
-    
     private func configureButtonRowButtons() {
-        let locationAvailable = LocationService.shared.locationPermissionsGranted
         let weatherDataAvailable = WeatherDataManager.shared.hasDisplayableWeatherData
-        let multiLocationDataAvailable = !(WeatherDataManager.shared.nearbyWeatherDataObject?.weatherInformationDTOs?.isEmpty ?? true)
-        
-        refreshButton.tintColor = .white
-        
-        sortButton.isEnabled = locationAvailable && multiLocationDataAvailable
-        sortButton.tintColor = locationAvailable && multiLocationDataAvailable ? .white : .gray
         
         mapButton.isEnabled = weatherDataAvailable
-        mapButton.tintColor = weatherDataAvailable ? .white : .gray
+        mapButton.tintColor = weatherDataAvailable ? .white : .darkGray
         
         settingsButton.tintColor = .white
     }
@@ -189,49 +168,10 @@ class WeatherListViewController: UIViewController {
         tableView.reloadData()
     }
     
-    private func triggerSortAlert() {
-        let sortAlert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let cancelAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Cancel", comment: ""), style: .cancel, handler: nil)
-        let sortByNameAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action1", comment: ""), style: .default, handler: { paramAction in
-            PreferencesManager.shared.sortingOrientation = SortingOrientation(value: .name)
-            self.tableView.reloadData()
-        })
-        let sortByTemperatureAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action2", comment: ""), style: .default, handler: { paramAction in
-            PreferencesManager.shared.sortingOrientation = SortingOrientation(value: .temperature)
-            self.tableView.reloadData()
-        })
-        
-        let sortByDistanceAction = UIAlertAction(title: NSLocalizedString("LocationsListTVC_SortAlert_Action3", comment: ""), style: .default, handler: { paramAction in
-            PreferencesManager.shared.sortingOrientation = SortingOrientation(value: .distance)
-            self.tableView.reloadData()
-        })
-        
-        
-        
-        // highlight currently selected option
-        let selectedAction: UIAlertAction?
-        switch PreferencesManager.shared.sortingOrientation.value {
-        case .name:
-            selectedAction = sortByNameAction
-        case .temperature:
-            selectedAction = sortByTemperatureAction
-        case .distance:
-            selectedAction = sortByDistanceAction
-        }
-        selectedAction?.setValue(true, forKey: "checked")
-        
-        sortAlert.addAction(cancelAction)
-        sortAlert.addAction(sortByNameAction)
-        sortAlert.addAction(sortByTemperatureAction)
-        if LocationService.shared.locationPermissionsGranted { sortAlert.addAction(sortByDistanceAction) }
-        present(sortAlert, animated: true, completion: nil)
-    }
-    
     
     // MARK: - Button Interaction
     
-    @IBAction func didTapSettingsButton(_ sender: UIButton) {
+    @IBAction func didTapSettingsButton(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Settings", bundle: nil)
         let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsTVC") as! SettingsTableViewController
         let destinationNavigationController = UINavigationController(rootViewController: destinationViewController)
@@ -239,7 +179,7 @@ class WeatherListViewController: UIViewController {
         navigationController?.present(destinationNavigationController, animated: true, completion: nil)
     }
     
-    @IBAction func didTapInfoButton(_ sender: UIButton) {
+    @IBAction func didTapMapButton(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destinationViewController = storyboard.instantiateViewController(withIdentifier: "NearbyLocationsMapViewController") as! NearbyLocationsMapViewController
         let destinationNavigationController = UINavigationController(rootViewController: destinationViewController)
@@ -247,13 +187,6 @@ class WeatherListViewController: UIViewController {
         navigationController?.present(destinationNavigationController, animated: true, completion: nil)
     }
 
-    @IBAction func sortButtonPressed(_ sender: UIButton) {
-        triggerSortAlert()
-    }
-    
-    @IBAction func didTapRefreshButton(_ sender: UIButton) {
-        updateWeatherData()
-    }
     
     @IBAction func openWeatherMapButtonPressed(_ sender: UIButton) {
         guard let url = URL(string: "https://openweathermap.org") else {
