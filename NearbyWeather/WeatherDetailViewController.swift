@@ -35,6 +35,7 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var conditionNameLabel: UILabel!
     @IBOutlet weak var conditionDescriptionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var daytimeStackView: UIStackView!
     @IBOutlet weak var sunriseImageView: UIImageView!
@@ -120,6 +121,11 @@ class WeatherDetailViewController: UIViewController {
             dateFormatter.dateStyle = .none
             dateFormatter.timeStyle = .short
             
+            let isDayTime = ConversionService.isDayTime(forWeatherDTO: weatherDTO) ?? true // can never be nil here
+            let description = isDayTime ? NSLocalizedString("WeatherDetailVC_DaytimeDescription", comment: "") : NSLocalizedString("WeatherDetailVC_NighttimeDescription", comment: "")
+            let localTime = dateFormatter.string(from: Date())
+            timeLabel.text = "\(description): \(localTime)"
+            
             sunriseImageView.tintColor = .darkGray
             sunriseNoteLabel.text = "\(NSLocalizedString("WeatherDetailVC_Sunrise", comment: "")):"
             sunriseLabel.text = dateFormatter.string(from: sunriseDate)
@@ -129,6 +135,7 @@ class WeatherDetailViewController: UIViewController {
             sunsetLabel.text = dateFormatter.string(from: sunsetDate)
         } else {
             daytimeStackView.isHidden = true
+            timeLabel.isHidden = true
         }
         
         cloudCoverImageView.tintColor = .darkGray

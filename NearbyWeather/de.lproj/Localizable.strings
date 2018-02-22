@@ -58,6 +58,9 @@ LocationsListTVC_LocationUnavailable = "Beim Laden der Wetterdaten ist ein Fehle
 
 // MARK: - WeatherDetailViewController
 
+WeatherDetailVC_DaytimeDescription = "Tag";
+WeatherDetailVC_NighttimeDescription = "Nacht";
+
 WeatherDetailVC_Sunrise = "Sonnenaufgang";
 WeatherDetailVC_Sunset = "Sonnenuntergang";
 WeatherDetailVC_DaytimeExplanation = "relativ zu Uhrzeit des Geräts";

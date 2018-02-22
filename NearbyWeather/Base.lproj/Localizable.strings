@@ -58,6 +58,9 @@ LocationsListTVC_LocationUnavailable = "An error occurred while downloading weat
 
 // MARK: - WeatherDetailViewController
 
+WeatherDetailVC_DaytimeDescription = "Day-Time";
+WeatherDetailVC_NighttimeDescription = "Night-Time";
+
 WeatherDetailVC_Sunrise = "Sunrise";
 WeatherDetailVC_Sunset = "Sunset";
 WeatherDetailVC_DaytimeExplanation = "based on device's local time";
