@@ -124,7 +124,7 @@ class WeatherDetailViewController: UIViewController {
             let isDayTime = ConversionService.isDayTime(forWeatherDTO: weatherDTO) ?? true // can never be nil here
             let description = isDayTime ? NSLocalizedString("WeatherDetailVC_DaytimeDescription", comment: "") : NSLocalizedString("WeatherDetailVC_NighttimeDescription", comment: "")
             let localTime = dateFormatter.string(from: Date())
-            timeLabel.text = "\(description): \(localTime)"
+            timeLabel.text = "\(description), \(localTime)"
             
             sunriseImageView.tintColor = .darkGray
             sunriseNoteLabel.text = "\(NSLocalizedString("WeatherDetailVC_Sunrise", comment: "")):"
