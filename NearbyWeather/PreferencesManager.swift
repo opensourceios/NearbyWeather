@@ -204,12 +204,12 @@ class PreferencesManager {
             return nil
         }
         
-        let weatherService = PreferencesManager(amountOfResults: preferencesManagerStoredContentsWrapper.amountOfResults,
+        let preferencesManager = PreferencesManager(amountOfResults: preferencesManagerStoredContentsWrapper.amountOfResults,
                                                 temperatureUnit: preferencesManagerStoredContentsWrapper.temperatureUnit,
                                                 windspeedUnit: preferencesManagerStoredContentsWrapper.windspeedUnit,
                                                 sortingOrientation: preferencesManagerStoredContentsWrapper.sortingOrientation)
         
-        return weatherService
+        return preferencesManager
     }
     
     private static func storeService() {
