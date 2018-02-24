@@ -39,11 +39,6 @@ LocationsListTVC_LocationAlert_Message = "Um Wetter Daten für Städte in Ihrer 
 LocationsListTVC_LocationAlert_Action1 = "Verwerfen";
 LocationsListTVC_LocationAlert_Action2 = "Einstellungen";
 
-LocationsListTVC_SortAlert_Cancel = "Abbrechen";
-LocationsListTVC_SortAlert_Action1 = "Nach Namen sortieren";
-LocationsListTVC_SortAlert_Action2 = "Nach Temperatur sortieren";
-LocationsListTVC_SortAlert_Action3 = "Nach Distanz sortieren";
-
 LocationsListTVC_BackButtonTitle = "Zurück";
 
 LocationsListTVC_AlertNoData = "Es konnten keine Daten geladen werden. Gehe sicher, dass du eine Netzwerkverbindung hast.";
@@ -108,14 +103,15 @@ SettingsTVC_NavigationBarTitle = "Einstellungen";
 SettingsTVC_About = "Über";
 
 SettingsTVC_SectionTitle0 = "Allgemein";
-SettingsTVC_SectionTitle1 = "Favorisierte Orte";
-SettingsTVC_SectionTitle2 = "OpenWeatherMap API Schlüssel";
-SettingsTVC_SectionTitle3 = "Anzahl der nahegelegenen Ergebnisse";
-SettingsTVC_SectionTitle4 = "Temperatur Einheit";
-SettingsTVC_SectionTitle5 = "Geschwindigkeits | Entfernungs-Einheit";
+SettingsTVC_SectionTitle1 = "Wetter Service";
 
 SettingsTVC_Results = "Ergebnisse";
 SettingsTVC_RefreshOnAppStart = "Beim App Start Aktualisieren";
+
+SettingsTVC_AmountOfResults = "Anzahl der Ergebnisse";
+SettingsTVC_SortingOrientation = "Sortier-Reihenfolge";
+SettingsTVC_TemperatureUnit = "Temperatur-Einheit";
+SettingsTVC_DistanceSpeedUnit = "Distanz-/Geschwindigkeits-Einheit";
 
 
 // MARK: - SettingsInputTableViewController
@@ -132,6 +128,18 @@ OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Suche nach Städtenamen";
 
 // MARK: - General
 
+apiKey = "API Schlüssel";
+
+sortByName = "Nach Namen";
+sortByTemperature = "Nach Temperatur";
+sortByDistance = "Nach Distanz";
+
+metric = "Metrisch";
+imperial = "Zöllig";
+
+results = "Ergebnisse";
+
+cancel = "Abbrechen";
 reload = "Aktualisieren";
 
 viaEmail = "Email";

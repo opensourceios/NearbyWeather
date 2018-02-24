@@ -39,11 +39,6 @@ LocationsListTVC_LocationAlert_Message = "In order to provide weather data of ne
 LocationsListTVC_LocationAlert_Action1 = "Dismiss";
 LocationsListTVC_LocationAlert_Action2 = "Settings";
 
-LocationsListTVC_SortAlert_Cancel = "Cancel";
-LocationsListTVC_SortAlert_Action1 = "Sort by Name";
-LocationsListTVC_SortAlert_Action2 = "Sort by Temperature";
-LocationsListTVC_SortAlert_Action3 = "Sort by Distance";
-
 LocationsListTVC_BackButtonTitle = "Back";
 
 LocationsListTVC_AlertNoData = "Data could not be loaded. Ensure that you have a network connection and that your API key is correctly entered.";
@@ -108,14 +103,15 @@ SettingsTVC_NavigationBarTitle = "Settings";
 SettingsTVC_About = "About";
 
 SettingsTVC_SectionTitle0 = "General";
-SettingsTVC_SectionTitle1 = "Bookmarked Locations";
-SettingsTVC_SectionTitle2 = "OpenWeatherMap API Key";
-SettingsTVC_SectionTitle3 = "Amount of Nearby Results";
-SettingsTVC_SectionTitle4 = "Temperature Unit";
-SettingsTVC_SectionTitle5 = "Distance | Speed Unit";
+SettingsTVC_SectionTitle1 = "Weather Service";
 
 SettingsTVC_Results = "Results";
 SettingsTVC_RefreshOnAppStart = "Refresh on App Start";
+
+SettingsTVC_AmountOfResults = "Amount of Results";
+SettingsTVC_SortingOrientation = "Sorting Orientation";
+SettingsTVC_TemperatureUnit = "Temperature Unit";
+SettingsTVC_DistanceSpeedUnit = "Distance/Speed Unit";
 
 
 // MARK: - SettingsInputTableViewController
@@ -132,6 +128,18 @@ OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Search by City Name";
 
 // MARK: - General
 
+apiKey = "API Key";
+
+sortByName = "By Name";
+sortByTemperature = "By Temperature";
+sortByDistance = "By Distance";
+
+metric = "Metric";
+imperial = "Imperial";
+
+results = "Results";
+
+cancel = "Cancel";
 reload = "Reload";
 
 viaEmail = "Mail";

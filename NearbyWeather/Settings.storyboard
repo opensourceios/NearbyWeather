@@ -19,15 +19,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="LabelCell" id="m9z-n6-UXF" customClass="LabelCell" customModule="NearbyWeather" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="m9z-n6-UXF" customClass="LabelCell" customModule="NearbyWeather" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m9z-n6-UXF" id="8eF-u2-EOP">
-                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHU-Vt-q3e" userLabel="contentLabel">
-                                            <rect key="frame" x="20" y="5" width="300" height="34"/>
+                                            <rect key="frame" x="20" y="5" width="160" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="ZYe-jf-Cq1"/>
                                             </constraints>
@@ -35,9 +35,22 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rp5-b4-SSR" userLabel="contentLabel">
+                                            <rect key="frame" x="195" y="5" width="160" height="34.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="85o-ga-s52"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="ZHU-Vt-q3e" secondAttribute="trailing" constant="15" id="bFl-wB-ZMW"/>
+                                        <constraint firstAttribute="trailing" secondItem="Rp5-b4-SSR" secondAttribute="trailing" constant="20" id="CW3-cP-lGS"/>
+                                        <constraint firstItem="Rp5-b4-SSR" firstAttribute="top" secondItem="8eF-u2-EOP" secondAttribute="top" constant="5" id="DgE-QY-t9x"/>
+                                        <constraint firstItem="ZHU-Vt-q3e" firstAttribute="width" secondItem="Rp5-b4-SSR" secondAttribute="width" id="JTg-C2-MlG"/>
+                                        <constraint firstAttribute="bottom" secondItem="Rp5-b4-SSR" secondAttribute="bottom" constant="4" id="ROh-fn-xaO"/>
+                                        <constraint firstItem="Rp5-b4-SSR" firstAttribute="leading" secondItem="ZHU-Vt-q3e" secondAttribute="trailing" constant="15" id="Scw-0O-8Rk"/>
                                         <constraint firstAttribute="bottom" secondItem="ZHU-Vt-q3e" secondAttribute="bottom" constant="4" id="cKX-YJ-eRw"/>
                                         <constraint firstItem="ZHU-Vt-q3e" firstAttribute="leading" secondItem="8eF-u2-EOP" secondAttribute="leading" constant="20" id="gc7-Kj-jgM"/>
                                         <constraint firstItem="ZHU-Vt-q3e" firstAttribute="top" secondItem="8eF-u2-EOP" secondAttribute="top" constant="5" id="xiW-0t-OdD"/>
@@ -55,6 +68,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="contentLabel" destination="ZHU-Vt-q3e" id="uwp-nB-Uag"/>
+                                    <outlet property="selectionLabel" destination="Rp5-b4-SSR" id="SlB-9b-ob4"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ToggleCell" id="ylj-UF-1bR" userLabel="ToggleCell" customClass="ToggleCell" customModule="NearbyWeather" customModuleProvider="target">
@@ -114,7 +128,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ypx-Nl-yPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2481" y="1011"/>
+            <point key="canvasLocation" x="2480.8000000000002" y="1010.6446776611695"/>
         </scene>
         <!--InfoTVC-->
         <scene sceneID="50s-1l-Sb3">
@@ -130,13 +144,13 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MN6-fF-Sw8">
-                                    <rect key="frame" x="0.0" y="25" width="0.0" height="120"/>
+                                    <rect key="frame" x="0.0" y="25" width="375" height="120"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h7g-Rh-fY5">
-                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nearbyweather_webicon" translatesAutoresizingMaskIntoConstraints="NO" id="XgB-88-xmm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                                    <rect key="frame" x="150" y="0.0" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="XgB-88-xmm" secondAttribute="height" multiplier="1:1" id="Ibl-gM-PGY"/>
                                                         <constraint firstAttribute="height" constant="75" id="Mif-yh-EST"/>
@@ -152,7 +166,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NearbyWeather - Open Source Weather" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9J-VU-b7Q" userLabel="appTitleLabel">
-                                            <rect key="frame" x="0.0" y="80" width="0.0" height="25"/>
+                                            <rect key="frame" x="0.0" y="80" width="375" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="U0M-hT-6UX"/>
                                             </constraints>
@@ -161,7 +175,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.2 Build #6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TA7-FU-AFJ" userLabel="appVersionLabel">
-                                            <rect key="frame" x="0.0" y="105" width="0.0" height="15"/>
+                                            <rect key="frame" x="0.0" y="105" width="375" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="47f-cW-e7k"/>
                                             </constraints>

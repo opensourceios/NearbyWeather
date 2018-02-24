@@ -68,7 +68,7 @@ class WeatherDataCell: UITableViewCell {
         
         humidityLabel.text = "\(weatherDTO.atmosphericInformation.humidity)%"
         
-        let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: PreferencesManager.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
+        let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: PreferencesManager.shared.distanceSpeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
         windspeedLabel.text = "\(windspeedDescriptor)"
     }
 }

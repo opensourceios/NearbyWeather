@@ -42,25 +42,28 @@ class SettingsTableViewController: UITableViewController {
             break
         case 2:
             let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-            let destinationViewController = storyboard.instantiateViewController(withIdentifier: "OWMCityFilterTableViewController") as! WeatherLocationSelectionTableViewController
-
-            navigationItem.removeTextFromBackBarButton()
-            navigationController?.pushViewController(destinationViewController, animated: true)
-        case 3:
-            let storyboard = UIStoryboard(name: "Settings", bundle: nil)
             let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsInputTVC") as! SettingsInputTableViewController
             
             navigationItem.removeTextFromBackBarButton()
             navigationController?.pushViewController(destinationViewController, animated: true)
+        case 3:
+            let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+            let destinationViewController = storyboard.instantiateViewController(withIdentifier: "OWMCityFilterTableViewController") as! WeatherLocationSelectionTableViewController
+            
+            navigationItem.removeTextFromBackBarButton()
+            navigationController?.pushViewController(destinationViewController, animated: true)
         case 4:
-            PreferencesManager.shared.amountOfResults = AmountOfResults(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
-            tableView.reloadData()
-        case 5:
-            PreferencesManager.shared.temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
-            tableView.reloadData()
-        case 6:
-            PreferencesManager.shared.windspeedUnit = DistanceSpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
-            tableView.reloadData()
+            if indexPath.row == 0 {
+                triggerOptionsAlert(forOptions: amountOfResultsOptions, title: NSLocalizedString("SettingsTVC_AmountOfResults", comment: ""))
+            }
+            if indexPath.row == 1 {
+                triggerOptionsAlert(forOptions: sortResultsOptions, title: NSLocalizedString("SettingsTVC_SortingOrientation", comment: ""))
+            }
+            if indexPath.row == 2 {
+                triggerOptionsAlert(forOptions: temperatureUnitOptions, title: NSLocalizedString("SettingsTVC_TemperatureUnit", comment: ""))
+            } else {
+                triggerOptionsAlert(forOptions: distanceSpeedUnitOptions, title: NSLocalizedString("SettingsTVC_DistanceSpeedUnit", comment: ""))
+            }
         default:
             break
         }
@@ -75,20 +78,16 @@ class SettingsTableViewController: UITableViewController {
         case 2:
             return NSLocalizedString("SettingsTVC_SectionTitle1", comment: "")
         case 3:
-            return NSLocalizedString("SettingsTVC_SectionTitle2", comment: "")
+            return nil
         case 4:
-            return NSLocalizedString("SettingsTVC_SectionTitle3", comment: "")
-        case 5:
-            return NSLocalizedString("SettingsTVC_SectionTitle4", comment: "")
-        case 6:
-            return NSLocalizedString("SettingsTVC_SectionTitle5", comment: "")
+            return nil
         default:
             return nil
         }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 7
+        return 5
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,11 +101,7 @@ class SettingsTableViewController: UITableViewController {
         case 3:
             return 1
         case 4:
-            return AmountOfResults.count
-        case 5:
-            return TemperatureUnit.count
-        case 6:
-            return DistanceSpeedUnit.count
+            return 4
         default:
             return 0
         }
@@ -129,44 +124,39 @@ class SettingsTableViewController: UITableViewController {
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
-            cell.contentLabel.text = "\(WeatherDataManager.shared.bookmarkedLocations[indexPath.row].name), \(WeatherDataManager.shared.bookmarkedLocations[indexPath.row].country)"
+            cell.contentLabel.text = NSLocalizedString("apiKey", comment: "")
+            cell.selectionLabel.text = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey) as? String
             cell.accessoryType = .disclosureIndicator
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
-            cell.contentLabel.text = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey) as? String
+            cell.contentLabel.text = "\(WeatherDataManager.shared.bookmarkedLocations[indexPath.row].name), \(WeatherDataManager.shared.bookmarkedLocations[indexPath.row].country)"
             cell.accessoryType = .disclosureIndicator
             return cell
         case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
-            let amountResults = AmountOfResults(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
-            cell.contentLabel.text = "\(amountResults.integerValue) \(NSLocalizedString("SettingsTVC_Results", comment: ""))"
-            if amountResults.integerValue == PreferencesManager.shared.amountOfResults.integerValue {
-                cell.accessoryType = .checkmark
-            } else {
-                cell.accessoryType = .none
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
+                cell.contentLabel.text = NSLocalizedString("SettingsTVC_AmountOfResults", comment: "")
+                cell.selectionLabel.text = PreferencesManager.shared.amountOfResults.stringValue
+                return cell
             }
-            return cell
-        case 5:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
-            let temperatureUnit = TemperatureUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
-            cell.contentLabel.text = temperatureUnit.stringValue
-            if temperatureUnit.stringValue == PreferencesManager.shared.temperatureUnit.stringValue {
-                cell.accessoryType = .checkmark
-            } else {
-                cell.accessoryType = .none
+            if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
+                cell.contentLabel.text = NSLocalizedString("SettingsTVC_SortingOrientation", comment: "")
+                cell.selectionLabel.text = PreferencesManager.shared.sortingOrientation.stringValue
+                return cell
             }
-            return cell
-        case 6:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
-            let windspeedUnit = DistanceSpeedUnit(rawValue: indexPath.row)! // force unwrap -> this should never fail, if it does the app should crash so we know
-            cell.contentLabel.text = windspeedUnit.stringDescriptor
-            if windspeedUnit.stringDescriptor == PreferencesManager.shared.windspeedUnit.stringDescriptor {
-                cell.accessoryType = .checkmark
+            if indexPath.row == 2 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
+                cell.contentLabel.text = NSLocalizedString("SettingsTVC_TemperatureUnit", comment: "")
+                cell.selectionLabel.text = PreferencesManager.shared.temperatureUnit.stringValue
+                return cell
             } else {
-                cell.accessoryType = .none
+                let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
+                cell.contentLabel.text = NSLocalizedString("SettingsTVC_DistanceSpeedUnit", comment: "")
+                cell.selectionLabel.text = PreferencesManager.shared.distanceSpeedUnit.stringValue
+                return cell
             }
-            return cell
         default:
             return UITableViewCell()
         }
@@ -174,5 +164,86 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    
+    // MARK: - Private Helpers
+    
+    private struct SettingsAlertOption<T: PreferencesOption> { var title: String; var value: Int; var preferenceType: T.Type }
+    
+    private let amountOfResultsOptions = [AmountOfResults(value: .ten),
+                                          AmountOfResults(value: .twenty),
+                                          AmountOfResults(value: .thirty),
+                                          AmountOfResults(value: .forty),
+                                          AmountOfResults(value: .fifty)]
+    
+    private let sortResultsOptions = [SortingOrientation(value: .name),
+                                      SortingOrientation(value: .temperature),
+                                      SortingOrientation(value: .distance)]
+    
+    private let temperatureUnitOptions = [TemperatureUnit(value: .celsius),
+                                          TemperatureUnit(value: .fahrenheit),
+                                          TemperatureUnit(value: .kelvin)]
+    
+    private let distanceSpeedUnitOptions = [DistanceSpeedUnit(value: .kilometres),
+                                            DistanceSpeedUnit(value: .miles)]
+    
+    private func triggerOptionsAlert<T: PreferencesOption>(forOptions options: [T], title: String) {
+        let optionsAlert: UIAlertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil)
+        
+        // force unwrap options below -> this should never fail, if it does the app should crash so we know
+        options.forEach { option in
+            var actionIsSelected = false
+            switch option {
+            case is AmountOfResults:
+                if PreferencesManager.shared.amountOfResults.value == (option as! AmountOfResults).value {
+                    actionIsSelected = true
+                }
+            case is SortingOrientation:
+                if (option as! SortingOrientation).value == .distance
+                    && !LocationService.shared.locationPermissionsGranted {
+                    return
+                }
+                if PreferencesManager.shared.sortingOrientation.value == (option as! SortingOrientation).value {
+                    actionIsSelected = true
+                }
+            case is TemperatureUnit:
+                if PreferencesManager.shared.temperatureUnit.value == (option as! TemperatureUnit).value {
+                    actionIsSelected = true
+                }
+            case is DistanceSpeedUnit:
+                if PreferencesManager.shared.distanceSpeedUnit.value == (option as! DistanceSpeedUnit).value {
+                    actionIsSelected = true
+                }
+            default:
+                return
+            }
+            
+            let action = UIAlertAction(title: option.stringValue, style: .default, handler: { paramAction in
+                switch option {
+                case is AmountOfResults:
+                    PreferencesManager.shared.amountOfResults = option as! AmountOfResults
+                case is SortingOrientation:
+                    PreferencesManager.shared.sortingOrientation = option as! SortingOrientation
+                case is TemperatureUnit:
+                    PreferencesManager.shared.temperatureUnit = option as! TemperatureUnit
+                case is DistanceSpeedUnit:
+                    PreferencesManager.shared.distanceSpeedUnit = option as! DistanceSpeedUnit
+                default:
+                    return
+                }
+                self.tableView.reloadData()
+            })
+            if actionIsSelected {
+                action.setValue(true, forKey: "checked")
+            }
+            optionsAlert.addAction(action)
+        }
+        
+        optionsAlert.addAction(cancelAction)
+        
+        present(optionsAlert, animated: true, completion: nil)
     }
 }
