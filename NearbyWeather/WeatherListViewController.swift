@@ -106,7 +106,7 @@ class WeatherListViewController: UIViewController {
     // MARK: - Private Helpers
     
     private func configure() {
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        navigationController?.navigationBar.styleStandard(withBarTintColor: .nearbyWeatherStandard, isTransluscent: false, animated: true)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         configureNavigationTitle()
@@ -337,7 +337,8 @@ extension WeatherListViewController: UITableViewDataSource {
             return
         }
         let destinationViewController = WeatherDetailViewController.instantiateFromStoryBoard(withTitle: weatherDTO.cityName, weatherDTO: weatherDTO)
-        navigationItem.removeTextFromBackBarButton()
-        navigationController?.pushViewController(destinationViewController, animated: true)
+        let destinationNavigationController = UINavigationController(rootViewController: destinationViewController)
+        destinationNavigationController.addVerticalCloseButton(withCompletionHandler: nil)
+        navigationController?.present(destinationNavigationController, animated: true, completion: nil)
     }
 }
