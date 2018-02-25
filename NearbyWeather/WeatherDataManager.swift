@@ -16,6 +16,7 @@ import Alamofire
 /// associated ErrorDataDTO. This is because each download may fail on it's own
 /// while other information may still be representable.
 struct WeatherDataContainer: Codable {
+    var locationId: Int
     var errorDataDTO: ErrorDataDTO?
     var weatherInformationDTO: WeatherInformationDTO?
 }
@@ -69,6 +70,7 @@ class WeatherDataManager {
     public var bookmarkedLocations: [WeatherStationDTO] {
         didSet {
             update(withCompletionHandler: nil)
+            sortBookmarkedLocationWeatherData()
             WeatherDataManager.storeService()
         }
     }
@@ -114,10 +116,10 @@ class WeatherDataManager {
             var bookmarkednWeatherDataObjects = [WeatherDataContainer]()
             var nearbyWeatherDataObject: BulkWeatherDataContainer?
             
-            self.bookmarkedLocations.forEach {
+            self.bookmarkedLocations.forEach { location in
                 dispatchGroup.enter()
-                NetworkingService.shared.fetchWeatherInformationForStation(withIdentifier: $0.identifier, completionHandler: { weatherData in
-                    bookmarkednWeatherDataObjects.append(weatherData)
+                NetworkingService.shared.fetchWeatherInformationForStation(withIdentifier: location.identifier, completionHandler: { weatherDataContainer in
+                    bookmarkednWeatherDataObjects.append(weatherDataContainer)
                     dispatchGroup.leave()
                 })
             }
@@ -142,6 +144,7 @@ class WeatherDataManager {
             // only override previous record if there is any data
             if bookmarkednWeatherDataObjects.count != 0 {
                 self.bookmarkedWeatherDataObjects = bookmarkednWeatherDataObjects
+                self.sortBookmarkedLocationWeatherData()
             }
             if nearbyWeatherDataObject != nil {
                 self.nearbyWeatherDataObject = nearbyWeatherDataObject
@@ -173,6 +176,18 @@ class WeatherDataManager {
     
     
     // MARK: - Private Helper Methods
+    
+    private func sortBookmarkedLocationWeatherData() {
+        self.bookmarkedWeatherDataObjects = bookmarkedWeatherDataObjects?.sorted { weatherDataObject0, weatherDataObject1 in
+            guard let correspondingLocation0 = bookmarkedLocations.first(where: { return weatherDataObject0.locationId == $0.identifier }),
+                let correspondingLocation1 = bookmarkedLocations.first(where: { return weatherDataObject1.locationId == $0.identifier }),
+                let index0 = bookmarkedLocations.index(of: correspondingLocation0),
+                let index1 = bookmarkedLocations.index(of: correspondingLocation1) else {
+                    return false
+            }
+            return index0 < index1
+        }
+    }
     
     /* Internal Storage Helpers*/
     

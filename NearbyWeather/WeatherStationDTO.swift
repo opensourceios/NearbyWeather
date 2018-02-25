@@ -9,7 +9,11 @@
 import Foundation
 import FMDB
 
-struct WeatherStationDTO: Codable {
+struct WeatherStationDTO: Codable, Equatable {
+    
+    static func ==(lhs: WeatherStationDTO, rhs: WeatherStationDTO) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
     
     var identifier: Int
     var name: String

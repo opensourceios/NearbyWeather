@@ -70,16 +70,16 @@ class NetworkingService {
         guard let apiKey = UserDefaults.standard.value(forKey: kNearbyWeatherApiKeyKey),
             let requestURL = URL(string: "\(kOpenWeatherSingleLocationBaseURL)?APPID=\(apiKey)&id=\(identifier)") else {
                 let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .malformedUrlError), httpStatusCode: nil)
-                return completionHandler(WeatherDataContainer(errorDataDTO: errorDataDTO, weatherInformationDTO: nil))
+                return completionHandler(WeatherDataContainer(locationId: identifier, errorDataDTO: errorDataDTO, weatherInformationDTO: nil))
         }
         
         let request = URLRequest(url: requestURL)
         let dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
             guard let receivedData = data, let _ = response, error == nil else {
                 let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .httpError), httpStatusCode: (response as? HTTPURLResponse)?.statusCode)
-                return completionHandler(WeatherDataContainer(errorDataDTO: errorDataDTO, weatherInformationDTO: nil))
+                return completionHandler(WeatherDataContainer(locationId: identifier, errorDataDTO: errorDataDTO, weatherInformationDTO: nil))
             }
-            completionHandler(self.extractWeatherInformation(receivedData))
+            completionHandler(self.extractWeatherInformation(receivedData, identifier: identifier))
         })
         dataTask.resume()
     }
@@ -110,27 +110,27 @@ class NetworkingService {
     
     // MARK: - Private Helpers
     
-    private func extractWeatherInformation(_ data: Data) -> WeatherDataContainer {
+    private func extractWeatherInformation(_ data: Data, identifier: Int) -> WeatherDataContainer {
         do {
             guard let extractedData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: AnyHashable],
                 let httpStatusCode = extractedData["cod"] as? Int else {
                     let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .unparsableResponseError), httpStatusCode: nil)
-                    return WeatherDataContainer(errorDataDTO: errorDataDTO, weatherInformationDTO: nil)
+                    return WeatherDataContainer(locationId: identifier, errorDataDTO: errorDataDTO, weatherInformationDTO: nil)
             }
             guard httpStatusCode == 200 else {
                 if httpStatusCode == 401 {
                     let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .unrecognizedApiKeyError), httpStatusCode: httpStatusCode)
-                    return WeatherDataContainer(errorDataDTO: errorDataDTO, weatherInformationDTO: nil)
+                    return WeatherDataContainer(locationId: identifier, errorDataDTO: errorDataDTO, weatherInformationDTO: nil)
                 }
                 let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .httpError), httpStatusCode: httpStatusCode)
-                return WeatherDataContainer(errorDataDTO: errorDataDTO, weatherInformationDTO: nil)
+                return WeatherDataContainer(locationId: identifier, errorDataDTO: errorDataDTO, weatherInformationDTO: nil)
             }
             let weatherInformationDTO = try JSONDecoder().decode(WeatherInformationDTO.self, from: data)
-            return WeatherDataContainer(errorDataDTO: nil, weatherInformationDTO: weatherInformationDTO)
+            return WeatherDataContainer(locationId: identifier, errorDataDTO: nil, weatherInformationDTO: weatherInformationDTO)
         } catch {
             print("💥 NetworkingService: Error while extracting single-location-data json: \(error.localizedDescription)")
             let errorDataDTO = ErrorDataDTO(errorType: ErrorType(value: .jsonSerializationError), httpStatusCode: nil)
-            return WeatherDataContainer(errorDataDTO: errorDataDTO, weatherInformationDTO: nil)
+            return WeatherDataContainer(locationId: identifier, errorDataDTO: errorDataDTO, weatherInformationDTO: nil)
         }
     }
     
