@@ -36,14 +36,17 @@ class WeatherLocationService {
         shared = WeatherLocationService()
     }
     
-    public func locations(forSearchString searchString: String, completionHandler: @escaping (([WeatherLocationDTO]?)->())) {
+    public func locations(forSearchString searchString: String, completionHandler: @escaping (([WeatherStationDTO]?)->())) {
         
         if searchString.count == 0 || searchString == "" { return completionHandler(nil) }
         
         openWeatherMapCityServiceBackgroundQueue.async {
             self.databaseQueue.inDatabase { database in
-                
-                let query = "SELECT * FROM locations WHERE (lower(name) LIKE '%\(searchString.lowercased())%')"
+                let usedLocationIdentifiers: [String] = WeatherDataManager.shared.bookmarkedLocations.flatMap {
+                    return String($0.identifier)
+                }
+                let sqlUsedLocationsIdentifierssArray = "('" + usedLocationIdentifiers.joined(separator: "','") + "')"
+                let query = !usedLocationIdentifiers.isEmpty ? "SELECT * FROM locations l WHERE l.id NOT IN \(sqlUsedLocationsIdentifierssArray) AND (lower(name) LIKE '%\(searchString.lowercased())%') ORDER BY country, l.name" : "SELECT * FROM locations l WHERE (lower(name) LIKE '%\(searchString.lowercased())%') ORDER BY l.name, l.country"
                 var queryResult: FMResultSet?
                 
                 do {
@@ -58,9 +61,9 @@ class WeatherLocationService {
                     return
                 }
                 
-                var retrievedLocations = [WeatherLocationDTO]()
+                var retrievedLocations = [WeatherStationDTO]()
                 while result.next() {
-                    guard let location = WeatherLocationDTO(from: result) else {
+                    guard let location = WeatherStationDTO(from: result) else {
                         return
                     }
                     retrievedLocations.append(location)

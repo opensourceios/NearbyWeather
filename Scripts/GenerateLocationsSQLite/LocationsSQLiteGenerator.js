@@ -42,8 +42,6 @@ class LocationsSQLiteGenerator {
             callback()
           })
         })
-
-        
     })
   }
 

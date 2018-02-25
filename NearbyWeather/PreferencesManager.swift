@@ -8,54 +8,72 @@
 
 import Foundation
 
-public class SortingOrientation: Codable {
+public protocol PreferencesOption {
+    associatedtype WrappedEnumType
+    var value: WrappedEnumType { get set }
+    init(value: WrappedEnumType)
+    init?(rawValue: Int)
+    var stringValue: String { get }
+}
+
+public enum SortingOrientationWrappedEnum: Int, Codable {
+    case name
+    case temperature
+    case distance
+}
+
+public class SortingOrientation: Codable, PreferencesOption {
+    public typealias WrappedEnumType = SortingOrientationWrappedEnum
     
     static let count = 3
     
-    var value: SortingOrientationWrappedEnum
+    public var value: SortingOrientationWrappedEnum
     
-    init(value: SortingOrientationWrappedEnum) {
+    required public init(value: SortingOrientationWrappedEnum) {
         self.value = value
     }
     
-    convenience init?(rawValue: Int) {
+    convenience required public init?(rawValue: Int) {
         guard let value = SortingOrientationWrappedEnum(rawValue: rawValue) else {
             return nil
         }
         self.init(value: value)
     }
     
-    public enum SortingOrientationWrappedEnum: Int, Codable {
-        case name
-        case temperature
-        case distance
+    public var stringValue: String {
+        switch value {
+        case .name: return NSLocalizedString("sortByName", comment: "")
+        case .temperature: return NSLocalizedString("sortByTemperature", comment: "")
+        case .distance: return NSLocalizedString("sortByDistance", comment: "")
+        }
     }
 }
 
-public class TemperatureUnit: Codable {
+public enum TemperatureUnitWrappedEnum: Int, Codable {
+    case celsius
+    case fahrenheit
+    case kelvin
+}
+
+public class TemperatureUnit: Codable, PreferencesOption {
+    public typealias WrappedEnumType = TemperatureUnitWrappedEnum
     
     static let count = 3
     
-    var value: TemperatureUnitWrappedEnum
+    public var value: TemperatureUnitWrappedEnum
     
-    init(value: TemperatureUnitWrappedEnum) {
+    public required init(value: TemperatureUnitWrappedEnum) {
         self.value = value
     }
     
-    convenience init?(rawValue: Int) {
+    public required convenience init?(rawValue: Int) {
         guard let value = TemperatureUnitWrappedEnum(rawValue: rawValue) else {
             return nil
         }
         self.init(value: value)
     }
     
-    enum TemperatureUnitWrappedEnum: Int, Codable {
-        case celsius
-        case fahrenheit
-        case kelvin
-    }
-    
-    var stringValue: String {
+    public var stringValue: String {
         switch value {
         case .celsius: return "Celsius"
         case .fahrenheit: return "Fahrenheit"
@@ -64,68 +82,74 @@ public class TemperatureUnit: Codable {
     }
 }
 
-public class DistanceSpeedUnit: Codable {
+public enum DistanceSpeedUnitWrappedEnum: Int, Codable {
+    case kilometres
+    case miles
+}
+
+public class DistanceSpeedUnit: Codable, PreferencesOption {
+    public typealias WrappedEnumType = DistanceSpeedUnitWrappedEnum
+    
     static let count = 2
     
-    var value: DistanceSpeedUnitWrappedEnum
+    public var value: DistanceSpeedUnitWrappedEnum
     
-    init(value: DistanceSpeedUnitWrappedEnum) {
+    public required init(value: DistanceSpeedUnitWrappedEnum) {
         self.value = value
     }
     
-    convenience init?(rawValue: Int) {
+    public required convenience init?(rawValue: Int) {
         guard let value = DistanceSpeedUnitWrappedEnum(rawValue: rawValue) else {
             return nil
         }
         self.init(value: value)
     }
     
-    enum DistanceSpeedUnitWrappedEnum: Int, Codable {
-        case kilometres
-        case miles
-    }
-    
-    var stringDescriptor: String {
+    public var stringValue: String {
         switch value {
-        case .kilometres: return "\(NSLocalizedString("kilometres", comment: "")) | \(NSLocalizedString("kilometres_per_hour", comment: ""))"
-        case .miles: return "\(NSLocalizedString("miles", comment: "")) | \(NSLocalizedString("miles_per_hour", comment: ""))"
-        }
-    }
-    
-    var stringShortValue: String {
-        switch value {
-        case .kilometres: return NSLocalizedString("kmh", comment: "")
-        case .miles: return NSLocalizedString("mph", comment: "")
+        case .kilometres: return "\(NSLocalizedString("metric", comment: ""))"
+        case .miles: return "\(NSLocalizedString("imperial", comment: ""))"
         }
     }
 }
 
-public class AmountOfResults: Codable {
+public enum AmountOfResultsWrappedEnum: Int, Codable {
+    case ten
+    case twenty
+    case thirty
+    case forty
+    case fifty
+}
+
+public class AmountOfResults: Codable, PreferencesOption {
+    public typealias WrappedEnumType = AmountOfResultsWrappedEnum
     
     static let count = 5
     
-    var value: AmountOfResultsWrappedEnum
+    public var value: AmountOfResultsWrappedEnum
     
-    init(value: AmountOfResultsWrappedEnum) {
+    public required init(value: AmountOfResultsWrappedEnum) {
         self.value = value
     }
     
-    convenience init?(rawValue: Int) {
+    public required convenience init?(rawValue: Int) {
         guard let value = AmountOfResultsWrappedEnum(rawValue: rawValue) else {
             return nil
         }
         self.init(value: value)
     }
     
-    enum AmountOfResultsWrappedEnum: Int, Codable {
-        case ten
-        case twenty
-        case thirty
-        case forty
-        case fifty
+    public var stringValue: String {
+        switch value {
+        case .ten: return "\(10) \(NSLocalizedString("results", comment: ""))"
+        case .twenty: return "\(20) \(NSLocalizedString("results", comment: ""))"
+        case .thirty: return "\(30) \(NSLocalizedString("results", comment: ""))"
+        case .forty: return "\(40) \(NSLocalizedString("results", comment: ""))"
+        case .fifty: return "\(50) \(NSLocalizedString("results", comment: ""))"
+        }
     }
     
-    var integerValue: Int {
+    public var integerValue: Int {
         switch value {
         case .ten: return 10
         case .twenty: return 20
@@ -165,7 +189,7 @@ class PreferencesManager {
             PreferencesManager.storeService()
         }
     }
-    public var windspeedUnit: DistanceSpeedUnit {
+    public var distanceSpeedUnit: DistanceSpeedUnit {
         didSet {
             PreferencesManager.storeService()
         }
@@ -173,7 +197,7 @@ class PreferencesManager {
     
     public var sortingOrientation: SortingOrientation {
         didSet {
-             PreferencesManager.storeService()
+            PreferencesManager.storeService()
         }
     }
     
@@ -183,7 +207,7 @@ class PreferencesManager {
     private init(amountOfResults: AmountOfResults, temperatureUnit: TemperatureUnit, windspeedUnit: DistanceSpeedUnit, sortingOrientation: SortingOrientation) {
         self.amountOfResults = amountOfResults
         self.temperatureUnit = temperatureUnit
-        self.windspeedUnit = windspeedUnit
+        self.distanceSpeedUnit = windspeedUnit
         self.sortingOrientation = sortingOrientation
     }
     
@@ -204,12 +228,12 @@ class PreferencesManager {
             return nil
         }
         
-        let weatherService = PreferencesManager(amountOfResults: preferencesManagerStoredContentsWrapper.amountOfResults,
-                                                temperatureUnit: preferencesManagerStoredContentsWrapper.temperatureUnit,
-                                                windspeedUnit: preferencesManagerStoredContentsWrapper.windspeedUnit,
-                                                sortingOrientation: preferencesManagerStoredContentsWrapper.sortingOrientation)
+        let preferencesManager = PreferencesManager(amountOfResults: preferencesManagerStoredContentsWrapper.amountOfResults,
+                                                    temperatureUnit: preferencesManagerStoredContentsWrapper.temperatureUnit,
+                                                    windspeedUnit: preferencesManagerStoredContentsWrapper.windspeedUnit,
+                                                    sortingOrientation: preferencesManagerStoredContentsWrapper.sortingOrientation)
         
-        return weatherService
+        return preferencesManager
     }
     
     private static func storeService() {
@@ -221,7 +245,7 @@ class PreferencesManager {
         preferencesManagerBackgroundQueue.async {
             let preferencesManagerStoredContentsWrapper = PreferencesManagerStoredContentsWrapper(amountOfResults: PreferencesManager.shared.amountOfResults,
                                                                                                   temperatureUnit: PreferencesManager.shared.temperatureUnit,
-                                                                                                  windspeedUnit: PreferencesManager.shared.windspeedUnit,
+                                                                                                  windspeedUnit: PreferencesManager.shared.distanceSpeedUnit,
                                                                                                   sortingOrientation: PreferencesManager.shared.sortingOrientation)
             DataStorageService.storeJson(forCodable: preferencesManagerStoredContentsWrapper, inFileWithName: kPreferencesManagerStoredContentsFileName, toStorageLocation: .applicationSupport)
             dispatchSemaphore.signal()

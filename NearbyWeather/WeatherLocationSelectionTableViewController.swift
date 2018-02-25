@@ -14,7 +14,7 @@ class WeatherLocationSelectionTableViewController: UITableViewController {
     // MARK: - Properties
     
     private let searchController = UISearchController(searchResultsController: nil)
-    private var filteredCities = [WeatherLocationDTO]()
+    private var filteredCities = [WeatherStationDTO]()
     
     
     // MARK: - ViewController Life Cycle
@@ -37,7 +37,7 @@ class WeatherLocationSelectionTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        navigationController?.navigationBar.styleStandard(withBarTintColor: .nearbyWeatherStandard, isTransluscent: false, animated: true)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         tableView.reloadData()
@@ -74,7 +74,7 @@ class WeatherLocationSelectionTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        WeatherDataManager.shared.bookmarkedLocation = filteredCities[indexPath.row]
+        WeatherDataManager.shared.bookmarkedLocations.append(filteredCities[indexPath.row])
         HUD.flash(.success, delay: 1.0)
         navigationController?.popViewController(animated: true)
     }
@@ -85,7 +85,7 @@ extension WeatherLocationSelectionTableViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else {
-            filteredCities = [WeatherLocationDTO]()
+            filteredCities = [WeatherStationDTO]()
             tableView.reloadData()
             return
         }
@@ -104,7 +104,7 @@ extension WeatherLocationSelectionTableViewController: UISearchResultsUpdating {
 extension WeatherLocationSelectionTableViewController: UISearchControllerDelegate {
     
     func didDismissSearchController(_ searchController: UISearchController) {
-        filteredCities = [WeatherLocationDTO]()
+        filteredCities = [WeatherStationDTO]()
         tableView.reloadData()
     }
 }

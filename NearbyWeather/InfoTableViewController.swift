@@ -174,7 +174,7 @@ class InfoTableViewController: UITableViewController {
     // MARK: - Private Helpers
     
     private func configure() {
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        navigationController?.navigationBar.styleStandard(withBarTintColor: .nearbyWeatherStandard, isTransluscent: false, animated: true)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         configureText()
     }

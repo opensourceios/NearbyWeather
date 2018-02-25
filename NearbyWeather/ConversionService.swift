@@ -92,7 +92,7 @@ class ConversionService {
         return String(format: "%.02f", degrees) + "°"
     }
     
-    public static func isDayTime(forWeatherDTO weatherDTO: WeatherDataDTO?) -> Bool? {
+    public static func isDayTime(forWeatherDTO weatherDTO: WeatherInformationDTO?) -> Bool? {
         
         guard let weatherDTO = weatherDTO,
             let sunrise =  weatherDTO.daytimeInformation?.sunrise,

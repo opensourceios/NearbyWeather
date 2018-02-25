@@ -14,7 +14,7 @@ import MapKit
 
 class WeatherDetailViewController: UIViewController {
     
-    static func instantiateFromStoryBoard(withTitle title: String, weatherDTO: WeatherDataDTO) -> WeatherDetailViewController {
+    static func instantiateFromStoryBoard(withTitle title: String, weatherDTO: WeatherInformationDTO) -> WeatherDetailViewController {
         let viewController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "WeatherDetailViewController") as! WeatherDetailViewController
         viewController.titleString = title
         viewController.weatherDTO = weatherDTO
@@ -27,7 +27,7 @@ class WeatherDetailViewController: UIViewController {
     /* Injected */
     
     private var titleString: String!
-    private var weatherDTO: WeatherDataDTO!
+    private var weatherDTO: WeatherInformationDTO!
     
     /* Outlets */
     
@@ -35,6 +35,7 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var conditionNameLabel: UILabel!
     @IBOutlet weak var conditionDescriptionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var daytimeStackView: UIStackView!
     @IBOutlet weak var sunriseImageView: UIImageView!
@@ -95,7 +96,8 @@ class WeatherDetailViewController: UIViewController {
     // MARK: - Private Helpers
     
     private func configure() {
-        navigationController?.navigationBar.styleStandard(withTransluscency: false, animated: true)
+        let barTintColor: UIColor = ConversionService.isDayTime(forWeatherDTO: weatherDTO) ?? true ? .nearbyWeatherStandard : .nearbyWeatherNight
+        navigationController?.navigationBar.styleStandard(withBarTintColor: barTintColor, isTransluscent: false, animated: true)
         navigationController?.navigationBar.addDropShadow(offSet: CGSize(width: 0, height: 1), radius: 10)
         
         separatorLineHeightConstraints.forEach { $0.constant = 1/UIScreen.main.scale }
@@ -120,6 +122,11 @@ class WeatherDetailViewController: UIViewController {
             dateFormatter.dateStyle = .none
             dateFormatter.timeStyle = .short
             
+            let isDayTime = ConversionService.isDayTime(forWeatherDTO: weatherDTO) ?? true // can never be nil here
+            let description = isDayTime ? NSLocalizedString("WeatherDetailVC_DaytimeDescription", comment: "") : NSLocalizedString("WeatherDetailVC_NighttimeDescription", comment: "")
+            let localTime = dateFormatter.string(from: Date())
+            timeLabel.text = "\(description), \(localTime)"
+            
             sunriseImageView.tintColor = .darkGray
             sunriseNoteLabel.text = "\(NSLocalizedString("WeatherDetailVC_Sunrise", comment: "")):"
             sunriseLabel.text = dateFormatter.string(from: sunriseDate)
@@ -129,6 +136,7 @@ class WeatherDetailViewController: UIViewController {
             sunsetLabel.text = dateFormatter.string(from: sunsetDate)
         } else {
             daytimeStackView.isHidden = true
+            timeLabel.isHidden = true
         }
         
         cloudCoverImageView.tintColor = .darkGray
@@ -143,7 +151,7 @@ class WeatherDetailViewController: UIViewController {
         
         windSpeedImageView.tintColor = .darkGray
         windSpeedNoteLabel.text = "\(NSLocalizedString("WeatherDetailVC_WindSpeed", comment: "")):"
-        let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: PreferencesManager.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
+        let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: PreferencesManager.shared.distanceSpeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
         windSpeedLabel.text = windspeedDescriptor
         if let windDirection = weatherDTO.windInformation.degrees {
             windDirectionImageView.transform = CGAffineTransform(rotationAngle: CGFloat(windDirection)*0.0174532925199) // convert to radians
@@ -161,7 +169,7 @@ class WeatherDetailViewController: UIViewController {
             let location = CLLocation(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
             let distanceInMetres = location.distance(from: userLocation)
             
-            let distanceSpeedUnit = PreferencesManager.shared.windspeedUnit
+            let distanceSpeedUnit = PreferencesManager.shared.distanceSpeedUnit
             let distanceString = ConversionService.distanceDescriptor(forDistanceSpeedUnit: distanceSpeedUnit, forDistanceInMetres: distanceInMetres)
             
             distanceImageView.tintColor = .darkGray
@@ -215,7 +223,7 @@ extension WeatherDetailViewController: MKMapViewDelegate {
             viewForCurrentAnnotation = WeatherLocationMapAnnotationView(frame: kMapAnnotationViewInitialFrame)
         }
         viewForCurrentAnnotation?.annotation = annotation
-        viewForCurrentAnnotation?.configure(withWeatherDTO: annotation.weatherDTO, tapHandler: nil)
+        viewForCurrentAnnotation?.configure(withTitle: annotation.title ?? "<Not Set>", subtitle: annotation.subtitle ?? "<Not Set>", fillColor: (annotation.isDayTime ?? true) ? .nearbyWeatherStandard : .nearbyWeatherNight, tapHandler: nil)
         
         return viewForCurrentAnnotation
     }

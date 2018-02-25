@@ -28,7 +28,7 @@ class WeatherDataCell: UITableViewCell {
     @IBOutlet weak var windSpeedImageView: UIImageView!
     @IBOutlet weak var windspeedLabel: UILabel!
     
-    func configureWithWeatherDTO(_ weatherDTO: WeatherDataDTO) {
+    func configureWithWeatherDTO(_ weatherDTO: WeatherInformationDTO) {
         let bubbleColor: UIColor = ConversionService.isDayTime(forWeatherDTO: weatherDTO) ?? true ? .nearbyWeatherStandard : .nearbyWeatherNight // default to blue colored cells
         
         
@@ -68,7 +68,7 @@ class WeatherDataCell: UITableViewCell {
         
         humidityLabel.text = "\(weatherDTO.atmosphericInformation.humidity)%"
         
-        let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: PreferencesManager.shared.windspeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
+        let windspeedDescriptor = ConversionService.windspeedDescriptor(forDistanceSpeedUnit: PreferencesManager.shared.distanceSpeedUnit, forWindspeed: weatherDTO.windInformation.windspeed)
         windspeedLabel.text = "\(windspeedDescriptor)"
     }
 }

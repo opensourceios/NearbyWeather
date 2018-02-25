@@ -29,7 +29,7 @@ SetPermissionsVC_AskPermissionsButtonTitle = "Configure";
 LocationsListTVC_EmptyListTitle = "No Weather Data";
 LocationsListTVC_EmptyListDescription = "Weather data could not be loaded. Make sure you are connected to the Internet.";
 
-LocationsListTVC_TableViewSectionHeader1 = "Weather in Bookmarked Location";
+LocationsListTVC_TableViewSectionHeader1 = "Weather in Bookmarked Locations";
 LocationsListTVC_TableViewSectionHeader2 = "Weather for Nearby Locations";
 
 LocationsListTVC_RefreshPullHandle = "Pull to refresh";
@@ -38,11 +38,6 @@ LocationsListTVC_LastRefresh = "Last Refresh: %@";
 LocationsListTVC_LocationAlert_Message = "In order to provide weather data of nearby cities, your current location is required. You have denied NearbyWeather access to your location data. This can be changed within Settings. While your location is not determinable, sample coordinates will be used.";
 LocationsListTVC_LocationAlert_Action1 = "Dismiss";
 LocationsListTVC_LocationAlert_Action2 = "Settings";
-
-LocationsListTVC_SortAlert_Cancel = "Cancel";
-LocationsListTVC_SortAlert_Action1 = "Sort by Name";
-LocationsListTVC_SortAlert_Action2 = "Sort by Temperature";
-LocationsListTVC_SortAlert_Action3 = "Sort by Distance";
 
 LocationsListTVC_BackButtonTitle = "Back";
 
@@ -57,6 +52,9 @@ LocationsListTVC_LocationUnavailable = "An error occurred while downloading weat
 
 
 // MARK: - WeatherDetailViewController
+
+WeatherDetailVC_DaytimeDescription = "Day-Time";
+WeatherDetailVC_NighttimeDescription = "Night-Time";
 
 WeatherDetailVC_Sunrise = "Sunrise";
 WeatherDetailVC_Sunset = "Sunset";
@@ -75,7 +73,6 @@ WeatherDetailVC_Distance = "Distance";
 
 // MARK: - NearbyLocationsMapViewController
 
-NearbyLocationsMapVC_NavigationItemTitle = "Weather Station Locations";
 NearbyLocationsMapVC_MapTypeSegmentedControl_Title_0 = "Map";
 NearbyLocationsMapVC_MapTypeSegmentedControl_Title_1 = "Hybrid";
 
@@ -106,14 +103,19 @@ SettingsTVC_NavigationBarTitle = "Settings";
 SettingsTVC_About = "About";
 
 SettingsTVC_SectionTitle0 = "General";
-SettingsTVC_SectionTitle1 = "Bookmarked Location";
-SettingsTVC_SectionTitle2 = "OpenWeatherMap API Key";
-SettingsTVC_SectionTitle3 = "Amount of Nearby Results";
-SettingsTVC_SectionTitle4 = "Temperature Unit";
-SettingsTVC_SectionTitle5 = "Distance | Speed Unit";
+SettingsTVC_SectionTitle1 = "Weather Service";
 
 SettingsTVC_Results = "Results";
 SettingsTVC_RefreshOnAppStart = "Refresh on App Start";
+
+SettingsTVC_AmountOfResults = "Amount of Results";
+SettingsTVC_SortingOrientation = "Sorting Orientation";
+SettingsTVC_TemperatureUnit = "Temperature Unit";
+SettingsTVC_DistanceSpeedUnit = "Distance/Speed Unit";
+
+SettingsTVC_AddLocation = "Add a Location";
+SettingsTVC_ManageLocations = "Manage Locations";
+SettingTVC_Locations = "%d Locations";
 
 
 // MARK: - SettingsInputTableViewController
@@ -123,12 +125,33 @@ InputSettingsTVC_SectionTitle_Mode_EnterAPIKey = "Enter API Key";
 InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "The API Key has a length of exactly 32 characters.";
 
 
+// MARK: - WeatherLocationManagementTableViewController
+
+LocationManagementTVC_NavigationBarTitle = "Manage Locations";
+
+
 // MARK:  - OpenWeatherMapCityFilterTableViewController
 
-OpenWeatherMapCityFilterTVC_NavigationBarTitle = "Set City";
-OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Search by City Name";
+OpenWeatherMapCityFilterTVC_NavigationBarTitle = "Add Location";
+OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Search by Name";
+
+OpenWeatherMapCityFilterTVC_FocusOnBookmarkedLocation = "Focus on Bookmarked Location";
 
 // MARK: - General
+
+apiKey = "API Key";
+
+sortByName = "By Name";
+sortByTemperature = "By Temperature";
+sortByDistance = "By Distance";
+
+metric = "Metric";
+imperial = "Imperial";
+
+results = "Results";
+
+cancel = "Cancel";
+reload = "Reload";
 
 viaEmail = "Mail";
 viaGitHub = "GitHub";
