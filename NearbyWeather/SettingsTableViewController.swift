@@ -144,12 +144,12 @@ class SettingsTableViewController: UITableViewController {
                 let entriesCount = WeatherDataManager.shared.bookmarkedLocations.count
                 let firstLocationEntryTitle = WeatherDataManager.shared.bookmarkedLocations[indexPath.row].name
                 
-                cell.selectionLabel.text = entriesCount == 1 ? firstLocationEntryTitle : "\(firstLocationEntryTitle) \(String(format: NSLocalizedString("SettingTVC_AndAlso", comment: ""), (entriesCount - 1)))"
+                cell.selectionLabel.text = entriesCount == 1 ? firstLocationEntryTitle : String(format: NSLocalizedString("SettingTVC_Locations", comment: ""), entriesCount)
                 cell.accessoryType = .disclosureIndicator
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
-                cell.contentLabel.text = "\(NSLocalizedString("SettingsTVC_AddLocation", comment: ""))..."
+                cell.contentLabel.text = NSLocalizedString("SettingsTVC_AddLocation", comment: "")
                 cell.accessoryType = .disclosureIndicator
                 return cell
             }

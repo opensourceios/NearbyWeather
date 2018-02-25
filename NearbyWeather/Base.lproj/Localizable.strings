@@ -115,7 +115,7 @@ SettingsTVC_DistanceSpeedUnit = "Distance/Speed Unit";
 
 SettingsTVC_AddLocation = "Add a Location";
 SettingsTVC_ManageLocations = "Manage Locations";
-SettingTVC_AndAlso = "and %d more";
+SettingTVC_Locations = "%d Locations";
 
 
 // MARK: - SettingsInputTableViewController

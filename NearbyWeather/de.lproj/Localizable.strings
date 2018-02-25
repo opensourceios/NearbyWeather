@@ -115,7 +115,7 @@ SettingsTVC_DistanceSpeedUnit = "Distanz-/Geschwindigkeits-Einheit";
 
 SettingsTVC_AddLocation = "Ort Hinzufügen";
 SettingsTVC_ManageLocations = "Orte Verwalten";
-SettingTVC_AndAlso = "und %d weitere";
+SettingTVC_Locations = "%d Orte";
 
 
 // MARK: - SettingsInputTableViewController
