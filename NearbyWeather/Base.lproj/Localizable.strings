@@ -130,11 +130,12 @@ InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "The API Key has a length of e
 LocationManagementTVC_NavigationBarTitle = "Manage Locations";
 
 
-
 // MARK:  - OpenWeatherMapCityFilterTableViewController
 
 OpenWeatherMapCityFilterTVC_NavigationBarTitle = "Add Location";
 OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Search by Name";
+
+OpenWeatherMapCityFilterTVC_FocusOnBookmarkedLocation = "Focus on Bookmarked Location";
 
 // MARK: - General
 

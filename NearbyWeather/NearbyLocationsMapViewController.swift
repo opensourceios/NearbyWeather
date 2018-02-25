@@ -24,10 +24,9 @@ class NearbyLocationsMapViewController: UIViewController {
     
     /* Properties */
     
-    var bookmarkedLocations = [CLLocation]()
-    var nearbyLocations = [CLLocation]()
     var weatherLocationMapAnnotations: [WeatherLocationMapAnnotation]!
     
+    private var selectedBookmarkedLocation: WeatherInformationDTO?
     private var previousRegion: MKCoordinateRegion?
     
     
@@ -44,9 +43,10 @@ class NearbyLocationsMapViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        selectedBookmarkedLocation = WeatherDataManager.shared.bookmarkedWeatherDataObjects?.first?.weatherInformationDTO
+        
         configure()
         prepareMapAnnotations()
-        prepareLocations()
         focusOnAvailableLocation()
     }
     
@@ -70,27 +70,13 @@ class NearbyLocationsMapViewController: UIViewController {
         mapView.addAnnotations(weatherLocationMapAnnotations)
     }
     
-    private func prepareLocations() {
-        let bookmarkedLocations: [CLLocation]? = WeatherDataManager.shared.bookmarkedWeatherDataObjects?.flatMap {
-            guard let weatherDTO = $0.weatherInformationDTO else { return nil }
-            return CLLocation(latitude: weatherDTO.coordinates.latitude, longitude: weatherDTO.coordinates.longitude)
-        }
-        self.bookmarkedLocations.append(contentsOf: bookmarkedLocations ?? [CLLocation]())
-        
-        
-        let nearbyLocations = WeatherDataManager.shared.nearbyWeatherDataObject?.weatherInformationDTOs?.flatMap {
-            return CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
-        }
-        self.nearbyLocations.append(contentsOf: nearbyLocations ?? [CLLocation]())
-    }
-    
     private func focusOnAvailableLocation() {
         if let previousRegion = previousRegion {
             mapView.setRegion(previousRegion, animated: true)
             return
         }
         guard LocationService.shared.locationPermissionsGranted, LocationService.shared.currentLocation != nil else {
-            focusMapOnBookmarkedLocation()
+            focusMapOnSelectedBookmarkedLocation()
             return
         }
         focusMapOnUserLocation()
@@ -104,8 +90,12 @@ class NearbyLocationsMapViewController: UIViewController {
         }
     }
     
-    private func focusMapOnBookmarkedLocation() {
-        let region = MKCoordinateRegionMakeWithDistance(bookmarkedLocations[0].coordinate, 15000, 15000)
+    private func focusMapOnSelectedBookmarkedLocation() {
+        guard let selectedLocation = selectedBookmarkedLocation else {
+            return
+        }
+        let coordinate = CLLocationCoordinate2D(latitude: selectedLocation.coordinates.latitude, longitude: selectedLocation.coordinates.longitude)
+        let region = MKCoordinateRegionMakeWithDistance(coordinate, 15000, 15000)
         mapView.setRegion(region, animated: true)
         focusBookmarkedLocationButton.image = UIImage(named: "LocateFavoriteActiveIcon")
     }
@@ -129,6 +119,34 @@ class NearbyLocationsMapViewController: UIViewController {
         focusBookmarkedLocationButton.tintColor = .white
     }
     
+    private func triggerFocusOnBookmarkedLocationAlert() {
+        let optionsAlert: UIAlertController = UIAlertController(title: NSLocalizedString("OpenWeatherMapCityFilterTVC_FocusOnBookmarkedLocation", comment: ""), message: nil, preferredStyle: .alert)
+        
+        guard let bookmarkedWeatherDataObjects = WeatherDataManager.shared.bookmarkedWeatherDataObjects?.flatMap({
+            return $0.weatherInformationDTO
+        }) else {
+            return
+        }
+        
+        bookmarkedWeatherDataObjects.forEach { weatherInformationDTO in
+            let location = CLLocationCoordinate2D(latitude: weatherInformationDTO.coordinates.latitude, longitude: weatherInformationDTO.coordinates.longitude)
+            let action = UIAlertAction(title: weatherInformationDTO.cityName, style: .default, handler: { paramAction in
+                let region = MKCoordinateRegionMakeWithDistance(location, 15000, 15000)
+                self.selectedBookmarkedLocation = weatherInformationDTO
+                DispatchQueue.main.async {
+                    self.mapView.setRegion(region, animated: true)
+                    self.focusBookmarkedLocationButton.image = UIImage(named: "LocateFavoriteActiveIcon")
+                }
+            })
+            optionsAlert.addAction(action)
+        }
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil)
+        optionsAlert.addAction(cancelAction)
+        
+        present(optionsAlert, animated: true, completion: nil)
+    }
+    
     
     // MARK: - IBActions
     
@@ -137,7 +155,7 @@ class NearbyLocationsMapViewController: UIViewController {
     }
     
     @IBAction func focusBookmarkedLocationButtonTapped(_ sender: UIBarButtonItem) {
-        focusMapOnBookmarkedLocation()
+        triggerFocusOnBookmarkedLocationAlert()
     }
     
     @IBAction func mapTypeSegmentedControlTapped(_ sender: UISegmentedControl) {
@@ -190,8 +208,8 @@ extension NearbyLocationsMapViewController: MKMapViewDelegate {
                 && mapView.region.center.longitude == currentLocation.coordinate.longitude {
             focusUserLocationButton.image = UIImage(named: "LocateUserActiveIcon")
         }
-        if mapView.region.center.latitude == bookmarkedLocations[0].coordinate.latitude
-            && mapView.region.center.longitude == bookmarkedLocations[0].coordinate.longitude {
+        if mapView.region.center.latitude == selectedBookmarkedLocation?.coordinates.latitude
+            && mapView.region.center.longitude == selectedBookmarkedLocation?.coordinates.longitude {
             focusBookmarkedLocationButton.image = UIImage(named: "LocateFavoriteActiveIcon")
         }
     }

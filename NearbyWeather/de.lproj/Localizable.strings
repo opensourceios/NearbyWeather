@@ -135,6 +135,8 @@ LocationManagementTVC_NavigationBarTitle = "Orte Verwalten";
 OpenWeatherMapCityFilterTVC_NavigationBarTitle = "Ort Hinzufügen";
 OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Suche nach Namen";
 
+OpenWeatherMapCityFilterTVC_FocusOnBookmarkedLocation = "Gespeicherten Ort zentrieren";
+
 // MARK: - General
 
 apiKey = "API Schlüssel";
