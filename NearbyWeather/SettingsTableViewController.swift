@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
-    // MARK: - ViewController Life Cycle
+    // MARK: - ViewController LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +47,19 @@ class SettingsTableViewController: UITableViewController {
             navigationItem.removeTextFromBackBarButton()
             navigationController?.pushViewController(destinationViewController, animated: true)
         case 3:
-            let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-            let destinationViewController = storyboard.instantiateViewController(withIdentifier: "OWMCityFilterTableViewController") as! WeatherLocationSelectionTableViewController
-            
-            navigationItem.removeTextFromBackBarButton()
-            navigationController?.pushViewController(destinationViewController, animated: true)
+            if indexPath.row == 0 {
+                let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+                let destinationViewController = storyboard.instantiateViewController(withIdentifier: "WeatherLocationManagementTableViewController") as! WeatherLocationManagementTableViewController
+                
+                navigationItem.removeTextFromBackBarButton()
+                navigationController?.pushViewController(destinationViewController, animated: true)
+            } else {
+                let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+                let destinationViewController = storyboard.instantiateViewController(withIdentifier: "OWMCityFilterTableViewController") as! WeatherLocationSelectionTableViewController
+                
+                navigationItem.removeTextFromBackBarButton()
+                navigationController?.pushViewController(destinationViewController, animated: true)
+            }
         case 4:
             if indexPath.row == 0 {
                 triggerOptionsAlert(forOptions: amountOfResultsOptions, title: NSLocalizedString("SettingsTVC_AmountOfResults", comment: ""))
@@ -99,7 +107,7 @@ class SettingsTableViewController: UITableViewController {
         case 2:
             return 1
         case 3:
-            return 1
+            return 2
         case 4:
             return 4
         default:
@@ -129,10 +137,22 @@ class SettingsTableViewController: UITableViewController {
             cell.accessoryType = .disclosureIndicator
             return cell
         case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
-            cell.contentLabel.text = "\(WeatherDataManager.shared.bookmarkedLocations[indexPath.row].name), \(WeatherDataManager.shared.bookmarkedLocations[indexPath.row].country)"
-            cell.accessoryType = .disclosureIndicator
-            return cell
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
+                cell.contentLabel.text = NSLocalizedString("SettingsTVC_ManageLocations", comment: "")
+                
+                let entriesCount = WeatherDataManager.shared.bookmarkedLocations.count
+                let firstLocationEntryTitle = WeatherDataManager.shared.bookmarkedLocations[indexPath.row].name
+                
+                cell.selectionLabel.text = entriesCount == 1 ? firstLocationEntryTitle : "\(firstLocationEntryTitle) \(String(format: NSLocalizedString("SettingTVC_AndAlso", comment: ""), (entriesCount - 1)))"
+                cell.accessoryType = .disclosureIndicator
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
+                cell.contentLabel.text = "\(NSLocalizedString("SettingsTVC_AddLocation", comment: ""))..."
+                cell.accessoryType = .disclosureIndicator
+                return cell
+            }
         case 4:
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell

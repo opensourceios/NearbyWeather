@@ -40,7 +40,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="85o-ga-s52"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -337,7 +337,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mOu-lx-ipx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4247" y="1009"/>
+            <point key="canvasLocation" x="3286" y="2096"/>
         </scene>
         <!--Weather Location Selection Table View Controller-->
         <scene sceneID="Q95-SA-U2L">
@@ -397,6 +397,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WSi-Wd-oaP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3287" y="652"/>
+        </scene>
+        <!--Weather Location Management Table View Controller-->
+        <scene sceneID="UpR-3y-toF">
+            <objects>
+                <tableViewController storyboardIdentifier="WeatherLocationManagementTableViewController" id="D9q-ne-Adf" customClass="WeatherLocationManagementTableViewController" customModule="NearbyWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="jbp-zj-XsR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OWMCityCell" id="oO9-fB-e2M" userLabel="OWMCityCell" customClass="LocationWeatherDataCell" customModule="NearbyWeather" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oO9-fB-e2M" id="1ui-vp-C1H">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhg-65-mM4" userLabel="contentLabel">
+                                            <rect key="frame" x="20" y="5" width="340" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="6wn-x2-Uuq"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="dhg-65-mM4" secondAttribute="trailing" constant="15" id="6y0-yy-49i"/>
+                                        <constraint firstItem="dhg-65-mM4" firstAttribute="leading" secondItem="1ui-vp-C1H" secondAttribute="leading" constant="20" id="FQT-WR-Q1K"/>
+                                        <constraint firstItem="dhg-65-mM4" firstAttribute="top" secondItem="1ui-vp-C1H" secondAttribute="top" constant="5" id="P77-Xb-QJ4"/>
+                                        <constraint firstAttribute="bottom" secondItem="dhg-65-mM4" secondAttribute="bottom" constant="4" id="Pfn-27-2Hc"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="Pfn-27-2Hc"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="constraints">
+                                            <include reference="Pfn-27-2Hc"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contentLabel" destination="dhg-65-mM4" id="fTp-hK-Qbj"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="D9q-ne-Adf" id="SFm-iL-kXx"/>
+                            <outlet property="delegate" destination="D9q-ne-Adf" id="DN1-ck-Nbe"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wMX-rL-rbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4030" y="652"/>
         </scene>
         <!--SettingsInputTableViewController-->
         <scene sceneID="7CC-tz-Fn4">

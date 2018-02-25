@@ -113,6 +113,10 @@ SettingsTVC_SortingOrientation = "Sortier-Reihenfolge";
 SettingsTVC_TemperatureUnit = "Temperatur-Einheit";
 SettingsTVC_DistanceSpeedUnit = "Distanz-/Geschwindigkeits-Einheit";
 
+SettingsTVC_AddLocation = "Ort Hinzufügen";
+SettingsTVC_ManageLocations = "Orte Verwalten";
+SettingTVC_AndAlso = "und %d weitere";
+
 
 // MARK: - SettingsInputTableViewController
 
@@ -121,10 +125,15 @@ InputSettingsTVC_SectionTitle_Mode_EnterAPIKey = "Gib deinen API Schlüssel ein"
 InputSettingsTVC_SectionFooter_Mode_EnterAPIKey = "Der API Schlüssel hat eine Länge von genau 32 Zeichen.";
 
 
+// MARK: - WeatherLocationManagementTableViewController
+
+LocationManagementTVC_NavigationBarTitle = "Orte Verwalten";
+
+
 // MARK:  - OpenWeatherMapCityFilterTableViewController
 
-OpenWeatherMapCityFilterTVC_NavigationBarTitle = "Stadt Einstellen";
-OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Suche nach Städtenamen";
+OpenWeatherMapCityFilterTVC_NavigationBarTitle = "Ort Hinzufügen";
+OpenWeatherMapCityFilterTVC_SearchBarPlaceholder = "Suche nach Namen";
 
 // MARK: - General
 
