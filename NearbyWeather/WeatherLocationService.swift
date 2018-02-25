@@ -42,8 +42,11 @@ class WeatherLocationService {
         
         openWeatherMapCityServiceBackgroundQueue.async {
             self.databaseQueue.inDatabase { database in
-                
-                let query = "SELECT * FROM locations WHERE (lower(name) LIKE '%\(searchString.lowercased())%')"
+                let usedLocationIdentifiers: [String] = WeatherDataManager.shared.bookmarkedLocations.flatMap {
+                    return String($0.identifier)
+                }
+                let sqlUsedLocationsIdentifierssArray = "('" + usedLocationIdentifiers.joined(separator: "','") + "')"
+                let query = !usedLocationIdentifiers.isEmpty ? "SELECT * FROM locations l WHERE l.id NOT IN \(sqlUsedLocationsIdentifierssArray) AND (lower(name) LIKE '%\(searchString.lowercased())%') ORDER BY country, l.name" : "SELECT * FROM locations l WHERE (lower(name) LIKE '%\(searchString.lowercased())%') ORDER BY l.name, l.country"
                 var queryResult: FMResultSet?
                 
                 do {
