@@ -74,12 +74,11 @@ class WeatherDataManager {
             WeatherDataManager.storeService()
         }
     }
-    
     public private(set) var bookmarkedWeatherDataObjects: [WeatherDataContainer]?
     public private(set) var nearbyWeatherDataObject: BulkWeatherDataContainer?
     
     private var locationAuthorizationObserver: NSObjectProtocol!
-    
+    private var sortingOrientationChangedObserver: NSObjectProtocol!
     
     // MARK: - Initialization
     
@@ -88,6 +87,9 @@ class WeatherDataManager {
         
         locationAuthorizationObserver = NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil, using: { [unowned self] notification in
             self.discardLocationBasedWeatherDataIfNeeded()
+        })
+        sortingOrientationChangedObserver = NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: kSortingOrientationPreferenceChanged), object: nil, queue: nil, using: { [unowned self] notification in
+            self.sortNearbyLocationWeatherData()
         })
     }
     
@@ -179,7 +181,8 @@ class WeatherDataManager {
     // MARK: - Private Helper Methods
     
     private func sortBookmarkedLocationWeatherData() {
-        bookmarkedWeatherDataObjects = bookmarkedWeatherDataObjects?.sorted { weatherDataObject0, weatherDataObject1 in
+        let result: [WeatherDataContainer]?
+        result = bookmarkedWeatherDataObjects?.sorted { weatherDataObject0, weatherDataObject1 in
             guard let correspondingLocation0 = bookmarkedLocations.first(where: { return weatherDataObject0.locationId == $0.identifier }),
                 let correspondingLocation1 = bookmarkedLocations.first(where: { return weatherDataObject1.locationId == $0.identifier }),
                 let index0 = bookmarkedLocations.index(of: correspondingLocation0),
@@ -188,6 +191,8 @@ class WeatherDataManager {
             }
             return index0 < index1
         }
+        guard let sortedResult = result else { return }
+        bookmarkedWeatherDataObjects = sortedResult
     }
     
     private func sortNearbyLocationWeatherData() {

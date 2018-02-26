@@ -197,6 +197,7 @@ class PreferencesManager {
     
     public var sortingOrientation: SortingOrientation {
         didSet {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kSortingOrientationPreferenceChanged), object: self)
             PreferencesManager.storeService()
         }
     }
