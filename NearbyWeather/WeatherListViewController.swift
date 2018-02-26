@@ -17,34 +17,6 @@ class WeatherListViewController: UIViewController {
     
     private var refreshControl = RainyRefreshControl()
     
-    fileprivate var bookmarkedWeatherInformationDTOs: [WeatherInformationDTO]? {
-        return WeatherDataManager.shared.bookmarkedWeatherDataObjects?.flatMap {
-            return $0.weatherInformationDTO
-        }
-    }
-    
-    fileprivate var nearbyWeatherInformationDTOs: [WeatherInformationDTO]? {
-        guard let multiLocationWeatherData = WeatherDataManager.shared.nearbyWeatherDataObject else {
-            return nil
-        }
-        switch PreferencesManager.shared.sortingOrientation.value {
-        case .name:
-            return multiLocationWeatherData.weatherInformationDTOs?.sorted { $0.cityName < $1.cityName }
-        case .temperature:
-            return multiLocationWeatherData.weatherInformationDTOs?.sorted { $0.atmosphericInformation.temperatureKelvin > $1.atmosphericInformation.temperatureKelvin }
-        case .distance:
-            guard LocationService.shared.locationPermissionsGranted,
-                let currentLocation = LocationService.shared.currentLocation else {
-                    return multiLocationWeatherData.weatherInformationDTOs
-            }
-            return multiLocationWeatherData.weatherInformationDTOs?.sorted {
-                let weatherLocation1 = CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
-                let weatherLocation2 = CLLocation(latitude: $1.coordinates.latitude, longitude: $1.coordinates.longitude)
-                return weatherLocation1.distance(from: currentLocation) < weatherLocation2.distance(from: currentLocation)
-            }
-        }
-    }
-    
     
     // MARK: - Outlets
     
@@ -258,6 +230,7 @@ extension WeatherListViewController: UITableViewDataSource {
             return 0
         }
         if !LocationService.shared.locationPermissionsGranted
+            || WeatherDataManager.shared.bookmarkedWeatherDataObjects == nil
             || WeatherDataManager.shared.nearbyWeatherDataObject == nil
             || WeatherDataManager.shared.apiKeyUnauthorized {
             return 1
@@ -308,14 +281,14 @@ extension WeatherListViewController: UITableViewDataSource {
         
         switch indexPath.section {
         case 0:
-            guard let weatherDTO = bookmarkedWeatherInformationDTOs?[indexPath.row] else {
+            guard let weatherDTO = WeatherDataManager.shared.bookmarkedWeatherDataObjects?[indexPath.row].weatherInformationDTO else {
                     alertCell.configureWithErrorDataDTO(WeatherDataManager.shared.bookmarkedWeatherDataObjects?[indexPath.row].errorDataDTO)
                     return alertCell
             }
             weatherCell.configureWithWeatherDTO(weatherDTO)
             return weatherCell
         case 1:
-            guard let weatherDTO = nearbyWeatherInformationDTOs?[indexPath.row] else {
+            guard let weatherDTO = WeatherDataManager.shared.nearbyWeatherDataObject?.weatherInformationDTOs?[indexPath.row] else {
                 alertCell.configureWithErrorDataDTO(WeatherDataManager.shared.nearbyWeatherDataObject?.errorDataDTO)
                 return alertCell
             }

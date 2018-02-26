@@ -141,13 +141,14 @@ class WeatherDataManager {
                 return
             }
             
-            // only override previous record if there is any data
+            // only override previous record if there is any new data
             if bookmarkednWeatherDataObjects.count != 0 {
                 self.bookmarkedWeatherDataObjects = bookmarkednWeatherDataObjects
                 self.sortBookmarkedLocationWeatherData()
             }
             if nearbyWeatherDataObject != nil {
                 self.nearbyWeatherDataObject = nearbyWeatherDataObject
+                self.sortNearbyLocationWeatherData()
             }
             
             WeatherDataManager.storeService()
@@ -178,7 +179,7 @@ class WeatherDataManager {
     // MARK: - Private Helper Methods
     
     private func sortBookmarkedLocationWeatherData() {
-        self.bookmarkedWeatherDataObjects = bookmarkedWeatherDataObjects?.sorted { weatherDataObject0, weatherDataObject1 in
+        bookmarkedWeatherDataObjects = bookmarkedWeatherDataObjects?.sorted { weatherDataObject0, weatherDataObject1 in
             guard let correspondingLocation0 = bookmarkedLocations.first(where: { return weatherDataObject0.locationId == $0.identifier }),
                 let correspondingLocation1 = bookmarkedLocations.first(where: { return weatherDataObject1.locationId == $0.identifier }),
                 let index0 = bookmarkedLocations.index(of: correspondingLocation0),
@@ -187,6 +188,28 @@ class WeatherDataManager {
             }
             return index0 < index1
         }
+    }
+    
+    private func sortNearbyLocationWeatherData() {
+        let result: [WeatherInformationDTO]?
+        switch PreferencesManager.shared.sortingOrientation.value {
+        case .name:
+            result = nearbyWeatherDataObject?.weatherInformationDTOs?.sorted { $0.cityName < $1.cityName }
+        case .temperature:
+             result = nearbyWeatherDataObject?.weatherInformationDTOs?.sorted { $0.atmosphericInformation.temperatureKelvin > $1.atmosphericInformation.temperatureKelvin }
+        case .distance:
+            guard LocationService.shared.locationPermissionsGranted,
+                let currentLocation = LocationService.shared.currentLocation else {
+                    return
+            }
+            result = nearbyWeatherDataObject?.weatherInformationDTOs?.sorted {
+                let weatherLocation1 = CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
+                let weatherLocation2 = CLLocation(latitude: $1.coordinates.latitude, longitude: $1.coordinates.longitude)
+                return weatherLocation1.distance(from: currentLocation) < weatherLocation2.distance(from: currentLocation)
+            }
+        }
+        guard let sortedResult = result else { return }
+        self.nearbyWeatherDataObject?.weatherInformationDTOs = sortedResult
     }
     
     /* Internal Storage Helpers*/
