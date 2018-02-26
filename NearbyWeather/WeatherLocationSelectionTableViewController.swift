@@ -25,6 +25,7 @@ class WeatherLocationSelectionTableViewController: UITableViewController {
         navigationItem.title = NSLocalizedString("OpenWeatherMapCityFilterTVC_NavigationBarTitle", comment: "")
         
         tableView.delegate = self
+        searchController.delegate = self
         
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = NSLocalizedString("OpenWeatherMapCityFilterTVC_SearchBarPlaceholder", comment: "")
@@ -97,7 +98,6 @@ extension WeatherLocationSelectionTableViewController: UISearchResultsUpdating {
                 self.tableView.reloadData()
             }
         })
-        
     }
 }
 
