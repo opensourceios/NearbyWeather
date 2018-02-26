@@ -217,7 +217,17 @@ class WeatherDataManager {
         self.nearbyWeatherDataObject?.weatherInformationDTOs = sortedResult
     }
     
-    /* Internal Storage Helpers*/
+    /* NotificationCenter Notifications */
+    
+    @objc private func discardLocationBasedWeatherDataIfNeeded() {
+        if !LocationService.shared.locationPermissionsGranted {
+            nearbyWeatherDataObject = nil
+            WeatherDataManager.storeService()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: self)
+        }
+    }
+    
+    /* Internal Storage Helpers */
     
     private static func loadService() -> WeatherDataManager? {
         guard let weatherDataManagerStoredContents = DataStorageService.retrieveJson(fromFileWithName: kWeatherDataManagerStoredContentsFileName, andDecodeAsType: WeatherDataManagerStoredContentsWrapper.self, fromStorageLocation: .documents) else {
@@ -243,14 +253,6 @@ class WeatherDataManager {
                                                                                            nearbyWeatherDataObject: WeatherDataManager.shared.nearbyWeatherDataObject)
             DataStorageService.storeJson(forCodable: weatherDataManagerStoredContents, inFileWithName: kWeatherDataManagerStoredContentsFileName, toStorageLocation: .documents)
             dispatchSemaphore.signal()
-        }
-    }
-    
-    @objc private func discardLocationBasedWeatherDataIfNeeded() {
-        if !LocationService.shared.locationPermissionsGranted {
-            nearbyWeatherDataObject = nil
-            WeatherDataManager.storeService()
-            NotificationCenter.default.post(name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: self)
         }
     }
 }
