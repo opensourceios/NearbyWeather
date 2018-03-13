@@ -30,6 +30,7 @@ class NetworkingService {
     private let reachabilityManager: NetworkReachabilityManager?
     public private(set) var reachabilityStatus: ReachabilityStatus
     
+    
     // MARK: - Initialization
     
     private init() {
@@ -42,6 +43,7 @@ class NetworkingService {
     deinit {
         reachabilityManager?.stopListening()
     }
+    
     
     // MARK: - Private Methods
     

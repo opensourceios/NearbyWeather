@@ -10,7 +10,7 @@ import UIKit
 import TextFieldCounter
 import PKHUD
 
-class SettingsInputTableViewController: UITableViewController, UITextFieldDelegate {
+class SettingsInputTableViewController: UITableViewController {
     
     // MARK: - Assets
 
@@ -24,9 +24,10 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        
         navigationItem.title = NSLocalizedString("SettingsInputTVC_NavigationBarTitle_Mode_EnterAPIKey", comment: "")
+        
+        tableView.delegate = self
+        inputTextField.delegate = self
         inputTextField.text = UserDefaults.standard.string(forKey: kNearbyWeatherApiKeyKey)
     }
     
@@ -47,15 +48,7 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        inputTextField.resignFirstResponder()
-        if let text = inputTextField.text, text.count == 32 {
-            if let currentApiKey = UserDefaults.standard.string(forKey: kNearbyWeatherApiKeyKey), text == currentApiKey {
-                return
-            }
-            UserDefaults.standard.set(text, forKey: kNearbyWeatherApiKeyKey)
-            HUD.flash(.success, delay: 1.0)
-            WeatherDataManager.shared.update(withCompletionHandler: nil)
-        }
+        validateAndSave()
     }
     
     
@@ -76,6 +69,7 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         inputTextField.resignFirstResponder()
     }
     
+    
     // MARK: - Private Helpers
     
     private func configure() {
@@ -87,5 +81,29 @@ class SettingsInputTableViewController: UITableViewController, UITextFieldDelega
         inputTextField.maxLength = 32
         inputTextField.counterColor = inputTextField.textColor ?? .black
         inputTextField.limitColor = .nearbyWeatherStandard
+    }
+    
+    @discardableResult fileprivate func validateAndSave() -> Bool {
+        guard let text = inputTextField.text, text.count == 32  else {
+            return false
+        }
+        
+        inputTextField.resignFirstResponder()
+        
+        if let currentApiKey = UserDefaults.standard.string(forKey: kNearbyWeatherApiKeyKey), text == currentApiKey {
+            return true // saving is unnecessary as there was no change
+        }
+        UserDefaults.standard.set(text, forKey: kNearbyWeatherApiKeyKey)
+        HUD.flash(.success, delay: 1.0)
+        WeatherDataManager.shared.update(withCompletionHandler: nil)
+        return true
+    }
+}
+
+extension SettingsInputTableViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        navigationController?.popViewController(animated: true)
+        return validateAndSave()
     }
 }
