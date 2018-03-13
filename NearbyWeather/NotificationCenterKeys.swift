@@ -11,3 +11,4 @@ import Foundation
 let kWeatherServiceDidUpdate = "de.erikmaximilianmartens.nearbyWeather.weatherServiceDidUpdate"
 let kLocationAuthorizationUpdated = "de.erikmaximilianmartens.nearbyWeather.locationAuthorizationUpdated"
 let kNetworkReachabilityChanged = "de.erikmaximilianmartens.nearbyWeather.networkReachabilityChanged"
+let kSortingOrientationPreferenceChanged = "de.erikmaximilianmartens.nearbyWeather.sortingOrientationPreferenceChanged"

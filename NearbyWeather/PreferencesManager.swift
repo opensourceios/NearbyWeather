@@ -197,9 +197,12 @@ class PreferencesManager {
     
     public var sortingOrientation: SortingOrientation {
         didSet {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kSortingOrientationPreferenceChanged), object: self)
             PreferencesManager.storeService()
         }
     }
+    
+    private var locationAuthorizationObserver: NSObjectProtocol!
     
     
     // MARK: - Initialization
@@ -209,6 +212,14 @@ class PreferencesManager {
         self.temperatureUnit = temperatureUnit
         self.distanceSpeedUnit = windspeedUnit
         self.sortingOrientation = sortingOrientation
+        
+        locationAuthorizationObserver = NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil, using: { [unowned self] notification in
+            self.reconfigureSortingPreferenceIfNeeded()
+        })
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -221,7 +232,16 @@ class PreferencesManager {
     
     // MARK: - Private Helper Methods
     
-    /* Internal Storage Helpers*/
+    /* NotificationCenter Notifications */
+    
+    @objc private func reconfigureSortingPreferenceIfNeeded() {
+        if !LocationService.shared.locationPermissionsGranted
+            && sortingOrientation.value == .distance {
+            sortingOrientation.value = .name // set to default
+        }
+    }
+    
+    /* Internal Storage Helpers */
     
     private static func loadService() -> PreferencesManager? {
         guard let preferencesManagerStoredContentsWrapper = DataStorageService.retrieveJson(fromFileWithName: kPreferencesManagerStoredContentsFileName, andDecodeAsType: PreferencesManagerStoredContentsWrapper.self, fromStorageLocation: .applicationSupport) else {

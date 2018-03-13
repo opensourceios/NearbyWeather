@@ -74,12 +74,11 @@ class WeatherDataManager {
             WeatherDataManager.storeService()
         }
     }
-    
     public private(set) var bookmarkedWeatherDataObjects: [WeatherDataContainer]?
     public private(set) var nearbyWeatherDataObject: BulkWeatherDataContainer?
     
     private var locationAuthorizationObserver: NSObjectProtocol!
-    
+    private var sortingOrientationChangedObserver: NSObjectProtocol!
     
     // MARK: - Initialization
     
@@ -88,6 +87,9 @@ class WeatherDataManager {
         
         locationAuthorizationObserver = NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil, using: { [unowned self] notification in
             self.discardLocationBasedWeatherDataIfNeeded()
+        })
+        sortingOrientationChangedObserver = NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: kSortingOrientationPreferenceChanged), object: nil, queue: nil, using: { [unowned self] notification in
+            self.sortNearbyLocationWeatherData()
         })
     }
     
@@ -141,13 +143,14 @@ class WeatherDataManager {
                 return
             }
             
-            // only override previous record if there is any data
+            // only override previous record if there is any new data
             if bookmarkednWeatherDataObjects.count != 0 {
                 self.bookmarkedWeatherDataObjects = bookmarkednWeatherDataObjects
                 self.sortBookmarkedLocationWeatherData()
             }
             if nearbyWeatherDataObject != nil {
                 self.nearbyWeatherDataObject = nearbyWeatherDataObject
+                self.sortNearbyLocationWeatherData()
             }
             
             WeatherDataManager.storeService()
@@ -178,7 +181,8 @@ class WeatherDataManager {
     // MARK: - Private Helper Methods
     
     private func sortBookmarkedLocationWeatherData() {
-        self.bookmarkedWeatherDataObjects = bookmarkedWeatherDataObjects?.sorted { weatherDataObject0, weatherDataObject1 in
+        let result: [WeatherDataContainer]?
+        result = bookmarkedWeatherDataObjects?.sorted { weatherDataObject0, weatherDataObject1 in
             guard let correspondingLocation0 = bookmarkedLocations.first(where: { return weatherDataObject0.locationId == $0.identifier }),
                 let correspondingLocation1 = bookmarkedLocations.first(where: { return weatherDataObject1.locationId == $0.identifier }),
                 let index0 = bookmarkedLocations.index(of: correspondingLocation0),
@@ -187,9 +191,43 @@ class WeatherDataManager {
             }
             return index0 < index1
         }
+        guard let sortedResult = result else { return }
+        bookmarkedWeatherDataObjects = sortedResult
     }
     
-    /* Internal Storage Helpers*/
+    private func sortNearbyLocationWeatherData() {
+        let result: [WeatherInformationDTO]?
+        switch PreferencesManager.shared.sortingOrientation.value {
+        case .name:
+            result = nearbyWeatherDataObject?.weatherInformationDTOs?.sorted { $0.cityName < $1.cityName }
+        case .temperature:
+             result = nearbyWeatherDataObject?.weatherInformationDTOs?.sorted { $0.atmosphericInformation.temperatureKelvin > $1.atmosphericInformation.temperatureKelvin }
+        case .distance:
+            guard LocationService.shared.locationPermissionsGranted,
+                let currentLocation = LocationService.shared.currentLocation else {
+                    return
+            }
+            result = nearbyWeatherDataObject?.weatherInformationDTOs?.sorted {
+                let weatherLocation1 = CLLocation(latitude: $0.coordinates.latitude, longitude: $0.coordinates.longitude)
+                let weatherLocation2 = CLLocation(latitude: $1.coordinates.latitude, longitude: $1.coordinates.longitude)
+                return weatherLocation1.distance(from: currentLocation) < weatherLocation2.distance(from: currentLocation)
+            }
+        }
+        guard let sortedResult = result else { return }
+        self.nearbyWeatherDataObject?.weatherInformationDTOs = sortedResult
+    }
+    
+    /* NotificationCenter Notifications */
+    
+    @objc private func discardLocationBasedWeatherDataIfNeeded() {
+        if !LocationService.shared.locationPermissionsGranted {
+            nearbyWeatherDataObject = nil
+            WeatherDataManager.storeService()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: self)
+        }
+    }
+    
+    /* Internal Storage Helpers */
     
     private static func loadService() -> WeatherDataManager? {
         guard let weatherDataManagerStoredContents = DataStorageService.retrieveJson(fromFileWithName: kWeatherDataManagerStoredContentsFileName, andDecodeAsType: WeatherDataManagerStoredContentsWrapper.self, fromStorageLocation: .documents) else {
@@ -215,14 +253,6 @@ class WeatherDataManager {
                                                                                            nearbyWeatherDataObject: WeatherDataManager.shared.nearbyWeatherDataObject)
             DataStorageService.storeJson(forCodable: weatherDataManagerStoredContents, inFileWithName: kWeatherDataManagerStoredContentsFileName, toStorageLocation: .documents)
             dispatchSemaphore.signal()
-        }
-    }
-    
-    @objc private func discardLocationBasedWeatherDataIfNeeded() {
-        if !LocationService.shared.locationPermissionsGranted {
-            nearbyWeatherDataObject = nil
-            WeatherDataManager.storeService()
-            NotificationCenter.default.post(name: Notification.Name(rawValue: kWeatherServiceDidUpdate), object: self)
         }
     }
 }
