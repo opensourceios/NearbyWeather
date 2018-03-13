@@ -16,7 +16,6 @@ With NearbyWeather you can:
 
 ## Goals of this Project
 NearbyWeather should help you as a reference for your iOS development. Whether you just started iOS development or want to learn more about Swift by seeing in action, this project is here for your guidance. Idealy you already have gained some experience or got your feet wet with mobile development. NearbyWeather is created to teach basic principles of iOS development, including but not limited to:
-
 - Accessing and using the user's location
 - Persisiting data
 - Network requests
@@ -25,7 +24,6 @@ NearbyWeather should help you as a reference for your iOS development. Whether y
 - Programming concepts such as delegation, closures & generics
 - Swift language features such as codables
 - Avoidance of retain cycles
-
 - 3D touch (coming soon)
 - Peek & pop (coming soon)
 - Using various UIKit classes
