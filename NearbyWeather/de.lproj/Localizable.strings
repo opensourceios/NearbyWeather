@@ -102,8 +102,10 @@ SettingsTVC_NavigationBarTitle = "Einstellungen";
 
 SettingsTVC_About = "Über";
 
-SettingsTVC_SectionTitle0 = "Allgemein";
-SettingsTVC_SectionTitle1 = "Wetter Service";
+SettingsTVC_SectionTitle_0 = "Allgemein";
+SettingsTVC_SectionTitle_1 = "OpenWeatherMap API";
+SettingsTVC_SectionTitle_2 = "Gespeicherte Orte";
+SettingsTVC_SectionTitle_3 = "Präferenzen";
 
 SettingsTVC_Results = "Ergebnisse";
 SettingsTVC_RefreshOnAppStart = "Beim App Start Aktualisieren";
