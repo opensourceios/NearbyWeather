@@ -27,8 +27,8 @@ NearbyWeather should help you as a reference for your iOS development. Whether y
 - Avoidance of retain cycles
 
 - 3D touch (coming soon)
-- peek & pop (coming soon)
-- use of various UIKit classes
+- Peek & pop (coming soon)
+- Using various UIKit classes
 - Using MapKit and customising maps
 - Language localization
 
