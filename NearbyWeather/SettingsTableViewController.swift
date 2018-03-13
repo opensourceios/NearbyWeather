@@ -80,15 +80,15 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return NSLocalizedString("SettingsTVC_SectionTitle0", comment: "")
+            return NSLocalizedString("SettingsTVC_SectionTitle_0", comment: "")
         case 1:
             return nil
         case 2:
-            return NSLocalizedString("SettingsTVC_SectionTitle1", comment: "")
+            return NSLocalizedString("SettingsTVC_SectionTitle_1", comment: "")
         case 3:
-            return nil
+            return NSLocalizedString("SettingsTVC_SectionTitle_2", comment: "")
         case 4:
-            return nil
+            return NSLocalizedString("SettingsTVC_SectionTitle_3", comment: "")
         default:
             return nil
         }

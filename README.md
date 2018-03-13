@@ -21,7 +21,7 @@ NearbyWeather should help you as a reference for your iOS development. Whether y
 - Network requests
 - Using 3rd party libraries via CocoaPods
 - Using support scripts for creating bootstrapped resources
-- Programming concepts such as delegation, closures & generics
+- Programming concepts such as delegation, closures, generics & extensions
 - Swift language features such as codables
 - Avoidance of retain cycles
 - 3D touch (coming soon)
