@@ -55,7 +55,7 @@ class SettingsTableViewController: UITableViewController {
                 navigationController?.pushViewController(destinationViewController, animated: true)
             } else {
                 let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-                let destinationViewController = storyboard.instantiateViewController(withIdentifier: "OWMCityFilterTableViewController") as! WeatherLocationSelectionTableViewController
+                let destinationViewController = storyboard.instantiateViewController(withIdentifier: "WeatherLocationSelectionTableViewController") as! WeatherLocationSelectionTableViewController
                 
                 navigationItem.removeTextFromBackBarButton()
                 navigationController?.pushViewController(destinationViewController, animated: true)

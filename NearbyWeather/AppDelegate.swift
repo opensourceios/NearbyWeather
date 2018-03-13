@@ -8,12 +8,19 @@
 
 import UIKit
 
+enum QuickAction: String {
+    case addLocation = "addLocation"
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
+    var launchedShortcutItem: UIApplicationShortcutItem?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        var shouldPerformAdditionalDelegateHandling = true
+        
         NetworkingService.instantiateSharedInstance()
         LocationService.instantiateSharedInstance()
         PreferencesManager.instantiateSharedInstance()
@@ -28,11 +35,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.window?.rootViewController = destinationViewController
         }
-        return true
+        
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            launchedShortcutItem = shortcutItem
+            shouldPerformAdditionalDelegateHandling = false
+            return shouldPerformAdditionalDelegateHandling
+        }
+        return shouldPerformAdditionalDelegateHandling
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         refreshWeatherDataIfNeeded()
+        
+        if let shortcutItem = launchedShortcutItem {
+            handleQuickAction(shortcutItem: shortcutItem)
+        }
+    }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        let actionHandled = handleQuickAction(shortcutItem: shortcutItem)
+        completionHandler(actionHandled)
     }
     
     
@@ -43,5 +65,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.bool(forKey: kRefreshOnAppStartKey) == true {
             WeatherDataManager.shared.update(withCompletionHandler: nil)
         }
+    }
+    
+    @discardableResult
+    private func handleQuickAction(shortcutItem: UIApplicationShortcutItem) -> Bool {
+        var shortcutItemHandled = false
+        guard let type = shortcutItem.type.components(separatedBy: ".").last,
+            let shortcutType = QuickAction(rawValue: type) else {
+                return shortcutItemHandled
+        }
+        switch shortcutType {
+        case .addLocation:
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            guard let rootNavigationController = self.window?.rootViewController as? UINavigationController,
+                let baseViewController = mainStoryboard.instantiateViewController(withIdentifier: "WeatherListViewController") as? WeatherListViewController else {
+                    break
+            }
+            rootNavigationController.setViewControllers([baseViewController], animated: true)
+            
+            let settingsStoryboard = UIStoryboard(name: "Settings", bundle: nil)
+            let destinationViewController = settingsStoryboard.instantiateViewController(withIdentifier: "SettingsTableViewController") as! SettingsTableViewController
+            let settingsNavigationController = UINavigationController(rootViewController: destinationViewController)
+            settingsNavigationController.addVerticalCloseButton(withCompletionHandler: nil)
+            
+            let addLocationViewController = settingsStoryboard.instantiateViewController(withIdentifier: "WeatherLocationSelectionTableViewController") as! WeatherLocationSelectionTableViewController
+            
+            rootNavigationController.present(settingsNavigationController, animated: true, completion: {
+                settingsNavigationController.presentedViewController?.navigationController?.pushViewController(addLocationViewController, animated: true)
+                shortcutItemHandled = true
+                return
+            })
+        }
+        return shortcutItemHandled
     }
 }

@@ -13,7 +13,7 @@
         <!--SettingsTableViewController-->
         <scene sceneID="ZVC-yB-9JL">
             <objects>
-                <tableViewController storyboardIdentifier="SettingsTVC" id="KTn-Zy-K5w" userLabel="SettingsTableViewController" customClass="SettingsTableViewController" customModule="NearbyWeather" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingsTableViewController" id="KTn-Zy-K5w" userLabel="SettingsTableViewController" customClass="SettingsTableViewController" customModule="NearbyWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="jap-OX-yKq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -144,13 +144,13 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MN6-fF-Sw8">
-                                    <rect key="frame" x="0.0" y="25" width="375" height="120"/>
+                                    <rect key="frame" x="0.0" y="25" width="0.0" height="120"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h7g-Rh-fY5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="80"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nearbyweather_webicon" translatesAutoresizingMaskIntoConstraints="NO" id="XgB-88-xmm">
-                                                    <rect key="frame" x="150" y="0.0" width="75" height="75"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="XgB-88-xmm" secondAttribute="height" multiplier="1:1" id="Ibl-gM-PGY"/>
                                                         <constraint firstAttribute="height" constant="75" id="Mif-yh-EST"/>
@@ -166,7 +166,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NearbyWeather - Open Source Weather" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9J-VU-b7Q" userLabel="appTitleLabel">
-                                            <rect key="frame" x="0.0" y="80" width="375" height="25"/>
+                                            <rect key="frame" x="0.0" y="80" width="0.0" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="U0M-hT-6UX"/>
                                             </constraints>
@@ -175,7 +175,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.2 Build #6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TA7-FU-AFJ" userLabel="appVersionLabel">
-                                            <rect key="frame" x="0.0" y="105" width="375" height="15"/>
+                                            <rect key="frame" x="0.0" y="105" width="0.0" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="47f-cW-e7k"/>
                                             </constraints>
@@ -342,7 +342,7 @@
         <!--Weather Location Selection Table View Controller-->
         <scene sceneID="Q95-SA-U2L">
             <objects>
-                <tableViewController storyboardIdentifier="OWMCityFilterTableViewController" id="WjD-7R-KJ3" customClass="WeatherLocationSelectionTableViewController" customModule="NearbyWeather" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="WeatherLocationSelectionTableViewController" id="WjD-7R-KJ3" customClass="WeatherLocationSelectionTableViewController" customModule="NearbyWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="MAG-9s-TA7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

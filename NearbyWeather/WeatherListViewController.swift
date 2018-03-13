@@ -165,7 +165,7 @@ class WeatherListViewController: UIViewController {
     
     @IBAction func didTapSettingsButton(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-        let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsTVC") as! SettingsTableViewController
+        let destinationViewController = storyboard.instantiateViewController(withIdentifier: "SettingsTableViewController") as! SettingsTableViewController
         let destinationNavigationController = UINavigationController(rootViewController: destinationViewController)
         destinationNavigationController.addVerticalCloseButton(withCompletionHandler: nil)
         navigationController?.present(destinationNavigationController, animated: true, completion: nil)
