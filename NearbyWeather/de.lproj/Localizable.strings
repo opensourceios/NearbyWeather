@@ -164,7 +164,7 @@ miles_per_hour = "Meilen/Stunde";
 kilometres = "Kilometer";
 miles = "Meilen";
 
-kph = "kp/h";
+kph = "km/h";
 mph = "m/h";
 
 km = "km";
