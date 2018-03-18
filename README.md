@@ -1,5 +1,8 @@
 # NearbyWeather - Open Source Weather
 
+![Language](https://img.shields.io/badge/language-Swift%204-orange.svg)
+![License](https://img.shields.io/github/license/erikmartens/NearbyWeather.svg?style=flat)
+
 |List View|Map View|Detail View|
 |:---:|:---:|:---:|
 ![](https://i.imgur.com/Fba7ppE.png) | ![](https://i.imgur.com/fgPbJVx.png) | ![](https://i.imgur.com/MdQJiLj.png)
