@@ -2,6 +2,7 @@
 
 ![Language](https://img.shields.io/badge/language-Swift%204-orange.svg)
 ![License](https://img.shields.io/github/license/erikmartens/NearbyWeather.svg?style=flat)
+[![](https://img.shields.io/badge/Twitter-@erik_martens-blue.svg)](https://twitter.com/erik_martens)
 
 |List View|Map View|Detail View|
 |:---:|:---:|:---:|
