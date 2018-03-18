@@ -1,5 +1,9 @@
 # NearbyWeather - Open Source Weather
 
+|List View|Map View|Detail View|
+|:---:|:---:|:---:|
+![](https://i.imgur.com/Fba7ppE.png) | ![](https://i.imgur.com/fgPbJVx.png) | ![](https://i.imgur.com/MdQJiLj.png)
+
 ## About the App
 NearbyWeather is a simple weather app, that provides current weather information for nearby cities, as well for bookmarked locations. NearbyWeather uses the OpenWeatherMap api to download weather data. Additionally the OpenWeatherMaps location database is directly bootstrapped into the app for quick access.
 
